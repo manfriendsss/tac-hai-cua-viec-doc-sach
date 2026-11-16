@@ -24,24 +24,27 @@ export const Slide9HarmLife: React.FC = () => {
   ];
 
   return (
-    <div className="slide bg-codex-parchment text-[#291305] p-6 md:p-10 flex flex-col justify-between font-serif-italic select-none" data-slide="9">
+    <div className="slide bg-codex-sanguine text-[#7c2d12] p-6 md:p-10 flex flex-col justify-between font-davinci-note slide-sanguine-frame select-none" data-slide="9">
       
+      {/* Top Banner */}
+      <div className="flex justify-between items-center text-xs font-davinci-mono text-[#991b1b] border-b border-[#991b1b]/20 pb-2">
+        <span>✦ BIẾN CHỨNG ĐỜI THỰC, TÀI CHÍNH & SINH HOẠT ✦</span>
+        <span>NOXAE COTIDIANAE V–VII</span>
+      </div>
+
       {/* Header */}
       <motion.div 
-        initial={{ opacity: 0, y: -15 }}
+        initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         className="text-center pt-1"
       >
-        <span className="text-xs uppercase tracking-widest text-[#991b1b] font-bold font-codex-title">
-          BIẾN CHỨNG ĐỜI SỐNG & NHÂN CÁCH
-        </span>
-        <h2 className="text-3xl md:text-5xl font-black text-[#220f04] mb-1 font-calligraphy italic">
-          Ba Nạn Kiếp Đời Thực (5–7)
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#521b0a] font-davinci-title uppercase tracking-wide mb-1">
+          BA NẠN KIẾP ĐỜI THỰC CỦA KẺ NGHIỆN CHỮ (5–7)
         </h2>
-        <div className="divider-ornament">
-          <div className="divider-line"></div>
-          <span className="text-sm tracking-widest text-[#78350f]">💸 ⚖️ 🚽</span>
-          <div className="divider-line right"></div>
+        <div className="divider-sanguine my-1">
+          <div className="divider-sanguine-line"></div>
+          <span className="text-xs tracking-widest text-[#991b1b]">💸 ⚖️ 🚽</span>
+          <div className="divider-sanguine-line right"></div>
         </div>
       </motion.div>
 
@@ -50,42 +53,42 @@ export const Slide9HarmLife: React.FC = () => {
         {harms.map((h, idx) => (
           <motion.div 
             key={idx}
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 + idx * 0.12 }}
-            className="codex-card flex flex-col justify-between p-5 relative overflow-hidden"
+            className="bg-white/65 p-5 md:p-6 border-2 border-dashed border-[#991b1b]/40 rounded-2xl flex flex-col justify-between shadow-md"
           >
             <div>
-              <div className="flex justify-between items-center mb-2 pb-1 border-b border-[#78350f]/20">
-                <span className="w-8 h-8 rounded-full bg-[#991b1b] text-white flex items-center justify-center font-codex-title font-bold text-xs shadow-sm">
+              <div className="flex justify-between items-center mb-2 pb-1 border-b border-[#991b1b]/20">
+                <span className="w-8 h-8 rounded-full bg-[#991b1b] text-white flex items-center justify-center font-davinci-title font-bold text-xs shadow-sm">
                   #{h.num}
                 </span>
-                <span className="text-[10px] font-bold uppercase text-[#78350f] font-codex-mono">
+                <span className="text-[10px] font-bold uppercase text-[#7c2d12] font-davinci-mono">
                   {h.subtitle}
                 </span>
               </div>
 
-              <h3 className="font-bold text-sm md:text-base text-[#291305] mb-2 font-codex-title">
+              <h3 className="font-bold text-sm md:text-base text-[#521b0a] mb-2 font-davinci-title uppercase">
                 {h.title}
               </h3>
 
-              <p className="text-xs text-[#522504] leading-relaxed italic">
+              <p className="text-xs text-[#7c2d12] leading-relaxed">
                 {h.desc}
               </p>
             </div>
 
-            <div className="mt-4 pt-2 border-t border-[#78350f]/20 text-[11px] text-[#991b1b] font-semibold italic">
-              ⚠️ Mức độ ảnh hưởng: Toàn diện cuộc sống gia đình
+            <div className="mt-4 pt-2 border-t border-[#991b1b]/20 text-[11px] text-[#991b1b] font-semibold italic">
+              ⚠️ Mức độ ảnh hưởng: Toàn diện sinh hoạt gia đình
             </div>
           </motion.div>
         ))}
       </div>
 
       {/* Footer */}
-      <div className="flex justify-between items-center text-[10px] md:text-xs text-[#6b3e1b] border-t border-[#78350f]/25 pt-2 px-2">
-        <span className="font-codex-mono">DAMNA COTIDIANA • FOLIO IX</span>
-        <span className="italic">"Đọc sách đánh thẳng vào ví tiền và thời gian sinh hoạt của cả gia đình."</span>
-        <span className="font-codex-mono">CẢNH TỈNH</span>
+      <div className="flex justify-between items-center text-xs text-[#991b1b] border-t border-[#991b1b]/20 pt-2 font-davinci-mono">
+        <span>DAMNA COTIDIANA • FOLIO IX</span>
+        <span className="italic">"Đọc sách đánh thẳng vào ví tiền và biến toilet thành phòng đọc."</span>
+        <span>VITRUVIUS 1490</span>
       </div>
 
     </div>

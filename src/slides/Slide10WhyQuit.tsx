@@ -21,26 +21,29 @@ export const Slide10WhyQuit: React.FC = () => {
   ];
 
   return (
-    <div className="slide bg-codex-parchment text-[#291305] p-6 md:p-10 flex flex-col justify-between font-serif-italic select-none" data-slide="10">
+    <div className="slide bg-codex-sanguine text-[#7c2d12] p-6 md:p-10 flex flex-col justify-between font-davinci-note slide-sanguine-frame select-none" data-slide="10">
       
+      {/* Top Banner */}
+      <div className="flex justify-between items-center text-xs font-davinci-mono text-[#991b1b] border-b border-[#991b1b]/20 pb-2">
+        <span>✦ PARS QUARTA • BẢO TOÀN TỶ LỆ VÀNG ✦</span>
+        <span>GIẢI MÃ SỰ THOÁT NẠN CỦA 90% NHÂN LOẠI</span>
+      </div>
+
       {/* Header */}
       <motion.div 
-        initial={{ opacity: 0, y: -15 }}
+        initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         className="text-center pt-1"
       >
-        <span className="text-xs uppercase tracking-widest text-[#991b1b] font-bold font-codex-title">
-          PHẦN 04 • GIẢI MÃ SỰ THOÁT NẠN
-        </span>
-        <h2 className="text-3xl md:text-5xl font-black text-[#220f04] mb-1 font-calligraphy italic">
-          Vì Sao 90% Đã Bỏ Cuộc Giữa Chừng?
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#521b0a] font-davinci-title uppercase tracking-wide mb-1">
+          VÌ SAO 90% BẢO TOÀN ĐƯỢC TỶ LỆ VÀNG?
         </h2>
-        <div className="divider-ornament">
-          <div className="divider-line"></div>
-          <span className="text-sm tracking-widest text-[#78350f]">🛡️ 🏃‍♂️ 💨</span>
-          <div className="divider-line right"></div>
+        <div className="divider-sanguine my-1">
+          <div className="divider-sanguine-line"></div>
+          <span className="text-xs tracking-widest text-[#991b1b]">🛡️ 🏃‍♂️ 💨</span>
+          <div className="divider-sanguine-line right"></div>
         </div>
-        <p className="italic text-xs md:text-sm text-[#522504]">
+        <p className="italic text-xs md:text-sm text-[#7c2d12]">
           (Xin chúc mừng, 90% nhân loại đã may mắn "thoát nạn" nhờ 3 nguyên nhân dở khóc dở cười này)
         </p>
       </motion.div>
@@ -50,33 +53,33 @@ export const Slide10WhyQuit: React.FC = () => {
         {reasons.map((r, idx) => (
           <motion.div 
             key={idx}
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 + idx * 0.12 }}
-            className="codex-card flex flex-col justify-between p-5 relative"
+            className="bg-white/65 p-5 md:p-6 border-2 border-dashed border-[#991b1b]/40 rounded-2xl flex flex-col justify-between shadow-md"
           >
             <div>
-              <div className="text-3xl mb-2 text-[#78350f]">{r.icon}</div>
-              <h3 className="font-bold text-sm md:text-base text-[#291305] mb-2 font-codex-title">
+              <div className="text-3xl mb-2 text-[#991b1b]">{r.icon}</div>
+              <h3 className="font-bold text-sm md:text-base text-[#521b0a] mb-2 font-davinci-title uppercase">
                 {r.title}
               </h3>
-              <p className="text-xs text-[#522504] leading-relaxed italic">
+              <p className="text-xs text-[#7c2d12] leading-relaxed">
                 {r.desc}
               </p>
             </div>
 
-            <div className="mt-3 pt-2 border-t border-[#78350f]/20 text-[11px] text-[#78350f] font-semibold italic">
-              ✦ "Thoát nạn" thành công
+            <div className="mt-4 pt-2 border-t border-[#991b1b]/20 text-[11px] text-[#991b1b] font-semibold italic">
+              ✦ Giữ nguyên dáng vóc Vitruvius thành công!
             </div>
           </motion.div>
         ))}
       </div>
 
       {/* Footer */}
-      <div className="flex justify-between items-center text-[10px] md:text-xs text-[#6b3e1b] border-t border-[#78350f]/25 pt-2 px-2">
-        <span className="font-codex-mono">CURA ET ABANDONUM • FOLIO X</span>
+      <div className="flex justify-between items-center text-xs text-[#991b1b] border-t border-[#991b1b]/20 pt-2 font-davinci-mono">
+        <span>CURA ET ABANDONUM • FOLIO X</span>
         <span className="italic">"Sự kiên nhẫn là thứ thuốc đắng mà ít ai muốn nuốt."</span>
-        <span className="font-codex-mono">LỐI THOÁT</span>
+        <span>LỐI THOÁT</span>
       </div>
 
     </div>

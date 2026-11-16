@@ -1,40 +1,58 @@
 :root {
-  --parchment-base: #ebdcb9;
-  --parchment-light: #f7efe1;
-  --parchment-dark: #d8caa7;
-  --ink-walnut: #291305;
-  --ink-sepia: #451a03;
-  --ink-brown: #6b3e1b;
-  --ink-red: #801414;
-  --accent-gold: #b45309;
-  --gold-border: rgba(180, 83, 9, 0.45);
-  --aged-vignette: rgba(69, 26, 3, 0.55);
+  --sanguine-vellum: #fcf6ee;
+  --sanguine-red: #991b1b;
+  --sanguine-red-light: #b91c1c;
+  --sanguine-terracotta: #7c2d12;
+  --sanguine-dark: #521b0a;
+  --sanguine-border: rgba(154, 52, 18, 0.35);
+  --sanguine-amber: #d97706;
 }
 
 /* TYPOGRAPHY */
-.font-calligraphy {
-  font-family: 'Great Vibes', 'Alex Brush', 'Snell Roundhand', 'Brush Script MT', 'Apple Chancery', 'Playfair Display', cursive, serif;
+.font-davinci-title {
+  font-family: 'Cinzel', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
 }
-.font-serif-italic {
-  font-family: 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+.font-davinci-note {
+  font-family: 'Georgia', 'Times New Roman', serif;
   font-style: italic;
 }
-.font-codex-title {
-  font-family: 'Cinzel', 'Palatino', Georgia, serif;
-}
-.font-codex-mono {
+.font-davinci-mono {
   font-family: 'Courier New', Courier, monospace;
+  letter-spacing: -0.5px;
 }
 
-/* PARCHMENT BACKGROUND */
-.bg-codex-parchment {
-  background-color: var(--parchment-base);
+/* SANGUINE VELLUM BACKGROUND */
+.bg-codex-sanguine {
+  background-color: var(--sanguine-vellum);
   background-image: 
-    radial-gradient(circle at 50% 50%, rgba(255, 248, 230, 0.45) 0%, rgba(180, 83, 9, 0.15) 75%, rgba(69, 26, 3, 0.48) 100%),
-    url('/assets/images.webp');
-  background-size: cover;
-  background-blend-mode: multiply;
-  box-shadow: inset 0 0 65px var(--aged-vignette), inset 0 0 20px rgba(35, 12, 1, 0.75);
+    radial-gradient(circle at 30% 70%, rgba(185, 28, 28, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 70% 30%, rgba(180, 83, 9, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(254, 243, 199, 0.25) 0%, transparent 80%),
+    linear-gradient(rgba(154, 52, 18, 0.025) 1px, transparent 1px);
+  box-shadow: inset 0 0 50px rgba(153, 27, 27, 0.2), inset 0 0 15px rgba(120, 53, 15, 0.25);
+}
+
+/* SLIDE FRAME */
+.slide-sanguine-frame {
+  border: 12px solid rgba(154, 52, 18, 0.3);
+}
+
+/* SANGUINE CARDS */
+.sanguine-card {
+  background: rgba(255, 255, 255, 0.65);
+  border: 2px dashed rgba(153, 27, 27, 0.45);
+  border-radius: 14px;
+  padding: 18px;
+  backdrop-filter: blur(2px);
+  box-shadow: 0 8px 24px rgba(124, 45, 18, 0.08);
+  transition: all 0.25s ease;
+}
+
+.sanguine-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(153, 27, 27, 0.8);
+  box-shadow: 0 12px 32px rgba(124, 45, 18, 0.16);
+  background: rgba(255, 255, 255, 0.85);
 }
 
 /* 16:9 CONTAINER & VIEWPORT */
@@ -43,7 +61,7 @@
   inset: 0;
   width: 100vw;
   height: 100vh;
-  background: #140b05;
+  background: #180905;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,7 +77,7 @@
   max-height: 56.25vw;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.85);
   overflow: hidden;
 }
 
@@ -70,16 +88,16 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: rgba(41, 19, 5, 0.35);
+  background: rgba(82, 27, 10, 0.35);
   z-index: 50;
 }
 
 .progress-bar-fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #78350f, #d97706, #fde68a, #d97706);
+  background: linear-gradient(90deg, #991b1b, #b91c1c, #fed7aa, #b91c1c);
   transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 0 10px rgba(217, 119, 6, 0.8);
+  box-shadow: 0 0 10px rgba(185, 28, 28, 0.8);
 }
 
 /* TOP AUTHOR / CODEX BADGE */
@@ -93,13 +111,12 @@
   gap: 8px;
   padding: 4px 12px;
   border-radius: 9999px;
-  background: rgba(245, 236, 215, 0.85);
-  border: 1px solid rgba(120, 53, 15, 0.4);
+  background: #fed7aa;
+  border: 1px solid #9a3412;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(4px);
   font-size: 11px;
   font-weight: 700;
-  color: #5c3417;
+  color: #7c2d12;
   font-family: 'Cinzel', serif;
   letter-spacing: 0.5px;
 }
@@ -137,7 +154,7 @@
   left: 0;
   right: 0;
   height: 52px;
-  background: linear-gradient(to top, rgba(20, 11, 5, 0.95), rgba(20, 11, 5, 0.7) 70%, transparent);
+  background: linear-gradient(to top, rgba(24, 9, 5, 0.95), rgba(24, 9, 5, 0.7) 70%, transparent);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -152,15 +169,15 @@
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  background: rgba(245, 236, 215, 0.2);
-  border: 1px solid rgba(217, 119, 6, 0.4);
-  color: #fde68a;
+  background: rgba(254, 215, 170, 0.2);
+  border: 1px solid rgba(185, 28, 28, 0.5);
+  color: #fed7aa;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .icon-btn:hover {
-  background: rgba(217, 119, 6, 0.4);
+  background: rgba(185, 28, 28, 0.5);
   color: #ffffff;
   transform: scale(1.05);
 }
@@ -181,11 +198,11 @@
 .clickable-counter {
   font-size: 13px;
   font-weight: 800;
-  color: #fde68a;
+  color: #fed7aa;
   padding: 4px 12px;
   border-radius: 8px;
-  background: rgba(0, 0, 0, 0.45);
-  border: 1px solid rgba(180, 83, 9, 0.5);
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(185, 28, 28, 0.6);
   cursor: pointer;
   font-family: 'Cinzel', monospace;
   letter-spacing: 1px;
@@ -193,7 +210,7 @@
 }
 
 .clickable-counter:hover {
-  background: rgba(180, 83, 9, 0.6);
+  background: rgba(153, 27, 27, 0.7);
   color: #fff;
 }
 
@@ -202,8 +219,8 @@
   bottom: 46px;
   left: 0;
   width: 320px;
-  background: rgba(26, 15, 7, 0.97);
-  border: 2px solid #b45309;
+  background: rgba(24, 9, 5, 0.97);
+  border: 2px solid #991b1b;
   border-radius: 16px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(12px);
@@ -226,7 +243,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(180, 83, 9, 0.35);
+  border-bottom: 1px solid rgba(185, 28, 28, 0.4);
   padding-bottom: 8px;
   margin-bottom: 10px;
 }
@@ -234,7 +251,7 @@
 .slide-picker-title {
   font-size: 11px;
   font-weight: 800;
-  color: #fde68a;
+  color: #fed7aa;
   text-transform: uppercase;
   font-family: 'Cinzel', serif;
 }
@@ -242,7 +259,7 @@
 .slide-picker-close {
   background: none;
   border: none;
-  color: #d8caa7;
+  color: #fed7aa;
   cursor: pointer;
   font-size: 14px;
   padding: 2px 6px;
@@ -257,9 +274,9 @@
 .slide-picker-btn {
   padding: 8px 4px;
   border-radius: 8px;
-  background: rgba(245, 236, 215, 0.08);
-  border: 1px solid rgba(180, 83, 9, 0.3);
-  color: #fde68a;
+  background: rgba(254, 215, 170, 0.08);
+  border: 1px solid rgba(185, 28, 28, 0.35);
+  color: #fed7aa;
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
@@ -269,43 +286,27 @@
 
 .slide-picker-btn:hover,
 .slide-picker-btn.active {
-  background: #b45309;
+  background: #991b1b;
   color: #fff;
-  border-color: #fde68a;
+  border-color: #fed7aa;
 }
 
-/* CARDS & UI COMPONENTS */
-.codex-card {
-  background: rgba(250, 243, 227, 0.82);
-  border: 2px solid rgba(120, 53, 15, 0.35);
-  border-radius: 18px;
-  padding: 20px;
-  box-shadow: 0 10px 30px rgba(69, 26, 3, 0.12), inset 0 0 15px rgba(180, 83, 9, 0.06);
-  backdrop-filter: blur(2px);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-
-.codex-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 40px rgba(69, 26, 3, 0.2);
-  border-color: rgba(180, 83, 9, 0.7);
-}
-
-.divider-ornament {
+/* SANGUINE DIVIDER */
+.divider-sanguine {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  color: #78350f;
+  color: #991b1b;
   margin: 8px 0;
 }
 
-.divider-line {
+.divider-sanguine-line {
   height: 1px;
-  width: 60px;
-  background: linear-gradient(to right, transparent, rgba(120, 53, 15, 0.6));
+  width: 70px;
+  background: linear-gradient(to right, transparent, rgba(153, 27, 27, 0.7));
 }
 
-.divider-line.right {
-  background: linear-gradient(to left, transparent, rgba(120, 53, 15, 0.6));
+.divider-sanguine-line.right {
+  background: linear-gradient(to left, transparent, rgba(153, 27, 27, 0.7));
 }

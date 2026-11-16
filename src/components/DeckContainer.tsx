@@ -14,18 +14,18 @@ import { Slide12Conclusion } from '../slides/Slide12Conclusion';
 
 export const DeckContainer: React.FC = () => {
   const slideTitles = [
-    { n: 1, title: 'Bìa: Tác Hại Của Việc Đọc Sách' },
-    { n: 2, title: 'Lộ Trình 30 Phút Cảnh Tỉnh' },
-    { n: 3, title: 'Phần 01: Thống Kê Khó Đỡ' },
-    { n: 4, title: 'Những Con Số "Biết Nói"' },
-    { n: 5, title: 'Phần 02: 3 Công Cụ Gây Nghiện' },
-    { n: 6, title: 'Đặt Lên Bàn Cân 3 Định Dạng' },
-    { n: 7, title: 'Phần 03: 7 Tác Hại Khó Lường' },
-    { n: 8, title: 'Biến Chứng Tâm Trí & Giấc Ngủ (1-4)' },
-    { n: 9, title: 'Biến Chứng Đời Sống & Toilet (5-7)' },
-    { n: 10, title: 'Phần 04: Vì Sao 90% Bỏ Cuộc' },
-    { n: 11, title: 'Phần 05: 4 Bước Nhiễm Độc Đúng Cách' },
-    { n: 12, title: 'Kết Luận & Lời Chúc Phúc Độc Địa' }
+    { n: 1, title: 'Bìa: Phá Vỡ Tỉ Lệ Vàng Vitruvius' },
+    { n: 2, title: 'Lộ Trình: 5 Quy Luật Hình Học Cảnh Tỉnh' },
+    { n: 3, title: 'Phần 01: Khảo Cứu Hình Học Sussex & Yale' },
+    { n: 4, title: 'Hai Quy Luật Tỉ Lệ Gây Hoang Mang (-68% & +2 Năm)' },
+    { n: 5, title: 'Phần 02: Tam Thể Khí Cụ Làm Lệch Trục' },
+    { n: 6, title: 'Đặt Lên Bàn Cân 3 Khí Cụ Đọc Sách' },
+    { n: 7, title: 'Phần 03: 7 Biến Chứng Phá Vỡ Hình Thể' },
+    { n: 8, title: 'Biến Chứng Tâm Thần & Não Bộ (1-4)' },
+    { n: 9, title: 'Biến Chứng Đời Sống, Tài Chính & Toilet (5-7)' },
+    { n: 10, title: 'Phần 04: Vì Sao 90% Thoát Nạn Nhờ Bỏ Cuộc?' },
+    { n: 11, title: 'Phần 05: 4 Bước Nhiễm Độc Sách Đúng Cách' },
+    { n: 12, title: 'Epilogus: Lời Chúc Phúc Độc Địa & Vấn Đáp' }
   ];
 
   return (
@@ -39,10 +39,10 @@ export const DeckContainer: React.FC = () => {
           <div className="progress-bar-fill" id="progress-bar"></div>
         </div>
 
-        {/* Floating Codex Badge */}
-        <div className="deck-top-badge" title="Da Vinci Codex Edition">
-          <span>📜</span>
-          <span>CODEX DA VINCI • 2026</span>
+        {/* Floating Codex Sanguine Badge */}
+        <div className="deck-top-badge" title="Da Vinci #3: Codex Sanguine">
+          <span>⭕</span>
+          <span>CODEX SANGUINE • VITRUVIUS 1490</span>
         </div>
 
         {/* 12 Slides */}
