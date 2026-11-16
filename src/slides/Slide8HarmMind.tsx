@@ -26,7 +26,7 @@ export const Slide8HarmMind: React.FC = () => {
   ];
 
   return (
-    <div className="slide bg-codex-parchment text-[#291305] p-5 md:p-8 flex flex-col justify-between font-serif-italic relative select-none" data-slide="8">
+    <div className="slide bg-codex-parchment text-[#291305] p-5 md:p-8 flex flex-col justify-between font-serif-italic select-none" data-slide="8">
       
       {/* Header */}
       <motion.div 

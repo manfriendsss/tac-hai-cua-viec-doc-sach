@@ -13,7 +13,7 @@ export const Slide1Title: React.FC = () => {
   ];
 
   return (
-    <div className="slide active bg-codex-parchment text-[#291305] p-6 md:p-10 flex flex-col justify-between font-serif-italic relative select-none" data-slide="1">
+    <div className="slide active bg-codex-parchment text-[#291305] p-6 md:p-10 flex flex-col justify-between font-serif-italic select-none" data-slide="1">
       
       {/* Top Header & Ornamental Divider */}
       <motion.div 

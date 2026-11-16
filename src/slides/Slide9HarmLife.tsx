@@ -24,7 +24,7 @@ export const Slide9HarmLife: React.FC = () => {
   ];
 
   return (
-    <div className="slide bg-codex-parchment text-[#291305] p-6 md:p-10 flex flex-col justify-between font-serif-italic relative select-none" data-slide="9">
+    <div className="slide bg-codex-parchment text-[#291305] p-6 md:p-10 flex flex-col justify-between font-serif-italic select-none" data-slide="9">
       
       {/* Header */}
       <motion.div 

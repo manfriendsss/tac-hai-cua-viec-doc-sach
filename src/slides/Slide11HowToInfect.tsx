@@ -26,7 +26,7 @@ export const Slide11HowToInfect: React.FC = () => {
   ];
 
   return (
-    <div className="slide bg-codex-parchment text-[#291305] p-5 md:p-8 flex flex-col justify-between font-serif-italic relative select-none" data-slide="11">
+    <div className="slide bg-codex-parchment text-[#291305] p-5 md:p-8 flex flex-col justify-between font-serif-italic select-none" data-slide="11">
       
       {/* Header */}
       <motion.div 

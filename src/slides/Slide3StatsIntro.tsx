@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const Slide3StatsIntro: React.FC = () => {
   return (
-    <div className="slide bg-codex-parchment text-[#291305] p-8 md:p-14 flex flex-col justify-between font-serif-italic relative select-none" data-slide="3">
+    <div className="slide bg-codex-parchment text-[#291305] p-8 md:p-14 flex flex-col justify-between font-serif-italic select-none" data-slide="3">
       
       {/* Top Banner */}
       <div className="flex justify-between items-center text-xs text-[#78350f] border-b border-[#78350f]/20 pb-2 font-codex-mono">

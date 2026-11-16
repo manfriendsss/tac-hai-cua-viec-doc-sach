@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const Slide6ToolsCompare: React.FC = () => {
   return (
-    <div className="slide bg-codex-parchment text-[#291305] p-5 md:p-8 flex flex-col justify-between font-serif-italic relative select-none" data-slide="6">
+    <div className="slide bg-codex-parchment text-[#291305] p-5 md:p-8 flex flex-col justify-between font-serif-italic select-none" data-slide="6">
       
       {/* Header */}
       <motion.div 
