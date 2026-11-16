@@ -49,7 +49,6 @@ export function initDeckEngine(): () => void {
         } else if (cardStep === currentStep) {
           // Current step: In spotlight!
           card.classList.add('step-spotlight');
-          card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         } else if (cardStep < currentStep) {
           // Previous steps: Docked, fully visible and readable
           card.classList.add('step-docked');
