@@ -31,12 +31,6 @@ export const DeckContainer: React.FC = () => {
           <div className="progress-bar-fill" id="progress-bar"></div>
         </div>
 
-        {/* Floating Sunday Newspaper Strip Badge */}
-        <div className="deck-top-badge" title="Sunday Newspaper Strip • Báo Tranh Vui Cuối Tuần">
-          <span>📰</span>
-          <span>TRANH VUI CHỦ NHẬT • TƯ DUY NGƯỢC</span>
-        </div>
-
         {/* 8 Merged Slides */}
         <div className="slides-wrapper">
           <Slide1Title />
@@ -145,11 +139,6 @@ export const DeckContainer: React.FC = () => {
                   ))}
                 </div>
               </div>
-            </div>
-
-            {/* Current Slide Title Display */}
-            <div className="slide-title-display hidden md:inline">
-              <span id="current-slide-title">Bìa: Tác Hại Của Việc Đọc Sách</span>
             </div>
 
           </div>

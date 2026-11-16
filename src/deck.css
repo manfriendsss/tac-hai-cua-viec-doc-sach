@@ -199,34 +199,15 @@
 
 /* FLOATING HEADER BADGE */
 .deck-top-badge {
-  position: absolute;
-  top: 14px;
-  left: 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 14px;
-  background: #ffffff;
-  border: 2.5px solid var(--comic-ink);
-  border-radius: 9999px;
-  box-shadow: 3px 3px 0px var(--comic-ink);
-  font-family: 'Fredoka', cursive, sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--comic-ink);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  z-index: 40;
-  pointer-events: none;
+  display: none !important;
 }
 
 /* SLIDES WRAPPER & INDIVIDUAL SLIDES */
 .slides-wrapper {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 48px; /* Room for bottom control bar */
+  inset: 0;
+  bottom: 0;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -251,40 +232,55 @@
   z-index: 10 !important;
 }
 
-/* BOTTOM CONTROL BAR */
+/* FLOATING TRANSPARENT CONTROLS (Inspired by Thuyết trình cà phê) */
 .control-bar {
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
   left: 0;
   right: 0;
-  height: 48px;
-  background: #ffffff;
-  border-top: 3px solid var(--comic-ink);
+  width: 100%;
+  height: auto;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
-  z-index: 45;
+  align-items: center;
+  padding: 0 32px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  pointer-events: none;
+  z-index: 9999 !important;
+}
+
+.control-bar button,
+.control-bar .icon-btn,
+.control-bar #fullscreen-btn,
+.control-bar #prev-slide-btn,
+.control-bar #next-slide-btn,
+.control-bar .clickable-counter,
+.control-bar .slide-picker-popover {
+  pointer-events: auto !important;
 }
 
 .icon-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: #fef08a;
-  border: 2px solid var(--comic-ink);
-  box-shadow: 2px 2px 0px var(--comic-ink);
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: rgba(255, 253, 249, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2.5px solid var(--comic-ink);
+  box-shadow: 3px 3px 0px var(--comic-ink);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--comic-ink);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .icon-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 3px 3px 0px var(--comic-ink);
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0px var(--comic-ink);
   background: #fde047;
 }
 
@@ -294,11 +290,11 @@
 }
 
 .icon-btn svg {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   fill: none;
   stroke: currentColor;
-  stroke-width: 2.5;
+  stroke-width: 2.6;
 }
 
 /* SLIDE COUNTER & POPOVER PICKER */
@@ -310,40 +306,85 @@
 
 .clickable-counter {
   font-family: 'Fredoka', cursive, sans-serif;
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 800;
   color: var(--comic-ink);
-  background: #fef08a;
-  border: 2px solid var(--comic-ink);
-  border-radius: 8px;
-  padding: 4px 12px;
+  background: rgba(255, 253, 249, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2.5px solid var(--comic-ink);
+  border-radius: 999px;
+  padding: 8px 20px;
   cursor: pointer;
-  box-shadow: 2px 2px 0px var(--comic-ink);
+  box-shadow: 3px 3px 0px var(--comic-ink);
   user-select: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .clickable-counter:hover {
   background: #fde047;
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0px var(--comic-ink);
 }
 
 .slide-picker-popover {
   position: absolute;
-  bottom: 44px;
+  bottom: 56px;
   left: 0;
   background: #ffffff;
   border: 3px solid var(--comic-ink);
   border-radius: 16px;
-  padding: 12px;
-  box-shadow: 4px 4px 0px var(--comic-ink);
-  z-index: 60;
+  padding: 14px;
+  box-shadow: 6px 6px 0px var(--comic-ink);
+  z-index: 10000;
   display: none;
   flex-direction: column;
-  gap: 8px;
-  width: 280px;
+  gap: 10px;
+  width: 290px;
 }
 
 .slide-picker-popover.active {
   display: flex;
+}
+
+/* STEP-REVEAL CARD ARCHITECTURE (Inspired by Thuyết trình cà phê) */
+.step-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, box-shadow;
+}
+
+.step-card.step-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(22px) scale(0.96) !important;
+  visibility: hidden;
+}
+
+.step-card.step-spotlight {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  transform: translateY(0) scale(1.03) !important;
+  box-shadow: 7px 7px 0px var(--comic-ink) !important;
+  z-index: 25 !important;
+}
+
+.step-card.step-docked {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  transform: translateY(0) scale(1) !important;
+  box-shadow: 4px 4px 0px var(--comic-ink) !important;
+  z-index: 10 !important;
+}
+
+.step-card.step-dimmed {
+  opacity: 0.55 !important;
+  transform: translateY(0) scale(0.985) !important;
+  box-shadow: 2px 2px 0px var(--comic-ink) !important;
+  z-index: 5 !important;
 }
 
 .slide-picker-header {

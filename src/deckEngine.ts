@@ -36,69 +36,28 @@ export function initDeckEngine(): () => void {
     if (!slideEl) return;
     slideEl.setAttribute('data-current-step', String(currentStep));
 
-    // Handle slide-specific step animations
-    if (currentSlide === 3) {
-      // Slide 3: Sussex & Yale Cards Spotlight
-      const c1 = document.getElementById('s3-card-1');
-      const c2 = document.getElementById('s3-card-2');
-      if (c1 && c2) {
-        if (currentStep === 1) {
-          c1.classList.add('spotlight-active');
-          c2.classList.remove('spotlight-active');
-          c1.style.transform = 'scale(1.03)';
-          c1.style.boxShadow = '8px 8px 0px #1f2937';
-          c2.style.opacity = '0.6';
-          c2.style.transform = 'scale(0.98)';
-        } else if (currentStep === 2) {
-          c1.classList.remove('spotlight-active');
-          c2.classList.add('spotlight-active');
-          c2.style.transform = 'scale(1.03)';
-          c2.style.boxShadow = '8px 8px 0px #1f2937';
-          c1.style.opacity = '0.6';
-          c1.style.transform = 'scale(0.98)';
+    // Universal step-card reveal handler (Inspired by Thuyết trình cà phê)
+    const stepCards = Array.from(slideEl.querySelectorAll<HTMLElement>('[data-step-card]'));
+    if (stepCards.length > 0) {
+      stepCards.forEach((card) => {
+        const cardStep = parseInt(card.getAttribute('data-step-card') || '0', 10);
+        card.classList.remove('step-hidden', 'step-spotlight', 'step-docked', 'step-dimmed');
+
+        if (currentStep === 0) {
+          // Step 0: All step-cards hidden initially
+          card.classList.add('step-hidden');
+        } else if (cardStep === currentStep) {
+          // Current step: In spotlight!
+          card.classList.add('step-spotlight');
+          card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else if (cardStep < currentStep) {
+          // Previous steps: Docked, fully visible and readable
+          card.classList.add('step-docked');
         } else {
-          c1.classList.remove('spotlight-active');
-          c2.classList.remove('spotlight-active');
-          c1.style.transform = '';
-          c1.style.boxShadow = '';
-          c1.style.opacity = '';
-          c2.style.transform = '';
-          c2.style.boxShadow = '';
-          c2.style.opacity = '';
-        }
-      }
-    } else if (currentSlide === 4) {
-      // Slide 4: 3 Mediums Cards
-      const cards = [
-        document.getElementById('s4-card-1'),
-        document.getElementById('s4-card-2'),
-        document.getElementById('s4-card-3')
-      ];
-      cards.forEach((card, idx) => {
-        if (!card) return;
-        if (currentStep === idx + 1) {
-          card.style.transform = 'scale(1.04)';
-          card.style.boxShadow = '7px 7px 0px #1f2937';
-          card.style.opacity = '1';
-        } else if (currentStep > 0) {
-          card.style.transform = 'scale(0.98)';
-          card.style.boxShadow = '';
-          card.style.opacity = '0.65';
-        } else {
-          card.style.transform = '';
-          card.style.boxShadow = '';
-          card.style.opacity = '';
+          // Future steps: Hidden
+          card.classList.add('step-hidden');
         }
       });
-    } else if (currentSlide === 5) {
-      // Slide 5: 7 Harms Highlight
-      if (currentStep >= 1 && currentStep <= 7) {
-        const targetHarm = document.getElementById(`s5-harm-${currentStep}`);
-        if (targetHarm) {
-          targetHarm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          targetHarm.classList.add('spotlight-active');
-        }
-      }
     }
   }
 
@@ -236,6 +195,10 @@ export function initDeckEngine(): () => void {
   window.toggleFullscreen = toggleFullscreen;
   window.toggleSlidePicker = toggleSlidePicker;
   window.closeSlidePicker = closeSlidePicker;
+  window.setSlideStep = (step: number) => {
+    currentStep = step;
+    updateStepVisuals(getCurrentSlideEl());
+  };
 
   // Keyboard controls
   const handleKeyDown = (e: KeyboardEvent) => {
@@ -288,12 +251,29 @@ export function initDeckEngine(): () => void {
     }
   };
 
-  // Close popover when clicking anywhere else
+  // Close popover when clicking anywhere else & handle card click
   const handleDocClick = (e: MouseEvent) => {
     const picker = document.getElementById('slide-picker');
     const counterBtn = document.getElementById('counter');
     if (picker && !picker.contains(e.target as Node) && e.target !== counterBtn) {
       closeSlidePicker();
+    }
+
+    // Direct card click support (Spotlight / Toggle)
+    const cardTarget = (e.target as HTMLElement).closest<HTMLElement>('[data-step-card]');
+    if (cardTarget) {
+      const slideEl = getCurrentSlideEl();
+      if (slideEl && slideEl.contains(cardTarget)) {
+        const cardStep = parseInt(cardTarget.getAttribute('data-step-card') || '0', 10);
+        const maxSteps = getSlideMaxSteps(slideEl);
+        if (currentStep === cardStep) {
+          // Toggle all cards docked for full overview
+          currentStep = maxSteps;
+        } else {
+          currentStep = cardStep;
+        }
+        updateStepVisuals(slideEl);
+      }
     }
   };
 
