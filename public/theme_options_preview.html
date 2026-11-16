@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Khảo Sát 5 Mẫu Chủ Đề Hình Ảnh - Tác Hại Của Việc Đọc Sách</title>
+  <title>Khảo Sát 10 Mẫu Chủ Đề Hình Ảnh - Tác Hại Của Việc Đọc Sách</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Caveat:wght@700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #F5F1EA;
@@ -35,18 +35,18 @@
       background-size: 16px 16px;
       color: var(--ink);
       line-height: 1.6;
-      padding: 40px 20px 80px;
+      padding: 40px 20px 100px;
     }
 
     .container {
-      max-width: 1240px;
+      max-width: 1280px;
       margin: 0 auto;
     }
 
     /* HEADER */
     .header {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 35px;
     }
 
     .header-badge {
@@ -66,7 +66,7 @@
 
     .header h1 {
       font-family: 'Fredoka', cursive;
-      font-size: clamp(32px, 4vw, 46px);
+      font-size: clamp(30px, 4vw, 46px);
       font-weight: 800;
       color: #111827;
       line-height: 1.2;
@@ -87,9 +87,48 @@
     .header-desc {
       font-size: 16px;
       color: #4B5563;
-      max-width: 760px;
+      max-width: 820px;
       margin: 0 auto;
       font-weight: 600;
+    }
+
+    /* FILTER TABS */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 35px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-family: 'Fredoka', cursive;
+      font-size: 15px;
+      font-weight: 800;
+      border: var(--comic-border);
+      background: #FFFFFF;
+      color: var(--ink);
+      cursor: pointer;
+      box-shadow: 3px 3px 0px var(--ink);
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tab-btn:hover {
+      background: var(--accent-yellow);
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 0px var(--ink);
+    }
+
+    .tab-btn.active {
+      background: #111827;
+      color: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 0px #F59E0B;
     }
 
     /* EXPERT ADVICE SECTION */
@@ -98,31 +137,31 @@
       border: var(--comic-border);
       border-radius: 24px;
       box-shadow: var(--comic-shadow-lg);
-      padding: 32px;
-      margin-bottom: 50px;
+      padding: 30px;
+      margin-bottom: 45px;
     }
 
     .advice-title {
       font-family: 'Fredoka', cursive;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 800;
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       color: #111827;
       border-bottom: 2px dashed #E5E7EB;
-      padding-bottom: 14px;
+      padding-bottom: 12px;
     }
 
     .advice-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
+      gap: 20px;
     }
 
     .advice-card {
-      padding: 24px;
+      padding: 22px;
       border-radius: 18px;
       border: 2.5px solid var(--ink);
       box-shadow: 4px 4px 0px var(--ink);
@@ -150,7 +189,7 @@
       font-weight: 800;
       width: fit-content;
       border: 1.5px solid var(--ink);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .advice-card.recommended .advice-badge {
@@ -165,37 +204,37 @@
 
     .advice-h3 {
       font-family: 'Fredoka', cursive;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 800;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       color: #111827;
     }
 
     .advice-body {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 600;
       color: #374151;
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
     .advice-body ul {
-      margin-left: 20px;
-      margin-top: 8px;
+      margin-left: 18px;
+      margin-top: 6px;
     }
 
     .advice-body li {
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     /* THEMES GRID */
     .section-heading {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
 
     .section-heading h2 {
       font-family: 'Fredoka', cursive;
-      font-size: 30px;
+      font-size: 28px;
       font-weight: 800;
       color: #111827;
     }
@@ -210,14 +249,14 @@
     .themes-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-      gap: 32px;
+      gap: 28px;
       margin-bottom: 60px;
     }
 
     .theme-card {
       background: #FFFFFF;
       border: var(--comic-border);
-      border-radius: 24px;
+      border-radius: 22px;
       box-shadow: var(--comic-shadow);
       overflow: hidden;
       display: flex;
@@ -239,7 +278,7 @@
 
     .theme-img-wrap {
       width: 100%;
-      height: 280px;
+      height: 270px;
       background: #F3F4F6;
       border-bottom: var(--comic-border);
       position: relative;
@@ -263,8 +302,8 @@
 
     .theme-tag {
       position: absolute;
-      top: 14px;
-      left: 14px;
+      top: 12px;
+      left: 12px;
       padding: 5px 12px;
       border-radius: 999px;
       font-family: 'Fredoka', cursive;
@@ -275,13 +314,35 @@
       z-index: 2;
     }
 
+    .theme-badge-new {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-family: 'Fredoka', cursive;
+      font-size: 10px;
+      font-weight: 900;
+      background: #EF4444;
+      color: #FFFFFF;
+      border: 1.5px solid var(--ink);
+      box-shadow: 2px 2px 0px var(--ink);
+      z-index: 2;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+
     .theme-body {
-      padding: 24px;
+      padding: 22px;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
       justify-content: space-between;
-      gap: 16px;
+      gap: 14px;
     }
 
     .theme-title {
@@ -354,7 +415,7 @@
       border-radius: 14px;
       background: var(--accent-yellow);
       font-family: 'Fredoka', cursive;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 800;
       color: var(--ink);
       cursor: pointer;
@@ -376,6 +437,19 @@
       background: #10B981;
       color: #FFFFFF;
       border-color: var(--ink);
+    }
+
+    /* ARTISTIC SVG MOCKUP CANVAS FOR NON-IMAGE CARDS */
+    .mockup-canvas {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+      user-select: none;
     }
 
     /* LIGHTBOX MODAL */
@@ -471,6 +545,7 @@
       align-items: center;
       gap: 18px;
       z-index: 100;
+      max-width: 90vw;
     }
 
     .action-text {
@@ -478,6 +553,9 @@
       font-size: 14px;
       font-weight: 800;
       color: #111827;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .action-link {
@@ -492,6 +570,7 @@
       text-decoration: none;
       box-shadow: 2px 2px 0px var(--ink);
       transition: all 0.15s ease;
+      white-space: nowrap;
     }
 
     .action-link:hover {
@@ -508,21 +587,37 @@
     <header class="header">
       <div class="header-badge">
         <span>🎨</span>
-        <span>KHẢO SÁT CHIẾN LƯỢC VISUAL & PHONG CÁCH NGHỆ THUẬT</span>
+        <span>BỘ SƯU TẬP 10 PHONG CÁCH NGHỆ THUẬT CHO SLIDE & CARD</span>
       </div>
       <h1>
-        Chọn Chủ Đề Hình Ảnh Cho <span>Slide & Card</span>
+        Chọn Phong Cách Ảnh <span>Vừa Nghiêm Trọng Vừa Ngộ Nghĩnh</span>
       </h1>
       <p class="header-desc">
-        Phân tích chuyên sâu về mật độ hình ảnh tối ưu trên bài thuyết trình, kèm 5 mẫu phong cách nghệ thuật độc đáo được tạo sẵn để bạn lựa chọn trước khi xuất xưởng đồng loạt!
+        Nghệ thuật châm biếm đỉnh cao nằm ở sự tương phản: Càng làm ra vẻ nghiêm trọng, nguy cấp, bi tráng bao nhiêu thì bản chất hài hước, ngộ nghĩnh của "tác hại đọc sách" càng bùng nổ bấy nhiêu!
       </p>
     </header>
+
+    <!-- FILTER TABS -->
+    <div class="filter-tabs">
+      <button class="tab-btn active" onclick="filterThemes('all')">
+        <span>🔥</span>
+        <span>Tất Cả 10 Phong Cách</span>
+      </button>
+      <button class="tab-btn" onclick="filterThemes('group2')">
+        <span>⚡</span>
+        <span>5 Mẫu Mới: Nghiêm Trọng & Hài Bựa (Mới)</span>
+      </button>
+      <button class="tab-btn" onclick="filterThemes('group1')">
+        <span>📰</span>
+        <span>5 Mẫu Ban Đầu: Hoài Niệm & Hoạt Hình</span>
+      </button>
+    </div>
 
     <!-- SECTION 1: Ý KIẾN CHUYÊN GIA -->
     <section class="advice-section">
       <div class="advice-title">
         <span>💡</span>
-        <span>Ý Kiến Chuyên Gia: Tạo Ảnh Cho Mỗi Slide & Cho Mỗi Card Có Tốt Không?</span>
+        <span>Ý Kiến Chuyên Gia: Mật Độ Ảnh Tối Ưu Cho Slide & Card</span>
       </div>
 
       <div class="advice-grid">
@@ -538,13 +633,13 @@
             <div class="advice-body">
               <p>Mỗi slide sở hữu 1 bức tranh lớn ở vị trí neo thị giác (như góc phải hoặc banner giữa) mang lại hiệu quả vượt trội:</p>
               <ul>
-                <li><strong>Neo thị giác (Visual Anchor):</strong> Người xem nắm bắt ngay chủ đề hài hước chỉ trong 2 giây đầu tiên.</li>
+                <li><strong>Neo thị giác (Visual Anchor):</strong> Người xem nắm bắt ngay bối cảnh cảm xúc chỉ trong 2 giây đầu tiên.</li>
                 <li><strong>Cân bằng bố cục (Tỷ lệ vàng):</strong> 1 bên chữ (các thẻ card tuần tự) + 1 bên tranh biếm họa giúp slide thoáng đãng, sang trọng, không bị "ngợp chữ".</li>
                 <li><strong>Tạo nhịp kể chuyện (Pacing):</strong> Chuyển sang slide mới là một "món ăn thị giác" mới đầy háo hức.</li>
               </ul>
             </div>
           </div>
-          <div style="margin-top: 16px; font-size: 12px; font-weight: 800; color: #047857;">
+          <div style="margin-top: 14px; font-size: 12px; font-weight: 800; color: #047857;">
             👉 Đề xuất: Giữ nguyên 1 Hero Illustration chất lượng cao cho mỗi slide!
           </div>
         </div>
@@ -560,12 +655,12 @@
             <div class="advice-body">
               <p>Không nên áp dụng rập khuôn cho mọi slide, mà cần phân theo kích cỡ thẻ:</p>
               <ul>
-                <li><strong>Với Slide nhiều thẻ nhỏ (Slide 2 có 5 thẻ, Slide 5 có 7 thẻ):</strong> KHÔNG NÊN nhồi ảnh tranh phức tạp vào từng thẻ, vì sẽ bóp nghẹt cỡ chữ (chữ bị bé lại khó đọc), gây rối mắt ("đánh nhau" thị giác) và làm nặng trang. <em>Giải pháp:</em> Dùng <strong>Sticker Doodle / Icon 3D mini (40px)</strong> sinh động, chữ vẫn to đại tướng!</li>
-                <li><strong>Với Slide ít thẻ lớn (Slide 3: 2 thẻ, Slide 4: 3 thẻ, Slide 6: 3 thẻ):</strong> RẤT NÊN có ảnh riêng vì không gian thẻ cực rộng, minh họa riêng từng thẻ (như Sách giấy vs Kindle vs Sách nói) sẽ trực quan gấp 10 lần!</li>
+                <li><strong>Slide nhiều thẻ nhỏ (Slide 2: 5 thẻ, Slide 5: 7 thẻ):</strong> KHÔNG NÊN nhồi ảnh tranh phức tạp vào từng thẻ, vì sẽ bóp nghẹt không gian, ép chữ bé lại và gây rối mắt. <em>Giải pháp:</em> Dùng <strong>Sticker Doodle / Icon mini (40px)</strong> sinh động, chữ vẫn to đại tướng!</li>
+                <li><strong>Slide ít thẻ lớn (Slide 3: 2 thẻ, Slide 4: 3 thẻ, Slide 6: 3 thẻ):</strong> RẤT NÊN có tranh riêng vì thẻ rất rộng, minh họa riêng từng thẻ (Sách giấy vs E-Ink vs Sách nói) sẽ trực quan gấp 10 lần!</li>
               </ul>
             </div>
           </div>
-          <div style="margin-top: 16px; font-size: 12px; font-weight: 800; color: #B45309;">
+          <div style="margin-top: 14px; font-size: 12px; font-weight: 800; color: #B45309;">
             👉 Đề xuất: Slide ít thẻ dùng tranh riêng; Slide nhiều thẻ dùng Sticker/Doodle!
           </div>
         </div>
@@ -573,18 +668,256 @@
       </div>
     </section>
 
-    <!-- SECTION 2: 5 MẪU CHỦ ĐỀ HÌNH ẢNH -->
+    <!-- SECTION 2: GRID CÁC PHONG CÁCH -->
     <div class="section-heading">
-      <h2>5 Phong Cách Nghệ Thuật Đề Xuất (Ấn vào ảnh để phóng to)</h2>
-      <p>Nhấp vào nút "Chọn Chủ Đề Này" dưới phong cách bạn ưng ý nhất để tiến hành tạo ảnh đồng loạt</p>
+      <h2 id="gridHeading">Danh Sách Phong Cách (Ấn vào ảnh để phóng to xem nét chi tiết)</h2>
+      <p>Chọn nút "Chọn Chủ Đề Này" dưới phong cách bạn ưng ý nhất để tiến hành triển khai đồng loạt</p>
     </div>
 
-    <div class="themes-grid">
+    <div class="themes-grid" id="themesContainer">
+
+      <!-- ================= GROUP 2: VỪA NGHIÊM TRỌNG VỪA NGỘ NGHĨNH (MỚI) ================= -->
+
+      <!-- THEME 06: VINTAGE PROPAGANDA WARNING -->
+      <div class="theme-card selected" id="theme-card-6" data-group="group2">
+        <div class="theme-img-wrap" onclick="openModal('/assets/theme-6-propaganda-poster.webp', 'Chủ Đề 06: Vintage Cold War Propaganda & Public Warning Poster')">
+          <span class="theme-tag" style="background: #FEE2E2; color: #991B1B;">CHỦ ĐỀ 06 • CẢNH BÁO THỜI CHIẾN</span>
+          <span class="theme-badge-new">MỚI ✨</span>
+          <img src="/assets/theme-6-propaganda-poster.webp" alt="Vintage Propaganda Warning Poster">
+        </div>
+        <div class="theme-body">
+          <div>
+            <h3 class="theme-title">Vintage Cold War Propaganda</h3>
+            <div class="theme-author-vibe">"Áp Phích Báo Động Thảm Họa Thập Niên 1950 (Constructivist Satire)"</div>
+            
+            <ul class="theme-features" style="margin-top: 14px;">
+              <li><span>🚨</span> <strong>Nghiêm trọng:</strong> Khẩu hiệu đỏ chót giật gân: <em>"BEWARE! THE READING MENACE!"</em>, còi báo động, băng cảnh báo nguy hiểm cấp quốc gia.</li>
+              <li><span>😂</span> <strong>Ngộ nghĩnh:</strong> Người đàn ông đeo mặt nạ phòng độc (gas mask) hoảng loạn đầu hàng trước cuốn sách phát sáng neon xanh lá chứa năng lượng tri thức.</li>
+              <li><span>🎨</span> Nét đồ họa in lưới halftone, bố cục chéo động lực học kiểu cổ động Liên Xô/WPA.</li>
+              <li><span>✨</span> <strong>Hiệu quả:</strong> Gây ấn tượng sốc cực mạnh, biến "đọc sách" thành đại dịch nguy cấp!</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="palette-row">
+              <span class="palette-label">Bảng màu:</span>
+              <div class="palette-swatches">
+                <div class="swatch" style="background: #DC2626;" title="Alarm Red"></div>
+                <div class="swatch" style="background: #FEF08A;" title="Warning Yellow"></div>
+                <div class="swatch" style="background: #22C55E;" title="Radioactive Green"></div>
+                <div class="swatch" style="background: #1F2937;" title="Gritty Charcoal"></div>
+              </div>
+            </div>
+
+            <button class="select-btn" onclick="selectTheme(6)" style="margin-top: 14px;">
+              <span>✓</span>
+              <span>Đang Được Chọn</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- THEME 07: DRAMATIC BAROQUE OIL PAINTING -->
+      <div class="theme-card" id="theme-card-7" data-group="group2">
+        <div class="theme-img-wrap" style="background: #18120C;" onclick="openModal('', 'Chủ Đề 07: Dramatic Baroque / Caravaggio Oil Painting Parody')">
+          <span class="theme-tag" style="background: #FEF3C7; color: #78350F;">CHỦ ĐỀ 07 • SƠN DẦU PHỤC HƯNG</span>
+          <span class="theme-badge-new">MỚI ✨</span>
+          <!-- Artistic CSS/SVG Baroque Chiaroscuro Mockup -->
+          <div class="mockup-canvas" style="background: radial-gradient(circle at 60% 40%, rgba(245, 158, 11, 0.35) 0%, rgba(24, 18, 12, 0.95) 75%); color: #F5E6D3;">
+            <div style="font-size: 48px; margin-bottom: 8px; filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.6));">🕯️📖💀</div>
+            <div style="font-family: 'Fredoka', cursive; font-size: 16px; font-weight: 800; color: #FDE68A; text-align: center;">
+              "Bi Kịch 4:30 Sáng Của Học Giả"
+            </div>
+            <div style="font-family: 'Caveat', cursive; font-size: 15px; color: #D1D5DB; text-align: center; margin-top: 4px;">
+              Ánh sáng Caravaggio • Quằn quại bi tráng bên tách cà phê đổ
+            </div>
+          </div>
+        </div>
+        <div class="theme-body">
+          <div>
+            <h3 class="theme-title">Dramatic Baroque Caravaggio</h3>
+            <div class="theme-author-vibe">"Bi Kịch Sơn Dầu Phục Hưng Thế Kỷ 17 (Chiaroscuro Drama)"</div>
+            
+            <ul class="theme-features" style="margin-top: 14px;">
+              <li><span>🎭</span> <strong>Nghiêm trọng:</strong> Kỹ thuật ánh sáng Chiaroscuro tráng lệ như bảo tàng Louvre: học giả khoác áo choàng ôm đầu ngửa cổ quằn quại đau đớn như thần thoại Hy Lạp.</li>
+              <li><span>😂</span> <strong>Ngộ nghĩnh:</strong> Lý do "bi kịch": Đồng hồ điểm 4:30 sáng, cuốn truyện trinh thám rơi đè lên ngực, tách cà phê đổ lênh láng và chú mèo nhìn khinh bỉ.</li>
+              <li><span>🖼️</span> Nét sơn dầu dày dặn, vết nứt sơn cổ kính (craquelure), đậm chất nghệ thuật kinh điển.</li>
+              <li><span>✨</span> <strong>Hiệu quả:</strong> Cực kỳ quý phái, nâng tầm việc thức đêm đọc sách thành kiệt tác bi kịch!</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="palette-row">
+              <span class="palette-label">Bảng màu:</span>
+              <div class="palette-swatches">
+                <div class="swatch" style="background: #18120C;" title="Baroque Shadow Black"></div>
+                <div class="swatch" style="background: #D97706;" title="Candlelight Gold"></div>
+                <div class="swatch" style="background: #831843;" title="Royal Velvet Wine"></div>
+                <div class="swatch" style="background: #E5D5C5;" title="Flesh Tone Craquelure"></div>
+              </div>
+            </div>
+
+            <button class="select-btn" onclick="selectTheme(7)" style="margin-top: 14px;">
+              <span>Chọn Chủ Đề Này</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- THEME 08: FILM NOIR CLASSIFIED CRIME DOSSIER -->
+      <div class="theme-card" id="theme-card-8" data-group="group2">
+        <div class="theme-img-wrap" style="background: #242220;" onclick="openModal('', 'Chủ Đề 08: Film Noir & Classified Crime Scene Dossier')">
+          <span class="theme-tag" style="background: #E5E7EB; color: #1F2937;">CHỦ ĐỀ 08 • HỒ SƠ TỐI MẬT</span>
+          <span class="theme-badge-new">MỚI ✨</span>
+          <!-- Artistic CSS/SVG Film Noir Detective Dossier Mockup -->
+          <div class="mockup-canvas" style="background: repeating-linear-gradient(45deg, #1C1917, #1C1917 10px, #292524 10px, #292524 20px); border: 2px dashed #EF4444; margin: 16px; border-radius: 12px; height: calc(100% - 32px);">
+            <div style="background: #DC2626; color: white; padding: 4px 14px; font-family: 'Space Mono', monospace; font-weight: 800; font-size: 13px; transform: rotate(-5deg); box-shadow: 2px 2px 0px black; border: 1.5px solid white;">
+              TOP SECRET // FBI DOSSIER
+            </div>
+            <div style="font-size: 38px; margin: 8px 0;">🕵️‍♂️📁🔦</div>
+            <div style="font-family: 'Fredoka', cursive; font-size: 15px; font-weight: 800; color: #F59E0B; text-align: center;">
+              CAN PHẠM: "MỌT SÁCH KHÉT TIẾNG"
+            </div>
+            <div style="font-size: 11px; font-family: 'Space Mono', monospace; color: #A8A29E; text-align: center; margin-top: 2px;">
+              Tội danh: Chiếm dụng toilet 45 phút
+            </div>
+          </div>
+        </div>
+        <div class="theme-body">
+          <div>
+            <h3 class="theme-title">Film Noir Classified Dossier</h3>
+            <div class="theme-author-vibe">"Hồ Sơ Tội Phạm Mật Vụ & Hiện Trường Noir Thập Niên 1940"</div>
+            
+            <ul class="theme-features" style="margin-top: 14px;">
+              <li><span>🕵️</span> <strong>Nghiêm trọng:</strong> Bàn làm việc thám tử bóng tối rèm sáo, hồ sơ manila đóng dấu đỏ <em>"TOP SECRET"</em>, băng niêm phong <em>"CRIME SCENE"</em>, ảnh Polaroid can phạm.</li>
+              <li><span>😂</span> <strong>Ngộ nghĩnh:</strong> Tội phạm bị truy nã số 1 có tội danh: <em>"Đọc trùm chăn bằng đèn pin lúc 3h sáng"</em>, vật chứng là chiếc thẻ thư viện quá hạn đóng mác <em>"Vũ khí sát thương ví tiền"</em>.</li>
+              <li><span>📁</span> Giấy tờ kẹp ghim, vết ố đáy tách cà phê, phông chữ máy đánh chữ cổ điển (typewriter).</li>
+              <li><span>✨</span> <strong>Hiệu quả:</strong> Biến việc đọc sách thành một "vụ án nghiêm trọng" cực kỳ lôi cuốn!</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="palette-row">
+              <span class="palette-label">Bảng màu:</span>
+              <div class="palette-swatches">
+                <div class="swatch" style="background: #1C1917;" title="Noir Black"></div>
+                <div class="swatch" style="background: #DC2626;" title="Classified Stamp Red"></div>
+                <div class="swatch" style="background: #FBBF24;" title="Police Tape Yellow"></div>
+                <div class="swatch" style="background: #D7C4A5;" title="Manila Folder Tan"></div>
+              </div>
+            </div>
+
+            <button class="select-btn" onclick="selectTheme(8)" style="margin-top: 14px;">
+              <span>Chọn Chủ Đề Này</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- THEME 09: MAD SCIENTIST BLUEPRINT & PATENT -->
+      <div class="theme-card" id="theme-card-9" data-group="group2">
+        <div class="theme-img-wrap" style="background: #0B2545;" onclick="openModal('', 'Chủ Đề 09: Mad Scientist Blueprint & Technical Patent Schematic')">
+          <span class="theme-tag" style="background: #0EA5E9; color: #FFFFFF;">CHỦ ĐỀ 09 • BẢN VẼ BLUEPRINT</span>
+          <span class="theme-badge-new">MỚI ✨</span>
+          <!-- Artistic CSS/SVG Blueprint Schematic Mockup -->
+          <div class="mockup-canvas" style="background: #0B2545; background-image: linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 16px 16px; border: 2px solid #38BDF8; margin: 14px; border-radius: 12px; height: calc(100% - 28px); color: #E0F2FE;">
+            <div style="font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; color: #7DD3FC; border: 1px solid #38BDF8; padding: 2px 10px; border-radius: 4px;">
+              PATENT NO. 404-BOOK-HARM
+            </div>
+            <div style="font-size: 38px; margin: 8px 0; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.6));">📐⚙️🔬</div>
+            <div style="font-family: 'Fredoka', cursive; font-size: 15px; font-weight: 800; color: #FFFFFF; text-align: center;">
+              "SƠ ĐỒ PHÁT MINH TỰ HẠI NÃO"
+            </div>
+            <div style="font-size: 11px; font-family: 'Space Mono', monospace; color: #93C5FD; text-align: center; margin-top: 2px;">
+              Fig. 1: Kẹp mở mí mắt • Fig. 2: Lực bẻ cong cột sống
+            </div>
+          </div>
+        </div>
+        <div class="theme-body">
+          <div>
+            <h3 class="theme-title">Mad Scientist Blueprint</h3>
+            <div class="theme-author-vibe">"Bản Vẽ Thiết Kế Kỹ Thuật Giấy Xanh (Prussian Blue Schematic)"</div>
+            
+            <ul class="theme-features" style="margin-top: 14px;">
+              <li><span>📐</span> <strong>Nghiêm trọng:</strong> Bản vẽ kỹ thuật nền xanh Blueprint chuẩn xác đến từng mm, lưới tọa độ, vector lực học mũi tên, công thức vi tích phân toán học.</li>
+              <li><span>😂</span> <strong>Ngộ nghĩnh:</strong> Sơ đồ phát minh cơ khí điên rồ: <em>"Cơ cấu kẹp giữ mí mắt chống ngủ gật"</em>, <em>"Cảm biến báo động hoảng loạn khi Kindle còn 1% pin"</em>, <em>"Hệ thống truyền tĩnh mạch cà phê cấp cứu"</em>.</li>
+              <li><span>⚙️</span> Thước đo hiệu chuẩn, con dấu kiểm định bằng sáng chế độc quyền thế kỷ 19.</li>
+              <li><span>✨</span> <strong>Hiệu quả:</strong> Khán giả cười nghiêng ngả vì sự nghiêm túc tuyệt đối áp dụng cho điều ngớ ngẩn!</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="palette-row">
+              <span class="palette-label">Bảng màu:</span>
+              <div class="palette-swatches">
+                <div class="swatch" style="background: #0B2545;" title="Prussian Blueprint Navy"></div>
+                <div class="swatch" style="background: #38BDF8;" title="Technical Cyan Line"></div>
+                <div class="swatch" style="background: #FFFFFF;" title="Schematic White"></div>
+                <div class="swatch" style="background: #FBBF24;" title="Patent Stamp Gold"></div>
+              </div>
+            </div>
+
+            <button class="select-btn" onclick="selectTheme(9)" style="margin-top: 14px;">
+              <span>Chọn Chủ Đề Này</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- THEME 10: HAZMAT EMERGENCY BIOHAZARD -->
+      <div class="theme-card" id="theme-card-10" data-group="group2">
+        <div class="theme-img-wrap" style="background: #172554;" onclick="openModal('', 'Chủ Đề 10: Emergency Hazmat & Biohazard Lab Comedy')">
+          <span class="theme-tag" style="background: #FEF08A; color: #854D0E;">CHỦ ĐỀ 10 • THẢM HỌA SINH HỌC</span>
+          <span class="theme-badge-new">MỚI ✨</span>
+          <!-- Artistic CSS/SVG Hazmat Lab Mockup -->
+          <div class="mockup-canvas" style="background: #111827; border: 3px solid #EAB308; margin: 14px; border-radius: 12px; height: calc(100% - 28px); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 12px; background: repeating-linear-gradient(45deg, #EAB308, #EAB308 12px, #000 12px, #000 24px);"></div>
+            <div style="font-size: 38px; margin: 8px 0; margin-top: 14px;">☣️👨‍🔬📚</div>
+            <div style="font-family: 'Fredoka', cursive; font-size: 15px; font-weight: 800; color: #FACC15; text-align: center;">
+              BÁO ĐỘNG SINH HỌC CẤP 4
+            </div>
+            <div style="font-size: 11px; font-family: 'Space Mono', monospace; color: #9CA3AF; text-align: center; margin-top: 2px;">
+              Đặc nhiệm cách ly cuốn sách có độc tính tri thức
+            </div>
+          </div>
+        </div>
+        <div class="theme-body">
+          <div>
+            <h3 class="theme-title">Emergency Hazmat Biohazard</h3>
+            <div class="theme-author-vibe">"Báo Động Cấp Cứu Phòng Thí Nghiệm Độc Học (CDC Lab Comedy)"</div>
+            
+            <ul class="theme-features" style="margin-top: 14px;">
+              <li><span>☣️</span> <strong>Nghiêm trọng:</strong> Đèn còi cứu thương nhấp nháy, biểu tượng cảnh báo chất độc sinh học Biohazard Level 4, dải băng an toàn sọc vàng-đen.</li>
+              <li><span>😂</span> <strong>Ngộ nghĩnh:</strong> Các chuyên viên trùm đồ bảo hộ Hazmat màu vàng chói lọi dùng kẹp sắt cách ly... một cuốn truyện tranh, trong khi nạn nhân mắt phát sáng vì bị "lây nhiễm tri thức".</li>
+              <li><span>🧪</span> Ống nghiệm bốc khói, bảng đo nồng độ dopamine, phong cách điện ảnh Hollywood giật gân.</li>
+              <li><span>✨</span> <strong>Hiệu quả:</strong> Cực kỳ hiện đại, kịch tính nghẹt thở nhưng nội dung cười sảng khoái!</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="palette-row">
+              <span class="palette-label">Bảng màu:</span>
+              <div class="palette-swatches">
+                <div class="swatch" style="background: #EAB308;" title="Hazmat Suit Yellow"></div>
+                <div class="swatch" style="background: #111827;" title="Biohazard Black"></div>
+                <div class="swatch" style="background: #22C55E;" title="Toxic Green"></div>
+                <div class="swatch" style="background: #3B82F6;" title="Lab Blue"></div>
+              </div>
+            </div>
+
+            <button class="select-btn" onclick="selectTheme(10)" style="margin-top: 14px;">
+              <span>Chọn Chủ Đề Này</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= GROUP 1: 5 PHONG CÁCH BAN ĐẦU ================= -->
 
       <!-- THEME 1 -->
-      <div class="theme-card selected" id="theme-card-1">
-        <div class="theme-img-wrap" onclick="openModal('/assets/theme-1-sunday-comic.webp', 'Chủ Đề 1: Classic Sunday Color Comic')">
-          <span class="theme-tag" style="background: #FEF08A; color: #78350F;">CHỦ ĐỀ 01 • HIỆN TẠI</span>
+      <div class="theme-card" id="theme-card-1" data-group="group1">
+        <div class="theme-img-wrap" onclick="openModal('/assets/theme-1-sunday-comic.webp', 'Chủ Đề 01: Classic Sunday Color Comic')">
+          <span class="theme-tag" style="background: #FEF08A; color: #78350F;">CHỦ ĐỀ 01 • BÁO TRANH</span>
           <img src="/assets/theme-1-sunday-comic.webp" alt="Classic Sunday Color Comic">
         </div>
         <div class="theme-body">
@@ -593,8 +926,7 @@
             <div class="theme-author-vibe">"Phong cách Báo Tranh Cuối Tuần (Calvin & Hobbes / Peanuts)"</div>
             
             <ul class="theme-features" style="margin-top: 14px;">
-              <li><span>🖋️</span> Nét mực đen sắt nét (bold ink linework), biểu cảm đáng yêu, hóm hỉnh.</li>
-              <li><span>🎨</span> Màu nước ấm áp cổ điển, kết hợp hạt chấm in báo offset nhẹ (halftone dots).</li>
+              <li><span>🖋️</span> Nét mực đen sắt nét (bold ink linework), màu nước ấm áp vintage.</li>
               <li><span>☕</span> Nhân vật mọt sách kính to, mèo béo, cà phê khói nghi ngút.</li>
               <li><span>✨</span> <strong>Độ tương thích: 100%</strong> ăn khớp với giao diện Sunday Strip hiện tại.</li>
             </ul>
@@ -604,28 +936,25 @@
             <div class="palette-row">
               <span class="palette-label">Bảng màu:</span>
               <div class="palette-swatches">
-                <div class="swatch" style="background: #E8E4DC;" title="Parchment Cream"></div>
-                <div class="swatch" style="background: #FEF08A;" title="Warm Yellow"></div>
-                <div class="swatch" style="background: #E0F2FE;" title="Soft Sky Blue"></div>
-                <div class="swatch" style="background: #1F2937;" title="Comic Ink Black"></div>
+                <div class="swatch" style="background: #E8E4DC;"></div>
+                <div class="swatch" style="background: #FEF08A;"></div>
+                <div class="swatch" style="background: #E0F2FE;"></div>
+                <div class="swatch" style="background: #1F2937;"></div>
               </div>
             </div>
 
             <button class="select-btn" onclick="selectTheme(1)" style="margin-top: 14px;">
-              <span>✓</span>
-              <span>Đang Được Chọn</span>
+              <span>Chọn Chủ Đề Này</span>
             </button>
           </div>
         </div>
       </div>
 
       <!-- THEME 2 -->
-      <div class="theme-card" id="theme-card-2">
-        <div class="theme-img- học" onclick="openModal('/assets/theme-2-retro-editorial.webp', 'Chủ Đề 2: Retro Editorial Satire')">
-          <div class="theme-img-wrap">
-            <span class="theme-tag" style="background: #FEE2E2; color: #991B1B;">CHỦ ĐỀ 02 • CHÂM BIẾM</span>
-            <img src="/assets/theme-2-retro-editorial.webp" alt="Retro Editorial Satire">
-          </div>
+      <div class="theme-card" id="theme-card-2" data-group="group1">
+        <div class="theme-img-wrap" onclick="openModal('/assets/theme-2-retro-editorial.webp', 'Chủ Đề 02: Retro Editorial Satire')">
+          <span class="theme-tag" style="background: #FEE2E2; color: #991B1B;">CHỦ ĐỀ 02 • CHÂM BIẾM</span>
+          <img src="/assets/theme-2-retro-editorial.webp" alt="Retro Editorial Satire">
         </div>
         <div class="theme-body">
           <div>
@@ -633,10 +962,9 @@
             <div class="theme-author-vibe">"Biếm Họa Báo Chí Trí Thức Thập Niên 60 (The New Yorker / Punch)"</div>
             
             <ul class="theme-features" style="margin-top: 14px;">
-              <li><span>📐</span> Nét gạch bóng tinh tế (cross-hatching), góc nhìn châm biếm sâu cay và sắc sảo.</li>
-              <li><span>🎩</span> Học giả thông thái ngồi trên tháp sách chót vót chạm mây, cầm kính lúp và tách espresso.</li>
-              <li><span>📰</span> Bảng màu giới hạn (Limited Palette): Vàng mù tạt, xanh navy, cam đất nung.</li>
-              <li><span>✨</span> Phù hợp bài nói phong cách trí thức giễu nhại, triết lý ngược đỉnh cao.</li>
+              <li><span>📐</span> Nét gạch bóng (cross-hatching), góc nhìn châm biếm sâu cay và sắc sảo.</li>
+              <li><span>🎩</span> Học giả ngồi trên tháp sách chót vót chạm mây với vẻ mặt "quá thông thái".</li>
+              <li><span>📰</span> Bảng màu giới hạn: Vàng mù tạt, xanh navy, cam đất nung.</li>
             </ul>
           </div>
 
@@ -644,10 +972,10 @@
             <div class="palette-row">
               <span class="palette-label">Bảng màu:</span>
               <div class="palette-swatches">
-                <div class="swatch" style="background: #F4ECE1;" title="Antique Newsprint"></div>
-                <div class="swatch" style="background: #D97706;" title="Mustard Amber"></div>
-                <div class="swatch" style="background: #1E3A8A;" title="Deep Editorial Navy"></div>
-                <div class="swatch" style="background: #9A3412;" title="Terracotta Rust"></div>
+                <div class="swatch" style="background: #F4ECE1;"></div>
+                <div class="swatch" style="background: #D97706;"></div>
+                <div class="swatch" style="background: #1E3A8A;"></div>
+                <div class="swatch" style="background: #9A3412;"></div>
               </div>
             </div>
 
@@ -659,9 +987,9 @@
       </div>
 
       <!-- THEME 3 -->
-      <div class="theme-card" id="theme-card-3">
-        <div class="theme-img-wrap" onclick="openModal('/assets/theme-3-claymation-3d.webp', 'Chủ Đề 3: Modern 3D Claymation')">
-          <span class="theme-tag" style="background: #DCFCE7; color: #166534;">CHỦ ĐỀ 03 • ĐỘC ĐÁO</span>
+      <div class="theme-card" id="theme-card-3" data-group="group1">
+        <div class="theme-img-wrap" onclick="openModal('/assets/theme-3-claymation-3d.webp', 'Chủ Đề 03: Modern 3D Claymation')">
+          <span class="theme-tag" style="background: #DCFCE7; color: #166534;">CHỦ ĐỀ 03 • ĐẤT SÉT 3D</span>
           <img src="/assets/theme-3-claymation-3d.webp" alt="Modern 3D Claymation">
         </div>
         <div class="theme-body">
@@ -670,10 +998,9 @@
             <div class="theme-author-vibe">"Đất Sét Hoạt Hình Nổi Khối (Wallace & Gromit / Shaun the Sheep)"</div>
             
             <ul class="theme-features" style="margin-top: 14px;">
-              <li><span>🧸</span> Nhân vật và sách nặn từ đất sét 3D tròn trĩnh, có vân tay chân thật ngộ nghĩnh.</li>
-              <li><span>💡</span> Ánh sáng studio 3D mềm mại, đổ bóng dịu mắt tạo cảm giác nổi khối sờ thấy được.</li>
-              <li><span>📚</span> Nhân vật mắt to ngơ ngác gù lưng vác cuốn sách đất sét to gấp 3 người.</li>
-              <li><span>✨</span> Rất hiện đại, trẻ trung, thị giác mới lạ bùng nổ cuốn hút Gen Z.</li>
+              <li><span>🧸</span> Nhân vật và sách nặn từ đất sét 3D tròn trĩnh có vân tay chân thật.</li>
+              <li><span>💡</span> Ánh sáng studio 3D mềm mại, nhân vật ngơ ngác vác cuốn sách to gấp 3 người.</li>
+              <li><span>✨</span> Hiện đại, tactile nổi khối, cực kỳ bắt mắt giới trẻ.</li>
             </ul>
           </div>
 
@@ -681,10 +1008,10 @@
             <div class="palette-row">
               <span class="palette-label">Bảng màu:</span>
               <div class="palette-swatches">
-                <div class="swatch" style="background: #FDFBF7;" title="Soft White Studio"></div>
-                <div class="swatch" style="background: #34D399;" title="Clay Mint"></div>
-                <div class="swatch" style="background: #FBBF24;" title="Clay Warm Yellow"></div>
-                <div class="swatch" style="background: #F87171;" title="Clay Coral Red"></div>
+                <div class="swatch" style="background: #FDFBF7;"></div>
+                <div class="swatch" style="background: #34D399;"></div>
+                <div class="swatch" style="background: #FBBF24;"></div>
+                <div class="swatch" style="background: #F87171;"></div>
               </div>
             </div>
 
@@ -696,20 +1023,19 @@
       </div>
 
       <!-- THEME 4 -->
-      <div class="theme-card" id="theme-card-4">
-        <div class="theme-img-wrap" onclick="openModal('/assets/theme-4-chibi-manga.webp', 'Chủ Đề 4: Chibi Manga Gag Comedy')">
-          <span class="theme-tag" style="background: #E0F2FE; color: #075985;">CHỦ ĐỀ 04 • HÀI BỰA</span>
+      <div class="theme-card" id="theme-card-4" data-group="group1">
+        <div class="theme-img-wrap" onclick="openModal('/assets/theme-4-chibi-manga.webp', 'Chủ Đề 04: Chibi Manga Gag Comedy')">
+          <span class="theme-tag" style="background: #E0F2FE; color: #075985;">CHỦ ĐỀ 04 • HÀI BỰA MEME</span>
           <img src="/assets/theme-4-chibi-manga.webp" alt="Chibi Manga Gag Comedy">
         </div>
         <div class="theme-body">
           <div>
             <h3 class="theme-title">Chibi Manga Gag Comedy</h3>
-            <div class="theme-author-vibe">"Manga Doodles & Webtoon Hài Bựa (Meme Factor Cao)"</div>
+            <div class="theme-author-vibe">"Manga Doodles & Webtoon Hài Bựa (Meme Factor Cực Cao)"</div>
             
             <ul class="theme-features" style="margin-top: 14px;">
-              <li><span>💥</span> Biểu cảm phóng đại cực mạnh: Hồn lìa khỏi xác, mắt thâm quầng như gấu trúc lúc 4h sáng.</li>
-              <li><span>☕</span> Trùm chăn run rẩy uống cà phê, đồng hồ báo thức rung lắc điên cuồng.</li>
-              <li><span>🎯</span> Nét vẽ sticker ngộ nghĩnh, biểu cảm dễ đồng cảm gây cười tức thì.</li>
+              <li><span>💥</span> Biểu cảm phóng đại cực mạnh: Hồn lìa khỏi xác, mắt thâm quầng lúc 4h sáng.</li>
+              <li><span>☕</span> Trùm chăn run rẩy uống cà phê, đồng hồ rung lắc điên cuồng.</li>
               <li><span>✨</span> Cực kỳ phù hợp để cắt nhỏ thành sticker gắn vào từng thẻ card con!</li>
             </ul>
           </div>
@@ -718,10 +1044,10 @@
             <div class="palette-row">
               <span class="palette-label">Bảng màu:</span>
               <div class="palette-swatches">
-                <div class="swatch" style="background: #EFF6FF;" title="Pastel Blue"></div>
-                <div class="swatch" style="background: #FEE2E2;" title="Panic Red"></div>
-                <div class="swatch" style="background: #FEF3C7;" title="Coffee Yellow"></div>
-                <div class="swatch" style="background: #111827;" title="Manga Ink"></div>
+                <div class="swatch" style="background: #EFF6FF;"></div>
+                <div class="swatch" style="background: #FEE2E2;"></div>
+                <div class="swatch" style="background: #FEF3C7;"></div>
+                <div class="swatch" style="background: #111827;"></div>
               </div>
             </div>
 
@@ -733,9 +1059,9 @@
       </div>
 
       <!-- THEME 5 -->
-      <div class="theme-card" id="theme-card-5">
-        <div class="theme-img-wrap" onclick="openModal('/assets/theme-5-davinci-anatomy.webp', 'Chủ Đề 5: Da Vinci Medical Engraving Parody')">
-          <span class="theme-tag" style="background: #FEF3C7; color: #92400E;">CHỦ ĐỀ 05 • BẢN THẢO</span>
+      <div class="theme-card" id="theme-card-5" data-group="group1">
+        <div class="theme-img-wrap" onclick="openModal('/assets/theme-5-davinci-anatomy.webp', 'Chủ Đề 05: Da Vinci Medical Engraving Parody')">
+          <span class="theme-tag" style="background: #FEF3C7; color: #92400E;">CHỦ ĐỀ 05 • BẢN THẢO Y KHOA</span>
           <img src="/assets/theme-5-davinci-anatomy.webp" alt="Da Vinci Medical Engraving Parody">
         </div>
         <div class="theme-body">
@@ -744,10 +1070,9 @@
             <div class="theme-author-vibe">"Bản Khắc Đồng Y Khoa Giả Tưởng Thế Kỷ 18 (Da Vinci Codex)"</div>
             
             <ul class="theme-features" style="margin-top: 14px;">
-              <li><span>📜</span> Sơ đồ giải phẫu cắt lớp bộ não "nhiễm độc sách" với các vùng hài hước (Vùng Viêm ví Tsundoku, Thùy sợ hết pin Kindle).</li>
-              <li><span>✒️</span> Nét khắc đồng (etching) tinh xảo, chữ viết gương Da Vinci, bút lông ngỗng và lọ mực cổ.</li>
-              <li><span>🔬</span> Tạo cảm giác một bản cáo trạng "y khoa ngụy khoa học" độc nhất vô nhị.</li>
-              <li><span>✨</span> Dành cho người thích sự kỳ bí, cổ kính, thâm thúy và khác biệt hoàn toàn.</li>
+              <li><span>📜</span> Sơ đồ giải phẫu cắt lớp bộ não với các vùng hài hước (Vùng Viêm ví, Thùy sợ hết pin).</li>
+              <li><span>✒️</span> Nét khắc đồng sepia tinh xảo, chữ viết gương Da Vinci trên giấy da cổ.</li>
+              <li><span>✨</span> Dành cho bài thuyết trình kỳ bí, cổ kính, thâm thúy và khác biệt.</li>
             </ul>
           </div>
 
@@ -755,10 +1080,10 @@
             <div class="palette-row">
               <span class="palette-label">Bảng màu:</span>
               <div class="palette-swatches">
-                <div class="swatch" style="background: #E8D8C3;" title="Aged Vellum"></div>
-                <div class="swatch" style="background: #78350F;" title="Sepia Sanguine"></div>
-                <div class="swatch" style="background: #451A03;" title="Burnt Umber"></div>
-                <div class="swatch" style="background: #1C1917;" title="Etching Carbon"></div>
+                <div class="swatch" style="background: #E8D8C3;"></div>
+                <div class="swatch" style="background: #78350F;"></div>
+                <div class="swatch" style="background: #451A03;"></div>
+                <div class="swatch" style="background: #1C1917;"></div>
               </div>
             </div>
 
@@ -774,11 +1099,12 @@
     <!-- SUMMARY RECOMMENDATION FOOTER -->
     <footer style="text-align: center; padding: 30px; background: #FFFFFF; border: var(--comic-border); border-radius: 20px; box-shadow: var(--comic-shadow);">
       <h3 style="font-family: 'Fredoka', cursive; font-size: 20px; font-weight: 800; margin-bottom: 8px;">
-        💡 Gợi Ý Lựa Chọn Nhanh
+        💡 Gợi Ý Lựa Chọn Nhanh Cho Hướng "Vừa Nghiêm Trọng Vừa Ngộ Nghĩnh"
       </h3>
-      <p style="font-size: 15px; font-weight: 600; color: #4B5563; max-width: 800px; margin: 0 auto;">
-        Nếu bạn muốn phong cách <strong>hài hước, ấm áp và ăn khớp 100%</strong> với bộ slide hiện tại: Chọn <strong>Chủ Đề 1 (Sunday Comic)</strong> hoặc <strong>Chủ Đề 4 (Chibi Gag)</strong>.<br>
-        Nếu bạn muốn phong cách <strong>sang trọng, biếm họa trí thức thâm thúy</strong>: Chọn <strong>Chủ Đề 2 (Retro Editorial)</strong> hoặc <strong>Chủ Đề 5 (Da Vinci Anatomy)</strong>.
+      <p style="font-size: 15px; font-weight: 600; color: #4B5563; max-width: 860px; margin: 0 auto; line-height: 1.7;">
+        🥇 <strong>Lựa chọn số 1: Chủ Đề 06 (Vintage Propaganda Poster)</strong> — Tranh cổ động cảnh báo nguy hiểm thời chiến: Vừa đao to búa lớn giật gân, vừa cười té ghế vì nội dung biếm họa.<br>
+        🥈 <strong>Lựa chọn số 2: Chủ Đề 08 (Film Noir Crime Dossier)</strong> — Hồ sơ mật vụ FBI truy nã tội phạm mọt sách chiếm dụng toilet.<br>
+        🥉 <strong>Lựa chọn số 3: Chủ Đề 07 (Dramatic Baroque Caravaggio)</strong> — Tranh sơn dầu phục hưng Louvre quằn quại bi tráng lúc 4:30 sáng.
       </p>
     </footer>
 
@@ -797,21 +1123,26 @@
 
   <!-- FLOATING ACTION BAR -->
   <div class="action-bar">
-    <span class="action-text">🚀 Đang chọn: <span id="currentSelection" style="color: #B45309; font-weight: 900;">Chủ Đề 1 (Classic Sunday Comic)</span></span>
+    <span class="action-text">🚀 Đang chọn: <span id="currentSelection" style="color: #DC2626; font-weight: 900;">Chủ Đề 06: Vintage Cold War Propaganda</span></span>
     <a href="http://localhost:3000/#slide-1" class="action-link" target="_blank">Xem Thử Slide Hiện Tại ↗</a>
   </div>
 
   <script>
     const themeNames = {
-      1: 'Chủ Đề 1: Classic Sunday Color Comic',
-      2: 'Chủ Đề 2: Retro Editorial Satire (New Yorker)',
-      3: 'Chủ Đề 3: Modern 3D Claymation (Đất Sét Hoạt Hình)',
-      4: 'Chủ Đề 4: Chibi Manga Gag Comedy (Hài Bựa)',
-      5: 'Chủ Đề 5: Da Vinci Medical Engraving Parody'
+      1: 'Chủ Đề 01: Classic Sunday Color Comic',
+      2: 'Chủ Đề 02: Retro Editorial Satire (New Yorker)',
+      3: 'Chủ Đề 03: Modern 3D Claymation (Đất Sét Hoạt Hình)',
+      4: 'Chủ Đề 04: Chibi Manga Gag Comedy (Hài Bựa)',
+      5: 'Chủ Đề 05: Da Vinci Medical Engraving Parody',
+      6: 'Chủ Đề 06: Vintage Cold War Propaganda (Cảnh Báo Thời Chiến)',
+      7: 'Chủ Đề 07: Dramatic Baroque Caravaggio (Sơn Dầu Bi Tráng)',
+      8: 'Chủ Đề 08: Film Noir & Crime Dossier (Hồ Sơ Mật Vụ FBI)',
+      9: 'Chủ Đề 09: Mad Scientist Blueprint (Bản Vẽ Bằng Sáng Chế)',
+      10: 'Chủ Đề 10: Emergency Hazmat Biohazard (Thảm Họa Sinh Học)'
     };
 
     function selectTheme(themeId) {
-      document.querySelectorAll('.theme-card').forEach((card, idx) => {
+      document.querySelectorAll('.theme-card').forEach((card) => {
         card.classList.remove('selected');
         const btn = card.querySelector('.select-btn');
         if (btn) {
@@ -831,7 +1162,31 @@
       document.getElementById('currentSelection').textContent = themeNames[themeId];
     }
 
+    function filterThemes(group) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      const cards = document.querySelectorAll('.theme-card');
+      cards.forEach(card => {
+        if (group === 'all' || card.getAttribute('data-group') === group) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      const heading = document.getElementById('gridHeading');
+      if (group === 'group2') {
+        heading.textContent = '5 Phong Cách Mới: Vừa Nghiêm Trọng Vừa Ngộ Nghĩnh (Chủ Đề 06 - 10)';
+      } else if (group === 'group1') {
+        heading.textContent = '5 Phong Cách Ban Đầu: Hoài Niệm & Hoạt Hình (Chủ Đề 01 - 05)';
+      } else {
+        heading.textContent = 'Toàn Bộ 10 Phong Cách Nghệ Thuật (Chủ Đề 01 - 10)';
+      }
+    }
+
     function openModal(imgSrc, caption) {
+      if (!imgSrc) return;
       document.getElementById('modalImg').src = imgSrc;
       document.getElementById('modalCaption').textContent = caption;
       document.getElementById('imageModal').classList.add('active');
