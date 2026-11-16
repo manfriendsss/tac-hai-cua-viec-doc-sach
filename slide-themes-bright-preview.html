@@ -3,127 +3,188 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>5 Giao Diện Slide Tươi Sáng, Ngộ Nghĩnh & Đơn Giản: Tác Hại Của Việc Đọc Sách</title>
+  <title>Gợi Ý 5 Giao Diện Comic Đậm Đà (Độ Sáng 80%): Tác Hại Của Việc Đọc Sách</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,700&family=Fredoka:wght@400;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,700;0,800;1,700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
   <style>
     /* TYPOGRAPHY */
-    .font-doodle { font-family: 'Fredoka', 'Plus Jakarta Sans', system-ui, sans-serif; }
-    .font-pop { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
-    .font-brutal { font-family: 'Space Grotesk', Impact, -apple-system, sans-serif; }
-    .font-clean { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .font-comic-bangers { font-family: 'Bangers', Impact, cursive, sans-serif; letter-spacing: 1.5px; }
+    .font-comic-neue { font-family: 'Comic Neue', 'Fredoka', cursive, sans-serif; }
+    .font-comic-bold { font-family: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif; }
 
-    /* NEO-BRUTALISM SHADOWS */
-    .brutal-box {
-      border: 3px solid #000000;
+    /* COMIC SOUND EFFECTS & BURSTS */
+    .comic-border {
+      border: 3.5px solid #000000;
       box-shadow: 4px 4px 0px #000000;
-      transition: all 0.15s ease;
     }
-    .brutal-box:hover {
-      transform: translate(-2px, -2px);
+    .comic-border-thick {
+      border: 5px solid #000000;
       box-shadow: 6px 6px 0px #000000;
     }
 
-    .brutal-btn {
+    /* SPEECH BUBBLES */
+    .speech-bubble {
+      position: relative;
+      background: #ffffff;
+      border: 3px solid #000000;
+      border-radius: 18px;
+      box-shadow: 3px 3px 0px #000000;
+    }
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 28px;
+      border-width: 12px 10px 0;
+      border-style: solid;
+      border-color: #000000 transparent;
+      display: block;
+      width: 0;
+    }
+    .speech-bubble::before {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 30px;
+      border-width: 9px 8px 0;
+      border-style: solid;
+      border-color: #ffffff transparent;
+      display: block;
+      width: 0;
+      z-index: 1;
+    }
+
+    /* COMIC BURST / EXPLOSION BADGE */
+    .comic-burst {
+      position: relative;
+      background: #ef4444;
+      color: #ffffff;
+      font-family: 'Bangers', cursive;
       border: 3px solid #000000;
       box-shadow: 3px 3px 0px #000000;
-      transition: all 0.1s ease;
-    }
-    .brutal-btn:active {
-      transform: translate(2px, 2px);
-      box-shadow: 1px 1px 0px #000000;
+      transform: rotate(-3deg);
     }
 
-    /* DOODLE GRID BACKGROUND */
-    .bg-grid-dots {
-      background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
-      background-size: 20px 20px;
-    }
+    /* 80% BRIGHTNESS BACKGROUND TEXTURES */
 
-    .bg-grid-lines {
-      background-size: 24px 24px;
+    /* 1. Newsprint Pulp Paper (~80% brightness) */
+    .bg-comic-newsprint {
+      background-color: #ece6d8;
       background-image: 
-        linear-gradient(to right, rgba(203, 213, 225, 0.4) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(203, 213, 225, 0.4) 1px, transparent 1px);
+        radial-gradient(#b8b09d 1.5px, transparent 1.5px),
+        linear-gradient(to right, rgba(0,0,0,0.02) 1px, transparent 1px);
+      background-size: 16px 16px, 100% 100%;
     }
 
-    /* HIGHLIGHTER EFFECT */
-    .hl-yellow {
-      background: linear-gradient(104deg, rgba(250, 204, 21, 0) 0.9%, rgba(250, 204, 21, 0.75) 2.4%, rgba(250, 204, 21, 0.6) 90%);
-      padding: 0.1em 0.3em;
-      border-radius: 4px;
+    /* 2. Manga Action Speedlines (~80% brightness) */
+    .bg-comic-manga {
+      background-color: #e5e7eb;
+      background-image: 
+        repeating-linear-gradient(45deg, rgba(0,0,0,0.025) 0, rgba(0,0,0,0.025) 2px, transparent 2px, transparent 12px),
+        radial-gradient(circle at 50% 50%, #f3f4f6 0%, #d1d5db 100%);
     }
-    .hl-pink {
-      background: linear-gradient(104deg, rgba(244, 114, 182, 0) 0.9%, rgba(244, 114, 182, 0.65) 2.4%, rgba(244, 114, 182, 0.5) 90%);
-      padding: 0.1em 0.3em;
-      border-radius: 4px;
+
+    /* 3. Newspaper Sunday Strip (~80% brightness) */
+    .bg-comic-sunday {
+      background-color: #e8e4dc;
+      background-image: 
+        radial-gradient(circle, #cbd5e1 1.2px, transparent 1.2px),
+        linear-gradient(to bottom, rgba(0,0,0,0.015) 1px, transparent 1px);
+      background-size: 18px 18px, 100% 28px;
     }
-    .hl-green {
-      background: linear-gradient(104deg, rgba(52, 211, 153, 0) 0.9%, rgba(52, 211, 153, 0.65) 2.4%, rgba(52, 211, 153, 0.5) 90%);
-      padding: 0.1em 0.3em;
-      border-radius: 4px;
+
+    /* 4. Pop-Art Halftone Ben-Day Dots (~80% brightness) */
+    .bg-comic-popart {
+      background-color: #dfded9;
+      background-image: radial-gradient(#94a3b8 2px, transparent 2px);
+      background-size: 14px 14px;
+    }
+
+    /* 5. Detective Noir Graphic Novel (~80% brightness) */
+    .bg-comic-noir {
+      background-color: #dcd8cf;
+      background-image: 
+        repeating-linear-gradient(-45deg, rgba(0,0,0,0.035) 0, rgba(0,0,0,0.035) 3px, transparent 3px, transparent 15px),
+        radial-gradient(circle at 50% 50%, #e6e2d9 20%, #ccc7bd 100%);
+    }
+
+    /* Comic Halftone Dot Utility */
+    .halftone-accent {
+      background-image: radial-gradient(#000000 1.5px, transparent 1.5px);
+      background-size: 8px 8px;
+      opacity: 0.15;
     }
   </style>
 </head>
-<body class="bg-[#f8fafc] text-slate-800 min-h-screen p-3 md:p-8 font-pop">
+<body class="bg-[#dcd6ca] text-zinc-900 min-h-screen p-3 md:p-8 font-comic-neue">
 
   <div class="max-w-6xl mx-auto">
 
     <!-- Top Announcement Header -->
     <header class="text-center mb-6">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-xs font-extrabold tracking-wider uppercase mb-3 shadow-sm">
-        ✨ 5 PHONG CÁCH MỚI: SÁNG • NGỘ NGHĨNH • CHỮ TO • RÕ RÀNG • ĐƠN GIẢN
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-300 border-2 border-black text-black text-xs font-black tracking-wider uppercase mb-3 shadow-[3px_3px_0px_#000]">
+        💥 5 GIAO DIỆN COMIC MỚI: VIBE TRUYỆN TRANH ĐẬM ĐÀ • ĐỘ SÁNG 80% DỊU MẮT
       </div>
-      <h1 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tight mb-2">
-        Gợi Ý 5 Giao Diện Slide Mới: <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-rose-500 to-indigo-600">"Tác Hại Của Đọc Sách"</span>
+      <h1 class="text-3xl md:text-5xl font-black text-black tracking-tight mb-2 font-comic-bangers">
+        BẢNG THỬ NGHIỆM 5 GIAO DIỆN COMIC: <span class="bg-red-500 text-white px-3 py-1 comic-border inline-block rotate-1">"TÁC HẠI CỦA ĐỌC SÁCH"</span>
       </h1>
-      <p class="text-slate-600 text-xs md:text-sm max-w-2xl mx-auto font-medium">
-        Đã loại bỏ hoàn toàn cảm giác cũ kỹ, tối tăm của giấy da cổ. Toàn bộ 5 giao diện dưới đây đều <strong>sáng bừng, dễ đọc từ khoảng cách xa, hài hước và ngộ nghĩnh</strong>!
+      <p class="text-zinc-700 text-xs md:text-sm max-w-2xl mx-auto font-bold">
+        Độ sáng đã được giảm xuống <strong>80% dịu mắt</strong> (tông giấy in báo truyện tranh vintage, không bị chói lóa). Bổ sung <strong>hộp thoại comic, hiệu ứng nổ POW/BOOM, khung tranh kịch tính</strong> và phông chữ to rõ ràng!
       </p>
+
+      <!-- Category Filter Tabs -->
+      <div class="inline-flex p-1.5 bg-white border-2 border-black rounded-2xl shadow-[4px_4px_0px_#000] mt-4 flex-wrap justify-center gap-1.5">
+        <button onclick="toggleGroup('comic')" id="btn-group-comic" class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs md:text-sm font-black transition-all bg-black text-yellow-300 shadow">
+          <span>💥</span> 5 Giao Diện Comic (Độ Sáng 80% - MỚI)
+        </button>
+        <button onclick="toggleGroup('bright')" id="btn-group-bright" class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs md:text-sm font-bold transition-all text-zinc-700 hover:text-black hover:bg-zinc-100">
+          <span>☀️</span> 5 Giao Diện Sáng Ban Đầu (100% Brightness)
+        </button>
+      </div>
     </header>
 
-    <!-- Theme Tabs Grid (5 Themes) -->
+    <!-- Theme Tabs Grid (5 Themes of the active group) -->
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-6" id="theme-tabs-container">
       <!-- Populated dynamically -->
     </div>
 
     <!-- Presentation Stage Showcase -->
-    <div class="bg-white p-3 md:p-5 rounded-3xl border-2 border-slate-200 shadow-xl overflow-hidden mb-6">
+    <div class="bg-white p-3 md:p-5 rounded-3xl comic-border-thick overflow-hidden mb-6">
       
       <!-- Stage Control Bar -->
-      <div class="bg-slate-50 border border-slate-200 p-3 md:p-4 rounded-2xl flex flex-wrap items-center justify-between gap-3 mb-4">
+      <div class="bg-[#f4efe4] border-2 border-black p-3 md:p-4 rounded-2xl flex flex-wrap items-center justify-between gap-3 mb-4">
         <div class="flex items-center gap-3">
-          <span id="theme-badge" class="px-3 py-1 rounded-xl text-xs font-black uppercase tracking-wider bg-slate-900 text-white shadow-sm">
+          <span id="theme-badge" class="px-3 py-1 rounded-xl text-xs font-black uppercase tracking-wider bg-black text-yellow-300 shadow-sm font-comic-bangers">
             Mẫu #1
           </span>
           <div>
-            <h2 id="theme-title" class="font-extrabold text-slate-900 text-base md:text-lg">
-              Doodle Comic & Sticky Notes
+            <h2 id="theme-title" class="font-extrabold text-black text-base md:text-lg font-comic-bangers">
+              Classic American Comic Book
             </h2>
-            <p id="theme-subtitle" class="text-xs text-slate-500 font-medium">
-              Vẽ bậy ngộ nghĩnh, sticker ghi chú vàng tươi, highlight dạ quang
+            <p id="theme-subtitle" class="text-xs text-zinc-600 font-bold">
+              Giấy in báo vintage 80%, chấm halftone, hộp thoại POW & BOOM
             </p>
           </div>
         </div>
 
         <!-- Slide Switcher (Bìa / Thống Kê / So Sánh) -->
-        <div class="flex items-center bg-white p-1 rounded-xl border border-slate-300 text-xs font-bold shadow-sm">
-          <button onclick="changeSlide(1)" id="slide-btn-1" class="px-3 py-1.5 rounded-lg transition-all bg-slate-900 text-white shadow">
-            Slide 1: Bìa
+        <div class="flex items-center bg-white p-1 rounded-xl border-2 border-black text-xs font-bold shadow-[2px_2px_0px_#000]">
+          <button onclick="changeSlide(1)" id="slide-btn-1" class="px-3 py-1.5 rounded-lg transition-all bg-black text-yellow-300 shadow font-black">
+            Slide 1: Bìa Comic
           </button>
-          <button onclick="changeSlide(2)" id="slide-btn-2" class="px-3 py-1.5 rounded-lg transition-all text-slate-600 hover:text-slate-900">
+          <button onclick="changeSlide(2)" id="slide-btn-2" class="px-3 py-1.5 rounded-lg transition-all text-zinc-700 hover:text-black">
             Slide 2: Thống Kê
           </button>
-          <button onclick="changeSlide(3)" id="slide-btn-3" class="px-3 py-1.5 rounded-lg transition-all text-slate-600 hover:text-slate-900">
-            Slide 3: So Sánh 3 Khí Cụ
+          <button onclick="changeSlide(3)" id="slide-btn-3" class="px-3 py-1.5 rounded-lg transition-all text-zinc-700 hover:text-black">
+            Slide 3: 3 Khí Cụ
           </button>
         </div>
       </div>
 
       <!-- 16:9 Canvas Viewport -->
-      <div class="relative bg-slate-100 aspect-[16/9] max-h-[640px] w-full overflow-hidden flex flex-col justify-center items-center rounded-2xl shadow-inner border border-slate-200" id="slide-viewport">
+      <div class="relative bg-zinc-200 aspect-[16/9] max-h-[640px] w-full overflow-hidden flex flex-col justify-center items-center rounded-2xl shadow-inner border-2 border-black" id="slide-viewport">
         <!-- Rendered dynamically -->
       </div>
     </div>
@@ -132,40 +193,40 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
       
       <!-- Philosophy & Tone -->
-      <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
-        <h3 class="text-xs font-black text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-          <span>🎨</span> Cảm Hứng & Khí Chất Thiết Kế
+      <div class="bg-white border-2 border-black rounded-2xl p-5 shadow-[4px_4px_0px_#000]">
+        <h3 class="text-xs font-black text-black uppercase tracking-wider mb-2 flex items-center gap-1.5 font-comic-bangers">
+          <span>🎨</span> CẢM HỨNG & VIBE TRUYỆN TRANH
         </h3>
-        <p id="theme-desc" class="text-slate-600 text-xs md:text-sm leading-relaxed">
+        <p id="theme-desc" class="text-zinc-700 text-xs md:text-sm leading-relaxed font-bold">
           Mô tả phong cách và tinh thần hài hước.
         </p>
       </div>
 
       <!-- Color Palette & Typography -->
-      <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
-        <h3 class="text-xs font-black text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-          <span>✨</span> Bảng Màu & Phông Chữ To Đậm
+      <div class="bg-white border-2 border-black rounded-2xl p-5 shadow-[4px_4px_0px_#000]">
+        <h3 class="text-xs font-black text-black uppercase tracking-wider mb-2 flex items-center gap-1.5 font-comic-bangers">
+          <span>✨</span> BẢNG MÀU (80% SÁNG) & PHÔNG CHỮ
         </h3>
         <div class="flex flex-wrap items-center gap-2 mb-3" id="theme-swatches">
           <!-- Swatches -->
         </div>
-        <p id="theme-typography" class="text-xs text-slate-700 font-medium">
-          Phông chữ đề xuất: <span class="text-slate-900 font-extrabold">Plus Jakarta Sans & Fredoka</span>
+        <p id="theme-typography" class="text-xs text-zinc-800 font-bold">
+          Phông chữ đề xuất: <span class="text-black font-extrabold">Bangers & Comic Neue</span>
         </p>
       </div>
 
       <!-- Action Button -->
-      <div class="bg-amber-50 border-2 border-amber-300 rounded-2xl p-5 shadow-sm flex flex-col justify-between">
+      <div class="bg-[#fef08a] border-2 border-black rounded-2xl p-5 shadow-[4px_4px_0px_#000] flex flex-col justify-between">
         <div>
-          <h3 class="text-xs font-black text-amber-950 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-            <span>🚀</span> Chốt Giao Diện Này?
+          <h3 class="text-xs font-black text-black uppercase tracking-wider mb-1 flex items-center gap-1.5 font-comic-bangers">
+            <span>🚀</span> CHỐT GIAO DIỆN NÀY?
           </h3>
-          <p class="text-xs text-amber-800 font-medium mb-3">
-            Bấm nút dưới để copy tên giao diện bạn thích nhất gửi lại cho trợ lý!
+          <p class="text-xs text-zinc-800 font-bold mb-3">
+            Bấm nút dưới để copy tên giao diện gửi lại cho trợ lý bắt tay dựng toàn bộ slide!
           </p>
         </div>
-        <button onclick="confirmThemeChoice()" class="w-full py-3 px-4 bg-slate-900 hover:bg-black text-white font-extrabold rounded-xl shadow-md transition-all flex items-center justify-center gap-2 text-xs md:text-sm tracking-wide">
-          <span>✓</span> CHỌN MẪU NÀY LÀM SLIDE
+        <button onclick="confirmThemeChoice()" class="w-full py-3 px-4 bg-black hover:bg-zinc-800 text-yellow-300 font-black rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] transition-all flex items-center justify-center gap-2 text-xs md:text-sm tracking-wide font-comic-bangers">
+          <span>✓</span> CHỌN MẪU COMIC NÀY LÀM SLIDE
         </button>
       </div>
 
@@ -174,200 +235,221 @@
   </div>
 
   <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 font-bold text-xs md:text-sm">
-    <span>✨</span>
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-black text-yellow-300 border-2 border-yellow-400 px-5 py-3 rounded-2xl shadow-[5px_5px_0px_#000] flex items-center gap-3 font-bold text-xs md:text-sm font-comic-bangers">
+    <span>💥</span>
     <span id="toast-text">Đã chọn giao diện!</span>
   </div>
 
   <script>
-    const THEMES = [
+    // 5 COMIC THEMES (80% BRIGHTNESS)
+    const COMIC_THEMES = [
       {
-        id: "theme_doodle_comic",
-        number: "Mẫu #1",
-        title: "Doodle Comic & Stickman",
-        subtitle: "Sổ tay vẽ bậy, sticker vui nhộn, vệt dạ quang",
-        icon: "✏️",
-        badge: "Vẽ Bậy Ngộ Nghĩnh",
-        badgeColor: "bg-amber-400 text-black border-amber-500",
-        desc: "Lấy cảm hứng từ những trang sổ tay vẽ bậy của học sinh cá biệt: Nền trắng sạch có chấm dot grid siêu mờ, các hình vẽ que (stickman) ngơ ngác khi bị sách 'đầu độc', chữ cực to rõ ràng, sticker vàng dán vội và gạch chân dạ quang vàng rực.",
-        typography: "Fredoka (Bo tròn) & Plus Jakarta Sans (Siêu đậm)",
+        id: "comic_vintage_marvel",
+        number: "Comic #1",
+        title: "Classic Vintage Comic",
+        subtitle: "Giấy in báo 80%, halftone Ben-Day, khung kịch tính",
+        icon: "🦸",
+        badge: "Truyện Tranh Cổ Điển",
+        badgeColor: "bg-red-500 text-white border-black",
+        desc: "Lấy cảm hứng từ truyện tranh siêu anh hùng thập niên 1970-1980: Tông giấy in báo ngả xám vàng dịu mắt (#ece6d8, 80% độ sáng), chấm Ben-Day halftone, khung tranh nghiêng góc kịch tính, hộp thoại dẫn truyện màu vàng cổ điển, các hiệu ứng nổ POW! và DANGER!",
+        typography: "Bangers (Tiêu đề chữ nổ) & Comic Neue (Hộp thoại)",
         palette: [
-          { name: "Pure White", hex: "#ffffff" },
-          { name: "Marker Black", hex: "#18181b" },
-          { name: "Highlighter Yellow", hex: "#fde047" },
-          { name: "Sticky Coral", hex: "#fb7185" },
-          { name: "Mint Doodler", hex: "#34d399" }
+          { name: "Newsprint 80%", hex: "#ece6d8" },
+          { name: "Comic Ink", hex: "#111827" },
+          { name: "Vintage Red", hex: "#dc2626" },
+          { name: "Panel Yellow", hex: "#facc15" },
+          { name: "Hero Blue", hex: "#2563eb" }
         ],
         slides: {
           1: `
-            <div class="w-full h-full bg-white bg-grid-dots text-zinc-900 p-8 md:p-14 flex flex-col justify-between font-doodle relative overflow-hidden select-none">
+            <div class="w-full h-full bg-comic-newsprint text-zinc-900 p-6 md:p-10 flex flex-col justify-between font-comic-neue relative overflow-hidden select-none border-4 border-black">
               
-              <!-- Sticky Warning Note Top Right -->
-              <div class="absolute top-6 right-8 rotate-3 bg-[#fef08a] border-2 border-black p-3.5 rounded-xl shadow-[4px_4px_0px_#000] max-w-[210px] hidden md:block">
-                <div class="text-[11px] font-black uppercase text-red-600 flex items-center gap-1">
-                  <span>🚨</span> CẢNH BÁO KHẨN CẤP!
+              <!-- Top Narration Box -->
+              <div class="flex justify-between items-center z-10">
+                <div class="bg-[#facc15] border-2 border-black px-3 py-1 font-black text-xs uppercase shadow-[2px_2px_0px_#000] font-comic-bangers tracking-wider">
+                  TẬP PHIM ĐẶC BIỆT: THẢM HỌA TRI THỨC
                 </div>
-                <div class="text-xs font-bold text-zinc-900 mt-1 leading-snug">
-                  Đọc sách có thể làm biến mất sự ngây thơ vĩnh viễn!
+                <div class="bg-white border-2 border-black px-3 py-1 text-xs font-black shadow-[2px_2px_0px_#000]">
+                  SỐ RA THÁNG 11 • 2026
                 </div>
               </div>
 
-              <!-- Top Brand Tag -->
-              <div class="flex items-center gap-2">
-                <span class="px-3 py-1 rounded-full bg-zinc-900 text-white text-xs font-black uppercase tracking-wider">
-                  BÁO CÁO KHOA HỌC HÀI HƯỚC
-                </span>
-                <span class="text-xs font-bold text-zinc-500">⏱️ 30 Phút Tự Hủy</span>
+              <!-- Main Hero Banner -->
+              <div class="my-auto max-w-4xl mx-auto w-full z-10">
+                
+                <div class="grid grid-cols-12 gap-4 items-center">
+                  
+                  <!-- Left 8 Cols: Comic Title & Speech Bubble -->
+                  <div class="col-span-12 md:col-span-8">
+                    <div class="inline-block bg-red-600 text-white px-3 py-0.5 text-xs font-black uppercase border-2 border-black rotate-[-2deg] mb-2 font-comic-bangers shadow-[2px_2px_0px_#000]">
+                      CẢNH BÁO: CHẤT GÂY NGHIỆN NGUY CẤP!
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl md:text-7xl font-black text-black leading-[0.95] tracking-tight uppercase font-comic-bangers drop-shadow-[2px_2px_0px_#fff]">
+                      TÁC HẠI KINH HOÀNG <br>
+                      <span class="text-red-600 bg-yellow-300 px-3 py-1 border-3 border-black inline-block rotate-1 shadow-[3px_3px_0px_#000]">
+                        CỦA VIỆC ĐỌC SÁCH!
+                      </span>
+                    </h1>
+
+                    <!-- Speech Bubble -->
+                    <div class="speech-bubble p-3 mt-4 max-w-xl">
+                      <p class="text-xs md:text-sm font-bold text-zinc-900 leading-snug">
+                        "Cứu tôi với! Chỉ định lật 3 trang trước khi ngủ, thế quái nào bây giờ đã 4 giờ sáng rồi?!"
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Right 4 Cols: Comic Starburst Sticker -->
+                  <div class="col-span-12 md:col-span-4 flex justify-center">
+                    <div class="w-40 h-40 md:w-48 md:h-48 rounded-full bg-yellow-300 border-4 border-black shadow-[5px_5px_0px_#000] flex flex-col items-center justify-center text-center p-3 rotate-6">
+                      <span class="text-2xl">💣</span>
+                      <span class="font-comic-bangers text-2xl md:text-3xl text-red-600 leading-tight">POW!</span>
+                      <span class="text-[11px] font-black uppercase text-black">MẤT SỰ NGÂY THƠ VĨNH VIỄN!</span>
+                    </div>
+                  </div>
+
+                </div>
+
               </div>
 
-              <!-- Main Hero Title -->
-              <div class="my-auto max-w-3xl">
-                <div class="text-4xl md:text-5xl mb-2">👀 📚 💥</div>
-                <h1 class="text-4xl sm:text-5xl md:text-7xl font-black text-black tracking-tight leading-[1.08] mb-4">
-                  TÁC HẠI CỦA <br>
-                  <span class="hl-yellow inline-block my-1">VIỆC ĐỌC SÁCH!</span>
-                </h1>
-                <p class="text-base md:text-xl font-bold text-zinc-600 max-w-xl leading-relaxed">
-                  (Thực ra là siêu có lợi, nhưng nhìn theo góc nhìn <span class="text-rose-600 underline decoration-wavy">châm biếm ngược</span> hài hước)
-                </p>
-              </div>
-
-              <!-- Bottom 3 Pill Highlights -->
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-4 border-t-2 border-dashed border-zinc-300">
-                <div class="flex items-center gap-2.5 bg-yellow-50 border-2 border-black rounded-xl p-2.5 shadow-[2px_2px_0px_#000]">
-                  <span class="text-xl">😵‍💫</span>
-                  <span class="text-xs font-bold">Nghiện kiến thức không cai được</span>
+              <!-- Bottom 3 Comic Panels -->
+              <div class="grid grid-cols-3 gap-2.5 z-10">
+                <div class="bg-white border-2 border-black p-2 rounded shadow-[2px_2px_0px_#000]">
+                  <span class="text-xs font-black text-red-600 uppercase font-comic-bangers">01. NÃO BỐC KHÓI</span>
+                  <div class="text-[11px] font-bold text-zinc-700 leading-tight">Ép nơ-ron hoạt động 100% công suất</div>
                 </div>
-                <div class="flex items-center gap-2.5 bg-rose-50 border-2 border-black rounded-xl p-2.5 shadow-[2px_2px_0px_#000]">
-                  <span class="text-xl">🗣️</span>
-                  <span class="text-xs font-bold">Vốn từ tăng vọt thành ác mộng</span>
+                <div class="bg-white border-2 border-black p-2 rounded shadow-[2px_2px_0px_#000]">
+                  <span class="text-xs font-black text-blue-600 uppercase font-comic-bangers">02. CÃI NHAU KHÔNG THUA</span>
+                  <div class="text-[11px] font-bold text-zinc-700 leading-tight">Thừa từ vựng thế kỷ 19 phản biện</div>
                 </div>
-                <div class="flex items-center gap-2.5 bg-emerald-50 border-2 border-black rounded-xl p-2.5 shadow-[2px_2px_0px_#000]">
-                  <span class="text-xl">💸</span>
-                  <span class="text-xs font-bold">Viêm màng túi vì đóng kệ sách</span>
+                <div class="bg-white border-2 border-black p-2 rounded shadow-[2px_2px_0px_#000]">
+                  <span class="text-xs font-black text-amber-600 uppercase font-comic-bangers">03. RỦ THÊM NỢ NẦN</span>
+                  <div class="text-[11px] font-bold text-zinc-700 leading-tight">Tốn cả gia tài đóng kệ sách mới</div>
                 </div>
               </div>
 
             </div>
           `,
           2: `
-            <div class="w-full h-full bg-white bg-grid-dots text-zinc-900 p-8 md:p-12 flex flex-col justify-between font-doodle relative overflow-hidden select-none">
+            <div class="w-full h-full bg-comic-newsprint text-zinc-900 p-6 md:p-10 flex flex-col justify-between font-comic-neue relative overflow-hidden select-none border-4 border-black">
               
-              <div class="flex justify-between items-center border-b-2 border-black pb-2">
-                <div class="text-xs font-black uppercase tracking-wider text-rose-600 flex items-center gap-1.5">
-                  <span>📊</span> BẰNG CHỨNG KHOA HỌC BỎNG TAY
-                </div>
-                <div class="text-xs font-bold text-zinc-500">ĐH SUSSEX & ĐH YALE</div>
+              <div class="flex justify-between items-center border-b-3 border-black pb-2">
+                <span class="bg-red-600 text-white font-comic-bangers px-3 py-0.5 text-xs uppercase border-2 border-black shadow-[2px_2px_0px_#000]">
+                  BẰNG CHỨNG TÒA ÁN SUSSEX & YALE
+                </span>
+                <span class="text-xs font-black text-zinc-600">HỒ SƠ SỐ #404</span>
               </div>
 
               <div class="my-auto max-w-4xl mx-auto w-full">
-                <h2 class="text-3xl md:text-5xl font-black text-center mb-6 text-black">
-                  HAI CON SỐ <span class="hl-pink">"VẠCH TỘI"</span> SÁCH
+                <h2 class="text-3xl md:text-5xl font-black text-center uppercase font-comic-bangers mb-6 tracking-wide">
+                  HAI CON SỐ <span class="bg-[#facc15] px-2 border-2 border-black shadow-[3px_3px_0px_#000] rotate-1 inline-block">"VẠCH MẶT"</span> KẺ ĐỌC SÁCH
                 </h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                   
-                  <!-- Card 1: -68% -->
-                  <div class="bg-[#fef9c3] border-3 border-black rounded-2xl p-6 shadow-[5px_5px_0px_#000] relative">
-                    <span class="absolute -top-3.5 right-4 bg-black text-yellow-300 px-3 py-0.5 rounded-full text-[11px] font-black uppercase">
-                      Chỉ Cần 6 Phút Đọc!
+                  <!-- Stat Panel 1 -->
+                  <div class="bg-white border-3 border-black p-6 rounded-2xl shadow-[5px_5px_0px_#000] relative">
+                    <span class="absolute -top-3.5 right-4 bg-yellow-300 text-black px-3 py-0.5 border-2 border-black rounded text-[11px] font-black uppercase font-comic-bangers">
+                      6 PHÚT THẦN TỐC!
                     </span>
-                    <div class="text-6xl md:text-7xl font-black text-rose-600 tracking-tight mb-2">
+                    <div class="text-6xl md:text-7xl font-black text-red-600 font-comic-bangers tracking-wide mb-1">
                       -68%
                     </div>
-                    <h3 class="text-base font-black text-black uppercase mb-1">
-                      Giảm Mức Độ Căng Thẳng (Stress)
+                    <h3 class="text-sm font-black uppercase text-black mb-1 font-comic-bangers text-base">
+                      GIẢM MỨC ĐỘ STRESS TỨC THÌ
                     </h3>
                     <p class="text-xs font-bold text-zinc-700 leading-relaxed">
-                      ✦ Nhịp tim chậm lại, cơ bắp thả lỏng. "Tác hại" là tước mất quyền được quạu quọ, bực bội với đời! Sếp mắng vẫn mỉm cười ung dung!
+                      Chỉ cần 6 phút đọc trong yên lặng, nhịp tim tự động chậm lại, cơ bắp thả lỏng. "Hại" vì tước mất quyền được nổi giận, bực dọc chính đáng với thế giới!
                     </p>
                   </div>
 
-                  <!-- Card 2: +2 Năm -->
-                  <div class="bg-[#e0f2fe] border-3 border-black rounded-2xl p-6 shadow-[5px_5px_0px_#000] relative">
-                    <span class="absolute -top-3.5 right-4 bg-black text-cyan-200 px-3 py-0.5 rounded-full text-[11px] font-black uppercase">
-                      Khảo Sát 12 Năm Yale
+                  <!-- Stat Panel 2 -->
+                  <div class="bg-white border-3 border-black p-6 rounded-2xl shadow-[5px_5px_0px_#000] relative">
+                    <span class="absolute -top-3.5 right-4 bg-blue-300 text-black px-3 py-0.5 border-2 border-black rounded text-[11px] font-black uppercase font-comic-bangers">
+                      ĐẠI HỌC YALE (12 NĂM)
                     </span>
-                    <div class="text-6xl md:text-7xl font-black text-indigo-700 tracking-tight mb-2">
+                    <div class="text-6xl md:text-7xl font-black text-blue-600 font-comic-bangers tracking-wide mb-1">
                       +2 NĂM
                     </div>
-                    <h3 class="text-base font-black text-black uppercase mb-1">
-                      Kéo Dài Tuổi Thọ Sinh Học
+                    <h3 class="text-sm font-black uppercase text-black mb-1 font-comic-bangers text-base">
+                      KÉO DÀI TUỔI THỌ SINH HỌC
                     </h3>
                     <p class="text-xs font-bold text-zinc-700 leading-relaxed">
-                      ✦ Đọc 30 phút/ngày sống thọ hơn 2 năm. Thiệt hại kinh tế nặng nề: Bắt bạn phải tốn thêm 2 năm tiền ăn, tiền trọ và tiền đóng thuế!
+                      Người đọc sách 30 phút mỗi ngày sống thọ hơn 2 năm. Tổn thất tài chính nặng nề: Bắt bạn phải sống thêm 2 năm để nộp thuế, đi làm và đóng tiền trọ!
                     </p>
                   </div>
 
                 </div>
               </div>
 
-              <div class="text-center text-xs font-black text-zinc-500 border-t border-zinc-200 pt-2">
-                💡 Định luật Tsundoku: Tiền mua sách tỷ lệ nghịch với số trang bạn thực sự đọc!
+              <div class="bg-[#facc15] border-2 border-black p-2 text-center text-xs font-black uppercase shadow-[2px_2px_0px_#000]">
+                QUY LUẬT TSUNDOKU: MUA SÁCH VÀ ĐỌC SÁCH LÀ HAI MÔN THỂ THAO ĐỘC LẬP!
               </div>
 
             </div>
           `,
           3: `
-            <div class="w-full h-full bg-white bg-grid-dots text-zinc-900 p-8 md:p-12 flex flex-col justify-between font-doodle relative overflow-hidden select-none">
+            <div class="w-full h-full bg-comic-newsprint text-zinc-900 p-6 md:p-10 flex flex-col justify-between font-comic-neue relative overflow-hidden select-none border-4 border-black">
               
               <div class="text-center">
-                <span class="px-3 py-1 rounded-full bg-black text-white text-xs font-black uppercase tracking-wider">
-                  ĐẶT LÊN BÀN CÂN 3 ĐỊNH DẠNG
+                <span class="bg-black text-yellow-300 px-3 py-1 text-xs font-black uppercase border-2 border-black font-comic-bangers">
+                  BẢNG SO SÁNH KHÍ CỤ
                 </span>
-                <h2 class="text-3xl md:text-5xl font-black text-black mt-2">
-                  BA THỨ VŨ KHÍ <span class="hl-green">GÂY NGHIỆN</span>
+                <h2 class="text-3xl md:text-5xl font-black font-comic-bangers mt-2 uppercase">
+                  TAM THỂ KHÍ CỤ <span class="text-red-600 underline">GÂY NGHIỆN</span>
                 </h2>
               </div>
 
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-auto w-full max-w-5xl mx-auto">
+              <!-- 3 Comic Strips -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-auto max-w-5xl mx-auto w-full">
                 
-                <!-- Col 1: Sách giấy -->
-                <div class="bg-[#fefce8] border-3 border-black p-5 rounded-2xl shadow-[4px_4px_0px_#000] flex flex-col justify-between">
+                <div class="bg-white border-3 border-black p-4 rounded-xl shadow-[4px_4px_0px_#000] flex flex-col justify-between">
                   <div>
-                    <div class="text-3xl mb-1">📖</div>
-                    <h3 class="font-black text-base text-black uppercase mb-1">Sách Giấy Cổ Truyền</h3>
-                    <p class="text-xs font-bold text-zinc-700 leading-relaxed">
-                      Mùi giấy thơm gây ảo giác. Lật trang sột soạt đê mê. Balo nhét 2 cuốn nặng như tập tạ, gù lưng lúc nào không hay!
+                    <div class="bg-yellow-200 border-2 border-black p-2 text-center mb-2 font-comic-bangers text-xl">
+                      📖 SÁCH GIẤY
+                    </div>
+                    <p class="text-xs font-bold text-zinc-800 leading-relaxed">
+                      Mùi giấy thơm gây ảo giác. Lật trang sột soạt đê mê. Balo nhét 2 cuốn dày nặng như tập tạ, gù cả cột sống!
                     </p>
                   </div>
-                  <div class="mt-3 pt-2 border-t-2 border-black text-xs font-black text-rose-600">
-                    Sát thương: Tập tạ miễn phí 🏋️‍♂️
+                  <div class="mt-3 pt-2 border-t-2 border-black text-xs font-black text-red-600 font-comic-bangers">
+                    SÁT THƯƠNG VẬT LÝ: 5/5 🏋️
                   </div>
                 </div>
 
-                <!-- Col 2: Ebook -->
-                <div class="bg-[#f0fdf4] border-3 border-black p-5 rounded-2xl shadow-[4px_4px_0px_#000] flex flex-col justify-between">
+                <div class="bg-white border-3 border-black p-4 rounded-xl shadow-[4px_4px_0px_#000] flex flex-col justify-between">
                   <div>
-                    <div class="text-3xl mb-1">📱</div>
-                    <h3 class="font-black text-base text-black uppercase mb-1">Máy Đọc Sách Ebook</h3>
-                    <p class="text-xs font-bold text-zinc-700 leading-relaxed">
-                      Gọn nhẹ 200g nhét cả thư viện vào túi. Nhưng tử huyệt là đang đọc truyện trinh thám đến lúc gay cấn thì... HẾT PIN!
+                    <div class="bg-blue-200 border-2 border-black p-2 text-center mb-2 font-comic-bangers text-xl">
+                      📱 MÁY EBOOK
+                    </div>
+                    <p class="text-xs font-bold text-zinc-800 leading-relaxed">
+                      Nhét cả thư viện 10.000 cuốn vào túi quần. Nhưng tử huyệt là đang đọc đến trang hung thủ lộ mặt thì... HẾT PIN!
                     </p>
                   </div>
-                  <div class="mt-3 pt-2 border-t-2 border-black text-xs font-black text-emerald-700">
-                    Sát thương: Tuyệt vọng cạn pin 🪫
+                  <div class="mt-3 pt-2 border-t-2 border-black text-xs font-black text-blue-600 font-comic-bangers">
+                    SÁT THƯƠNG: SẬP NGUỒN 🪫
                   </div>
                 </div>
 
-                <!-- Col 3: Audiobook -->
-                <div class="bg-[#fdf2f8] border-3 border-black p-5 rounded-2xl shadow-[4px_4px_0px_#000] flex flex-col justify-between">
+                <div class="bg-white border-3 border-black p-4 rounded-xl shadow-[4px_4px_0px_#000] flex flex-col justify-between">
                   <div>
-                    <div class="text-3xl mb-1">🎧</div>
-                    <h3 class="font-black text-base text-black uppercase mb-1">Sách Nói Audiobook</h3>
-                    <p class="text-xs font-bold text-zinc-700 leading-relaxed">
-                      Rảnh tay lúc rửa bát, lái xe. Giọng đọc ấm áp biến thành thuốc ngủ liều cực cao — 10h đêm bật, sáng ra quên sạch!
+                    <div class="bg-purple-200 border-2 border-black p-2 text-center mb-2 font-comic-bangers text-xl">
+                      🎧 SÁCH NÓI
+                    </div>
+                    <p class="text-xs font-bold text-zinc-800 leading-relaxed">
+                      Rảnh tay lúc rửa bát, lái xe. Giọng đọc truyền cảm ấm áp biến thành thuốc ngủ cực mạnh, sáng ra quên sạch!
                     </p>
                   </div>
-                  <div class="mt-3 pt-2 border-t-2 border-black text-xs font-black text-purple-700">
-                    Sát thương: Thuốc ngủ siêu êm 😴
+                  <div class="mt-3 pt-2 border-t-2 border-black text-xs font-black text-purple-600 font-comic-bangers">
+                    SÁT THƯƠNG: THUỐC MÊ 💤
                   </div>
                 </div>
 
               </div>
 
-              <div class="text-center text-xs font-black text-zinc-500">
-                👉 Không có cái nào vô tội cả, chọn thứ bẫy được bạn là xong!
+              <div class="text-center text-xs font-black font-comic-bangers text-zinc-600">
+                👉 CHỌN THỨ VŨ KHÍ PHÙ HỢP ĐỂ TỰ "ĐẦU ĐỘC" BẢN THÂN!
               </div>
 
             </div>
@@ -375,174 +457,178 @@
         }
       },
       {
-        id: "theme_pastel_pop",
-        number: "Mẫu #2",
-        title: "Pastel Pop & Kawaii Danger",
-        subtitle: "Màu kẹo ngọt pastel, font tròn mập mạp, icon 3D emoji",
-        icon: "🍬",
-        badge: "Kẹo Ngọt Đội Lốt Nguy Hiểm",
-        badgeColor: "bg-pink-300 text-pink-950 border-pink-400",
-        desc: "Sự kết hợp tương phản cực mạnh: Màu nền kem bơ pastel ngọt ngào, mềm mại, thẻ bo tròn siêu lớn (rounded-3xl), phông chữ mập mạp đáng yêu, nhưng tiêu đề lại nói về những 'tác hại kinh hoàng', tạo nên sự hài hước vô cùng duyên dáng.",
-        typography: "Plus Jakarta Sans ExtraBold & Fredoka",
+        id: "comic_manga_action",
+        number: "Comic #2",
+        title: "Japanese Manga Speedlines",
+        subtitle: "Đường vân tốc độ Manga, xám khói Shonen 80%, biểu cảm anime",
+        icon: "💥",
+        badge: "Shonen Manga Action",
+        badgeColor: "bg-black text-red-500 border-red-500",
+        desc: "Lấy cảm hứng từ các trang truyện tranh Manga hành động Nhật Bản: Nền xám khói Shonen Jump (#e5e7eb, 80% độ sáng), các đường vân tốc độ (speed lines) kịch tính, khung hình xéo góc ấn tượng, biểu cảm anime toát mồ hôi hột và bong bóng thoại răng cưa bộc phát cảm xúc.",
+        typography: "Space Grotesk Black & Bangers",
         palette: [
-          { name: "Cream Butter", hex: "#fefce8" },
-          { name: "Bubblegum Pink", hex: "#f472b6" },
-          { name: "Baby Sky", hex: "#38bdf8" },
-          { name: "Mint Fresh", hex: "#34d399" },
-          { name: "Deep Ink", hex: "#1e1b4b" }
+          { name: "Manga Gray 80%", hex: "#e5e7eb" },
+          { name: "Deep Ink", hex: "#000000" },
+          { name: "Action Red", hex: "#ef4444" },
+          { name: "Shonen Gold", hex: "#f59e0b" },
+          { name: "Tone White", hex: "#f9fafb" }
         ],
         slides: {
           1: `
-            <div class="w-full h-full bg-[#fefce8] text-[#1e1b4b] p-8 md:p-14 flex flex-col justify-between font-pop relative overflow-hidden select-none">
+            <div class="w-full h-full bg-comic-manga text-zinc-950 p-6 md:p-10 flex flex-col justify-between font-comic-bold relative overflow-hidden select-none border-4 border-black">
               
-              <!-- Ambient Pastel Blobs -->
-              <div class="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-pink-200/50 blur-3xl pointer-events-none"></div>
-              <div class="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-sky-200/50 blur-3xl pointer-events-none"></div>
-
-              <!-- Top Badge -->
-              <div class="flex items-center gap-2 relative z-10">
-                <span class="px-4 py-1.5 rounded-full bg-pink-100 border border-pink-300 text-pink-700 font-extrabold text-xs tracking-wider shadow-sm flex items-center gap-1.5">
-                  <span>🚨</span> CẢNH BÁO: CHẤT GÂY NGHIỆN HỢP PHÁP
+              <!-- Top Chapter Tag -->
+              <div class="flex justify-between items-center z-10">
+                <span class="bg-black text-white px-3 py-1 text-xs font-black uppercase tracking-widest border border-white">
+                  CHƯƠNG 01: SỰ THỨC TỈNH NGUY HIỂM
+                </span>
+                <span class="text-xs font-black text-red-600 uppercase">
+                  MANGA SPECIAL EDITION
                 </span>
               </div>
 
-              <!-- Hero Title -->
-              <div class="my-auto max-w-3xl relative z-10">
-                <div class="text-4xl md:text-6xl mb-3">📚 🫠 💖</div>
-                <h1 class="text-4xl sm:text-5xl md:text-7xl font-black text-[#1e1b4b] tracking-tight leading-[1.1] mb-4">
-                  Tác Hại Của Việc <br>
-                  <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-500 to-indigo-600">
-                    Đọc Sách Quá Nhiều!
+              <!-- Main Hero Banner -->
+              <div class="my-auto max-w-4xl mx-auto w-full z-10 text-center">
+                
+                <div class="inline-block bg-red-600 text-white px-4 py-1 text-sm font-black uppercase tracking-wider mb-2 rotate-[-1deg] shadow-[3px_3px_0px_#000]">
+                  CẢNH BÁO TỐI KHẨN: NƠ-RON QUÁ TẢI!
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl md:text-7xl font-black leading-[0.98] uppercase tracking-tight text-black my-2">
+                  TÁC HẠI KHI MỞ <br>
+                  <span class="text-white bg-black px-4 py-1 inline-block rotate-1 shadow-[4px_4px_0px_#ef4444]">
+                    CUỐN SÁCH RA!
                   </span>
                 </h1>
-                <p class="text-base md:text-xl font-bold text-slate-600 max-w-xl leading-relaxed">
-                  Một khi đã dính vào trang sách, cuộc đời bạn sẽ rẽ sang hướng... <span class="text-pink-600 underline font-black">không thể ngây thơ được nữa!</span>
-                </p>
+
+                <div class="max-w-xl mx-auto bg-white/90 border-2 border-black p-3.5 rounded-xl shadow-[3px_3px_0px_#000] mt-3">
+                  <p class="text-xs md:text-sm font-bold text-zinc-900 leading-relaxed italic">
+                    "Sau cú chạm tay vào trang giấy định mệnh, thanh niên vô tư ngày nào bỗng biến thành kẻ suy nghĩ sâu sắc và không thể ngừng phản biện!"
+                  </p>
+                </div>
+
               </div>
 
-              <!-- 4 Cute Bento Cards -->
-              <div class="grid grid-cols-2 md:grid-cols-4 gap-3 relative z-10">
-                <div class="bg-white/80 p-3.5 rounded-2xl border border-pink-200 shadow-sm backdrop-blur-sm">
-                  <div class="text-2xl mb-1">🧠</div>
-                  <div class="font-extrabold text-xs text-[#1e1b4b]">Não bộ quá tải</div>
+              <!-- Bottom 3 Action Stats -->
+              <div class="grid grid-cols-3 gap-3 z-10">
+                <div class="bg-white border-2 border-black p-2.5 text-center shadow-[2px_2px_0px_#000]">
+                  <div class="text-lg">🤯</div>
+                  <div class="text-xs font-black uppercase">Não Bốc Khói 100%</div>
                 </div>
-                <div class="bg-white/80 p-3.5 rounded-2xl border border-sky-200 shadow-sm backdrop-blur-sm">
-                  <div class="text-2xl mb-1">😴</div>
-                  <div class="font-extrabold text-xs text-[#1e1b4b]">Ngủ sớm quên drama</div>
+                <div class="bg-white border-2 border-black p-2.5 text-center shadow-[2px_2px_0px_#000]">
+                  <div class="text-lg">😴</div>
+                  <div class="text-xs font-black uppercase">Ngủ Sớm Bỏ Lỡ Drama</div>
                 </div>
-                <div class="bg-white/80 p-3.5 rounded-2xl border border-amber-200 shadow-sm backdrop-blur-sm">
-                  <div class="text-2xl mb-1">💰</div>
-                  <div class="font-extrabold text-xs text-[#1e1b4b]">Tốn tiền mua kệ</div>
-                </div>
-                <div class="bg-white/80 p-3.5 rounded-2xl border border-emerald-200 shadow-sm backdrop-blur-sm">
-                  <div class="text-2xl mb-1">🚽</div>
-                  <div class="font-extrabold text-xs text-[#1e1b4b]">Cố thủ trong toilet</div>
+                <div class="bg-white border-2 border-black p-2.5 text-center shadow-[2px_2px_0px_#000]">
+                  <div class="text-lg">📉</div>
+                  <div class="text-xs font-black uppercase">Mất Quyền Nổi Điên</div>
                 </div>
               </div>
 
             </div>
           `,
           2: `
-            <div class="w-full h-full bg-[#fefce8] text-[#1e1b4b] p-8 md:p-12 flex flex-col justify-between font-pop relative overflow-hidden select-none">
+            <div class="w-full h-full bg-comic-manga text-zinc-950 p-6 md:p-10 flex flex-col justify-between font-comic-bold relative overflow-hidden select-none border-4 border-black">
               
-              <div class="flex justify-between items-center relative z-10">
-                <span class="text-xs font-black text-pink-600 uppercase tracking-widest">
-                  NGHIÊN CỨU SUSSEX & YALE
+              <div class="flex justify-between items-center border-b-2 border-black pb-2">
+                <span class="font-black text-xs text-red-600 uppercase tracking-wider">
+                  DỮ LIỆU ĐO LƯỜNG TÂM THẦN
                 </span>
-                <span class="text-xs font-bold text-slate-400">THỐNG KÊ ĐÁNG BÁO ĐỘNG</span>
+                <span class="text-xs font-black text-zinc-500">CHỈ SỐ SINH TỒN</span>
               </div>
 
-              <div class="my-auto max-w-4xl mx-auto w-full relative z-10">
-                <h2 class="text-3xl md:text-5xl font-black text-center mb-6 text-[#1e1b4b]">
-                  Hai Bằng Chứng Khoa Học <span class="text-pink-600">Khó Đỡ</span>
+              <div class="my-auto max-w-4xl mx-auto w-full">
+                <h2 class="text-3xl md:text-5xl font-black text-center uppercase mb-6 tracking-wide">
+                  HAI CON SỐ <span class="text-red-600 underline">GÂY SỐC</span> TOÀN BỘ GIỚI MANGA
                 </h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                   
-                  <div class="bg-white/90 p-7 rounded-3xl border-2 border-pink-200 shadow-md">
-                    <span class="px-3 py-1 rounded-full bg-pink-100 text-pink-700 text-xs font-black">CHỈ 6 PHÚT ĐỌC</span>
-                    <div class="text-6xl md:text-7xl font-black text-pink-600 my-2 tracking-tight">-68%</div>
-                    <h3 class="font-black text-base text-[#1e1b4b] uppercase mb-1">Giảm Căng Thẳng Siêu Tốc</h3>
-                    <p class="text-xs font-bold text-slate-600 leading-relaxed">
-                      ✦ Hệ thần kinh bị ru ngủ trong sự bình yên! Sếp mắng bạn không quạu, người yêu dỗi bạn vẫn mỉm cười ung dung.
+                  <div class="bg-white border-3 border-black p-6 rounded-2xl shadow-[5px_5px_0px_#000] relative">
+                    <span class="absolute -top-3.5 right-4 bg-red-600 text-white px-3 py-0.5 text-[11px] font-black uppercase border border-black">
+                      CHỈ 6 PHÚT ĐỌC!
+                    </span>
+                    <div class="text-6xl md:text-7xl font-black text-black tracking-tight my-1">-68%</div>
+                    <h3 class="text-base font-black uppercase mb-1">MỨC ĐỘ STRESS TỤT DỐC</h3>
+                    <p class="text-xs font-bold text-zinc-700 leading-relaxed">
+                      Nhịp tim chậm lại, cơ bắp thả lỏng. Sự nguy hiểm là tước đoạt trạng thái bốc hỏa vốn có để đối đầu với các đối thủ!
                     </p>
                   </div>
 
-                  <div class="bg-white/90 p-7 rounded-3xl border-2 border-sky-200 shadow-md">
-                    <span class="px-3 py-1 rounded-full bg-sky-100 text-sky-700 text-xs font-black">NGHIÊN CỨU 12 NĂM</span>
-                    <div class="text-6xl md:text-7xl font-black text-sky-600 my-2 tracking-tight">+2 NĂM</div>
-                    <h3 class="font-black text-base text-[#1e1b4b] uppercase mb-1">Kéo Dài Tuổi Thọ Sinh Học</h3>
-                    <p class="text-xs font-bold text-slate-600 leading-relaxed">
-                      ✦ Bắt bạn phải sống thêm 2 năm để tiếp tục đóng thuế, đi làm và trả tiền điện nước. Một tổn thất kinh tế khôn lường!
+                  <div class="bg-white border-3 border-black p-6 rounded-2xl shadow-[5px_5px_0px_#000] relative">
+                    <span class="absolute -top-3.5 right-4 bg-black text-white px-3 py-0.5 text-[11px] font-black uppercase border border-black">
+                      ĐẠI HỌC YALE
+                    </span>
+                    <div class="text-6xl md:text-7xl font-black text-red-600 tracking-tight my-1">+2 NĂM</div>
+                    <h3 class="text-base font-black uppercase mb-1">KÉO DÀI TUỔI THỌ</h3>
+                    <p class="text-xs font-bold text-zinc-700 leading-relaxed">
+                      Đọc sách 30 phút/ngày sống lâu hơn 2 năm. Thiệt hại kinh tế: Phải sống thêm 2 năm để nộp thuế và trả tiền điện!
                     </p>
                   </div>
 
                 </div>
               </div>
 
-              <div class="text-center text-xs font-bold text-slate-400 relative z-10">
-                ✨ Tsundoku: Hội chứng mua cả thư viện về nhà để ngắm cho sang!
+              <div class="text-center text-xs font-black uppercase text-zinc-600 border-t border-black/20 pt-2">
+                Tsundoku: Khi số lượng sách mua về nhiều hơn số chiêu thức bạn có thể học!
               </div>
 
             </div>
           `,
           3: `
-            <div class="w-full h-full bg-[#fefce8] text-[#1e1b4b] p-8 md:p-12 flex flex-col justify-between font-pop relative overflow-hidden select-none">
+            <div class="w-full h-full bg-comic-manga text-zinc-950 p-6 md:p-10 flex flex-col justify-between font-comic-bold relative overflow-hidden select-none border-4 border-black">
               
-              <div class="text-center relative z-10">
-                <span class="px-4 py-1.5 rounded-full bg-pink-100 text-pink-700 font-black text-xs uppercase tracking-wider">
-                  BA THỨ VŨ KHÍ BỦA VÂY
-                </span>
-                <h2 class="text-3xl md:text-5xl font-black text-[#1e1b4b] mt-2">
-                  Bạn Đang Dính Vào Định Dạng Nào?
+              <div class="text-center">
+                <h2 class="text-3xl md:text-5xl font-black uppercase">
+                  TAM THỂ KHÍ CỤ <span class="bg-red-600 text-white px-2 inline-block">ĐẦU ĐỘC</span>
                 </h2>
               </div>
 
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-5 my-auto max-w-5xl mx-auto w-full relative z-10">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-auto max-w-5xl mx-auto w-full">
                 
-                <div class="bg-white/90 p-6 rounded-3xl border-2 border-pink-200 shadow-sm flex flex-col justify-between">
+                <div class="bg-white border-3 border-black p-4 rounded-xl shadow-[4px_4px_0px_#000] flex flex-col justify-between">
                   <div>
-                    <div class="text-4xl mb-2">📚</div>
-                    <h3 class="font-black text-base text-[#1e1b4b] mb-1">Sách Giấy Cổ Điển</h3>
-                    <p class="text-xs font-bold text-slate-600 leading-relaxed">
-                      Mùi thơm giấy gây nghiện. Lật trang sột soạt. Nhược điểm: Nặng như tập tạ và tốn tiền mua kệ gỗ.
+                    <div class="text-2xl mb-1 text-red-600">📖</div>
+                    <h3 class="font-black text-base uppercase mb-1">SÁCH GIẤY CỔ</h3>
+                    <p class="text-xs font-bold text-zinc-700 leading-relaxed">
+                      Mùi thơm giấy gây ảo giác. Lật trang sột soạt. Đeo balo 2 cuốn nặng trịch làm lệch cả trục xương sống!
                     </p>
                   </div>
-                  <div class="mt-4 pt-3 border-t border-pink-100 text-xs font-black text-pink-600">
-                    Sát thương: Gù lưng miễn phí 🎒
+                  <div class="mt-3 pt-2 border-t-2 border-black text-xs font-black text-red-600">
+                    Sát thương: Tập tạ miễn phí 🏋️
                   </div>
                 </div>
 
-                <div class="bg-white/90 p-6 rounded-3xl border-2 border-sky-200 shadow-sm flex flex-col justify-between">
+                <div class="bg-white border-3 border-black p-4 rounded-xl shadow-[4px_4px_0px_#000] flex flex-col justify-between">
                   <div>
-                    <div class="text-4xl mb-2">📱</div>
-                    <h3 class="font-black text-base text-[#1e1b4b] mb-1">Máy Đọc Sách Ebook</h3>
-                    <p class="text-xs font-bold text-slate-600 leading-relaxed">
-                      Chỉ nặng 200g, chứa cả vạn cuốn sách. Tử huyệt: Đang đến đoạn phá án thì màn hình báo cạn pin!
+                    <div class="text-2xl mb-1 text-red-600">📱</div>
+                    <h3 class="font-black text-base uppercase mb-1">PHIẾN ĐÁ EBOOK</h3>
+                    <p class="text-xs font-bold text-zinc-700 leading-relaxed">
+                      200g nhét cả thư viện vạn cuốn. Tử huyệt: Đang đến lúc trinh thám gay cấn nhất thì sập nguồn cạn pin!
                     </p>
                   </div>
-                  <div class="mt-4 pt-3 border-t border-sky-100 text-xs font-black text-sky-600">
-                    Sát thương: Sụp đổ cảm xúc 🪫
+                  <div class="mt-3 pt-2 border-t-2 border-black text-xs font-black text-zinc-800">
+                    Sát thương: Hết pin bất ngờ 🪫
                   </div>
                 </div>
 
-                <div class="bg-white/90 p-6 rounded-3xl border-2 border-purple-200 shadow-sm flex flex-col justify-between">
+                <div class="bg-white border-3 border-black p-4 rounded-xl shadow-[4px_4px_0px_#000] flex flex-col justify-between">
                   <div>
-                    <div class="text-4xl mb-2">🎧</div>
-                    <h3 class="font-black text-base text-[#1e1b4b] mb-1">Sách Nói Audiobook</h3>
-                    <p class="text-xs font-bold text-slate-600 leading-relaxed">
-                      Rảnh tay khi làm việc nhà. Tác hại: Giọng đọc truyền cảm như thuốc ngủ, 10h bật thì 10h05 ngủ mất tiêu.
+                    <div class="text-2xl mb-1 text-red-600">🎧</div>
+                    <h3 class="font-black text-base uppercase mb-1">SÁCH NÓI</h3>
+                    <p class="text-xs font-bold text-zinc-700 leading-relaxed">
+                      Nghe lúc làm việc nhà hay tập gym. Giọng đọc ấm áp biến thành thuốc ngủ ru bạn say giấc nồng!
                     </p>
                   </div>
-                  <div class="mt-4 pt-3 border-t border-purple-100 text-xs font-black text-purple-600">
+                  <div class="mt-3 pt-2 border-t-2 border-black text-xs font-black text-purple-700">
                     Sát thương: Thuốc ngủ cực êm 💤
                   </div>
                 </div>
 
               </div>
 
-              <div class="text-center text-xs font-bold text-slate-400 relative z-10">
-                🎀 Hãy chọn công cụ phù hợp nhất để tự "hủy hoại" sự ngây thơ của mình!
+              <div class="text-center text-xs font-black uppercase text-zinc-600">
+                Hãy lựa chọn công cụ để đánh thức nơ-ron của bạn!
               </div>
 
             </div>
@@ -550,154 +636,363 @@
         }
       },
       {
-        id: "theme_neo_brutalism",
-        number: "Mẫu #3",
-        title: "Neo-Brutalism Bold Pop",
-        subtitle: "Viền đen 3px đậm đặc, bóng đổ cứng 4px, font to khổng lồ",
-        icon: "⚡",
-        badge: "Cực Rõ Ràng & Bắt Mắt",
-        badgeColor: "bg-black text-yellow-300 border-black",
-        desc: "Phong cách Neo-Brutalism hiện đại thịnh hành trên Figma và Gumroad: Nền trắng sạch tinh tươm kết hợp các khối hộp màu vàng chuối, cam cà rốt, xanh neon với viền đen dày cộp và bóng đổ cứng. Đảm bảo chữ to, đập thẳng vào mắt, nhìn từ cuối hội trường vẫn đọc rõ từng từ!",
-        typography: "Space Grotesk & Impact Style",
+        id: "comic_sunday_strip",
+        number: "Comic #3",
+        title: "Sunday Newspaper Strip",
+        subtitle: "Truyện tranh báo Chủ Nhật, hộp thoại mây, nét mực thân thiện",
+        icon: "📰",
+        badge: "Báo Chủ Nhật Vui Nhộn",
+        badgeColor: "bg-amber-300 text-amber-950 border-black",
+        desc: "Phong cách mẩu truyện tranh 4 ô kinh điển trên các tờ báo Chủ Nhật (kiểu Calvin & Hobbes / Garfield): Nền giấy báo ngả xám ấm thanh nhã (#e8e4dc, 80% độ sáng), khung tranh bo góc mềm mại viền đen 2.5px, nét mực vẽ tay tự do, hộp thoại suy nghĩ đám mây tròn trịa hóm hỉnh.",
+        typography: "Comic Neue & Fredoka",
         palette: [
-          { name: "Pure Snow", hex: "#ffffff" },
-          { name: "Pure Black", hex: "#000000" },
-          { name: "Electric Yellow", hex: "#fde047" },
-          { name: "Neon Coral", hex: "#fb7185" },
-          { name: "Acid Lime", hex: "#a3e635" }
+          { name: "Sunday Paper 80%", hex: "#e8e4dc" },
+          { name: "Newsprint Black", hex: "#18181b" },
+          { name: "Warm Amber", hex: "#f59e0b" },
+          { name: "Muted Blue", hex: "#3b82f6" },
+          { name: "Warm White", hex: "#f8f6f0" }
         ],
         slides: {
           1: `
-            <div class="w-full h-full bg-[#fafaf9] text-black p-8 md:p-14 flex flex-col justify-between font-brutal relative select-none">
+            <div class="w-full h-full bg-comic-sunday text-zinc-900 p-6 md:p-10 flex flex-col justify-between font-comic-neue relative overflow-hidden select-none border-4 border-black">
               
-              <!-- Top Banner Tag -->
-              <div class="flex justify-between items-center">
-                <span class="px-4 py-1.5 bg-[#fde047] brutal-box text-xs font-black uppercase tracking-wider">
-                  ⚠️ CẢNH BÁO MỨC ĐỘ NGUY HIỂM: 5/5
+              <!-- Top Newspaper Header -->
+              <div class="flex justify-between items-center border-b-2 border-black pb-2">
+                <span class="text-xs font-black uppercase tracking-widest text-zinc-700">
+                  THE SUNDAY COMICS • CHUYÊN MỤC HÀI HƯỚC
                 </span>
-                <span class="px-3 py-1 bg-white brutal-box text-xs font-bold">
-                  BÁO CÁO 30 PHÚT
+                <span class="text-xs font-bold bg-amber-200 border border-black px-2 py-0.5 rounded">
+                  TRANG 01 / TẬP CUỐI
                 </span>
               </div>
 
-              <!-- Huge Bold Title -->
-              <div class="my-auto max-w-4xl">
-                <div class="text-5xl md:text-7xl font-black text-black tracking-tight leading-[0.98] uppercase mb-4">
-                  TÁC HẠI <br>
-                  <span class="bg-[#fb7185] px-3 py-1 brutal-box inline-block my-2 text-white">
+              <!-- Main Hero Content -->
+              <div class="my-auto max-w-4xl mx-auto w-full">
+                <div class="grid grid-cols-12 gap-5 items-center">
+                  
+                  <div class="col-span-12 md:col-span-8">
+                    <span class="text-xs font-black text-amber-700 uppercase tracking-widest block mb-1">
+                      CẢNH BÁO CHO CÁC MỌT SÁCH
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-black leading-tight tracking-tight mb-3">
+                      Tác Hại Của Việc <br>
+                      <span class="bg-amber-300 px-3 py-0.5 border-2 border-black rounded-lg inline-block">
+                        Đọc Sách Quá Mức!
+                      </span>
+                    </h1>
+                    <p class="text-xs md:text-base font-bold text-zinc-700 leading-relaxed mb-4">
+                      "Bản chất là cực kỳ tốt, nhưng nhìn qua lăng kính châm biếm ngược: Đọc sách tước đoạt sự ngây thơ và biến bạn thành kẻ luôn bắt bẻ logic!"
+                    </p>
+
+                    <!-- 3 Quick Bullets -->
+                    <div class="space-y-1.5">
+                      <div class="flex items-center gap-2 text-xs md:text-sm font-bold">
+                        <span class="text-amber-600">✦</span>
+                        <span>Não bộ bị bắt ép làm việc 100% công suất</span>
+                      </div>
+                      <div class="flex items-center gap-2 text-xs md:text-sm font-bold">
+                        <span class="text-amber-600">✦</span>
+                        <span>Vốn từ ngữ tăng vọt, biến thành ác mộng tranh cãi</span>
+                      </div>
+                      <div class="flex items-center gap-2 text-xs md:text-sm font-bold">
+                        <span class="text-amber-600">✦</span>
+                        <span>Mất quyền nổi điên vì tâm trí quá đỗi bình yên</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-span-12 md:col-span-4 flex justify-center">
+                    <div class="bg-white border-3 border-black p-4 rounded-2xl shadow-[4px_4px_0px_#000] text-center max-w-[220px]">
+                      <div class="text-4xl mb-1">👀 📚</div>
+                      <div class="font-black text-sm text-black uppercase mb-1">MẸ BẢO:</div>
+                      <div class="text-xs font-bold text-zinc-600 italic leading-snug">
+                        "Đi ngủ đi con, đọc nốt trang này là trang thứ 50 rồi đấy!"
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Footer -->
+              <div class="text-center text-xs font-bold text-zinc-500 border-t border-black/20 pt-2">
+                Truyện tranh châm biếm: Hãy cẩn trọng khi quyết định lật trang đầu tiên!
+              </div>
+
+            </div>
+          `,
+          2: `
+            <div class="w-full h-full bg-comic-sunday text-zinc-900 p-6 md:p-10 flex flex-col justify-between font-comic-neue relative overflow-hidden select-none border-4 border-black">
+              
+              <div class="flex justify-between items-center border-b-2 border-black pb-2">
+                <span class="text-xs font-black uppercase text-amber-800">
+                  GÓC KHẢO SÁT KHOA HỌC
+                </span>
+                <span class="text-xs font-bold text-zinc-500">ĐH SUSSEX & YALE</span>
+              </div>
+
+              <div class="my-auto max-w-4xl mx-auto w-full">
+                <h2 class="text-3xl md:text-5xl font-black text-center mb-6 text-black">
+                  Hai Con Số <span class="bg-amber-300 px-2 border border-black rounded">"Bắt Lỗi"</span> Sách
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  
+                  <div class="bg-white border-3 border-black p-6 rounded-2xl shadow-[4px_4px_0px_#000]">
+                    <span class="bg-amber-200 text-black border border-black px-2 py-0.5 text-xs font-black uppercase rounded">
+                      CHỈ 6 PHÚT ĐỌC
+                    </span>
+                    <div class="text-6xl md:text-7xl font-black text-amber-600 tracking-tight my-2">-68%</div>
+                    <h3 class="font-black text-base text-black uppercase mb-1">GIẢM STRESS CỰC NHANH</h3>
+                    <p class="text-xs font-bold text-zinc-700 leading-relaxed">
+                      Chỉ 6 phút đọc trong yên tĩnh, nhịp tim đã chậm lại và cơ thể thả lỏng. Sự nguy hiểm là làm bạn mất đi cảm giác bực dọc quen thuộc!
+                    </p>
+                  </div>
+
+                  <div class="bg-white border-3 border-black p-6 rounded-2xl shadow-[4px_4px_0px_#000]">
+                    <span class="bg-blue-200 text-black border border-black px-2 py-0.5 text-xs font-black uppercase rounded">
+                      NGHIÊN CỨU 12 NĂM
+                    </span>
+                    <div class="text-6xl md:text-7xl font-black text-blue-600 tracking-tight my-2">+2 NĂM</div>
+                    <h3 class="font-black text-base text-black uppercase mb-1">KÉO DÀI THỌ MỆNH</h3>
+                    <p class="text-xs font-bold text-zinc-700 leading-relaxed">
+                      Người đọc sách 30 phút/ngày sống thọ hơn 2 năm. Hậu quả kinh tế: Phải sống thêm 2 năm để nộp thuế và đi làm!
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="text-center text-xs font-bold text-zinc-500">
+                Tsundoku: Hội chứng mua cả thư viện về nhà để ngắm cho sang!
+              </div>
+
+            </div>
+          `,
+          3: `
+            <div class="w-full h-full bg-comic-sunday text-zinc-900 p-6 md:p-10 flex flex-col justify-between font-comic-neue relative overflow-hidden select-none border-4 border-black">
+              
+              <div class="text-center">
+                <span class="bg-black text-white px-3 py-1 text-xs font-black uppercase rounded">
+                  BÀN TRÒN SO SÁNH
+                </span>
+                <h2 class="text-3xl md:text-5xl font-black mt-2 text-black">
+                  Ba Công Cụ "Bẫy" Người Đọc
+                </h2>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-auto max-w-5xl mx-auto w-full">
+                
+                <div class="bg-white border-3 border-black p-4 rounded-xl shadow-[4px_4px_0px_#000] flex flex-col justify-between">
+                  <div>
+                    <div class="text-3xl mb-1">📖</div>
+                    <h3 class="font-black text-base text-black mb-1">Sách Giấy</h3>
+                    <p class="text-xs font-bold text-zinc-700 leading-relaxed">
+                      Mùi thơm giấy gây ảo giác, lật trang vật lý giúp nhớ sâu. Nhược điểm: Nặng balo và tốn chỗ chứa.
+                    </p>
+                  </div>
+                  <div class="mt-3 pt-2 border-t border-black text-xs font-black text-amber-700">
+                    Sát thương: Tập tạ balo 🎒
+                  </div>
+                </div>
+
+                <div class="bg-white border-3 border-black p-4 rounded-xl shadow-[4px_4px_0px_#000] flex flex-col justify-between">
+                  <div>
+                    <div class="text-3xl mb-1">📱</div>
+                    <h3 class="font-black text-base text-black mb-1">Máy Ebook</h3>
+                    <p class="text-xs font-bold text-zinc-700 leading-relaxed">
+                      Chứa cả thư viện trong 200g, đọc được trong bóng tối. Nhược điểm: Hết pin đúng trang cao trào trinh thám.
+                    </p>
+                  </div>
+                  <div class="mt-3 pt-2 border-t border-black text-xs font-black text-blue-700">
+                    Sát thương: Cạn pin bất ngờ 🪫
+                  </div>
+                </div>
+
+                <div class="bg-white border-3 border-black p-4 rounded-xl shadow-[4px_4px_0px_#000] flex flex-col justify-between">
+                  <div>
+                    <div class="text-3xl mb-1">🎧</div>
+                    <h3 class="font-black text-base text-black mb-1">Sách Nói</h3>
+                    <p class="text-xs font-bold text-zinc-700 leading-relaxed">
+                      Nghe lúc lái xe, rửa bát, tập gym. Nhược điểm: Giọng đọc truyền cảm biến thành thuốc ngủ cực mạnh!
+                    </p>
+                  </div>
+                  <div class="mt-3 pt-2 border-t border-black text-xs font-black text-purple-700">
+                    Sát thương: Thuốc ngủ êm ái 😴
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="text-center text-xs font-bold text-zinc-500">
+                Hãy lựa chọn công cụ phù hợp với hoàn cảnh sống của bạn.
+              </div>
+
+            </div>
+          `
+        }
+      },
+      {
+        id: "comic_popart_lichtenstein",
+        number: "Comic #4",
+        title: "Pop-Art Lichtenstein Halftone",
+        subtitle: "Nghệ thuật Pop-Art, chấm Ben-Day to, chữ 3D nổ giật gân",
+        icon: "🎨",
+        badge: "Pop-Art Chữ Nổ BÙM!",
+        badgeColor: "bg-yellow-400 text-black border-black",
+        desc: "Lấy cảm hứng từ danh họa Roy Lichtenstein: Nền chấm Halftone xám ngà dịu mắt (#dfded9, 80% độ sáng), chữ 3D viền đen dày cộp, hộp thoại tự sự màu vàng dán góc '[TRONG LÚC ĐÓ...]', và các biểu tượng nổ sao vàng rực ghi con số thống kê.",
+        typography: "Bangers & Space Grotesk",
+        palette: [
+          { name: "Halftone Slate 80%", hex: "#dfded9" },
+          { name: "Pop Art Red", hex: "#e11d48" },
+          { name: "Pop Art Yellow", hex: "#facc15" },
+          { name: "Cyan Pop", hex: "#06b6d4" },
+          { name: "Solid Black", hex: "#000000" }
+        ],
+        slides: {
+          1: `
+            <div class="w-full h-full bg-comic-popart text-black p-6 md:p-10 flex flex-col justify-between font-comic-bangers relative overflow-hidden select-none border-4 border-black">
+              
+              <!-- Top Narration Box -->
+              <div class="bg-yellow-300 border-3 border-black px-4 py-1.5 inline-block text-xs uppercase shadow-[3px_3px_0px_#000] self-start tracking-wider">
+                [TRONG LÚC ĐÓ, TẠI PHÒNG ĐỌC SÁCH BÍ MẬT...]
+              </div>
+
+              <!-- Main Hero Banner -->
+              <div class="my-auto max-w-4xl mx-auto w-full text-center">
+                
+                <h1 class="text-4xl sm:text-6xl md:text-8xl font-black text-black leading-[0.92] uppercase tracking-tight drop-shadow-[3px_3px_0px_#fff]">
+                  TÁC HẠI KINH HOÀNG <br>
+                  <span class="bg-red-600 text-white px-4 py-1 border-4 border-black inline-block rotate-[-2deg] shadow-[5px_5px_0px_#000] my-2">
                     CỦA VIỆC ĐỌC SÁCH!
                   </span>
+                </h1>
+
+                <div class="inline-block bg-white border-3 border-black p-3 rounded-xl shadow-[4px_4px_0px_#000] mt-3 max-w-lg font-comic-neue">
+                  <p class="text-xs md:text-sm font-bold text-zinc-900 leading-snug">
+                    "OH NO! HỌ ĐÃ PHÁT HIỆN RA CHẤT GÂY NGHIỆN KHÔNG CẦN TIÊM CHÍCH NÀY RỒI!"
+                  </p>
                 </div>
-                <p class="text-base md:text-xl font-bold text-zinc-700 max-w-2xl bg-white p-3 brutal-box leading-relaxed">
-                  "Chất gây nghiện nguy hiểm nhất lịch sử: Không cần tiêm chích, chỉ cần nhìn bằng mắt mà làm biến dạng cả nhân cách!"
-                </p>
+
               </div>
 
-              <!-- 3 Pill Highlights Bottom -->
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <div class="bg-[#fde047] p-3 brutal-box font-black text-xs uppercase flex items-center gap-2">
-                  <span>🚨</span> ĐẦU ÓC BIẾN DẠNG VĨNH VIỄN
+              <!-- Bottom 3 Pill Badges -->
+              <div class="grid grid-cols-3 gap-3 font-comic-bangers text-xs md:text-sm">
+                <div class="bg-yellow-300 border-2 border-black p-2.5 text-center shadow-[3px_3px_0px_#000]">
+                  💥 NÃO BỘ HOẠT ĐỘNG 100%
                 </div>
-                <div class="bg-[#a3e635] p-3 brutal-box font-black text-xs uppercase flex items-center gap-2">
-                  <span>📉</span> MẤT KHẢ NĂNG QUẠU QUỌ
+                <div class="bg-cyan-300 border-2 border-black p-2.5 text-center shadow-[3px_3px_0px_#000]">
+                  😵‍💫 MẤT SỰ VÔ TƯ NGÂY THƠ
                 </div>
-                <div class="bg-[#67e8f9] p-3 brutal-box font-black text-xs uppercase flex items-center gap-2">
-                  <span>💸</span> PHÁ SẢN VÌ ĐÓNG KỆ GỖ
+                <div class="bg-rose-300 border-2 border-black p-2.5 text-center shadow-[3px_3px_0px_#000]">
+                  💸 VIÊM TÚI VÌ ĐÓNG KỆ GỖ
                 </div>
               </div>
 
             </div>
           `,
           2: `
-            <div class="w-full h-full bg-[#fafaf9] text-black p-8 md:p-12 flex flex-col justify-between font-brutal relative select-none">
+            <div class="w-full h-full bg-comic-popart text-black p-6 md:p-10 flex flex-col justify-between font-comic-bangers relative overflow-hidden select-none border-4 border-black">
               
               <div class="flex justify-between items-center border-b-3 border-black pb-2">
-                <span class="text-sm font-black uppercase bg-[#fb7185] text-white px-3 py-1 brutal-box">
-                  KHOA HỌC VÀNG
+                <span class="bg-black text-yellow-300 px-3 py-1 text-xs uppercase">
+                  DỮ LIỆU ĐIỀU TRA POP-ART
                 </span>
-                <span class="text-xs font-bold">NGHIÊN CỨU SUSSEX & YALE</span>
+                <span class="text-xs text-zinc-700">BẰNG CHỨNG SUSSEX & YALE</span>
               </div>
 
               <div class="my-auto max-w-4xl mx-auto w-full">
-                <h2 class="text-3xl md:text-5xl font-black text-center uppercase mb-6">
-                  CON SỐ <span class="bg-[#fde047] px-2 brutal-box">KHÔNG THỂ CHỐI CÃI</span>
+                <h2 class="text-3xl md:text-5xl font-black text-center uppercase mb-6 drop-shadow-[2px_2px_0px_#fff]">
+                  HAI CON SỐ <span class="bg-red-600 text-white px-3 py-0.5 border-3 border-black rotate-1 inline-block">NỔ BÙM!</span>
                 </h2>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-comic-neue">
                   
-                  <div class="bg-[#fef08a] p-6 md:p-8 brutal-box">
-                    <span class="bg-black text-white px-2 py-0.5 text-[11px] font-black uppercase">CHỈ 6 PHÚT ĐỌC</span>
-                    <div class="text-6xl md:text-8xl font-black text-black tracking-tight my-2">-68%</div>
-                    <h3 class="text-lg font-black uppercase mb-1">MỨC ĐỘ STRESS TỤT DỐC</h3>
-                    <p class="text-xs font-bold text-zinc-800 leading-relaxed">
+                  <div class="bg-yellow-300 border-4 border-black p-6 rounded-2xl shadow-[6px_6px_0px_#000] relative">
+                    <span class="bg-black text-white px-2 py-0.5 text-xs font-black uppercase font-comic-bangers">
+                      CHỈ 6 PHÚT ĐỌC!
+                    </span>
+                    <div class="text-6xl md:text-7xl font-black text-black font-comic-bangers tracking-wide my-1">
+                      -68%
+                    </div>
+                    <h3 class="font-black text-base uppercase text-black mb-1 font-comic-bangers">
+                      MỨC ĐỘ STRESS TỤT DỐC
+                    </h3>
+                    <p class="text-xs font-bold text-zinc-900 leading-relaxed">
                       Làm hệ thần kinh tê liệt trong bình yên. Sếp mắng không quạu, người yêu dỗi vẫn mỉm cười ung dung!
                     </p>
                   </div>
 
-                  <div class="bg-[#bbf7d0] p-6 md:p-8 brutal-box">
-                    <span class="bg-black text-white px-2 py-0.5 text-[11px] font-black uppercase">ĐẠI HỌC YALE</span>
-                    <div class="text-6xl md:text-8xl font-black text-black tracking-tight my-2">+2 NĂM</div>
-                    <h3 class="text-lg font-black uppercase mb-1">KÉO DÀI THỌ MỆNH</h3>
-                    <p class="text-xs font-bold text-zinc-800 leading-relaxed">
-                      Thiệt hại kinh tế nặng nề: Sống thêm 2 năm để nộp thuế, trả tiền điện nước và cày cuốc kiếm sống!
+                  <div class="bg-cyan-200 border-4 border-black p-6 rounded-2xl shadow-[6px_6px_0px_#000] relative">
+                    <span class="bg-black text-white px-2 py-0.5 text-xs font-black uppercase font-comic-bangers">
+                      ĐẠI HỌC YALE (12 NĂM)
+                    </span>
+                    <div class="text-6xl md:text-7xl font-black text-black font-comic-bangers tracking-wide my-1">
+                      +2 NĂM
+                    </div>
+                    <h3 class="font-black text-base uppercase text-black mb-1 font-comic-bangers">
+                      KÉO DÀI THỌ MỆNH
+                    </h3>
+                    <p class="text-xs font-bold text-zinc-900 leading-relaxed">
+                      Sống thêm 2 năm để nộp thuế, trả tiền điện nước và cày cuốc kiếm sống cho đời!
                     </p>
                   </div>
 
                 </div>
               </div>
 
-              <div class="bg-white p-2.5 brutal-box text-center text-xs font-black">
-                TSUNDOKU: MUA SÁCH VÀ ĐỌC SÁCH LÀ HAI MÔN THỂ THAO ĐỘC LẬP!
+              <div class="bg-white border-2 border-black p-2 text-center text-xs font-black uppercase shadow-[2px_2px_0px_#000]">
+                TSUNDOKU: MUA SÁCH VÀ ĐỌC SÁCH LÀ HAI BỘ MÔN THỂ THAO ĐỘC LẬP!
               </div>
 
             </div>
           `,
           3: `
-            <div class="w-full h-full bg-[#fafaf9] text-black p-8 md:p-12 flex flex-col justify-between font-brutal relative select-none">
+            <div class="w-full h-full bg-comic-popart text-black p-6 md:p-10 flex flex-col justify-between font-comic-bangers relative overflow-hidden select-none border-4 border-black">
               
               <div class="text-center">
-                <h2 class="text-3xl md:text-5xl font-black uppercase">
-                  TAM THỂ KHÍ CỤ <span class="bg-[#a3e635] px-2 brutal-box">GÂY NGHIỆN</span>
+                <h2 class="text-3xl md:text-5xl font-black uppercase drop-shadow-[2px_2px_0px_#fff]">
+                  TAM THỂ KHÍ CỤ <span class="bg-yellow-300 text-black px-3 border-3 border-black">GÂY NGHIỆN</span>
                 </h2>
               </div>
 
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-auto max-w-5xl mx-auto w-full">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-auto max-w-5xl mx-auto w-full font-comic-neue">
                 
-                <div class="bg-[#fef08a] p-5 brutal-box flex flex-col justify-between">
+                <div class="bg-white border-3 border-black p-4 rounded-xl shadow-[4px_4px_0px_#000] flex flex-col justify-between">
                   <div>
-                    <div class="text-4xl mb-2">📚</div>
-                    <h3 class="text-lg font-black uppercase mb-1">SÁCH GIẤY</h3>
+                    <div class="text-3xl mb-1">📖</div>
+                    <h3 class="font-black text-base uppercase mb-1 font-comic-bangers text-xl">SÁCH GIẤY</h3>
                     <p class="text-xs font-bold text-zinc-800 leading-relaxed">
-                      Tỏa mùi thơm gây ảo giác. Lật trang sột soạt. Đeo balo 2 cuốn nặng trịch như tập gym gù cả lưng!
+                      Mùi thơm giấy gây ảo giác. Lật trang sột soạt. Đeo balo 2 cuốn nặng trịch như tập gym gù cả lưng!
                     </p>
                   </div>
-                  <div class="mt-4 pt-2 border-t-2 border-black text-xs font-black text-red-600 uppercase">
+                  <div class="mt-3 pt-2 border-t-2 border-black text-xs font-black text-red-600 font-comic-bangers">
                     SÁT THƯƠNG: 5/5 VẬT LÝ 💥
                   </div>
                 </div>
 
-                <div class="bg-[#bbf7d0] p-5 brutal-box flex flex-col justify-between">
+                <div class="bg-white border-3 border-black p-4 rounded-xl shadow-[4px_4px_0px_#000] flex flex-col justify-between">
                   <div>
-                    <div class="text-4xl mb-2">📱</div>
-                    <h3 class="text-lg font-black uppercase mb-1">MÁY EBOOK</h3>
+                    <div class="text-3xl mb-1">📱</div>
+                    <h3 class="font-black text-base uppercase mb-1 font-comic-bangers text-xl">MÁY EBOOK</h3>
                     <p class="text-xs font-bold text-zinc-800 leading-relaxed">
                       200g nhét cả vạn cuốn sách vào túi. Tử huyệt là đang đọc đến trang hung thủ lộ mặt thì... HẾT PIN!
                     </p>
                   </div>
-                  <div class="mt-4 pt-2 border-t-2 border-black text-xs font-black text-emerald-800 uppercase">
+                  <div class="mt-3 pt-2 border-t-2 border-black text-xs font-black text-cyan-700 font-comic-bangers">
                     SÁT THƯƠNG: SẬP NGUỒN 🪫
                   </div>
                 </div>
 
-                <div class="bg-[#fed7aa] p-5 brutal-box flex flex-col justify-between">
+                <div class="bg-white border-3 border-black p-4 rounded-xl shadow-[4px_4px_0px_#000] flex flex-col justify-between">
                   <div>
-                    <div class="text-4xl mb-2">🎧</div>
-                    <h3 class="text-lg font-black uppercase mb-1">SÁCH NÓI</h3>
+                    <div class="text-3xl mb-1">🎧</div>
+                    <h3 class="font-black text-base uppercase mb-1 font-comic-bangers text-xl">SÁCH NÓI</h3>
                     <p class="text-xs font-bold text-zinc-800 leading-relaxed">
                       Nghe lúc rửa bát hay lái xe. Giọng đọc ấm áp biến thành thuốc ngủ cực mạnh, sáng ra quên sạch bách!
                     </p>
                   </div>
-                  <div class="mt-4 pt-2 border-t-2 border-black text-xs font-black text-orange-800 uppercase">
+                  <div class="mt-3 pt-2 border-t-2 border-black text-xs font-black text-purple-700 font-comic-bangers">
                     SÁT THƯƠNG: THUỐC MÊ 💤
                   </div>
                 </div>
@@ -713,336 +1008,178 @@
         }
       },
       {
-        id: "theme_scandinavian_clean",
-        number: "Mẫu #4",
-        title: "Clean Scandinavian & Apple Minimal",
-        subtitle: "Nền trắng tinh khiết, khoảng trắng mênh mông, font to thanh thoát",
-        icon: "🍏",
-        badge: "Tối Giản & Sang Trọng",
-        badgeColor: "bg-slate-900 text-white border-slate-700",
-        desc: "Phong cách tối giản Bắc Âu / Apple Keynote hiện đại: Nền trắng tinh khôi, khoảng thở cực rộng rãi, typography kích thước lớn vô cùng trang nhã, kết hợp các điểm nhấn màu sắc tươi mát. Rất sang, thanh lịch, chuyên nghiệp nhưng vẫn hài hước và dễ chịu.",
-        typography: "Plus Jakarta Sans & Inter (Ultra Clean)",
-        palette: [
-          { name: "Snow Canvas", hex: "#ffffff" },
-          { name: "Slate Black", hex: "#0f172a" },
-          { name: "Apple Blue", hex: "#0284c7" },
-          { name: "Coral Tint", hex: "#f43f5e" },
-          { name: "Subtle Gray", hex: "#f1f5f9" }
-        ],
-        slides: {
-          1: `
-            <div class="w-full h-full bg-[#f8fafc] text-slate-900 p-8 md:p-14 flex flex-col justify-between font-clean relative select-none">
-              
-              <!-- Subtle Clean Brand -->
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold tracking-widest text-slate-400 uppercase">
-                  PRESENTATION DECK • 2026
-                </span>
-                <span class="px-3 py-1 rounded-full bg-rose-50 text-rose-600 text-xs font-bold border border-rose-200">
-                  ⚠️ Báo cáo trào phúng
-                </span>
-              </div>
-
-              <!-- Minimal Huge Title -->
-              <div class="my-auto max-w-3xl">
-                <span class="text-xs uppercase font-extrabold tracking-widest text-sky-600 block mb-2">
-                  BÁO ĐỘNG TÂM LÝ HỌC
-                </span>
-                <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.08] mb-4">
-                  Tác Hại Của <br>
-                  <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-indigo-600">
-                    Việc Đọc Sách
-                  </span>
-                </h1>
-                <p class="text-base md:text-lg text-slate-600 max-w-xl font-normal leading-relaxed">
-                  Nhìn nhận những lợi ích to lớn của sách dưới góc độ hài hước: Đọc sách giết chết sự ngây thơ và biến bạn thành kẻ luôn phản biện!
-                </p>
-              </div>
-
-              <!-- 3 Clean Minimal Cards -->
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-4 border-t border-slate-200">
-                <div class="p-3 rounded-xl bg-white border border-slate-200/80 shadow-sm">
-                  <div class="text-xs font-bold text-slate-900">01. Não hoạt động 100%</div>
-                  <div class="text-[11px] text-slate-500 mt-0.5">Không còn thời gian lười biếng</div>
-                </div>
-                <div class="p-3 rounded-xl bg-white border border-slate-200/80 shadow-sm">
-                  <div class="text-xs font-bold text-slate-900">02. Giảm căng thẳng quá mức</div>
-                  <div class="text-[11px] text-slate-500 mt-0.5">Mất đi cảm giác âu lo quen thuộc</div>
-                </div>
-                <div class="p-3 rounded-xl bg-white border border-slate-200/80 shadow-sm">
-                  <div class="text-xs font-bold text-slate-900">03. Sống lâu thêm 2 năm</div>
-                  <div class="text-[11px] text-slate-500 mt-0.5">Tốn thêm 730 ngày nộp thuế</div>
-                </div>
-              </div>
-
-            </div>
-          `,
-          2: `
-            <div class="w-full h-full bg-[#f8fafc] text-slate-900 p-8 md:p-12 flex flex-col justify-between font-clean relative select-none">
-              
-              <div class="flex justify-between items-center border-b border-slate-200 pb-2">
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">KHOA HỌC CHỨNG MINH</span>
-                <span class="text-xs font-bold text-sky-600">SUSSEX & YALE</span>
-              </div>
-
-              <div class="my-auto max-w-4xl mx-auto w-full">
-                <h2 class="text-3xl md:text-5xl font-extrabold text-center text-slate-900 mb-6 tracking-tight">
-                  Hai Con Số Gây "Sốc"
-                </h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  
-                  <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
-                    <span class="text-xs font-bold text-sky-600 uppercase tracking-wider block mb-1">ĐẠI HỌC SUSSEX</span>
-                    <div class="text-6xl md:text-7xl font-extrabold text-slate-900 tracking-tight my-2">-68%</div>
-                    <h3 class="text-sm font-bold text-slate-800 uppercase mb-2">Mức Độ Căng Thẳng (Stress)</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed font-normal">
-                      Chỉ sau 6 phút đọc trong im lặng, nhịp tim đã chậm lại và các nhóm cơ thả lỏng. Tác hại là cướp mất quyền nổi nóng quý giá của bạn!
-                    </p>
-                  </div>
-
-                  <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
-                    <span class="text-xs font-bold text-rose-600 uppercase tracking-wider block mb-1">ĐẠI HỌC YALE</span>
-                    <div class="text-6xl md:text-7xl font-extrabold text-slate-900 tracking-tight my-2">+2 NĂM</div>
-                    <h3 class="text-sm font-bold text-slate-800 uppercase mb-2">Kéo Dài Tuổi Thọ Sinh Học</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed font-normal">
-                      Những người đọc sách 30 phút/ngày sống thọ hơn trung bình 2 năm. Hậu quả kinh tế: Bắt bạn sống lâu hơn để tiếp tục cày cuốc!
-                    </p>
-                  </div>
-
-                </div>
-              </div>
-
-              <div class="text-center text-xs text-slate-400">
-                Hội chứng Tsundoku: Mua sách và đọc sách là hai thú vui độc lập nhau.
-              </div>
-
-            </div>
-          `,
-          3: `
-            <div class="w-full h-full bg-[#f8fafc] text-slate-900 p-8 md:p-12 flex flex-col justify-between font-clean relative select-none">
-              
-              <div class="text-center">
-                <span class="text-xs font-bold text-sky-600 uppercase tracking-widest block mb-1">SO SÁNH 3 ĐỊNH DẠNG</span>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-                  Chọn Thứ Vũ Khí Phù Hợp
-                </h2>
-              </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-5 my-auto max-w-5xl mx-auto w-full">
-                
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
-                  <div>
-                    <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl mb-3">📖</div>
-                    <h3 class="font-bold text-base text-slate-900 mb-1">Sách Giấy</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                      Mùi thơm giấy gây ảo giác, lật trang vật lý giúp nhớ sâu. Nhược điểm: Nặng balo và tốn chỗ chứa.
-                    </p>
-                  </div>
-                  <div class="mt-4 pt-3 border-t border-slate-100 text-xs font-bold text-amber-700">
-                    Sát thương: Tập tạ balo 🎒
-                  </div>
-                </div>
-
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
-                  <div>
-                    <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl mb-3">📱</div>
-                    <h3 class="font-bold text-base text-slate-900 mb-1">Máy Ebook</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                      Chứa cả thư viện trong 200g, đọc được trong bóng tối. Nhược điểm: Hết pin đúng trang cao trào trinh thám.
-                    </p>
-                  </div>
-                  <div class="mt-4 pt-3 border-t border-slate-100 text-xs font-bold text-sky-700">
-                    Sát thương: Cạn pin bất ngờ 🪫
-                  </div>
-                </div>
-
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
-                  <div>
-                    <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl mb-3">🎧</div>
-                    <h3 class="font-bold text-base text-slate-900 mb-1">Sách Nói</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                      Nghe lúc lái xe, rửa bát, tập gym. Nhược điểm: Giọng đọc truyền cảm biến thành thuốc ngủ cực mạnh!
-                    </p>
-                  </div>
-                  <div class="mt-4 pt-3 border-t border-slate-100 text-xs font-bold text-purple-700">
-                    Sát thương: Thuốc ngủ êm ái 😴
-                  </div>
-                </div>
-
-              </div>
-
-              <div class="text-center text-xs text-slate-400">
-                Hãy lựa chọn công cụ phù hợp với hoàn cảnh sống của bạn.
-              </div>
-
-            </div>
-          `
-        }
-      },
-      {
-        id: "theme_classroom_highlighter",
-        number: "Mẫu #5",
-        title: "Classroom Grid & Highlighters",
-        subtitle: "Lưới kẻ ô ly vở học trò, quệt bút dạ quang, stickman ngơ ngác",
-        icon: "📝",
-        badge: "Vở Học Trò Vui Nhộn",
-        badgeColor: "bg-blue-200 text-blue-900 border-blue-400",
-        desc: "Lấy cảm hứng từ trang vở ô ly lớp học: Nền lưới ca-rô mờ tinh khôi, các gạch đầu dòng bút dạ quang vàng và hồng rực rỡ, icon vẽ que stickman ngơ ngác và con dấu mộc đỏ. Vừa thân thuộc, vừa tinh nghịch mà lại cực kỳ sáng sủa và dễ theo dõi.",
+        id: "comic_detective_noir",
+        number: "Comic #5",
+        title: "Detective Graphic Novel",
+        subtitle: "Hồ sơ vụ án comic, tem niêm phong đỏ, sọc bóng râm 80%",
+        icon: "🕵️",
+        badge: "Hồ Sơ Vụ Án Bí Mật",
+        badgeColor: "bg-zinc-800 text-yellow-400 border-black",
+        desc: "Phong cách Graphic Novel trinh thám hài hước: Tông giấy xám xi măng ấm (#dcd8cf, 80% độ sáng), sọc bóng râm chéo góc, con dấu mộc hồ sơ mật 'FILE CLASSIFIED', hộp thoại trần thuật góc trên, icon kính lúp và phong thái điều tra phá án cực kỳ lôi cuốn.",
         typography: "Space Grotesk & Plus Jakarta Sans",
         palette: [
-          { name: "Notebook White", hex: "#ffffff" },
-          { name: "School Ink Blue", hex: "#1e3a8a" },
-          { name: "Neon Yellow", hex: "#fde047" },
-          { name: "Neon Coral", hex: "#f472b6" },
-          { name: "Soft Grid Gray", hex: "#e2e8f0" }
+          { name: "Pulp Gray 80%", hex: "#dcd8cf" },
+          { name: "Noir Ink", hex: "#0f172a" },
+          { name: "Warning Yellow", hex: "#eab308" },
+          { name: "Case Stamp Red", hex: "#dc2626" },
+          { name: "File Paper", hex: "#f1f5f9" }
         ],
         slides: {
           1: `
-            <div class="w-full h-full bg-white bg-grid-lines text-slate-900 p-8 md:p-14 flex flex-col justify-between font-pop relative select-none">
+            <div class="w-full h-full bg-comic-noir text-slate-900 p-6 md:p-10 flex flex-col justify-between font-comic-bold relative overflow-hidden select-none border-4 border-black">
               
-              <!-- Red Stamp Top Right -->
-              <div class="absolute top-6 right-8 rotate-12 border-3 border-red-600 text-red-600 px-4 py-1.5 rounded-lg font-black text-xs uppercase tracking-widest hidden md:block">
-                KHUYẾN CÁO: NGUY HIỂM!
-              </div>
-
-              <!-- Top Subject Tag -->
-              <div class="flex items-center gap-2">
-                <span class="px-3 py-1 rounded bg-blue-100 text-blue-900 text-xs font-black uppercase tracking-wider">
-                  MÔN HỌC: KHOA HỌC HÀI HƯỚC
-                </span>
-                <span class="text-xs font-bold text-slate-400">BÀI THUYẾT TRÌNH SỐ 01</span>
-              </div>
-
-              <!-- Title With Highlighters -->
-              <div class="my-auto max-w-3xl">
-                <div class="text-4xl md:text-6xl mb-2">📖 ✏️ 🤪</div>
-                <h1 class="text-4xl sm:text-5xl md:text-7xl font-black text-slate-950 tracking-tight leading-[1.08] mb-4">
-                  Tác Hại Của Việc <br>
-                  <span class="hl-yellow text-slate-950 inline-block my-1">Đọc Sách Quá Mức!</span>
-                </h1>
-                <p class="text-base md:text-xl font-bold text-slate-600 max-w-xl leading-relaxed">
-                  (Bản chất là cực kỳ tốt, nhưng nhìn qua lăng kính <span class="hl-pink font-black text-slate-900">châm biếm ngược</span> hài hước)
-                </p>
-              </div>
-
-              <!-- 4 Bullet Items With Marker Style -->
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-3 border-t-2 border-slate-200">
-                <div class="flex items-center gap-2 text-xs md:text-sm font-bold text-slate-800">
-                  <span class="w-5 h-5 rounded-full bg-yellow-400 text-black flex items-center justify-center font-black text-xs">✓</span>
-                  <span>Đồng tử giãn nở, não bộ hoạt động hết công suất</span>
+              <!-- Top Case Header -->
+              <div class="flex justify-between items-center z-10">
+                <div class="bg-black text-yellow-400 px-3 py-1 text-xs font-black uppercase tracking-wider border-2 border-black shadow-[2px_2px_0px_#000]">
+                  📁 HỒ SƠ ĐIỀU TRA: VỤ ÁN SỐ 404
                 </div>
-                <div class="flex items-center gap-2 text-xs md:text-sm font-bold text-slate-800">
-                  <span class="w-5 h-5 rounded-full bg-pink-400 text-white flex items-center justify-center font-black text-xs">✓</span>
-                  <span>Vốn từ ngữ tăng vọt, biến thành ác mộng tranh cãi</span>
+                <div class="border-2 border-red-600 text-red-600 px-3 py-0.5 text-xs font-black uppercase rotate-3">
+                  TUYỆT MẬT / CLASSIFIED
+                </div>
+              </div>
+
+              <!-- Main Title -->
+              <div class="my-auto max-w-4xl mx-auto w-full z-10">
+                <span class="text-xs uppercase font-black tracking-widest text-red-600 block mb-1">
+                  THỦ PHẠM GIẤU MẶT NGUY HIỂM NHẤT
+                </span>
+                <h1 class="text-4xl sm:text-5xl md:text-7xl font-black text-black leading-[0.98] uppercase tracking-tight mb-3">
+                  TÁC HẠI KINH HOÀNG <br>
+                  <span class="bg-yellow-400 px-3 py-0.5 border-3 border-black inline-block shadow-[3px_3px_0px_#000]">
+                    CỦA KẺ ĐỌC SÁCH!
+                  </span>
+                </h1>
+                
+                <div class="bg-white/90 border-2 border-black p-3.5 rounded-xl shadow-[3px_3px_0px_#000] max-w-2xl">
+                  <p class="text-xs md:text-sm font-bold text-slate-800 leading-relaxed italic">
+                    "Hắn không dùng vũ khí thô bạo. Hắn dùng các con chữ in trên giấy để biến đổi đại não nạn nhân thành cỗ máy phản biện không bao giờ chịu khuất phục!"
+                  </p>
+                </div>
+              </div>
+
+              <!-- Bottom 3 Clues -->
+              <div class="grid grid-cols-3 gap-3 z-10">
+                <div class="bg-white border-2 border-black p-2.5 rounded shadow-[2px_2px_0px_#000]">
+                  <span class="text-xs font-black text-red-600 uppercase">MANH MỐI 01</span>
+                  <div class="text-[11px] font-bold text-slate-700">Đại não bị ép tư duy 100%</div>
+                </div>
+                <div class="bg-white border-2 border-black p-2.5 rounded shadow-[2px_2px_0px_#000]">
+                  <span class="text-xs font-black text-blue-600 uppercase">MANH MỐI 02</span>
+                  <div class="text-[11px] font-bold text-slate-700">Ngủ quá say, quên hóng drama</div>
+                </div>
+                <div class="bg-white border-2 border-black p-2.5 rounded shadow-[2px_2px_0px_#000]">
+                  <span class="text-xs font-black text-amber-600 uppercase">MANH MỐI 03</span>
+                  <div class="text-[11px] font-bold text-slate-700">Cố thủ hàng giờ trong toilet</div>
                 </div>
               </div>
 
             </div>
           `,
           2: `
-            <div class="w-full h-full bg-white bg-grid-lines text-slate-900 p-8 md:p-12 flex flex-col justify-between font-pop relative select-none">
+            <div class="w-full h-full bg-comic-noir text-slate-900 p-6 md:p-10 flex flex-col justify-between font-comic-bold relative overflow-hidden select-none border-4 border-black">
               
-              <div class="flex justify-between items-center border-b-2 border-slate-300 pb-2">
-                <span class="text-xs font-black text-blue-900 uppercase">TIẾT HỌC THỐNG KÊ</span>
-                <span class="text-xs font-bold text-slate-400">CHỨNG CỨ SUSSEX & YALE</span>
+              <div class="flex justify-between items-center border-b-2 border-black pb-2">
+                <span class="font-black text-xs uppercase bg-yellow-400 text-black px-2 py-0.5 border border-black">
+                  CHỨNG CỨ GIÁM ĐỊNH Y KHOA
+                </span>
+                <span class="text-xs font-bold text-slate-500">ĐH SUSSEX & ĐH YALE</span>
               </div>
 
               <div class="my-auto max-w-4xl mx-auto w-full">
-                <h2 class="text-3xl md:text-5xl font-black text-center mb-6">
-                  Hai Con Số <span class="hl-yellow">"Phá Bĩnh"</span> Cuộc Đời
+                <h2 class="text-3xl md:text-5xl font-black text-center uppercase mb-6 text-black">
+                  HAI CON SỐ <span class="bg-red-600 text-white px-2 border-2 border-black">VẠCH TRẦN TỘI PHẠM</span>
                 </h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                   
-                  <div class="bg-amber-50 p-6 md:p-8 rounded-2xl border-2 border-amber-300 relative shadow-sm">
-                    <span class="bg-yellow-400 text-slate-950 px-3 py-0.5 rounded text-xs font-black uppercase">
-                      6 PHÚT THẦN THÁNH
+                  <div class="bg-white border-3 border-black p-6 rounded-2xl shadow-[5px_5px_0px_#000]">
+                    <span class="bg-yellow-400 text-black px-2 py-0.5 text-xs font-black uppercase border border-black">
+                      CHỈ 6 PHÚT ĐỌC
                     </span>
-                    <div class="text-6xl md:text-7xl font-black text-rose-600 my-2 tracking-tight">-68%</div>
-                    <h3 class="text-base font-black uppercase text-slate-900 mb-1">MỨC ĐỘ STRESS TỤT DỐC</h3>
+                    <div class="text-6xl md:text-7xl font-black text-red-600 tracking-tight my-1">-68%</div>
+                    <h3 class="font-black text-base uppercase text-black mb-1">MỨC ĐỘ STRESS TỤT DỐC</h3>
                     <p class="text-xs font-bold text-slate-700 leading-relaxed">
-                      Chỉ cần 6 phút đọc, nhịp tim đã chậm lại và cơ thể thả lỏng. "Hại" vì tước mất quyền được nổi nóng chính đáng với đời!
+                      Làm hệ thần kinh tê liệt trong bình yên. Sếp mắng không quạu, người yêu dỗi vẫn mỉm cười ung dung!
                     </p>
                   </div>
 
-                  <div class="bg-blue-50 p-6 md:p-8 rounded-2xl border-2 border-blue-300 relative shadow-sm">
-                    <span class="bg-blue-500 text-white px-3 py-0.5 rounded text-xs font-black uppercase">
+                  <div class="bg-white border-3 border-black p-6 rounded-2xl shadow-[5px_5px_0px_#000]">
+                    <span class="bg-black text-white px-2 py-0.5 text-xs font-black uppercase border border-black">
                       ĐẠI HỌC YALE
                     </span>
-                    <div class="text-6xl md:text-7xl font-black text-blue-900 my-2 tracking-tight">+2 NĂM</div>
-                    <h3 class="text-base font-black uppercase text-slate-900 mb-1">KÉO DÀI THỌ MỆNH</h3>
+                    <div class="text-6xl md:text-7xl font-black text-blue-600 tracking-tight my-1">+2 NĂM</div>
+                    <h3 class="font-black text-base uppercase text-black mb-1">KÉO DÀI THỌ MỆNH</h3>
                     <p class="text-xs font-bold text-slate-700 leading-relaxed">
-                      Người đọc sách 30 phút/ngày sống thọ hơn 2 năm. Bắt bạn phải sống thêm 2 năm để nộp thuế và đi làm!
+                      Thiệt hại kinh tế nặng nề: Sống thêm 2 năm để nộp thuế, trả tiền điện nước và cày cuốc kiếm sống!
                     </p>
                   </div>
 
                 </div>
               </div>
 
-              <div class="text-center text-xs font-bold text-slate-400">
-                📝 Ghi chú bài học: Mua sách và đọc sách là hai sở thích độc lập!
+              <div class="text-center text-xs font-black text-slate-600 border-t border-black/20 pt-2">
+                Hội chứng Tsundoku: Mua cả thư viện về nhà để ngắm cho sang chứ không đọc!
               </div>
 
             </div>
           `,
           3: `
-            <div class="w-full h-full bg-white bg-grid-lines text-slate-900 p-8 md:p-12 flex flex-col justify-between font-pop relative select-none">
+            <div class="w-full h-full bg-comic-noir text-slate-900 p-6 md:p-10 flex flex-col justify-between font-comic-bold relative overflow-hidden select-none border-4 border-black">
               
               <div class="text-center">
-                <span class="px-3 py-1 bg-yellow-300 text-black text-xs font-black uppercase rounded">
-                  BÀI KIỂM TRA 3 DỤNG CỤ
+                <span class="text-xs font-black uppercase bg-red-600 text-white px-3 py-1 border border-black inline-block">
+                  GIÁM ĐỊNH HANG Ổ TỘI PHẠM
                 </span>
-                <h2 class="text-3xl md:text-5xl font-black mt-2">
-                  Ba "Thứ Nghiện" Của Học Sinh
+                <h2 class="text-3xl md:text-5xl font-black uppercase mt-1">
+                  TAM THỂ KHÍ CỤ GÂY HẠI
                 </h2>
               </div>
 
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-auto max-w-5xl mx-auto w-full">
                 
-                <div class="bg-amber-50 p-5 rounded-2xl border-2 border-amber-300 flex flex-col justify-between shadow-sm">
+                <div class="bg-white border-3 border-black p-4 rounded-xl shadow-[4px_4px_0px_#000] flex flex-col justify-between">
                   <div>
-                    <div class="text-3xl mb-1">📚</div>
-                    <h3 class="font-black text-base text-slate-900 mb-1">Sách Giấy Truyền Thống</h3>
+                    <div class="text-3xl mb-1">📖</div>
+                    <h3 class="font-black text-base uppercase mb-1">SÁCH GIẤY</h3>
                     <p class="text-xs font-bold text-slate-700 leading-relaxed">
-                      Mùi thơm mực in ngào ngạt. Balo đựng 2 cuốn dày nặng trĩu vai như tập tạ thể dục!
+                      Mùi thơm giấy gây ảo giác. Lật trang sột soạt. Đeo balo 2 cuốn nặng trịch như tập gym gù cả lưng!
                     </p>
                   </div>
-                  <div class="mt-3 pt-2 border-t border-amber-200 text-xs font-black text-amber-900">
-                    Sát thương: Tập tạ miễn phí 🏋️
+                  <div class="mt-3 pt-2 border-t-2 border-black text-xs font-black text-red-600">
+                    Sát thương: 5/5 Vật lý 🏋️
                   </div>
                 </div>
 
-                <div class="bg-emerald-50 p-5 rounded-2xl border-2 border-emerald-300 flex flex-col justify-between shadow-sm">
+                <div class="bg-white border-3 border-black p-4 rounded-xl shadow-[4px_4px_0px_#000] flex flex-col justify-between">
                   <div>
                     <div class="text-3xl mb-1">📱</div>
-                    <h3 class="font-black text-base text-slate-900 mb-1">Máy Đọc Sách Ebook</h3>
+                    <h3 class="font-black text-base uppercase mb-1">MÁY EBOOK</h3>
                     <p class="text-xs font-bold text-slate-700 leading-relaxed">
-                      200g chứa cả thư viện trường học. Nhưng sập nguồn đúng lúc trinh thám đến hồi gay cấn nhất!
+                      200g nhét cả vạn cuốn sách vào túi. Tử huyệt là đang đọc đến trang hung thủ lộ mặt thì... HẾT PIN!
                     </p>
                   </div>
-                  <div class="mt-3 pt-2 border-t border-emerald-200 text-xs font-black text-emerald-900">
-                    Sát thương: Cạn pin bất thình lình 🪫
+                  <div class="mt-3 pt-2 border-t-2 border-black text-xs font-black text-blue-600">
+                    Sát thương: Sập nguồn 🪫
                   </div>
                 </div>
 
-                <div class="bg-purple-50 p-5 rounded-2xl border-2 border-purple-300 flex flex-col justify-between shadow-sm">
+                <div class="bg-white border-3 border-black p-4 rounded-xl shadow-[4px_4px_0px_#000] flex flex-col justify-between">
                   <div>
                     <div class="text-3xl mb-1">🎧</div>
-                    <h3 class="font-black text-base text-slate-900 mb-1">Sách Nói Audiobook</h3>
+                    <h3 class="font-black text-base uppercase mb-1">SÁCH NÓI</h3>
                     <p class="text-xs font-bold text-slate-700 leading-relaxed">
-                      Rảnh tay nghe lúc quét lớp hay tập thể dục. Giọng đọc ấm áp biến thành thuốc ngủ ru bạn say giấc!
+                      Nghe lúc rửa bát hay lái xe. Giọng đọc ấm áp biến thành thuốc ngủ cực mạnh, sáng ra quên sạch bách!
                     </p>
                   </div>
-                  <div class="mt-3 pt-2 border-t border-purple-200 text-xs font-black text-purple-900">
-                    Sát thương: Thuốc ngủ hạng nặng 😴
+                  <div class="mt-3 pt-2 border-t-2 border-black text-xs font-black text-purple-600">
+                    Sát thương: Thuốc mê 💤
                   </div>
                 </div>
 
               </div>
 
-              <div class="text-center text-xs font-bold text-slate-400">
-                Hãy chọn thứ phù hợp nhất để kích hoạt não bộ của bạn!
+              <div class="text-center font-black text-xs uppercase text-slate-600">
+                Hãy lựa chọn công cụ để đánh thức nơ-ron của bạn!
               </div>
 
             </div>
@@ -1051,27 +1188,166 @@
       }
     ];
 
+    // BRIGHT THEMES (PREVIOUS SET)
+    const BRIGHT_THEMES = [
+      {
+        id: "theme_doodle_comic",
+        number: "Sáng #1",
+        title: "Doodle Comic & Stickman",
+        subtitle: "Sổ tay vẽ bậy, sticker vui nhộn, vệt dạ quang",
+        icon: "✏️",
+        badge: "Vẽ Bậy Ngộ Nghĩnh",
+        badgeColor: "bg-amber-400 text-black border-amber-500",
+        desc: "Lấy cảm hứng từ trang sổ tay học sinh cá biệt: Nền trắng sạch, nét vẽ que ngơ ngác, chữ to rõ ràng, sticker vàng và highlight dạ quang.",
+        typography: "Fredoka & Plus Jakarta Sans",
+        palette: [
+          { name: "Pure White", hex: "#ffffff" },
+          { name: "Marker Black", hex: "#18181b" },
+          { name: "Highlighter Yellow", hex: "#fde047" },
+          { name: "Sticky Coral", hex: "#fb7185" },
+          { name: "Mint Doodler", hex: "#34d399" }
+        ],
+        slides: {
+          1: `<div class="w-full h-full bg-white p-8 flex flex-col justify-center items-center text-center font-comic-neue"><h1 class="text-5xl font-black text-black">TÁC HẠI CỦA VIỆC ĐỌC SÁCH!</h1><p class="text-lg font-bold text-zinc-600 mt-2">Doodle Comic Sáng 100%</p></div>`,
+          2: `<div class="w-full h-full bg-white p-8 flex flex-col justify-center items-center text-center font-comic-neue"><h2 class="text-6xl font-black text-red-600">-68% & +2 NĂM</h2><p class="text-sm font-bold text-zinc-700 mt-2">Thống Kê Khoa Học</p></div>`,
+          3: `<div class="w-full h-full bg-white p-8 flex flex-col justify-center items-center text-center font-comic-neue"><h2 class="text-4xl font-black text-black">3 KHÍ CỤ GÂY HẠI</h2><p class="text-sm font-bold text-zinc-700 mt-2">Sách giấy • Ebook • Sách nói</p></div>`
+        }
+      },
+      {
+        id: "theme_pastel_pop",
+        number: "Sáng #2",
+        title: "Pastel Pop & Kawaii Danger",
+        subtitle: "Màu kẹo ngọt pastel, font tròn mập mạp",
+        icon: "🍬",
+        badge: "Kẹo Ngọt Dễ Thương",
+        badgeColor: "bg-pink-300 text-pink-950 border-pink-400",
+        desc: "Màu nền kem bơ pastel ngọt ngào, mềm mại, thẻ bo tròn lớn, phông chữ mập mạp đáng yêu.",
+        typography: "Plus Jakarta Sans ExtraBold",
+        palette: [
+          { name: "Cream Butter", hex: "#fefce8" },
+          { name: "Bubblegum Pink", hex: "#f472b6" },
+          { name: "Baby Sky", hex: "#38bdf8" },
+          { name: "Mint Fresh", hex: "#34d399" }
+        ],
+        slides: {
+          1: `<div class="w-full h-full bg-[#fefce8] p-8 flex flex-col justify-center items-center text-center font-comic-neue"><h1 class="text-5xl font-black text-[#1e1b4b]">TÁC HẠI CỦA VIỆC ĐỌC SÁCH!</h1><p class="text-lg font-bold text-pink-600 mt-2">Pastel Pop Sáng 100%</p></div>`,
+          2: `<div class="w-full h-full bg-[#fefce8] p-8 flex flex-col justify-center items-center text-center font-comic-neue"><h2 class="text-6xl font-black text-pink-600">-68% & +2 NĂM</h2></div>`,
+          3: `<div class="w-full h-full bg-[#fefce8] p-8 flex flex-col justify-center items-center text-center font-comic-neue"><h2 class="text-4xl font-black text-[#1e1b4b]">3 KHÍ CỤ ĐỌC SÁCH</h2></div>`
+        }
+      },
+      {
+        id: "theme_neo_brutalism",
+        number: "Sáng #3",
+        title: "Neo-Brutalism Bold Pop",
+        subtitle: "Viền đen 3px đậm, bóng đổ cứng 4px",
+        icon: "⚡",
+        badge: "Rõ Ràng & Bắt Mắt",
+        badgeColor: "bg-black text-yellow-300 border-black",
+        desc: "Khối hộp màu vàng chuối, viền đen dày cộp và bóng đổ cứng. Đập thẳng vào mắt, nhìn từ xa vẫn rõ.",
+        typography: "Space Grotesk & Impact",
+        palette: [
+          { name: "Pure White", hex: "#ffffff" },
+          { name: "Electric Yellow", hex: "#fde047" },
+          { name: "Solid Black", hex: "#000000" }
+        ],
+        slides: {
+          1: `<div class="w-full h-full bg-white p-8 flex flex-col justify-center items-center text-center font-comic-bold"><h1 class="text-6xl font-black text-black">TÁC HẠI ĐỌC SÁCH!</h1></div>`,
+          2: `<div class="w-full h-full bg-white p-8 flex flex-col justify-center items-center text-center font-comic-bold"><h2 class="text-7xl font-black text-red-600">-68%</h2></div>`,
+          3: `<div class="w-full h-full bg-white p-8 flex flex-col justify-center items-center text-center font-comic-bold"><h2 class="text-5xl font-black text-black">TAM THỂ KHÍ CỤ</h2></div>`
+        }
+      },
+      {
+        id: "theme_scandinavian_clean",
+        number: "Sáng #4",
+        title: "Clean Scandinavian",
+        subtitle: "Tối giản Bắc Âu, khoảng trắng mênh mông",
+        icon: "🍏",
+        badge: "Tối Giản & Sang",
+        badgeColor: "bg-slate-900 text-white border-slate-700",
+        desc: "Nền trắng tinh khôi, khoảng thở rộng rãi, typography kích thước lớn vô cùng trang nhã.",
+        typography: "Plus Jakarta Sans & Inter",
+        palette: [
+          { name: "Snow Canvas", hex: "#ffffff" },
+          { name: "Slate Black", hex: "#0f172a" },
+          { name: "Apple Blue", hex: "#0284c7" }
+        ],
+        slides: {
+          1: `<div class="w-full h-full bg-[#f8fafc] p-8 flex flex-col justify-center items-center text-center"><h1 class="text-5xl font-extrabold text-slate-900">Tác Hại Của Việc Đọc Sách</h1></div>`,
+          2: `<div class="w-full h-full bg-[#f8fafc] p-8 flex flex-col justify-center items-center text-center"><h2 class="text-6xl font-extrabold text-slate-900">-68% & +2 Năm</h2></div>`,
+          3: `<div class="w-full h-full bg-[#f8fafc] p-8 flex flex-col justify-center items-center text-center"><h2 class="text-4xl font-extrabold text-slate-900">3 Định Dạng Sách</h2></div>`
+        }
+      },
+      {
+        id: "theme_classroom_highlighter",
+        number: "Sáng #5",
+        title: "Classroom Grid & Highlighters",
+        subtitle: "Lưới kẻ ô ly vở học trò, quệt dạ quang",
+        icon: "📝",
+        badge: "Vở Học Trò",
+        badgeColor: "bg-blue-200 text-blue-900 border-blue-400",
+        desc: "Nền lưới ca-rô mờ, gạch đầu dòng bút dạ quang vàng và hồng rực rỡ, con dấu mộc đỏ.",
+        typography: "Space Grotesk & Plus Jakarta Sans",
+        palette: [
+          { name: "Notebook White", hex: "#ffffff" },
+          { name: "Neon Yellow", hex: "#fde047" },
+          { name: "Ink Blue", hex: "#1e3a8a" }
+        ],
+        slides: {
+          1: `<div class="w-full h-full bg-white p-8 flex flex-col justify-center items-center text-center"><h1 class="text-5xl font-black text-slate-950">Tác Hại Của Việc Đọc Sách!</h1></div>`,
+          2: `<div class="w-full h-full bg-white p-8 flex flex-col justify-center items-center text-center"><h2 class="text-6xl font-black text-rose-600">-68%</h2></div>`,
+          3: `<div class="w-full h-full bg-white p-8 flex flex-col justify-center items-center text-center"><h2 class="text-4xl font-black text-slate-900">3 Dụng Cụ</h2></div>`
+        }
+      }
+    ];
+
+    let currentGroup = 'comic';
     let currentThemeIndex = 0;
     let currentSlideNumber = 1;
 
+    function getActiveThemes() {
+      return currentGroup === 'comic' ? COMIC_THEMES : BRIGHT_THEMES;
+    }
+
+    function toggleGroup(group) {
+      currentGroup = group;
+      currentThemeIndex = 0;
+      currentSlideNumber = 1;
+
+      const btnComic = document.getElementById('btn-group-comic');
+      const btnBright = document.getElementById('btn-group-bright');
+
+      if (group === 'comic') {
+        btnComic.className = "flex items-center gap-2 px-4 py-2 rounded-xl text-xs md:text-sm font-black transition-all bg-black text-yellow-300 shadow";
+        btnBright.className = "flex items-center gap-2 px-4 py-2 rounded-xl text-xs md:text-sm font-bold transition-all text-zinc-700 hover:text-black hover:bg-zinc-100";
+      } else {
+        btnBright.className = "flex items-center gap-2 px-4 py-2 rounded-xl text-xs md:text-sm font-black transition-all bg-black text-white shadow";
+        btnComic.className = "flex items-center gap-2 px-4 py-2 rounded-xl text-xs md:text-sm font-bold transition-all text-zinc-700 hover:text-black hover:bg-zinc-100";
+      }
+
+      renderTabs();
+      renderSlide();
+      updateDetails();
+    }
+
     function renderTabs() {
+      const themes = getActiveThemes();
       const container = document.getElementById("theme-tabs-container");
-      container.innerHTML = THEMES.map((t, idx) => {
+      container.innerHTML = themes.map((t, idx) => {
         const isActive = idx === currentThemeIndex;
         return `
           <button onclick="selectTheme(${idx})" class="text-left p-3.5 rounded-2xl border-2 transition-all ${
             isActive 
-              ? 'bg-slate-900 border-slate-900 text-white shadow-lg ring-2 ring-slate-900/40' 
-              : 'bg-white border-slate-200 text-slate-800 hover:border-slate-400 hover:bg-slate-50'
+              ? 'bg-black border-black text-yellow-300 shadow-[4px_4px_0px_#000] ring-2 ring-yellow-400' 
+              : 'bg-white border-black text-black hover:bg-yellow-50 shadow-[2px_2px_0px_#000]'
           }">
             <div class="flex items-center justify-between mb-1.5">
               <span class="text-xl">${t.icon}</span>
               <span class="text-[10px] font-black px-2 py-0.5 rounded-md ${
-                isActive ? 'bg-white text-slate-900' : 'bg-slate-100 text-slate-700 border border-slate-200'
-              }">${t.number}</span>
+                isActive ? 'bg-yellow-300 text-black' : 'bg-zinc-100 text-black border border-black'
+              } font-comic-bangers">${t.number}</span>
             </div>
-            <div class="font-extrabold text-xs truncate">${t.title}</div>
-            <div class="text-[11px] opacity-75 font-medium truncate">${t.subtitle}</div>
+            <div class="font-extrabold text-xs truncate ${isActive ? 'text-yellow-300' : 'text-black'} font-comic-bangers text-sm">${t.title}</div>
+            <div class="text-[11px] opacity-80 font-bold truncate">${t.subtitle}</div>
           </button>
         `;
       }).join('');
@@ -1089,42 +1365,45 @@
       [1, 2, 3].forEach(n => {
         const btn = document.getElementById(`slide-btn-${n}`);
         if (n === num) {
-          btn.className = "px-3 py-1.5 rounded-lg transition-all bg-slate-900 text-white shadow font-extrabold";
+          btn.className = "px-3 py-1.5 rounded-lg transition-all bg-black text-yellow-300 shadow font-black font-comic-bangers";
         } else {
-          btn.className = "px-3 py-1.5 rounded-lg transition-all text-slate-600 hover:text-slate-900 font-bold";
+          btn.className = "px-3 py-1.5 rounded-lg transition-all text-zinc-700 hover:text-black font-bold";
         }
       });
       renderSlide();
     }
 
     function renderSlide() {
-      const theme = THEMES[currentThemeIndex];
+      const themes = getActiveThemes();
+      const theme = themes[currentThemeIndex];
       const slideHTML = theme.slides[currentSlideNumber];
       document.getElementById("slide-viewport").innerHTML = slideHTML;
     }
 
     function updateDetails() {
-      const theme = THEMES[currentThemeIndex];
+      const themes = getActiveThemes();
+      const theme = themes[currentThemeIndex];
       document.getElementById("theme-badge").textContent = `${theme.number}: ${theme.badge}`;
-      document.getElementById("theme-badge").className = `px-3 py-1 rounded-xl text-xs font-black uppercase tracking-wider border shadow-sm ${theme.badgeColor}`;
+      document.getElementById("theme-badge").className = `px-3 py-1 rounded-xl text-xs font-black uppercase tracking-wider border shadow-sm ${theme.badgeColor} font-comic-bangers`;
       document.getElementById("theme-title").textContent = theme.title;
       document.getElementById("theme-subtitle").textContent = theme.subtitle;
       document.getElementById("theme-desc").textContent = theme.desc;
-      document.getElementById("theme-typography").innerHTML = `Phông chữ đề xuất: <span class="text-slate-900 font-extrabold">${theme.typography}</span>`;
+      document.getElementById("theme-typography").innerHTML = `Phông chữ đề xuất: <span class="text-black font-extrabold">${theme.typography}</span>`;
 
       // Swatches
       const swatchesContainer = document.getElementById("theme-swatches");
       swatchesContainer.innerHTML = theme.palette.map(c => `
-        <div class="flex items-center gap-1.5 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200 text-[11px]">
-          <span class="w-3.5 h-3.5 rounded-full border border-black/20 shadow-inner" style="background-color: ${c.hex}"></span>
-          <span class="font-mono text-slate-800 font-bold">${c.hex}</span>
+        <div class="flex items-center gap-1.5 bg-zinc-100 px-2.5 py-1 rounded-lg border border-black text-[11px]">
+          <span class="w-3.5 h-3.5 rounded-full border border-black shadow-inner" style="background-color: ${c.hex}"></span>
+          <span class="font-mono text-black font-bold">${c.hex}</span>
         </div>
       `).join('');
     }
 
     function confirmThemeChoice() {
-      const theme = THEMES[currentThemeIndex];
-      const textToCopy = `Tôi chọn giao diện ${theme.number}: "${theme.title}". Hãy triển khai toàn bộ slide theo giao diện sáng này cho tôi!`;
+      const themes = getActiveThemes();
+      const theme = themes[currentThemeIndex];
+      const textToCopy = `Tôi chọn giao diện ${theme.number}: "${theme.title}". Hãy triển khai làm slide theo phong cách comic này cho tôi!`;
 
       navigator.clipboard.writeText(textToCopy).then(() => {
         showToast(`Đã copy: "${theme.title}"`);
