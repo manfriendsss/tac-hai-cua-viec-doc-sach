@@ -1,31 +1,23 @@
 import React from 'react';
 import { Slide1Title } from '../slides/Slide1Title';
 import { Slide2Roadmap } from '../slides/Slide2Roadmap';
-import { Slide3StatsIntro } from '../slides/Slide3StatsIntro';
-import { Slide4StatsDetails } from '../slides/Slide4StatsDetails';
-import { Slide5ToolsIntro } from '../slides/Slide5ToolsIntro';
-import { Slide6ToolsCompare } from '../slides/Slide6ToolsCompare';
-import { Slide7HarmIntro } from '../slides/Slide7HarmIntro';
-import { Slide8HarmMind } from '../slides/Slide8HarmMind';
-import { Slide9HarmLife } from '../slides/Slide9HarmLife';
-import { Slide10WhyQuit } from '../slides/Slide10WhyQuit';
-import { Slide11HowToInfect } from '../slides/Slide11HowToInfect';
-import { Slide12Conclusion } from '../slides/Slide12Conclusion';
+import { Slide3StatsMerged } from '../slides/Slide3StatsMerged';
+import { Slide4ToolsMerged } from '../slides/Slide4ToolsMerged';
+import { Slide5HarmsMerged } from '../slides/Slide5HarmsMerged';
+import { Slide6WhyQuit } from '../slides/Slide6WhyQuit';
+import { Slide7HowToInfect } from '../slides/Slide7HowToInfect';
+import { Slide8Conclusion } from '../slides/Slide8Conclusion';
 
 export const DeckContainer: React.FC = () => {
   const slideTitles = [
     { n: 1, title: 'Bìa: Tác Hại Của Việc Đọc Sách (Tranh Vui Cuối Tuần)' },
     { n: 2, title: 'Tổng Quan: 5 Tác Hại Hài Hước (Chuẩn Slide Mẫu)' },
-    { n: 3, title: 'Phần 01: Khoa Học Vạch Trần Kẻ Đọc Sách' },
-    { n: 4, title: 'Hai Con Số Chấn Động (-68% Stress & +2 Năm)' },
-    { n: 5, title: 'Phần 02: Tam Thể Khí Cụ Làm Lệch Lối Sống' },
-    { n: 6, title: 'Tranh 3 Khung: Sách Giấy, E-Reader & Sách Nói' },
-    { n: 7, title: 'Phần 03: 7 Biến Chứng Khi Lỡ "Nghiện" Sách' },
-    { n: 8, title: '4 Biến Chứng Não Bộ & Tư Duy (Hài Hước)' },
-    { n: 9, title: '3 Biến Chứng Đời Sống, Tài Chính & Toilet' },
-    { n: 10, title: 'Phần 04: Vì Sao 90% Thoát Nạn Nhờ Bỏ Cuộc?' },
-    { n: 11, title: 'Phần 05: 4 Bước "Nhiễm Độc" Sách Nhẹ Nhàng' },
-    { n: 12, title: 'Epilogue: Lời Chúc Phúc Cho Người Nghiện Sách' }
+    { n: 3, title: 'Phần 01: Khoa Học Vạch Trần (-68% Stress & +23 Tháng)' },
+    { n: 4, title: 'Phần 02: Tam Thể Khí Cụ (Sách Giấy, E-Reader & Sách Nói)' },
+    { n: 5, title: 'Phần 03: 7 Biến Chứng Khi Lỡ "Nghiện" Sách Quá Sâu' },
+    { n: 6, title: 'Phần 04: Vì Sao 90% Thoát Nạn Nhờ Bỏ Cuộc?' },
+    { n: 7, title: 'Phần 05: 4 Bước "Nhiễm Độc" Sách Nhẹ Nhàng & Bền Vững' },
+    { n: 8, title: 'Epilogue: Lời Chúc Phúc Cho Người Nghiện Sách & Q&A' }
   ];
 
   return (
@@ -45,50 +37,50 @@ export const DeckContainer: React.FC = () => {
           <span>TRANH VUI CHỦ NHẬT • TƯ DUY NGƯỢC</span>
         </div>
 
-        {/* 12 Slides */}
+        {/* 8 Merged Slides */}
         <div className="slides-wrapper">
           <Slide1Title />
           <Slide2Roadmap />
-          <Slide3StatsIntro />
-          <Slide4StatsDetails />
-          <Slide5ToolsIntro />
-          <Slide6ToolsCompare />
-          <Slide7HarmIntro />
-          <Slide8HarmMind />
-          <Slide9HarmLife />
-          <Slide10WhyQuit />
-          <Slide11HowToInfect />
-          <Slide12Conclusion />
+          <Slide3StatsMerged />
+          <Slide4ToolsMerged />
+          <Slide5HarmsMerged />
+          <Slide6WhyQuit />
+          <Slide7HowToInfect />
+          <Slide8Conclusion />
         </div>
 
         {/* Bottom Control Bar */}
         <div className="control-bar">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             
-            {/* Prev Slide */}
+            {/* Prev Slide / Step */}
             <button
               id="prev-slide-btn"
               className="icon-btn"
               onClick={(e) => {
                 e.stopPropagation();
-                if (typeof (window as any).prevSlide === 'function') {
+                if (typeof (window as any).prevStepOrSlide === 'function') {
+                  (window as any).prevStepOrSlide();
+                } else if (typeof (window as any).prevSlide === 'function') {
                   (window as any).prevSlide();
                 }
               }}
-              title="Lùi slide (Mũi tên trái / ArrowLeft)"
+              title="Lùi (Mũi tên trái / ArrowLeft)"
             >
               <svg viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
             </button>
 
-            {/* Next Slide */}
+            {/* Next Slide / Step */}
             <button
               id="next-slide-btn"
               className="icon-btn"
               onClick={(e) => {
                 e.stopPropagation();
-                if (typeof (window as any).nextSlide === 'function') {
+                if (typeof (window as any).nextStepOrSlide === 'function') {
+                  (window as any).nextStepOrSlide();
+                } else if (typeof (window as any).nextSlide === 'function') {
                   (window as any).nextSlide();
                 }
               }}
@@ -111,7 +103,7 @@ export const DeckContainer: React.FC = () => {
                 }}
                 title="Bấm để chuyển nhanh tới slide bất kỳ"
               >
-                1 / 12
+                1 / 8
               </span>
 
               {/* Popover Grid */}
@@ -121,7 +113,7 @@ export const DeckContainer: React.FC = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="slide-picker-header">
-                  <span className="slide-picker-title">Chuyển Đến Slide (1 - 12)</span>
+                  <span className="slide-picker-title">Chuyển Đến Slide (1 - 8)</span>
                   <button
                     className="slide-picker-close"
                     onClick={(e) => {
@@ -135,7 +127,7 @@ export const DeckContainer: React.FC = () => {
                   </button>
                 </div>
 
-                <div className="slide-picker-grid">
+                <div className="slide-picker-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
                   {slideTitles.map((s) => (
                     <button
                       key={s.n}
@@ -153,6 +145,11 @@ export const DeckContainer: React.FC = () => {
                   ))}
                 </div>
               </div>
+            </div>
+
+            {/* Current Slide Title Display */}
+            <div className="slide-title-display hidden md:inline">
+              <span id="current-slide-title">Bìa: Tác Hại Của Việc Đọc Sách</span>
             </div>
 
           </div>

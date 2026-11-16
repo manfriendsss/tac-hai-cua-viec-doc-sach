@@ -45,9 +45,28 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.comic-panel:hover {
+.comic-panel,
+.comic-panel-yellow,
+.comic-panel-sky,
+.comic-panel-mint,
+.comic-panel-coral {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.comic-panel:hover,
+.comic-panel-yellow:hover,
+.comic-panel-sky:hover,
+.comic-panel-mint:hover,
+.comic-panel-coral:hover {
   transform: translateY(-2px);
   box-shadow: 6px 6px 0px var(--comic-ink);
+}
+
+.spotlight-active {
+  transform: scale(1.03) !important;
+  box-shadow: 7px 7px 0px var(--comic-ink) !important;
+  border-color: #d97706 !important;
+  z-index: 25 !important;
 }
 
 .comic-panel-yellow {
