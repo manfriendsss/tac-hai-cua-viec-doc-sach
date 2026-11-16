@@ -90,19 +90,19 @@ export const Slide1Title: React.FC = () => {
 
         </div>
 
-        {/* Right 5 Columns: Sunday Comic Strip Illustration */}
+        {/* Right 5 Columns: 3D Claymation Hero Illustration */}
         <div className="col-span-12 md:col-span-5 flex flex-col items-center justify-center">
-          <div className="w-full comic-panel p-2.5 bg-white relative rotate-1 shadow-[4px_4px_0px_#1f2937]">
-            <div className="w-full h-44 sm:h-52 md:h-60 rounded-xl overflow-hidden border-2 border-[#1f2937] bg-[#fdfcf7] flex items-center justify-center">
+          <div className="w-full comic-panel p-2.5 bg-white relative rotate-1 shadow-[5px_5px_0px_#1f2937]">
+            <div className="w-full h-48 sm:h-56 md:h-64 rounded-2xl overflow-hidden border-2 border-[#1f2937] bg-[#fdfcf7] flex items-center justify-center">
               <img
-                src="/assets/sunday-books-cat.webp"
-                alt="Tranh vui báo chủ nhật: Sách, cà phê và chú mèo"
-                className="w-full h-full object-contain"
+                src="/assets/theme-3-claymation-3d.webp"
+                alt="Đất sét 3D Claymation: Nhân vật vác cuốn sách khổng lồ"
+                className="w-full h-full object-cover"
               />
             </div>
             <div className="mt-2 text-center">
               <p className="font-comic-hand text-base sm:text-lg text-[#1f2937] font-black">
-                "Chỉ định đọc 5 phút trước khi ngủ... ai ngờ đã 4 giờ sáng?!" ☕📖
+                "Chỉ định đọc vài trang trước khi ngủ... ai ngờ sách 'nặng' quá?!" 🧸📚
               </p>
             </div>
           </div>
