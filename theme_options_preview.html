@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khảo Sát 5 Mẫu Chủ Đề Hình Ảnh - Tác Hại Của Việc Đọc Sách</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F5F1EA;
+      --card-bg: #FFFFFF;
+      --ink: #1F2937;
+      --accent-yellow: #FEF08A;
+      --accent-gold: #F59E0B;
+      --accent-coral: #FEE2E2;
+      --accent-sky: #E0F2FE;
+      --accent-mint: #DCFCE7;
+      --comic-border: 3px solid #1F2937;
+      --comic-shadow: 5px 5px 0px #1F2937;
+      --comic-shadow-lg: 8px 8px 0px #1F2937;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      background-image: radial-gradient(#D3CBBE 1.3px, transparent 1.3px);
+      background-size: 16px 16px;
+      color: var(--ink);
+      line-height: 1.6;
+      padding: 40px 20px 80px;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-yellow);
+      border: var(--comic-border);
+      box-shadow: 3px 3px 0px var(--ink);
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-family: 'Fredoka', cursive;
+      font-weight: 800;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .header h1 {
+      font-family: 'Fredoka', cursive;
+      font-size: clamp(32px, 4vw, 46px);
+      font-weight: 800;
+      color: #111827;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .header h1 span {
+      background: var(--accent-yellow);
+      padding: 2px 12px;
+      border-radius: 12px;
+      border: 3px solid var(--ink);
+      box-shadow: 4px 4px 0px var(--ink);
+      display: inline-block;
+      color: #B45309;
+      transform: rotate(1deg);
+    }
+
+    .header-desc {
+      font-size: 16px;
+      color: #4B5563;
+      max-width: 760px;
+      margin: 0 auto;
+      font-weight: 600;
+    }
+
+    /* EXPERT ADVICE SECTION */
+    .advice-section {
+      background: #FFFFFF;
+      border: var(--comic-border);
+      border-radius: 24px;
+      box-shadow: var(--comic-shadow-lg);
+      padding: 32px;
+      margin-bottom: 50px;
+    }
+
+    .advice-title {
+      font-family: 'Fredoka', cursive;
+      font-size: 24px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      color: #111827;
+      border-bottom: 2px dashed #E5E7EB;
+      padding-bottom: 14px;
+    }
+
+    .advice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .advice-card {
+      padding: 24px;
+      border-radius: 18px;
+      border: 2.5px solid var(--ink);
+      box-shadow: 4px 4px 0px var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .advice-card.recommended {
+      background: #F0FDF4;
+    }
+
+    .advice-card.caution {
+      background: #FFFBEB;
+    }
+
+    .advice-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-family: 'Fredoka', cursive;
+      font-size: 12px;
+      font-weight: 800;
+      width: fit-content;
+      border: 1.5px solid var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .advice-card.recommended .advice-badge {
+      background: #86EFAC;
+      color: #064E3B;
+    }
+
+    .advice-card.caution .advice-badge {
+      background: #FDE047;
+      color: #78350F;
+    }
+
+    .advice-h3 {
+      font-family: 'Fredoka', cursive;
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: #111827;
+    }
+
+    .advice-body {
+      font-size: 14px;
+      font-weight: 600;
+      color: #374151;
+      line-height: 1.6;
+    }
+
+    .advice-body ul {
+      margin-left: 20px;
+      margin-top: 8px;
+    }
+
+    .advice-body li {
+      margin-bottom: 6px;
+    }
+
+    /* THEMES GRID */
+    .section-heading {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .section-heading h2 {
+      font-family: 'Fredoka', cursive;
+      font-size: 30px;
+      font-weight: 800;
+      color: #111827;
+    }
+
+    .section-heading p {
+      font-size: 15px;
+      font-weight: 600;
+      color: #4B5563;
+      margin-top: 4px;
+    }
+
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 32px;
+      margin-bottom: 60px;
+    }
+
+    .theme-card {
+      background: #FFFFFF;
+      border: var(--comic-border);
+      border-radius: 24px;
+      box-shadow: var(--comic-shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .theme-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--comic-shadow-lg);
+    }
+
+    .theme-card.selected {
+      border-color: #D97706;
+      box-shadow: 8px 8px 0px #D97706, 0 0 0 3px #FEF08A;
+      transform: translateY(-4px);
+    }
+
+    .theme-img-wrap {
+      width: 100%;
+      height: 280px;
+      background: #F3F4F6;
+      border-bottom: var(--comic-border);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .theme-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .theme-img-wrap:hover img {
+      transform: scale(1.04);
+    }
+
+    .theme-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-family: 'Fredoka', cursive;
+      font-size: 11px;
+      font-weight: 800;
+      border: 2px solid var(--ink);
+      box-shadow: 2px 2px 0px var(--ink);
+      z-index: 2;
+    }
+
+    .theme-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .theme-title {
+      font-family: 'Fredoka', cursive;
+      font-size: 20px;
+      font-weight: 800;
+      color: #111827;
+      line-height: 1.3;
+    }
+
+    .theme-author-vibe {
+      font-family: 'Caveat', cursive;
+      font-size: 16px;
+      font-weight: 700;
+      color: #B45309;
+      margin-top: 2px;
+    }
+
+    .theme-features {
+      list-style: none;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #4B5563;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .theme-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .theme-features li span {
+      flex-shrink: 0;
+    }
+
+    .palette-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .palette-label {
+      font-size: 11px;
+      font-weight: 800;
+      font-family: 'Fredoka', cursive;
+      text-transform: uppercase;
+      color: #6B7280;
+    }
+
+    .palette-swatches {
+      display: flex;
+      gap: 6px;
+    }
+
+    .swatch {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: 1.5px solid var(--ink);
+    }
+
+    .select-btn {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid var(--ink);
+      border-radius: 14px;
+      background: var(--accent-yellow);
+      font-family: 'Fredoka', cursive;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--ink);
+      cursor: pointer;
+      box-shadow: 3px 3px 0px var(--ink);
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .select-btn:hover {
+      background: #FDE047;
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0px var(--ink);
+    }
+
+    .theme-card.selected .select-btn {
+      background: #10B981;
+      color: #FFFFFF;
+      border-color: var(--ink);
+    }
+
+    /* LIGHTBOX MODAL */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 24, 39, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      max-width: 900px;
+      width: 100%;
+      background: #FFFFFF;
+      border: 4px solid var(--ink);
+      border-radius: 24px;
+      box-shadow: 10px 10px 0px var(--ink);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      animation: popIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-img {
+      width: 100%;
+      max-height: 65vh;
+      object-fit: contain;
+      background: #111827;
+    }
+
+    .modal-footer {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #FFFDF9;
+      border-top: 2px solid var(--ink);
+    }
+
+    .modal-caption {
+      font-family: 'Fredoka', cursive;
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+    }
+
+    .modal-close {
+      background: var(--accent-coral);
+      border: 2px solid var(--ink);
+      box-shadow: 2px 2px 0px var(--ink);
+      border-radius: 999px;
+      width: 36px;
+      height: 36px;
+      font-size: 16px;
+      font-weight: 900;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      background: #FCA5A5;
+    }
+
+    /* ACTION BAR FIXED BOTTOM */
+    .action-bar {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 253, 249, 0.95);
+      backdrop-filter: blur(12px);
+      border: var(--comic-border);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), var(--comic-shadow);
+      padding: 12px 28px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      z-index: 100;
+    }
+
+    .action-text {
+      font-family: 'Fredoka', cursive;
+      font-size: 14px;
+      font-weight: 800;
+      color: #111827;
+    }
+
+    .action-link {
+      background: var(--accent-yellow);
+      border: 2px solid var(--ink);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-family: 'Fredoka', cursive;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--ink);
+      text-decoration: none;
+      box-shadow: 2px 2px 0px var(--ink);
+      transition: all 0.15s ease;
+    }
+
+    .action-link:hover {
+      background: #FDE047;
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-badge">
+        <span>🎨</span>
+        <span>KHẢO SÁT CHIẾN LƯỢC VISUAL & PHONG CÁCH NGHỆ THUẬT</span>
+      </div>
+      <h1>
+        Chọn Chủ Đề Hình Ảnh Cho <span>Slide & Card</span>
+      </h1>
+      <p class="header-desc">
+        Phân tích chuyên sâu về mật độ hình ảnh tối ưu trên bài thuyết trình, kèm 5 mẫu phong cách nghệ thuật độc đáo được tạo sẵn để bạn lựa chọn trước khi xuất xưởng đồng loạt!
+      </p>
+    </header>
+
+    <!-- SECTION 1: Ý KIẾN CHUYÊN GIA -->
+    <section class="advice-section">
+      <div class="advice-title">
+        <span>💡</span>
+        <span>Ý Kiến Chuyên Gia: Tạo Ảnh Cho Mỗi Slide & Cho Mỗi Card Có Tốt Không?</span>
+      </div>
+
+      <div class="advice-grid">
+        
+        <!-- Case 1: Mỗi Slide 1 Ảnh -->
+        <div class="advice-card recommended">
+          <div>
+            <div class="advice-badge">
+              <span>🌟</span>
+              <span>CỰC KỲ KHUYẾN KHÍCH (10/10)</span>
+            </div>
+            <h3 class="advice-h3">1. Tạo 1 Ảnh Trọng Tâm (Hero Image) Cho Mỗi Slide</h3>
+            <div class="advice-body">
+              <p>Mỗi slide sở hữu 1 bức tranh lớn ở vị trí neo thị giác (như góc phải hoặc banner giữa) mang lại hiệu quả vượt trội:</p>
+              <ul>
+                <li><strong>Neo thị giác (Visual Anchor):</strong> Người xem nắm bắt ngay chủ đề hài hước chỉ trong 2 giây đầu tiên.</li>
+                <li><strong>Cân bằng bố cục (Tỷ lệ vàng):</strong> 1 bên chữ (các thẻ card tuần tự) + 1 bên tranh biếm họa giúp slide thoáng đãng, sang trọng, không bị "ngợp chữ".</li>
+                <li><strong>Tạo nhịp kể chuyện (Pacing):</strong> Chuyển sang slide mới là một "món ăn thị giác" mới đầy háo hức.</li>
+              </ul>
+            </div>
+          </div>
+          <div style="margin-top: 16px; font-size: 12px; font-weight: 800; color: #047857;">
+            👉 Đề xuất: Giữ nguyên 1 Hero Illustration chất lượng cao cho mỗi slide!
+          </div>
+        </div>
+
+        <!-- Case 2: Mỗi Card 1 Ảnh -->
+        <div class="advice-card caution">
+          <div>
+            <div class="advice-badge">
+              <span>⚖️</span>
+              <span>CẦN PHÂN BIỆT THEO LOẠI SLIDE</span>
+            </div>
+            <h3 class="advice-h3">2. Có Nên Tạo Ảnh Riêng Cho Từng Thẻ (Card)?</h3>
+            <div class="advice-body">
+              <p>Không nên áp dụng rập khuôn cho mọi slide, mà cần phân theo kích cỡ thẻ:</p>
+              <ul>
+                <li><strong>Với Slide nhiều thẻ nhỏ (Slide 2 có 5 thẻ, Slide 5 có 7 thẻ):</strong> KHÔNG NÊN nhồi ảnh tranh phức tạp vào từng thẻ, vì sẽ bóp nghẹt cỡ chữ (chữ bị bé lại khó đọc), gây rối mắt ("đánh nhau" thị giác) và làm nặng trang. <em>Giải pháp:</em> Dùng <strong>Sticker Doodle / Icon 3D mini (40px)</strong> sinh động, chữ vẫn to đại tướng!</li>
+                <li><strong>Với Slide ít thẻ lớn (Slide 3: 2 thẻ, Slide 4: 3 thẻ, Slide 6: 3 thẻ):</strong> RẤT NÊN có ảnh riêng vì không gian thẻ cực rộng, minh họa riêng từng thẻ (như Sách giấy vs Kindle vs Sách nói) sẽ trực quan gấp 10 lần!</li>
+              </ul>
+            </div>
+          </div>
+          <div style="margin-top: 16px; font-size: 12px; font-weight: 800; color: #B45309;">
+            👉 Đề xuất: Slide ít thẻ dùng tranh riêng; Slide nhiều thẻ dùng Sticker/Doodle!
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: 5 MẪU CHỦ ĐỀ HÌNH ẢNH -->
+    <div class="section-heading">
+      <h2>5 Phong Cách Nghệ Thuật Đề Xuất (Ấn vào ảnh để phóng to)</h2>
+      <p>Nhấp vào nút "Chọn Chủ Đề Này" dưới phong cách bạn ưng ý nhất để tiến hành tạo ảnh đồng loạt</p>
+    </div>
+
+    <div class="themes-grid">
+
+      <!-- THEME 1 -->
+      <div class="theme-card selected" id="theme-card-1">
+        <div class="theme-img-wrap" onclick="openModal('/assets/theme-1-sunday-comic.webp', 'Chủ Đề 1: Classic Sunday Color Comic')">
+          <span class="theme-tag" style="background: #FEF08A; color: #78350F;">CHỦ ĐỀ 01 • HIỆN TẠI</span>
+          <img src="/assets/theme-1-sunday-comic.webp" alt="Classic Sunday Color Comic">
+        </div>
+        <div class="theme-body">
+          <div>
+            <h3 class="theme-title">Classic Sunday Color Comic</h3>
+            <div class="theme-author-vibe">"Phong cách Báo Tranh Cuối Tuần (Calvin & Hobbes / Peanuts)"</div>
+            
+            <ul class="theme-features" style="margin-top: 14px;">
+              <li><span>🖋️</span> Nét mực đen sắt nét (bold ink linework), biểu cảm đáng yêu, hóm hỉnh.</li>
+              <li><span>🎨</span> Màu nước ấm áp cổ điển, kết hợp hạt chấm in báo offset nhẹ (halftone dots).</li>
+              <li><span>☕</span> Nhân vật mọt sách kính to, mèo béo, cà phê khói nghi ngút.</li>
+              <li><span>✨</span> <strong>Độ tương thích: 100%</strong> ăn khớp với giao diện Sunday Strip hiện tại.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="palette-row">
+              <span class="palette-label">Bảng màu:</span>
+              <div class="palette-swatches">
+                <div class="swatch" style="background: #E8E4DC;" title="Parchment Cream"></div>
+                <div class="swatch" style="background: #FEF08A;" title="Warm Yellow"></div>
+                <div class="swatch" style="background: #E0F2FE;" title="Soft Sky Blue"></div>
+                <div class="swatch" style="background: #1F2937;" title="Comic Ink Black"></div>
+              </div>
+            </div>
+
+            <button class="select-btn" onclick="selectTheme(1)" style="margin-top: 14px;">
+              <span>✓</span>
+              <span>Đang Được Chọn</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- THEME 2 -->
+      <div class="theme-card" id="theme-card-2">
+        <div class="theme-img- học" onclick="openModal('/assets/theme-2-retro-editorial.webp', 'Chủ Đề 2: Retro Editorial Satire')">
+          <div class="theme-img-wrap">
+            <span class="theme-tag" style="background: #FEE2E2; color: #991B1B;">CHỦ ĐỀ 02 • CHÂM BIẾM</span>
+            <img src="/assets/theme-2-retro-editorial.webp" alt="Retro Editorial Satire">
+          </div>
+        </div>
+        <div class="theme-body">
+          <div>
+            <h3 class="theme-title">Retro Editorial Satire</h3>
+            <div class="theme-author-vibe">"Biếm Họa Báo Chí Trí Thức Thập Niên 60 (The New Yorker / Punch)"</div>
+            
+            <ul class="theme-features" style="margin-top: 14px;">
+              <li><span>📐</span> Nét gạch bóng tinh tế (cross-hatching), góc nhìn châm biếm sâu cay và sắc sảo.</li>
+              <li><span>🎩</span> Học giả thông thái ngồi trên tháp sách chót vót chạm mây, cầm kính lúp và tách espresso.</li>
+              <li><span>📰</span> Bảng màu giới hạn (Limited Palette): Vàng mù tạt, xanh navy, cam đất nung.</li>
+              <li><span>✨</span> Phù hợp bài nói phong cách trí thức giễu nhại, triết lý ngược đỉnh cao.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="palette-row">
+              <span class="palette-label">Bảng màu:</span>
+              <div class="palette-swatches">
+                <div class="swatch" style="background: #F4ECE1;" title="Antique Newsprint"></div>
+                <div class="swatch" style="background: #D97706;" title="Mustard Amber"></div>
+                <div class="swatch" style="background: #1E3A8A;" title="Deep Editorial Navy"></div>
+                <div class="swatch" style="background: #9A3412;" title="Terracotta Rust"></div>
+              </div>
+            </div>
+
+            <button class="select-btn" onclick="selectTheme(2)" style="margin-top: 14px;">
+              <span>Chọn Chủ Đề Này</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- THEME 3 -->
+      <div class="theme-card" id="theme-card-3">
+        <div class="theme-img-wrap" onclick="openModal('/assets/theme-3-claymation-3d.webp', 'Chủ Đề 3: Modern 3D Claymation')">
+          <span class="theme-tag" style="background: #DCFCE7; color: #166534;">CHỦ ĐỀ 03 • ĐỘC ĐÁO</span>
+          <img src="/assets/theme-3-claymation-3d.webp" alt="Modern 3D Claymation">
+        </div>
+        <div class="theme-body">
+          <div>
+            <h3 class="theme-title">Modern 3D Claymation</h3>
+            <div class="theme-author-vibe">"Đất Sét Hoạt Hình Nổi Khối (Wallace & Gromit / Shaun the Sheep)"</div>
+            
+            <ul class="theme-features" style="margin-top: 14px;">
+              <li><span>🧸</span> Nhân vật và sách nặn từ đất sét 3D tròn trĩnh, có vân tay chân thật ngộ nghĩnh.</li>
+              <li><span>💡</span> Ánh sáng studio 3D mềm mại, đổ bóng dịu mắt tạo cảm giác nổi khối sờ thấy được.</li>
+              <li><span>📚</span> Nhân vật mắt to ngơ ngác gù lưng vác cuốn sách đất sét to gấp 3 người.</li>
+              <li><span>✨</span> Rất hiện đại, trẻ trung, thị giác mới lạ bùng nổ cuốn hút Gen Z.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="palette-row">
+              <span class="palette-label">Bảng màu:</span>
+              <div class="palette-swatches">
+                <div class="swatch" style="background: #FDFBF7;" title="Soft White Studio"></div>
+                <div class="swatch" style="background: #34D399;" title="Clay Mint"></div>
+                <div class="swatch" style="background: #FBBF24;" title="Clay Warm Yellow"></div>
+                <div class="swatch" style="background: #F87171;" title="Clay Coral Red"></div>
+              </div>
+            </div>
+
+            <button class="select-btn" onclick="selectTheme(3)" style="margin-top: 14px;">
+              <span>Chọn Chủ Đề Này</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- THEME 4 -->
+      <div class="theme-card" id="theme-card-4">
+        <div class="theme-img-wrap" onclick="openModal('/assets/theme-4-chibi-manga.webp', 'Chủ Đề 4: Chibi Manga Gag Comedy')">
+          <span class="theme-tag" style="background: #E0F2FE; color: #075985;">CHỦ ĐỀ 04 • HÀI BỰA</span>
+          <img src="/assets/theme-4-chibi-manga.webp" alt="Chibi Manga Gag Comedy">
+        </div>
+        <div class="theme-body">
+          <div>
+            <h3 class="theme-title">Chibi Manga Gag Comedy</h3>
+            <div class="theme-author-vibe">"Manga Doodles & Webtoon Hài Bựa (Meme Factor Cao)"</div>
+            
+            <ul class="theme-features" style="margin-top: 14px;">
+              <li><span>💥</span> Biểu cảm phóng đại cực mạnh: Hồn lìa khỏi xác, mắt thâm quầng như gấu trúc lúc 4h sáng.</li>
+              <li><span>☕</span> Trùm chăn run rẩy uống cà phê, đồng hồ báo thức rung lắc điên cuồng.</li>
+              <li><span>🎯</span> Nét vẽ sticker ngộ nghĩnh, biểu cảm dễ đồng cảm gây cười tức thì.</li>
+              <li><span>✨</span> Cực kỳ phù hợp để cắt nhỏ thành sticker gắn vào từng thẻ card con!</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="palette-row">
+              <span class="palette-label">Bảng màu:</span>
+              <div class="palette-swatches">
+                <div class="swatch" style="background: #EFF6FF;" title="Pastel Blue"></div>
+                <div class="swatch" style="background: #FEE2E2;" title="Panic Red"></div>
+                <div class="swatch" style="background: #FEF3C7;" title="Coffee Yellow"></div>
+                <div class="swatch" style="background: #111827;" title="Manga Ink"></div>
+              </div>
+            </div>
+
+            <button class="select-btn" onclick="selectTheme(4)" style="margin-top: 14px;">
+              <span>Chọn Chủ Đề Này</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- THEME 5 -->
+      <div class="theme-card" id="theme-card-5">
+        <div class="theme-img-wrap" onclick="openModal('/assets/theme-5-davinci-anatomy.webp', 'Chủ Đề 5: Da Vinci Medical Engraving Parody')">
+          <span class="theme-tag" style="background: #FEF3C7; color: #92400E;">CHỦ ĐỀ 05 • BẢN THẢO</span>
+          <img src="/assets/theme-5-davinci-anatomy.webp" alt="Da Vinci Medical Engraving Parody">
+        </div>
+        <div class="theme-body">
+          <div>
+            <h3 class="theme-title">Da Vinci Anatomy Parody</h3>
+            <div class="theme-author-vibe">"Bản Khắc Đồng Y Khoa Giả Tưởng Thế Kỷ 18 (Da Vinci Codex)"</div>
+            
+            <ul class="theme-features" style="margin-top: 14px;">
+              <li><span>📜</span> Sơ đồ giải phẫu cắt lớp bộ não "nhiễm độc sách" với các vùng hài hước (Vùng Viêm ví Tsundoku, Thùy sợ hết pin Kindle).</li>
+              <li><span>✒️</span> Nét khắc đồng (etching) tinh xảo, chữ viết gương Da Vinci, bút lông ngỗng và lọ mực cổ.</li>
+              <li><span>🔬</span> Tạo cảm giác một bản cáo trạng "y khoa ngụy khoa học" độc nhất vô nhị.</li>
+              <li><span>✨</span> Dành cho người thích sự kỳ bí, cổ kính, thâm thúy và khác biệt hoàn toàn.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="palette-row">
+              <span class="palette-label">Bảng màu:</span>
+              <div class="palette-swatches">
+                <div class="swatch" style="background: #E8D8C3;" title="Aged Vellum"></div>
+                <div class="swatch" style="background: #78350F;" title="Sepia Sanguine"></div>
+                <div class="swatch" style="background: #451A03;" title="Burnt Umber"></div>
+                <div class="swatch" style="background: #1C1917;" title="Etching Carbon"></div>
+              </div>
+            </div>
+
+            <button class="select-btn" onclick="selectTheme(5)" style="margin-top: 14px;">
+              <span>Chọn Chủ Đề Này</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SUMMARY RECOMMENDATION FOOTER -->
+    <footer style="text-align: center; padding: 30px; background: #FFFFFF; border: var(--comic-border); border-radius: 20px; box-shadow: var(--comic-shadow);">
+      <h3 style="font-family: 'Fredoka', cursive; font-size: 20px; font-weight: 800; margin-bottom: 8px;">
+        💡 Gợi Ý Lựa Chọn Nhanh
+      </h3>
+      <p style="font-size: 15px; font-weight: 600; color: #4B5563; max-width: 800px; margin: 0 auto;">
+        Nếu bạn muốn phong cách <strong>hài hước, ấm áp và ăn khớp 100%</strong> với bộ slide hiện tại: Chọn <strong>Chủ Đề 1 (Sunday Comic)</strong> hoặc <strong>Chủ Đề 4 (Chibi Gag)</strong>.<br>
+        Nếu bạn muốn phong cách <strong>sang trọng, biếm họa trí thức thâm thúy</strong>: Chọn <strong>Chủ Đề 2 (Retro Editorial)</strong> hoặc <strong>Chủ Đề 5 (Da Vinci Anatomy)</strong>.
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="modal" id="imageModal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <img class="modal-img" id="modalImg" src="" alt="Theme Preview">
+      <div class="modal-footer">
+        <div class="modal-caption" id="modalCaption"></div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING ACTION BAR -->
+  <div class="action-bar">
+    <span class="action-text">🚀 Đang chọn: <span id="currentSelection" style="color: #B45309; font-weight: 900;">Chủ Đề 1 (Classic Sunday Comic)</span></span>
+    <a href="http://localhost:3000/#slide-1" class="action-link" target="_blank">Xem Thử Slide Hiện Tại ↗</a>
+  </div>
+
+  <script>
+    const themeNames = {
+      1: 'Chủ Đề 1: Classic Sunday Color Comic',
+      2: 'Chủ Đề 2: Retro Editorial Satire (New Yorker)',
+      3: 'Chủ Đề 3: Modern 3D Claymation (Đất Sét Hoạt Hình)',
+      4: 'Chủ Đề 4: Chibi Manga Gag Comedy (Hài Bựa)',
+      5: 'Chủ Đề 5: Da Vinci Medical Engraving Parody'
+    };
+
+    function selectTheme(themeId) {
+      document.querySelectorAll('.theme-card').forEach((card, idx) => {
+        card.classList.remove('selected');
+        const btn = card.querySelector('.select-btn');
+        if (btn) {
+          btn.innerHTML = '<span>Chọn Chủ Đề Này</span>';
+        }
+      });
+
+      const selectedCard = document.getElementById('theme-card-' + themeId);
+      if (selectedCard) {
+        selectedCard.classList.add('selected');
+        const btn = selectedCard.querySelector('.select-btn');
+        if (btn) {
+          btn.innerHTML = '<span>✓</span><span>Đang Được Chọn</span>';
+        }
+      }
+
+      document.getElementById('currentSelection').textContent = themeNames[themeId];
+    }
+
+    function openModal(imgSrc, caption) {
+      document.getElementById('modalImg').src = imgSrc;
+      document.getElementById('modalCaption').textContent = caption;
+      document.getElementById('imageModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('imageModal').classList.remove('active');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+
+</body>
+</html>
