@@ -7,6 +7,23 @@
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     /* Typography */
+    /* 6. REFERENCE PHOTO CODEX: VINTAGE LIBRARY & FEATHER QUILL */
+    .font-reference-title {
+      font-family: 'Snell Roundhand', 'Brush Script MT', 'Apple Chancery', 'Playfair Display', 'Cinzel Decorative', Georgia, cursive, serif;
+    }
+    .font-reference-body {
+      font-family: 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+    }
+    .bg-parchment-reference {
+      background-color: #ebdcb9;
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(255, 248, 230, 0.4) 0%, rgba(180, 83, 9, 0.15) 70%, rgba(69, 26, 3, 0.48) 100%),
+        url('tham%20kh%E1%BA%A3o%20slide/images.jpeg');
+      background-size: cover;
+      background-blend-mode: multiply;
+      box-shadow: inset 0 0 65px rgba(69, 26, 3, 0.65), inset 0 0 20px rgba(35, 12, 1, 0.8);
+    }
+
     .font-davinci-title { font-family: 'Cinzel', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; }
     .font-davinci-note { font-family: 'Georgia', 'Times New Roman', serif; font-style: italic; }
     .font-davinci-mono { font-family: 'Courier New', Courier, monospace; letter-spacing: -0.5px; }
@@ -137,10 +154,10 @@
     <!-- Top Announcement Header -->
     <header class="text-center mb-6">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#dfd0b5] border-2 border-[#78350f] text-[#522504] text-xs font-black tracking-widest uppercase mb-2 shadow-sm">
-        ⚖️ SO SÁNH TRỰC DIỆN: 5 BẢN THẢO DA VINCI VS 5 KIỂU GIẤY DA PARCHMENT
+        ⚖️ BẢNG SO SÁNH: BẢN THẢO DA VINCI (CÓ MẪU ẢNH THỰC TẾ) VS GIẤY DA PARCHMENT
       </div>
       <h1 class="text-2xl md:text-4xl font-black text-[#2e1708] tracking-tight mb-2 font-davinci-title">
-        Bảng So Sánh 10 Giao Diện Cổ Điển: <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#78350f] via-[#991b1b] to-[#451a03]">"Tác Hại Của Việc Đọc Sách"</span>
+        Bảng So Sánh 11 Giao Diện Cổ Điển (Kèm Mẫu Ảnh Thực Tế): <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#78350f] via-[#991b1b] to-[#451a03]">"Tác Hại Của Việc Đọc Sách"</span>
       </h1>
       <p class="text-[#5c3417] text-xs md:text-sm max-w-2xl mx-auto font-medium">
         Bạn có thể bấm chuyển đổi ngay giữa <strong>Bộ 5 Bản Thảo Da Vinci</strong> và <strong>Bộ 5 Giấy Da Parchment Cổ</strong> để đối chiếu trực tiếp từng slide và chốt mẫu ưng ý nhất!
@@ -149,7 +166,7 @@
       <!-- Main Category Switcher (Da Vinci vs Parchment vs Others) -->
       <div class="inline-flex p-1.5 bg-white/90 border-2 border-[#78350f] rounded-2xl shadow-lg mt-4 flex-wrap justify-center gap-1.5 backdrop-blur-sm">
         <button onclick="toggleGroup('davinci')" id="btn-mode-davinci" class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-black transition-all bg-[#6b3e1b] text-amber-50 shadow-md">
-          <span>🎨</span> Bộ 5 Bản Thảo Da Vinci
+          <span>🎨</span> Bộ Bản Thảo Da Vinci (6 mẫu kèm Mẫu Ảnh ⭐)
         </button>
         <button onclick="toggleGroup('parchment')" id="btn-mode-parchment" class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-bold transition-all text-[#382110] hover:text-black hover:bg-amber-100">
           <span>📜</span> Bộ 5 Giấy Da Parchment Paper
@@ -250,6 +267,287 @@
   <script>
     // 5 DA VINCI THEMES
     const DAVINCI_THEMES = [
+      {
+        id: "davinci_reference_codex",
+        group: "davinci",
+        number: "⭐ MẪU THAM KHẢO",
+        title: "Da Vinci Codex: Sách Cổ & Bút Lông Vũ (Chuẩn Theo Mẫu Ảnh)",
+        subtitle: "Bút Lông Vũ / Sách Gáy Da / Kính Tròn / Chữ Viết Tay Nghệ Thuật",
+        icon: "🪶",
+        badge: "⭐ THEO ẢNH BẠN GỬI",
+        badgeColor: "bg-amber-900 text-amber-100 border-amber-500 shadow-sm",
+        desc: "Thiết kế chuẩn xác 1:1 theo ảnh mẫu bạn cung cấp trong thư mục tham khảo slide: Nền giấy da cổ ngả vàng tự nhiên, gáy viền xém ấm áp, tiêu đề thư pháp uốn lượn (Calligraphy Script), hoa văn biểu tượng sách cổ, các điểm nhấn bằng biểu tượng ✦ thanh nhã, và cụm hình họa sách cổ gáy da mạ vàng, bản thảo mở, lọ mực, bút lông vũ cùng cặp kính học giả.",
+        typography: "Snell Roundhand (Cursive) & Palatino Italic",
+        palette: [
+          { name: "Parchment Tan", hex: "#ebdcb9" },
+          { name: "Walnut Ink", hex: "#291305" },
+          { name: "Antique Gold", hex: "#b45309" },
+          { name: "Sepia Brown", hex: "#6b3e1b" },
+          { name: "Oxblood Red", hex: "#7f1d1d" }
+        ],
+        slides: {
+          1: `
+            <div class="w-full h-full bg-parchment-reference text-[#291305] p-5 md:p-9 flex flex-col justify-between font-reference-body relative select-none">
+              
+              <!-- Top Header & Divider -->
+              <div class="text-center pt-1">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-[#220f04] tracking-normal mb-1 font-reference-title italic">
+                  Tác hại của việc đọc sách
+                </h1>
+                
+                <div class="flex items-center justify-center gap-3 my-1 text-[#5c3417]">
+                  <div class="h-[1px] w-16 md:w-24 bg-gradient-to-r from-transparent to-[#5c3417]/70"></div>
+                  <span class="text-xs md:text-sm tracking-widest text-[#78350f]">🪶 📖 🪶</span>
+                  <div class="h-[1px] w-16 md:w-24 bg-gradient-to-l from-transparent to-[#5c3417]/70"></div>
+                </div>
+
+                <p class="italic text-xs md:text-sm text-[#451a03] font-medium tracking-wide">
+                  (Thực ra là ích lợi, nhưng nhìn theo lối tư duy ngược hài hước)
+                </p>
+              </div>
+
+              <!-- Main Content: 2 Columns Layout -->
+              <div class="grid grid-cols-12 gap-2 md:gap-4 items-center my-auto py-1">
+                
+                <!-- Left 7 Cols: The 5 Bullet Points -->
+                <div class="col-span-7 flex flex-col justify-center space-y-2 md:space-y-3.5 pl-2 md:pl-6 text-[#240e03]">
+                  <div class="flex items-start gap-2 text-xs md:text-sm font-semibold italic leading-relaxed">
+                    <span class="text-xs text-[#5c3417] mt-0.5">✦</span>
+                    <span>Dễ bị nghiện kiến thức và tò mò về thế giới</span>
+                  </div>
+                  <div class="flex items-start gap-2 text-xs md:text-sm font-semibold italic leading-relaxed">
+                    <span class="text-xs text-[#5c3417] mt-0.5">✦</span>
+                    <span>Khiến vốn từ tăng lên bất thường</span>
+                  </div>
+                  <div class="flex items-start gap-2 text-xs md:text-sm font-semibold italic leading-relaxed">
+                    <span class="text-xs text-[#5c3417] mt-0.5">✦</span>
+                    <span>Làm trí tưởng tượng hoạt động quá mức</span>
+                  </div>
+                  <div class="flex items-start gap-2 text-xs md:text-sm font-semibold italic leading-relaxed">
+                    <span class="text-xs text-[#5c3417] mt-0.5">✦</span>
+                    <span>Gây ra thói quen suy nghĩ sâu và phản biện</span>
+                  </div>
+                  <div class="flex items-start gap-2 text-xs md:text-sm font-semibold italic leading-relaxed">
+                    <span class="text-xs text-[#5c3417] mt-0.5">✦</span>
+                    <span>Có thể khiến bạn bình tĩnh, tập trung và sống tích cực hơn</span>
+                  </div>
+                </div>
+
+                <!-- Right 5 Cols: Illustration of Books, Quill, Ink & Glasses -->
+                <div class="col-span-5 flex items-center justify-center pr-2 md:pr-4">
+                  <img src="tham%20kh%E1%BA%A3o%20slide/books_quill_crop.jpg" 
+                       alt="Chồng sách cổ, bút lông vũ và kính mắt" 
+                       class="max-h-[250px] md:max-h-[300px] w-auto object-contain drop-shadow-md rounded" 
+                       style="mix-blend-mode: multiply;" 
+                       onerror="this.src='tham%20kh%E1%BA%A3o%20slide/1794855195762_7597751308122656722_7597751308122656722_49e7628b22cfe13bd79c67752f3f62e3.jpg'" />
+                </div>
+
+              </div>
+
+              <!-- Bottom Footer Bar -->
+              <div class="flex justify-between items-center text-[10px] md:text-xs text-[#6b3e1b] border-t border-[#78350f]/20 pt-1.5 px-2">
+                <span>CODEX BIBLIOTHECA: MẪU THAM KHẢO THỰC TẾ</span>
+                <span class="italic">"Tri thức là căn bệnh duy nhất khiến người ta tự nguyện không muốn chữa khỏi."</span>
+                <span>FLORENTIA 2026</span>
+              </div>
+
+            </div>
+          `,
+          2: `
+            <div class="w-full h-full bg-parchment-reference text-[#291305] p-5 md:p-9 flex flex-col justify-between font-reference-body relative select-none">
+              
+              <!-- Top Header & Divider -->
+              <div class="text-center pt-1">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-[#220f04] tracking-normal mb-1 font-reference-title italic">
+                  Những "Di Chứng" Khoa Học Đáng Báo Động
+                </h1>
+                
+                <div class="flex items-center justify-center gap-3 my-1 text-[#5c3417]">
+                  <div class="h-[1px] w-16 md:w-24 bg-gradient-to-r from-transparent to-[#5c3417]/70"></div>
+                  <span class="text-xs md:text-sm tracking-widest text-[#78350f]">🪶 📖 🪶</span>
+                  <div class="h-[1px] w-16 md:w-24 bg-gradient-to-l from-transparent to-[#5c3417]/70"></div>
+                </div>
+
+                <p class="italic text-xs md:text-sm text-[#451a03] font-medium tracking-wide">
+                  (Bằng chứng từ ĐH Sussex & Yale về sự "nguy hiểm" của thói quen đọc sách)
+                </p>
+              </div>
+
+              <!-- Main Content: 2 Parchment Statistic Cards -->
+              <div class="grid grid-cols-2 gap-4 md:gap-6 my-auto max-w-4xl mx-auto w-full px-2">
+                
+                <!-- Stat Card 1: Sussex -->
+                <div class="bg-[#faf3e3]/80 p-4 md:p-5 rounded-2xl border-2 border-[#78350f]/30 shadow-md flex flex-col justify-between relative overflow-hidden backdrop-blur-[1px]">
+                  <div class="absolute -right-3 -bottom-4 text-6xl opacity-10 select-none">🫀</div>
+                  <div>
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-[#78350f] border-b border-[#78350f]/30 pb-0.5">Khảo Cứu Sussex (2009)</span>
+                      <span class="text-xs text-[#991b1b] font-bold">6 PHÚT ĐỌC</span>
+                    </div>
+                    <div class="text-4xl md:text-6xl font-black text-[#991b1b] font-reference-title italic tracking-tight mb-1">
+                      -68%
+                    </div>
+                    <h3 class="font-bold text-xs md:text-sm text-[#291305] mb-2 uppercase tracking-wide">
+                      Mức Độ Căng Thẳng (Stress)
+                    </h3>
+                    <p class="text-xs text-[#522504] leading-relaxed italic">
+                      ✦ Chỉ sau 6 phút đọc trong im lặng, nhịp tim đã chậm lại và các nhóm cơ tự động thả lỏng.
+                    </p>
+                  </div>
+                  <div class="mt-3 pt-2 border-t border-[#78350f]/20 text-[11px] text-[#78350f] font-semibold italic">
+                    ⚠️ "Hại" vì làm mất đi cảm giác bồn chồn, âu lo quen thuộc vốn do mạng xã hội dày công ban tặng!
+                  </div>
+                </div>
+
+                <!-- Stat Card 2: Yale -->
+                <div class="bg-[#faf3e3]/80 p-4 md:p-5 rounded-2xl border-2 border-[#78350f]/30 shadow-md flex flex-col justify-between relative overflow-hidden backdrop-blur-[1px]">
+                  <div class="absolute -right-3 -bottom-4 text-6xl opacity-10 select-none">⏳</div>
+                  <div>
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-[#78350f] border-b border-[#78350f]/30 pb-0.5">Khảo Cứu Yale (12 Năm)</span>
+                      <span class="text-xs text-[#991b1b] font-bold">3.635 ĐỐI TƯỢNG</span>
+                    </div>
+                    <div class="text-4xl md:text-6xl font-black text-[#991b1b] font-reference-title italic tracking-tight mb-1">
+                      +2 Năm
+                    </div>
+                    <h3 class="font-bold text-xs md:text-sm text-[#291305] mb-2 uppercase tracking-wide">
+                      Kéo Dài Tuổi Thọ Sinh Học
+                    </h3>
+                    <p class="text-xs text-[#522504] leading-relaxed italic">
+                      ✦ Những người đọc sách 30 phút/ngày sống thọ hơn trung bình gần 2 năm so với người không đọc.
+                    </p>
+                  </div>
+                  <div class="mt-3 pt-2 border-t border-[#78350f]/20 text-[11px] text-[#78350f] font-semibold italic">
+                    ⚠️ "Hại" vì bắt bạn phải sống lâu hơn để chứng kiến thêm nhiều biến động trần gian và tốn tiền mua sách!
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Bottom Footnote -->
+              <div class="flex justify-between items-center text-[10px] md:text-xs text-[#6b3e1b] border-t border-[#78350f]/20 pt-1.5 px-2">
+                <span>👓 NGUY HIỂM: ĐỌC SÁCH LÀM CHẬM NHỊP TIM QUÁ MỨC</span>
+                <span class="italic">"Sự yên bình này là mối đe dọa với lối sống âu lo thời hiện đại."</span>
+                <span>CHỨNG TỪ: YALE & SUSSEX</span>
+              </div>
+
+            </div>
+          `,
+          3: `
+            <div class="w-full h-full bg-parchment-reference text-[#291305] p-5 md:p-9 flex flex-col justify-between font-reference-body relative select-none">
+              
+              <!-- Top Header & Divider -->
+              <div class="text-center pt-1">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-[#220f04] tracking-normal mb-1 font-reference-title italic">
+                  Ba Con Đường "Biến Đổi" Não Bộ
+                </h1>
+                
+                <div class="flex items-center justify-center gap-3 my-1 text-[#5c3417]">
+                  <div class="h-[1px] w-16 md:w-24 bg-gradient-to-r from-transparent to-[#5c3417]/70"></div>
+                  <span class="text-xs md:text-sm tracking-widest text-[#78350f]">🪶 📖 🪶</span>
+                  <div class="h-[1px] w-16 md:w-24 bg-gradient-to-l from-transparent to-[#5c3417]/70"></div>
+                </div>
+
+                <p class="italic text-xs md:text-sm text-[#451a03] font-medium tracking-wide">
+                  (Khảo sát cơ chế kích thích tư duy giữa Sách, Điện Ảnh và Mạng Xã Hội)
+                </p>
+              </div>
+
+              <!-- Main Content: 3 Comparison Columns -->
+              <div class="grid grid-cols-3 gap-3 md:gap-4 my-auto max-w-5xl mx-auto w-full px-1">
+                
+                <!-- Col 1: Sách Giấy -->
+                <div class="bg-[#faf3e3]/85 p-3.5 md:p-4 rounded-xl border-2 border-[#78350f] shadow-md flex flex-col justify-between">
+                  <div>
+                    <div class="text-center pb-2 border-b border-[#78350f]/30 mb-2">
+                      <div class="text-2xl mb-0.5">📖</div>
+                      <h3 class="font-bold text-xs md:text-sm text-[#291305] uppercase tracking-wider font-davinci-title">
+                        Sách & Bản Thảo
+                      </h3>
+                      <span class="text-[10px] text-[#991b1b] font-bold">KÍCH HOẠT 100% NƠ-RON</span>
+                    </div>
+                    <ul class="space-y-2 text-[11px] md:text-xs text-[#381c08] leading-relaxed italic">
+                      <li class="flex items-start gap-1">
+                        <span class="text-[#78350f]">✦</span>
+                        <span>Não bộ tự "đạo diễn" hình ảnh, âm thanh, bối cảnh từ mặt chữ.</span>
+                      </li>
+                      <li class="flex items-start gap-1">
+                        <span class="text-[#78350f]">✦</span>
+                        <span>Bắt ép tư duy phản biện và ghi nhớ dài hạn phải vận hành.</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="mt-2 pt-2 border-t border-[#78350f]/20 text-center">
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-[#991b1b] text-white">NGUY HIỂM: 5/5 💀</span>
+                  </div>
+                </div>
+
+                <!-- Col 2: Điện Ảnh -->
+                <div class="bg-[#faf3e3]/75 p-3.5 md:p-4 rounded-xl border border-[#78350f]/40 shadow-sm flex flex-col justify-between">
+                  <div>
+                    <div class="text-center pb-2 border-b border-[#78350f]/30 mb-2">
+                      <div class="text-2xl mb-0.5">🎬</div>
+                      <h3 class="font-bold text-xs md:text-sm text-[#291305] uppercase tracking-wider font-davinci-title">
+                        Điện Ảnh & Phim
+                      </h3>
+                      <span class="text-[10px] text-[#b45309] font-bold">TIẾP NHẬN BÁN THỤ ĐỘNG</span>
+                    </div>
+                    <ul class="space-y-2 text-[11px] md:text-xs text-[#381c08] leading-relaxed italic">
+                      <li class="flex items-start gap-1">
+                        <span class="text-[#78350f]">✦</span>
+                        <span>Hình ảnh, màu sắc, âm thanh đã được dàn dựng sẵn 100%.</span>
+                      </li>
+                      <li class="flex items-start gap-1">
+                        <span class="text-[#78350f]">✦</span>
+                        <span>Trí tưởng tượng được nghỉ ngơi; cảm xúc mạnh nhưng chóng quên.</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="mt-2 pt-2 border-t border-[#78350f]/20 text-center">
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-[#b45309] text-white">AN TOÀN: 3/5 ⚠️</span>
+                  </div>
+                </div>
+
+                <!-- Col 3: Mạng Xã Hội -->
+                <div class="bg-[#faf3e3]/75 p-3.5 md:p-4 rounded-xl border border-[#78350f]/40 shadow-sm flex flex-col justify-between">
+                  <div>
+                    <div class="text-center pb-2 border-b border-[#78350f]/30 mb-2">
+                      <div class="text-2xl mb-0.5">📱</div>
+                      <h3 class="font-bold text-xs md:text-sm text-[#291305] uppercase tracking-wider font-davinci-title">
+                        Mạng Xã Hội (Reels)
+                      </h3>
+                      <span class="text-[10px] text-[#15803d] font-bold">DOPAMINE 8 GIÂY/LẦN</span>
+                    </div>
+                    <ul class="space-y-2 text-[11px] md:text-xs text-[#381c08] leading-relaxed italic">
+                      <li class="flex items-start gap-1">
+                        <span class="text-[#78350f]">✦</span>
+                        <span>Thuật toán bơm phần thưởng tức thì; hoàn toàn không phải suy nghĩ.</span>
+                      </li>
+                      <li class="flex items-start gap-1">
+                        <span class="text-[#78350f]">✦</span>
+                        <span>Phân mảnh khả năng tập trung; não quen với lướt vuốt vô thức.</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="mt-2 pt-2 border-t border-[#78350f]/20 text-center">
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-[#15803d] text-white">VÔ HẠI CHO NÃO LƯỜI ✨</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Bottom Footnote -->
+              <div class="flex justify-between items-center text-[10px] md:text-xs text-[#6b3e1b] border-t border-[#78350f]/20 pt-1.5 px-2">
+                <span>LỰA CHỌN: SÁCH ÉP NÃO LÀM VIỆC — MẠNG XÃ HỘI GIÚP NÃO RU NGỦ</span>
+                <span class="italic">"Hãy cẩn trọng khi quyết định lật một trang giấy."</span>
+                <span>TABULA COMPARATIVA</span>
+              </div>
+
+            </div>
+          `
+        }
+      },
+
       {
         id: "davinci_anatomia",
         group: "davinci",
@@ -1123,7 +1421,7 @@
         id: "parchment_davinci",
         group: "parchment",
         number: "Parchment #4",
-        title: "Bản Thảo Giả Kim Thuật (Renaissance Alchemy)",
+        title: "Bản Thảo Da Vinci Cổ Điển (Da Vinci Codex Original)",
         subtitle: "Nét Vẽ Giải Phẫu / Mực Sepia / Giả Kim",
         icon: "📐",
         badge: "Nghiên Cứu Giả Kim",
