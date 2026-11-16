@@ -14,18 +14,18 @@ import { Slide12Conclusion } from '../slides/Slide12Conclusion';
 
 export const DeckContainer: React.FC = () => {
   const slideTitles = [
-    { n: 1, title: 'Bìa: Phá Vỡ Tỉ Lệ Vàng Vitruvius' },
-    { n: 2, title: 'Lộ Trình: 5 Quy Luật Hình Học Cảnh Tỉnh' },
-    { n: 3, title: 'Phần 01: Khảo Cứu Hình Học Sussex & Yale' },
-    { n: 4, title: 'Hai Quy Luật Tỉ Lệ Gây Hoang Mang (-68% & +2 Năm)' },
-    { n: 5, title: 'Phần 02: Tam Thể Khí Cụ Làm Lệch Trục' },
-    { n: 6, title: 'Đặt Lên Bàn Cân 3 Khí Cụ Đọc Sách' },
-    { n: 7, title: 'Phần 03: 7 Biến Chứng Phá Vỡ Hình Thể' },
-    { n: 8, title: 'Biến Chứng Tâm Thần & Não Bộ (1-4)' },
-    { n: 9, title: 'Biến Chứng Đời Sống, Tài Chính & Toilet (5-7)' },
+    { n: 1, title: 'Bìa: Tác Hại Của Việc Đọc Sách (Tranh Vui Cuối Tuần)' },
+    { n: 2, title: 'Tổng Quan: 5 Tác Hại Hài Hước (Chuẩn Slide Mẫu)' },
+    { n: 3, title: 'Phần 01: Khoa Học Vạch Trần Kẻ Đọc Sách' },
+    { n: 4, title: 'Hai Con Số Chấn Động (-68% Stress & +2 Năm)' },
+    { n: 5, title: 'Phần 02: Tam Thể Khí Cụ Làm Lệch Lối Sống' },
+    { n: 6, title: 'Tranh 3 Khung: Sách Giấy, E-Reader & Sách Nói' },
+    { n: 7, title: 'Phần 03: 7 Biến Chứng Khi Lỡ "Nghiện" Sách' },
+    { n: 8, title: '4 Biến Chứng Não Bộ & Tư Duy (Hài Hước)' },
+    { n: 9, title: '3 Biến Chứng Đời Sống, Tài Chính & Toilet' },
     { n: 10, title: 'Phần 04: Vì Sao 90% Thoát Nạn Nhờ Bỏ Cuộc?' },
-    { n: 11, title: 'Phần 05: 4 Bước Nhiễm Độc Sách Đúng Cách' },
-    { n: 12, title: 'Epilogus: Lời Chúc Phúc Độc Địa & Vấn Đáp' }
+    { n: 11, title: 'Phần 05: 4 Bước "Nhiễm Độc" Sách Nhẹ Nhàng' },
+    { n: 12, title: 'Epilogue: Lời Chúc Phúc Cho Người Nghiện Sách' }
   ];
 
   return (
@@ -39,10 +39,10 @@ export const DeckContainer: React.FC = () => {
           <div className="progress-bar-fill" id="progress-bar"></div>
         </div>
 
-        {/* Floating Codex Sanguine Badge */}
-        <div className="deck-top-badge" title="Da Vinci #3: Codex Sanguine">
-          <span>⭕</span>
-          <span>CODEX SANGUINE • VITRUVIUS 1490</span>
+        {/* Floating Sunday Newspaper Strip Badge */}
+        <div className="deck-top-badge" title="Sunday Newspaper Strip • Báo Tranh Vui Cuối Tuần">
+          <span>📰</span>
+          <span>TRANH VUI CHỦ NHẬT • TƯ DUY NGƯỢC</span>
         </div>
 
         {/* 12 Slides */}

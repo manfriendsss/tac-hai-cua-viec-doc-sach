@@ -1,85 +1,87 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 export const Slide10WhyQuit: React.FC = () => {
-  const reasons = [
-    {
-      icon: "☕",
-      title: "'Lưu Manh Giả Danh Trí Thức'",
-      desc: "Thấy người ta check-in ly cà phê với sách triết, kinh tế vĩ mô dày cộp, mình cũng mua về cho bằng bạn bằng bè. Đọc đến trang thứ 3, não tự ngắt cầu dao vì quá tải — sách biến thành vật kê laptop!"
-    },
-    {
-      icon: "⚡",
-      title: "Thua 'Đế Chế' 15 Giây",
-      desc: "Video ngắn là cỗ máy bơm dopamine siêu tốc — cứ vuốt ngón tay là có tiếng cười và hình ảnh nhảy múa. Trước cỗ máy hạng nặng đó, trang sách tĩnh lặng bỗng chậm chạp như một chú rùa già!"
-    },
-    {
-      icon: "⛓️",
-      title: "Tự Biến Thành 'Nô Lệ' Cuốn Sách",
-      desc: "Tâm lý tiếc của: 'Bỏ 150 nghìn mua là phải đọc đến dấu chấm cuối cùng!' Dù sách nhạt nhẽo buồn ngủ vẫn cố đấm ăn xôi nhai từng chữ, biến thú vui thành một hình thức tra tấn tinh thần!"
-    }
-  ];
-
   return (
-    <div className="slide bg-codex-sanguine text-[#7c2d12] p-6 md:p-10 flex flex-col justify-between font-davinci-note slide-sanguine-frame select-none" data-slide="10">
+    <div className="slide bg-comic-strip text-[#1f2937] p-6 md:p-10 font-comic-neue" data-slide="10">
       
-      {/* Top Banner */}
-      <div className="flex justify-between items-center text-xs font-davinci-mono text-[#991b1b] border-b border-[#991b1b]/20 pb-2">
-        <span>✦ PARS QUARTA • BẢO TOÀN TỶ LỆ VÀNG ✦</span>
-        <span>GIẢI MÃ SỰ THOÁT NẠN CỦA 90% NHÂN LOẠI</span>
+      {/* Top Bar */}
+      <div className="flex justify-between items-center z-10 border-b-3 border-[#1f2937] pb-2">
+        <span className="bg-[#fef08a] text-[#1f2937] px-3 py-0.5 rounded-full text-xs font-comic-fredoka font-bold border-2 border-[#1f2937] shadow-[2px_2px_0px_#1f2937]">
+          PHẦN 04: LỐI THOÁT HIỂM
+        </span>
+        <span className="text-xs font-comic-fredoka font-bold text-zinc-500">TRANG 10 / 12</span>
       </div>
 
-      {/* Header */}
-      <motion.div 
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center pt-1"
-      >
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#521b0a] font-davinci-title uppercase tracking-wide mb-1">
-          VÌ SAO 90% BẢO TOÀN ĐƯỢC TỶ LỆ VÀNG?
-        </h2>
-        <div className="divider-sanguine my-1">
-          <div className="divider-sanguine-line"></div>
-          <span className="text-xs tracking-widest text-[#991b1b]">🛡️ 🏃‍♂️ 💨</span>
-          <div className="divider-sanguine-line right"></div>
+      {/* Main Content */}
+      <div className="my-auto max-w-5xl mx-auto w-full z-10 flex flex-col gap-4">
+        
+        <div className="text-center">
+          <span className="bg-[#dcfce7] text-emerald-900 border-2 border-[#1f2937] px-3 py-1 rounded-full text-xs font-comic-fredoka font-bold shadow-[2px_2px_0px_#1f2937]">
+            TIN VUI CHO ĐA SỐ MỌI NGƯỜI
+          </span>
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#111827] font-comic-fredoka mt-2">
+            Vì Sao 90% Chúng Ta "Thoát Nạn" Thành Công?
+          </h2>
+          <p className="text-xs sm:text-sm font-bold text-zinc-600 mt-1">
+            (Đừng quá lo lắng, bộ não có cơ chế tự vệ siêu mạnh để bạn không bị 'nghiện' sách!)
+          </p>
         </div>
-        <p className="italic text-xs md:text-sm text-[#7c2d12]">
-          (Xin chúc mừng, 90% nhân loại đã may mắn "thoát nạn" nhờ 3 nguyên nhân dở khóc dở cười này)
-        </p>
-      </motion.div>
 
-      {/* 3 Main Reasons */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 my-auto w-full px-2">
-        {reasons.map((r, idx) => (
-          <motion.div 
-            key={idx}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 + idx * 0.12 }}
-            className="bg-white/65 p-5 md:p-6 border-2 border-dashed border-[#991b1b]/40 rounded-2xl flex flex-col justify-between shadow-md"
-          >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+          <div className="comic-panel-yellow p-4 flex flex-col justify-between">
             <div>
-              <div className="text-3xl mb-2 text-[#991b1b]">{r.icon}</div>
-              <h3 className="font-bold text-sm md:text-base text-[#521b0a] mb-2 font-davinci-title uppercase">
-                {r.title}
+              <div className="text-3xl mb-1">😴</div>
+              <h3 className="font-comic-fredoka font-black text-base text-[#111827]">
+                THUỐC NGỦ TỰ NHIÊN
               </h3>
-              <p className="text-xs text-[#7c2d12] leading-relaxed">
-                {r.desc}
+              <p className="text-xs font-bold text-zinc-700 mt-2 leading-relaxed">
+                Mở sách ra đọc đến dòng thứ 4, mắt tự động díp lại, đầu gật gù như bổ củi. Sách chính là liệu pháp trị mất ngủ an toàn và tiết kiệm nhất trần đời!
               </p>
             </div>
-
-            <div className="mt-4 pt-2 border-t border-[#991b1b]/20 text-[11px] text-[#991b1b] font-semibold italic">
-              ✦ Giữ nguyên dáng vóc Vitruvius thành công!
+            <div className="mt-3 text-[11px] font-comic-fredoka font-bold text-amber-800 bg-white/80 p-1.5 rounded-lg border border-[#1f2937] text-center">
+              Cơ chế tự ngắt: Bảo vệ mắt 💤
             </div>
-          </motion.div>
-        ))}
+          </div>
+
+          <div className="comic-panel-coral p-4 flex flex-col justify-between">
+            <div>
+              <div className="text-3xl mb-1">📱</div>
+              <h3 className="font-comic-fredoka font-black text-base text-[#111827]">
+                SỨC HÚT CỦA REELS & TIKTOK
+              </h3>
+              <p className="text-xs font-bold text-zinc-700 mt-2 leading-relaxed">
+                Đọc một trang sách mất 2 phút mà không có nhạc nền hay hiệu ứng chuyển cảnh. Trong khi đó quẹt 3 video ngắn dopamine tràn ngập não bộ tức thì!
+              </p>
+            </div>
+            <div className="mt-3 text-[11px] font-comic-fredoka font-bold text-red-800 bg-white/80 p-1.5 rounded-lg border border-[#1f2937] text-center">
+              Dopamine nhanh thắng thế! ⚡
+            </div>
+          </div>
+
+          <div className="comic-panel-mint p-4 flex flex-col justify-between">
+            <div>
+              <div className="text-3xl mb-1">📸</div>
+              <h3 className="font-comic-fredoka font-black text-base text-[#111827]">
+                MUA VỀ ĐỂ CHỤP ẢNH SỐNG ẢO
+              </h3>
+              <p className="text-xs font-bold text-zinc-700 mt-2 leading-relaxed">
+                Chụp ảnh cuốn sách bên ly cà phê đăng story kèm caption sâu sắc, nhận 200 likes rồi... gấp sách lại cất lên kệ. Mục tiêu trí thức đã hoàn thành 100%!
+              </p>
+            </div>
+            <div className="mt-3 text-[11px] font-comic-fredoka font-bold text-emerald-800 bg-white/80 p-1.5 rounded-lg border border-[#1f2937] text-center">
+              Hài lòng xã hội: Không tốn nơ-ron! ✨
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
       {/* Footer */}
-      <div className="flex justify-between items-center text-xs text-[#991b1b] border-t border-[#991b1b]/20 pt-2 font-davinci-mono">
-        <span>CURA ET ABANDONUM • FOLIO X</span>
-        <span className="italic">"Sự kiên nhẫn là thứ thuốc đắng mà ít ai muốn nuốt."</span>
-        <span>LỐI THOÁT</span>
+      <div className="flex justify-between items-center text-xs font-bold text-zinc-600 z-10 border-t-2 border-dashed border-[#1f2937] pt-1.5">
+        <span className="font-comic-fredoka">CƠ CHẾ PHÒNG VỆ CỦA NÃO BỘ</span>
+        <span>NHẤN 👉 NẾU BẠN VẪN MUỐN DŨNG CẢM "DÍNH BẪY"</span>
       </div>
 
     </div>

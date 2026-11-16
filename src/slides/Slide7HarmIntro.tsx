@@ -1,67 +1,61 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 export const Slide7HarmIntro: React.FC = () => {
   return (
-    <div className="slide bg-codex-sanguine text-[#7c2d12] p-8 md:p-14 flex flex-col justify-between font-davinci-note slide-sanguine-frame select-none" data-slide="7">
+    <div className="slide bg-comic-strip text-[#1f2937] p-8 md:p-12 font-comic-neue" data-slide="7">
       
-      {/* Top Banner */}
-      <div className="flex justify-between items-center text-xs tracking-widest text-[#991b1b] border-b border-[#991b1b]/20 pb-2 font-davinci-mono">
-        <span>✦ PARS TERTIA • TRỌNG TÂM ĐIỀU TRA ✦</span>
-        <span>7 BIẾN CHỨNG PHÁ VỠ HÌNH THỂ</span>
+      {/* Top Bar */}
+      <div className="flex justify-between items-center z-10 border-b-3 border-[#1f2937] pb-2">
+        <span className="bg-[#fee2e2] text-[#b91c1c] px-3 py-0.5 rounded-full text-xs font-comic-fredoka font-bold border-2 border-[#1f2937] shadow-[2px_2px_0px_#1f2937]">
+          PHẦN 03: 7 BIẾN CHỨNG ĐÁNG SỢ
+        </span>
+        <span className="text-xs font-comic-fredoka font-bold text-zinc-500">TRANG 07 / 12</span>
       </div>
 
-      {/* Center Section Hero */}
-      <div className="my-auto max-w-4xl mx-auto text-center flex flex-col items-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl mb-2 text-[#991b1b]"
-        >
-          💀 ⭕ 📐
-        </motion.div>
-
-        <motion.span
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-xs uppercase tracking-[0.25em] text-[#991b1b] font-bold font-davinci-title mb-2"
-        >
-          PHẦN 03 • DANH SÁCH 7 BIẾN DẠNG NGUY HIỂM NHẤT
-        </motion.span>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="text-3xl md:text-5xl font-black text-[#521b0a] font-davinci-title leading-tight mb-4 uppercase"
-        >
-          Bảy Biến Chứng Phá Vỡ <br />
-          <span className="italic text-[#991b1b] underline decoration-double decoration-[#991b1b]/60">Hình Thể & Đại Não</span>
-        </motion.h2>
-
-        <div className="divider-sanguine my-2">
-          <div className="divider-sanguine-line"></div>
-          <span className="text-sm tracking-widest text-[#991b1b]">⭕ 📐 🧍</span>
-          <div className="divider-sanguine-line right"></div>
+      {/* Center Narrative */}
+      <div className="my-auto max-w-4xl mx-auto w-full text-center z-10 flex flex-col items-center gap-4">
+        
+        <div className="inline-block bg-[#fef08a] border-2 border-[#1f2937] px-4 py-1 rounded-full text-xs font-comic-fredoka font-bold shadow-[2px_2px_0px_#1f2937] rotate-[-1deg]">
+          ⚠️ HỒ SƠ BIẾN CHỨNG
         </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.45 }}
-          className="text-sm md:text-base text-[#7c2d12] italic max-w-2xl mx-auto leading-relaxed mt-2 border-l-2 border-[#991b1b] pl-4 text-left"
-        >
-          "Và bây giờ, hãy hít một hơi thật sâu. Tôi sắp công bố 7 biến chứng kinh hoàng nhất mà việc đọc sách sẽ gây ra: từ sự phức tạp hóa nơ-ron đại não, phá sản tài chính vì đóng kệ cho tới... cố thủ trong nhà vệ sinh!"
-        </motion.p>
+        <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-[#111827] leading-tight font-comic-fredoka max-w-3xl">
+          Khi Bạn Lỡ <br />
+          <span className="text-[#b91c1c] bg-[#fee2e2] px-3 py-0.5 rounded-2xl border-2 border-[#1f2937] inline-block mt-1">
+            "Nhiễm Độc" Sách Quá Sâu!
+          </span>
+        </h2>
+
+        <div className="cloud-bubble p-5 max-w-2xl bg-white text-left mt-2">
+          <p className="text-sm md:text-base font-bold text-[#374151] leading-relaxed">
+            "Không chỉ đơn giản là đọc vài con chữ, thói quen đọc sách lâu năm sẽ âm thầm biến đổi tư duy, xáo trộn đồng hồ sinh học, làm mỏng ví tiền và thay đổi hoàn toàn cách bạn tương tác với thế giới xung quanh!"
+          </p>
+        </div>
+
+        {/* 2 Big Categories */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl mt-2">
+          <div className="comic-panel-yellow p-4 text-center">
+            <span className="text-2xl">🧠</span>
+            <div className="font-comic-fredoka font-black text-sm sm:text-base text-[#111827] mt-1">
+              4 BIẾN CHỨNG NÃO BỘ & TƯ DUY
+            </div>
+            <div className="text-xs font-bold text-zinc-600 mt-0.5">Mất ngủ, đa nghi khoa học, trí tưởng tượng bay màu</div>
+          </div>
+          <div className="comic-panel-coral p-4 text-center">
+            <span className="text-2xl">💸</span>
+            <div className="font-comic-fredoka font-black text-sm sm:text-base text-[#111827] mt-1">
+              3 BIẾN CHỨNG ĐỜI SỐNG & TÀI CHÍNH
+            </div>
+            <div className="text-xs font-bold text-zinc-600 mt-0.5">Viêm màng túi, đóng đô trong toilet, mất quyền cáu bực</div>
+          </div>
+        </div>
+
       </div>
 
       {/* Footer */}
-      <div className="flex justify-between items-center text-xs text-[#991b1b] border-t border-[#991b1b]/20 pt-2 font-davinci-mono">
-        <span>SEPTEM NOXAE VITRUVIANAE</span>
-        <span className="italic">"Khi hình thể chuẩn mực bị biến dạng vì chữ nghĩa."</span>
-        <span>FOLIO VII</span>
+      <div className="flex justify-between items-center text-xs font-bold text-zinc-600 z-10 border-t-2 border-dashed border-[#1f2937] pt-2">
+        <span className="font-comic-fredoka">HỒ SƠ BỆNH ÁN NGƯỜI ĐỌC SÁCH</span>
+        <span>NHẤN 👉 ĐỂ XEM CHI TIẾT 4 BIẾN CHỨNG NÃO BỘ</span>
       </div>
 
     </div>

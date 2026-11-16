@@ -1,67 +1,58 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 export const Slide5ToolsIntro: React.FC = () => {
   return (
-    <div className="slide bg-codex-sanguine text-[#7c2d12] p-8 md:p-14 flex flex-col justify-between font-davinci-note slide-sanguine-frame select-none" data-slide="5">
+    <div className="slide bg-comic-strip text-[#1f2937] p-8 md:p-12 font-comic-neue" data-slide="5">
       
-      {/* Top Banner */}
-      <div className="flex justify-between items-center text-xs tracking-widest text-[#991b1b] border-b border-[#991b1b]/20 pb-2 font-davinci-mono">
-        <span>✦ PARS SECUNDA • TRIA INSTRUMENTA VITRUVIANA ✦</span>
-        <span>KHẢO LUẬN 3 ĐỊNH DẠNG</span>
+      {/* Top Bar */}
+      <div className="flex justify-between items-center z-10 border-b-3 border-[#1f2937] pb-2">
+        <span className="bg-[#fde047] text-[#1f2937] px-3 py-0.5 rounded-full text-xs font-comic-fredoka font-bold border-2 border-[#1f2937] shadow-[2px_2px_0px_#1f2937]">
+          PHẦN 02: TAM THỂ KHÍ CỤ
+        </span>
+        <span className="text-xs font-comic-fredoka font-bold text-zinc-500">TRANG 05 / 12</span>
       </div>
 
-      {/* Center Section Hero */}
-      <div className="my-auto max-w-4xl mx-auto text-center flex flex-col items-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl mb-2 text-[#991b1b]"
-        >
-          📜 📱 🎧
-        </motion.div>
-
-        <motion.span
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-xs uppercase tracking-[0.25em] text-[#991b1b] font-bold font-davinci-title mb-2"
-        >
-          PHẦN 02 • THẾ LỰC SÁCH ĐÃ TIẾN HÓA THÀNH TAM THỂ
-        </motion.span>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="text-3xl md:text-5xl font-black text-[#521b0a] font-davinci-title leading-tight mb-4 uppercase"
-        >
-          Tam Thể Loại Khí Cụ <br />
-          <span className="italic text-[#991b1b] underline decoration-double decoration-[#991b1b]/60">Phá Vỡ Hình Thể Con Người</span>
-        </motion.h2>
-
-        <div className="divider-sanguine my-2">
-          <div className="divider-sanguine-line"></div>
-          <span className="text-sm tracking-widest text-[#991b1b]">⭕ 📐 🧍</span>
-          <div className="divider-sanguine-line right"></div>
+      {/* Center Narrative */}
+      <div className="my-auto max-w-4xl mx-auto w-full text-center z-10 flex flex-col items-center gap-4">
+        
+        <div className="inline-block bg-white border-2 border-[#1f2937] px-4 py-1 rounded-full text-xs font-comic-fredoka font-bold shadow-[2px_2px_0px_#1f2937] rotate-1">
+          ⚙️ CÔNG CỤ DẪN DẮT MÊ HOẶC
         </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.45 }}
-          className="text-sm md:text-base text-[#7c2d12] italic max-w-2xl mx-auto leading-relaxed mt-2 border-l-2 border-[#991b1b] pl-4 text-left"
-        >
-          "Để bẻ cong dáng vóc Vitruvius chuẩn mực, thế lực sách đã chế tác ra 3 thứ vũ khí phát tán tinh vi: Khối Sách Giấy nặng trịch, Phiến Đá Ebook phát quang và Thanh Âm Sách Nói ru ngủ!"
-        </motion.p>
+        <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-[#111827] leading-tight font-comic-fredoka max-w-3xl">
+          Ba Dạng Khí Cụ <br />
+          <span className="text-[#b45309] bg-[#fef08a] px-3 py-0.5 rounded-2xl border-2 border-[#1f2937] inline-block mt-1">
+            "Tự Hại" Bản Thân
+          </span>
+        </h2>
+
+        <div className="cloud-bubble p-5 max-w-2xl bg-white text-left mt-2">
+          <p className="text-sm md:text-base font-bold text-[#374151] leading-relaxed">
+            "Dù là trang sách giấy truyền thống sột soạt, chiếc màn hình E-Ink tí hon mang cả thư viện, hay giọng đọc êm ru của sách nói bên tai — mỗi hình thức đều có một 'chiêu trò' độc hại riêng khiến bạn đắm chìm quên cả lối về!"
+          </p>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-3 mt-2">
+          <div className="comic-panel-yellow px-4 py-2 flex items-center gap-2">
+            <span className="text-2xl">📖</span>
+            <span className="font-comic-fredoka font-bold text-xs sm:text-sm">Sách Giấy Truyền Thống</span>
+          </div>
+          <div className="comic-panel-sky px-4 py-2 flex items-center gap-2">
+            <span className="text-2xl">📱</span>
+            <span className="font-comic-fredoka font-bold text-xs sm:text-sm">Máy Đọc Sách E-Ink</span>
+          </div>
+          <div className="comic-panel-mint px-4 py-2 flex items-center gap-2">
+            <span className="text-2xl">🎧</span>
+            <span className="font-comic-fredoka font-bold text-xs sm:text-sm">Sách Nói Audiobook</span>
+          </div>
+        </div>
+
       </div>
 
       {/* Footer */}
-      <div className="flex justify-between items-center text-xs text-[#991b1b] border-t border-[#991b1b]/20 pt-2 font-davinci-mono">
-        <span>TRIA INSTRUMENTA • FOLIO V</span>
-        <span className="italic">"Không có lối thoát một khi các giác quan đã bị đánh bẫy."</span>
-        <span>ARS VITRUVIANA</span>
+      <div className="flex justify-between items-center text-xs font-bold text-zinc-600 z-10 border-t-2 border-dashed border-[#1f2937] pt-2">
+        <span className="font-comic-fredoka">PHÂN TÍCH ĐỊNH DẠNG ĐỌC</span>
+        <span>NHẤN 👉 ĐỂ XEM TRANH 3 KHUNG SO SÁNH</span>
       </div>
 
     </div>

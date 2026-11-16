@@ -2,102 +2,97 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 export const Slide1Title: React.FC = () => {
-  const points = [
-    "Trục xương sống thẳng đứng bị bẻ cong thành góc nhọn 45° vì cúi đầu đọc sách.",
-    "Đồng tử và thần kinh thị giác bị kích thích liên tục bởi các ký tự in cổ.",
-    "Vòng tròn tâm trí bị kéo giãn vô hạn bởi sự tò mò và thói quen suy nghĩ sâu.",
-    "Trí tưởng tượng phóng đại phá vỡ ranh giới hình vuông an toàn của thực tại.",
-    "Đánh mất vĩnh viễn sự vô tư, ngây thơ để trở thành kẻ nhiều chuyện và phản biện."
-  ];
-
   return (
-    <div className="slide active bg-codex-sanguine text-[#7c2d12] p-6 md:p-10 flex flex-col justify-between font-davinci-note slide-sanguine-frame select-none" data-slide="1">
+    <div className="slide active bg-comic-strip text-[#1f2937] p-8 md:p-12 font-comic-neue" data-slide="1">
       
-      {/* Top Banner */}
-      <motion.div 
-        initial={{ opacity: 0, y: -15 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex justify-between items-center text-xs tracking-widest text-[#991b1b] border-b border-[#991b1b]/20 pb-2 font-davinci-mono"
-      >
-        <span>✦ DE PROPORTIONE VITRUVIANA HOMINIS LECTURIS ✦</span>
-        <span>1490 — TỶ LỆ VÀNG BIẾN DẠNG</span>
-      </motion.div>
+      {/* Top Newspaper Masthead */}
+      <div className="flex justify-between items-center z-10 border-b-3 border-[#1f2937] pb-3">
+        <div className="flex items-center gap-2">
+          <span className="text-2xl">📰</span>
+          <span className="font-comic-fredoka font-bold text-xs md:text-sm uppercase tracking-wider text-[#1f2937]">
+            GÓC TRANH VUI CHỦ NHẬT • BÁO CUỐI TUẦN
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="bg-[#fef08a] border-2 border-[#1f2937] px-3 py-0.5 rounded-full text-xs font-comic-fredoka font-bold shadow-[2px_2px_0px_#1f2937]">
+            SỐ ĐẶC BIỆT: "TỰ HẠI NÃO"
+          </span>
+        </div>
+      </div>
 
-      {/* Main Content: 2 Columns */}
-      <div className="grid grid-cols-12 gap-4 items-center my-auto py-2">
+      {/* Main Slide Content: 2 Columns */}
+      <div className="my-auto grid grid-cols-12 gap-8 items-center max-w-6xl mx-auto w-full z-10">
         
-        {/* Left 7 Columns: Title & Bullets */}
-        <div className="col-span-12 md:col-span-7 flex flex-col justify-center pl-2 md:pl-6">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#991b1b] font-bold font-davinci-title mb-1.5">
-              <span>⭕ 📐</span> TỶ LỆ HÌNH HỌC VỀ KẺ ĐỌC SÁCH
+        {/* Left 7 Columns: Title & Humorous Blurb */}
+        <div className="col-span-12 md:col-span-7 flex flex-col gap-4">
+          
+          <div>
+            <div className="inline-flex items-center gap-1.5 bg-[#fee2e2] text-[#b91c1c] border-2 border-[#1f2937] px-3 py-1 rounded-full text-xs font-comic-fredoka font-bold shadow-[2px_2px_0px_#1f2937] mb-2 rotate-[-1deg]">
+              <span>⚠️</span>
+              <span>CẢNH BÁO: CHẤT KÍCH THÍCH TRÍ TÒ MÒ</span>
             </div>
-            
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#521b0a] leading-tight mb-3 font-davinci-title uppercase">
-              TÁC HẠI KHI PHÁ VỠ <br />
-              <span className="italic text-[#991b1b] underline decoration-double decoration-[#991b1b]/60">TỶ LỆ VÀNG</span> VÌ ĐỌC SÁCH
+
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-[#111827] leading-[1.05] font-comic-fredoka tracking-tight">
+              Tác Hại Của <br />
+              <span className="text-[#b45309] bg-[#fef08a] px-3 py-0.5 rounded-2xl border-3 border-[#1f2937] inline-block rotate-1 shadow-[4px_4px_0px_#1f2937] mt-1">
+                Việc Đọc Sách!
+              </span>
             </h1>
 
-            <p className="text-xs md:text-sm text-[#7c2d12] italic leading-relaxed border-y border-[#991b1b]/20 py-2.5 mb-4">
-              "Con người Vitruvius chuẩn mực đứng dang tay trong vòng tròn hoàn hảo... cho đến khi cầm cuốn sách trên tay và gù lưng gập người!"
-            </p>
-          </motion.div>
+            {/* Cloud Thought Bubble */}
+            <div className="cloud-bubble p-4 mt-4 bg-white max-w-lg">
+              <p className="text-sm md:text-base font-bold text-[#374151] leading-relaxed font-comic-neue">
+                "(Thực ra là ích lợi siêu to khổng lồ, nhưng hãy thử nhìn theo lối tư duy ngược hài hước để xem bạn đang 'tự hại' bản thân ra sao nhé!)"
+              </p>
+            </div>
+          </div>
 
-          {/* 5 Geometric Deformations */}
-          <div className="space-y-2">
-            {points.map((pt, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, x: -15 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 + idx * 0.1, duration: 0.5 }}
-                className="flex items-start gap-2.5 text-xs md:text-sm text-[#521b0a] leading-relaxed"
-              >
-                <span className="text-[#991b1b] font-bold mt-0.5">✦</span>
-                <span>{pt}</span>
-              </motion.div>
-            ))}
+          {/* Quick 3 Mini Pills */}
+          <div className="grid grid-cols-3 gap-2.5 mt-1">
+            <div className="comic-panel-yellow p-2.5 text-center">
+              <div className="text-lg">📉</div>
+              <div className="font-comic-fredoka font-bold text-xs text-[#111827]">-68% STRESS</div>
+              <div className="text-[10px] font-bold text-zinc-600">Trong 6 phút</div>
+            </div>
+            <div className="comic-panel-sky p-2.5 text-center">
+              <div className="text-lg">⏳</div>
+              <div className="font-comic-fredoka font-bold text-xs text-[#111827]">+23 THÁNG</div>
+              <div className="text-[10px] font-bold text-zinc-600">Tuổi thọ kéo dài</div>
+            </div>
+            <div className="comic-panel-mint p-2.5 text-center">
+              <div className="text-lg">🛡️</div>
+              <div className="font-comic-fredoka font-bold text-xs text-[#111827]">MIỄN DỊCH</div>
+              <div className="text-[10px] font-bold text-zinc-600">Kháng tin đồn nhảm</div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Right 5 Columns: Sunday Comic Strip Illustration */}
+        <div className="col-span-12 md:col-span-5 flex flex-col items-center justify-center">
+          <div className="w-full comic-panel p-3 bg-white relative rotate-1">
+            <div className="w-full h-56 sm:h-64 rounded-xl overflow-hidden border-2 border-[#1f2937] bg-[#fdfcf7] flex items-center justify-center">
+              <img
+                src="/assets/sunday-books-cat.webp"
+                alt="Tranh vui báo chủ nhật: Sách, cà phê và chú mèo"
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="mt-2.5 text-center">
+              <p className="font-comic-hand text-lg text-[#1f2937] font-bold">
+                "Chỉ định đọc 5 phút trước khi ngủ... ai ngờ đã 4 giờ sáng?!" ☕📖
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Right 5 Columns: Vitruvian Sanguine Artwork */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.35, duration: 0.7 }}
-          className="col-span-12 md:col-span-5 flex items-center justify-center p-2"
-        >
-          <div className="relative p-2 rounded-xl border-2 border-dashed border-[#991b1b]/35 bg-white/50 shadow-md">
-            <img 
-              loading="lazy"
-              decoding="async"
-              src="/assets/vitruvian-reading-sanguine.webp" 
-              alt="Bản vẽ Người Vitruvius đọc sách bằng phấn chì đỏ Sanguine" 
-              className="max-h-[270px] md:max-h-[320px] w-auto object-contain rounded"
-              style={{ mixBlendMode: 'multiply' }}
-            />
-            <div className="text-[10px] text-center text-[#991b1b] font-davinci-mono font-bold mt-1">
-              FIG. I — HOMO VITRUVIANUS LECTOR
-            </div>
-          </div>
-        </motion.div>
-
       </div>
 
-      {/* Bottom Footer */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="flex justify-between items-center text-xs text-[#991b1b] border-t border-[#991b1b]/20 pt-2 font-davinci-mono"
-      >
-        <span>PHÁC HỌA: PHẤN CHÌ ĐỎ SANGUINE</span>
-        <span className="italic">"Hình thể biến dạng — Tâm trí thức tỉnh."</span>
-        <span>NIÊN KHÓA NGHỆ THUẬT 2026</span>
-      </motion.div>
+      {/* Footer */}
+      <div className="flex justify-between items-center text-xs font-bold text-zinc-600 z-10 border-t-2 border-dashed border-[#1f2937] pt-2">
+        <span className="font-comic-fredoka">TRANG BÌA • CHUYÊN ĐỀ ĐẶC BIỆT</span>
+        <span className="font-comic-neue font-bold">BẤM PHÍM MŨI TÊN HOẶC NÚT ĐỂ TIẾP TỤC 👉</span>
+      </div>
 
     </div>
   );

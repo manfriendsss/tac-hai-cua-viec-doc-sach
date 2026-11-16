@@ -1,81 +1,120 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 export const Slide2Roadmap: React.FC = () => {
-  const laws = [
-    { num: "I", title: "Quy Luật Tỉ Lệ", desc: "Hai con số đo lường rùng rợn của Sussex & Yale vạch trần tội lỗi của hội nghiện sách (-68% & +2 Năm)." },
-    { num: "II", title: "Tam Thể Khí Cụ", desc: "So sánh 3 thứ vũ khí bẻ cong dáng vóc: Sách giấy nặng trịch, Ebook hết pin & Sách nói ru ngủ." },
-    { num: "III", title: "7 Biến Chứng Nan Y", desc: "Công bố danh sách 7 biến dạng giải phẫu từ đại não, tài chính cho tới cố thủ trong toilet!" },
-    { num: "IV", title: "Bảo Toàn Tỉ Lệ Vàng", desc: "Giải mã vì sao 90% nhân loại may mắn thoát nạn nhờ bỏ cuộc sớm trước cỗ máy dopamine 15 giây." },
-    { num: "V", title: "Nhiễm Độc Bài Bản", desc: "4 bí kíp lừa đảo não bộ và rủ rê dấn thân vào con đường nghiện sách không lối thoát." }
-  ];
-
   return (
-    <div className="slide bg-codex-sanguine text-[#7c2d12] p-6 md:p-10 flex flex-col justify-between font-davinci-note slide-sanguine-frame select-none" data-slide="2">
+    <div className="slide bg-comic-strip text-[#1f2937] p-8 md:p-12 font-comic-neue" data-slide="2">
       
-      {/* Top Banner */}
-      <motion.div 
-        initial={{ opacity: 0, y: -15 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex justify-between items-center text-xs tracking-widest text-[#991b1b] border-b border-[#991b1b]/20 pb-2 font-davinci-mono"
-      >
-        <span>✦ TABULA DISPOSITIONIS • LỘ TRÌNH 30 PHÚT ✦</span>
-        <span>5 QUY LUẬT HÌNH HỌC CẢNH TỈNH</span>
-      </motion.div>
-
-      {/* Center Section Header */}
-      <div className="text-center pt-2">
-        <h2 className="text-3xl md:text-5xl font-black text-[#521b0a] font-davinci-title uppercase tracking-wide mb-1">
-          NĂM QUY LUẬT HÌNH HỌC VITRUVIUS
-        </h2>
-        <div className="divider-sanguine">
-          <div className="divider-sanguine-line"></div>
-          <span className="text-sm tracking-widest text-[#991b1b]">⭕ 📐 🧍</span>
-          <div className="divider-sanguine-line right"></div>
+      {/* Top Bar */}
+      <div className="flex justify-between items-center z-10 border-b-3 border-[#1f2937] pb-2">
+        <div className="flex items-center gap-2">
+          <span className="bg-[#fef08a] text-[#1f2937] px-3 py-0.5 rounded-full text-xs font-comic-fredoka font-bold border-2 border-[#1f2937] shadow-[2px_2px_0px_#1f2937]">
+            TỔNG QUAN 5 ĐIỀU NGUY HẠI
+          </span>
+          <span className="font-comic-fredoka text-xs font-bold text-zinc-600">
+            CHUYÊN MỤC TRANH VUI CUỐI TUẦN
+          </span>
+        </div>
+        <div className="text-xs font-comic-fredoka font-bold text-zinc-500">
+          TRANG 02 / 12
         </div>
       </div>
 
-      {/* 5 Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-3 md:gap-4 my-auto w-full px-2">
-        {laws.map((l, idx) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 + idx * 0.1, duration: 0.5 }}
-            className="sanguine-card flex flex-col justify-between p-4 relative group"
-          >
-            <div>
-              <div className="flex justify-between items-center mb-2 pb-1 border-b border-[#991b1b]/20">
-                <span className="w-7 h-7 rounded-full bg-[#991b1b] text-[#fed7aa] flex items-center justify-center font-davinci-title font-bold text-xs shadow-sm">
-                  {l.num}
-                </span>
-                <span className="text-[10px] uppercase font-bold text-[#7c2d12] font-davinci-mono">
-                  Giai đoạn {idx + 1}
-                </span>
+      {/* Main Grid: Exact replica of user reference image layout */}
+      <div className="my-auto grid grid-cols-12 gap-8 items-center max-w-6xl mx-auto w-full z-10">
+        
+        {/* Left 7.5 Columns: Title, Subtitle & 5 Humorous Bullets */}
+        <div className="col-span-12 md:col-span-8 flex flex-col gap-3">
+          
+          <div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#111827] leading-none font-comic-fredoka">
+              Tác hại của việc đọc sách
+            </h2>
+            <p className="text-xs md:text-sm font-bold text-[#4b5563] italic mt-1 font-comic-neue">
+              (Thực ra là ích lợi, nhưng nhìn theo lối tư duy ngược hài hước)
+            </p>
+          </div>
+
+          {/* 5 Humorous Bullets */}
+          <div className="flex flex-col gap-2 mt-2">
+            
+            <div className="comic-panel p-2.5 flex items-center gap-3">
+              <span className="text-xl">🌟</span>
+              <div className="text-xs md:text-sm font-bold text-[#1f2937]">
+                <span className="font-comic-fredoka font-bold text-[#b45309] text-sm md:text-base">
+                  Dễ bị nghiện kiến thức và tò mò về thế giới:
+                </span>{' '}
+                Gặp cái gì cũng hỏi "Tại sao?", tra cứu đến tận nửa đêm!
               </div>
-              
-              <h3 className="font-bold text-xs md:text-sm text-[#521b0a] mb-2 font-davinci-title uppercase">
-                {l.title}
-              </h3>
-              
-              <p className="text-[11px] md:text-xs text-[#7c2d12] leading-relaxed">
-                {l.desc}
-              </p>
             </div>
 
-            <div className="mt-3 pt-2 border-t border-[#991b1b]/20 text-right">
-              <span className="text-[10px] text-[#991b1b] font-semibold italic">✦ Vitruvius</span>
+            <div className="comic-panel p-2.5 flex items-center gap-3">
+              <span className="text-xl">🌟</span>
+              <div className="text-xs md:text-sm font-bold text-[#1f2937]">
+                <span className="font-comic-fredoka font-bold text-[#b45309] text-sm md:text-base">
+                  Khiến vốn từ tăng lên bất thường:
+                </span>{' '}
+                Dùng từ ngữ bay bổng đến mức bạn bè phải xin phụ đề dịch thuật!
+              </div>
             </div>
-          </motion.div>
-        ))}
+
+            <div className="comic-panel p-2.5 flex items-center gap-3">
+              <span className="text-xl">🌟</span>
+              <div className="text-xs md:text-sm font-bold text-[#1f2937]">
+                <span className="font-comic-fredoka font-bold text-[#b45309] text-sm md:text-base">
+                  Làm trí tưởng tượng hoạt động quá mức:
+                </span>{' '}
+                Xem phim chuyển thể lúc nào cũng chê "sách hay hơn phim 100 lần"!
+              </div>
+            </div>
+
+            <div className="comic-panel p-2.5 flex items-center gap-3">
+              <span className="text-xl">🌟</span>
+              <div className="text-xs md:text-sm font-bold text-[#1f2937]">
+                <span className="font-comic-fredoka font-bold text-[#b45309] text-sm md:text-base">
+                  Gây ra thói quen suy nghĩ sâu và phản biện:
+                </span>{' '}
+                Không ai dắt mũi được bạn nữa, làm mất đi sự "ngây thơ" thuở nào!
+              </div>
+            </div>
+
+            <div className="comic-panel p-2.5 flex items-center gap-3">
+              <span className="text-xl">🌟</span>
+              <div className="text-xs md:text-sm font-bold text-[#1f2937]">
+                <span className="font-comic-fredoka font-bold text-[#b45309] text-sm md:text-base">
+                  Khiến bạn bình tĩnh, tập trung và sống tích cực:
+                </span>{' '}
+                Tước mất quyền được nổi giận, cáu kỉnh chính đáng với cuộc đời!
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Right 4.5 Columns: Antique Books & Quill in Sunday Comic Strip Panel */}
+        <div className="col-span-12 md:col-span-4 flex flex-col items-center">
+          <div className="w-full comic-panel-yellow p-4 relative rotate-1">
+            <div className="w-full h-52 bg-white rounded-xl border-2 border-[#1f2937] overflow-hidden flex items-center justify-center">
+              <img
+                src="/assets/books_quill_crop.webp"
+                alt="Chồng sách và lông ngỗng cổ điển"
+                className="w-full h-full object-contain filter contrast-110"
+              />
+            </div>
+            <div className="mt-3 text-center">
+              <p className="font-comic-hand text-base font-bold text-[#1f2937]">
+                "Càng đọc nhiều, thế giới càng mở rộng... và chiếc ví càng mỏng đi!" ☕📚
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       {/* Footer */}
-      <div className="flex justify-between items-center text-xs text-[#991b1b] border-t border-[#991b1b]/20 pt-2 font-davinci-mono">
-        <span>PHÁC HỌA: COMPA & THƯỚC ĐO TỶ LỆ</span>
-        <span className="italic">"30 phút giải mã sự đứt gãy của vòng tròn hoàn hảo."</span>
-        <span>FOLIO II</span>
+      <div className="flex justify-between items-center text-xs font-bold text-zinc-600 z-10 border-t-2 border-dashed border-[#1f2937] pt-2">
+        <span className="font-comic-fredoka">BÁO CÁO TOÀN CẢNH • GÓC NHÌN NGƯỢC HÀI HƯỚC</span>
+        <span>NHẤN 👉 HOẶC SPACE ĐỂ TIẾP TỤC</span>
       </div>
 
     </div>

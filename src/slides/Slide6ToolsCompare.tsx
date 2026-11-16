@@ -1,120 +1,105 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 export const Slide6ToolsCompare: React.FC = () => {
   return (
-    <div className="slide bg-codex-sanguine text-[#7c2d12] p-5 md:p-8 flex flex-col justify-between font-davinci-note slide-sanguine-frame select-none" data-slide="6">
+    <div className="slide bg-comic-strip text-[#1f2937] p-6 md:p-10 font-comic-neue" data-slide="6">
       
-      {/* Top Banner */}
-      <div className="flex justify-between items-center text-xs font-davinci-mono text-[#991b1b] border-b border-[#991b1b]/20 pb-2 uppercase">
-        <span>✦ TAM THỂ LOẠI KHÍ CỤ PHÁ VỠ HÌNH THỂ CON NGƯỜI ✦</span>
-        <span>INSTRUMENTA VITRUVIANA</span>
+      {/* Top Bar */}
+      <div className="flex justify-between items-center z-10 border-b-3 border-[#1f2937] pb-2">
+        <span className="bg-[#fef08a] text-[#1f2937] px-3 py-0.5 rounded-full text-xs font-comic-fredoka font-bold border-2 border-[#1f2937] shadow-[2px_2px_0px_#1f2937]">
+          TRANH TRUYỆN 3 KHUNG: SO SÁNH KHÍ CỤ
+        </span>
+        <span className="text-xs font-comic-fredoka font-bold text-zinc-500">TRANG 06 / 12</span>
       </div>
 
-      {/* Header */}
-      <motion.div 
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center pt-1"
-      >
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#521b0a] font-davinci-title uppercase tracking-wide mb-1">
-          ĐẶT LÊN BÀN CÂN 3 KHÍ CỤ BẺ CONG DÁNG VÓC
-        </h2>
-        <div className="divider-sanguine my-1">
-          <div className="divider-sanguine-line"></div>
-          <span className="text-xs tracking-widest text-[#991b1b]">📜 📱 🎧</span>
-          <div className="divider-sanguine-line right"></div>
-        </div>
-      </motion.div>
-
-      {/* Center Image: Da Vinci 3 Mediums Sketch */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.2 }}
-        className="max-w-4xl mx-auto w-full my-1 rounded-xl overflow-hidden border-2 border-[#991b1b]/35 shadow-sm bg-white/40"
-      >
-        <img 
-          loading="lazy"
-          decoding="async"
-          src="/assets/davinci-3-mediums.webp" 
-          alt="Bản vẽ Da Vinci so sánh 3 công cụ đọc sách" 
-          className="w-full max-h-[170px] md:max-h-[200px] object-cover"
-          style={{ mixBlendMode: 'multiply' }}
-        />
-      </motion.div>
-
-      {/* 3 Columns Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 my-auto w-full px-1">
+      {/* Main Content: Illustration + 3 Cards */}
+      <div className="my-auto max-w-6xl mx-auto w-full z-10 flex flex-col gap-3">
         
-        {/* Col 1: Khối Sách Giấy */}
-        <motion.div 
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="bg-white/65 p-3.5 border-2 border-dashed border-[#991b1b]/40 rounded-xl text-center flex flex-col justify-between shadow-sm"
-        >
-          <div>
-            <div className="text-2xl mb-1 text-[#991b1b]">📜</div>
-            <h4 className="font-bold text-xs md:text-sm text-[#521b0a] mb-1 font-davinci-title uppercase">
-              Khối Sách Giấy
-            </h4>
-            <p className="text-xs text-[#7c2d12] leading-relaxed">
-              ✦ Sức nặng 5kg làm lệch trục xương sống Vitruvius sang một bên. Mùi giấy thơm ngào ngạt gây ảo giác đê mê.
-            </p>
+        {/* Top Comic Strip Image Banner */}
+        <div className="w-full comic-panel p-2.5 bg-white">
+          <div className="w-full h-36 sm:h-44 rounded-xl overflow-hidden border-2 border-[#1f2937] bg-[#fdfcf7] flex items-center justify-center">
+            <img
+              src="/assets/sunday-3-mediums.webp"
+              alt="Tranh truyện 3 khung: Sách giấy, Máy đọc sách, và Sách nói"
+              className="w-full h-full object-contain"
+            />
           </div>
-          <div className="mt-2 pt-1 border-t border-[#991b1b]/20 text-[10px] text-[#991b1b] font-davinci-mono font-bold">
-            Tác hại: Tập tạ miễn phí • Gù lưng
-          </div>
-        </motion.div>
+        </div>
 
-        {/* Col 2: Phiến Đá Ebook */}
-        <motion.div 
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="bg-white/65 p-3.5 border-2 border-dashed border-[#991b1b]/40 rounded-xl text-center flex flex-col justify-between shadow-sm"
-        >
-          <div>
-            <div className="text-2xl mb-1 text-[#991b1b]">📱</div>
-            <h4 className="font-bold text-xs md:text-sm text-[#521b0a] mb-1 font-davinci-title uppercase">
-              Phiến Đá Ebook
-            </h4>
-            <p className="text-xs text-[#7c2d12] leading-relaxed">
-              ✦ 200 gram hoàn hảo trong lòng bàn tay, dập tắt hy vọng bằng thông báo hết pin đúng trang hung thủ lộ diện!
-            </p>
+        {/* 3 Humorous Breakdown Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          
+          {/* Medium 1 */}
+          <div className="comic-panel-yellow p-3.5 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="text-2xl">📖</span>
+                <span className="text-[10px] font-comic-fredoka font-bold bg-white px-2 py-0.5 rounded-full border border-[#1f2937]">
+                  CỔ ĐIỂN
+                </span>
+              </div>
+              <h3 className="text-base font-comic-fredoka font-black text-[#111827] mt-1">
+                SÁCH GIẤY TRUYỀN THỐNG
+              </h3>
+              <p className="text-xs font-bold text-zinc-700 mt-1 leading-relaxed">
+                Mùi giấy thơm gây mê hoặc. Tiếng lật sột soạt gây nghiện. Điểm trừ duy nhất là nhét 2 cuốn dày cộp vào balo nặng như tập tạ, gù cả cột sống!
+              </p>
+            </div>
+            <div className="mt-2 text-center text-[11px] font-comic-fredoka font-bold bg-white/80 p-1 rounded-lg border border-[#1f2937] text-amber-800">
+              Sát thương vật lý: Nặng balo 🎒
+            </div>
           </div>
-          <div className="mt-2 pt-1 border-t border-[#991b1b]/20 text-[10px] text-[#991b1b] font-davinci-mono font-bold">
-            Tử huyệt: Hết pin đoạn cao trào
-          </div>
-        </motion.div>
 
-        {/* Col 3: Thanh Âm Sách Nói */}
-        <motion.div 
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="bg-white/65 p-3.5 border-2 border-dashed border-[#991b1b]/40 rounded-xl text-center flex flex-col justify-between shadow-sm"
-        >
-          <div>
-            <div className="text-2xl mb-1 text-[#991b1b]">🎧</div>
-            <h4 className="font-bold text-xs md:text-sm text-[#521b0a] mb-1 font-davinci-title uppercase">
-              Thanh Âm Sách Nói
-            </h4>
-            <p className="text-xs text-[#7c2d12] leading-relaxed">
-              ✦ Làm tê liệt thính giác, đưa con người từ tư thế đứng thẳng Vitruvius sang tư thế nằm ngủ mê mệt tới sáng!
-            </p>
+          {/* Medium 2 */}
+          <div className="comic-panel-sky p-3.5 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="text-2xl">📱</span>
+                <span className="text-[10px] font-comic-fredoka font-bold bg-white px-2 py-0.5 rounded-full border border-[#1f2937]">
+                  CÔNG NGHỆ
+                </span>
+              </div>
+              <h3 className="text-base font-comic-fredoka font-black text-[#111827] mt-1">
+                MÁY ĐỌC SÁCH E-INK
+              </h3>
+              <p className="text-xs font-bold text-zinc-700 mt-1 leading-relaxed">
+                Nhét cả thư viện 10.000 cuốn vào túi quần. Màn hình mực điện tử êm như giấy thật. Nhưng tử huyệt là đang đọc đến trang hung thủ lộ mặt thì... HẾT PIN!
+              </p>
+            </div>
+            <div className="mt-2 text-center text-[11px] font-comic-fredoka font-bold bg-white/80 p-1 rounded-lg border border-[#1f2937] text-blue-800">
+              Sát thương tâm lý: Sập nguồn 🪫
+            </div>
           </div>
-          <div className="mt-2 pt-1 border-t border-[#991b1b]/20 text-[10px] text-[#991b1b] font-davinci-mono font-bold">
-            Tác hại: Thuốc ngủ liều cao êm ái
+
+          {/* Medium 3 */}
+          <div className="comic-panel-mint p-3.5 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="text-2xl">🎧</span>
+                <span className="text-[10px] font-comic-fredoka font-bold bg-white px-2 py-0.5 rounded-full border border-[#1f2937]">
+                  RẢNH TAY
+                </span>
+              </div>
+              <h3 className="text-base font-comic-fredoka font-black text-[#111827] mt-1">
+                SÁCH NÓI AUDIOBOOK
+              </h3>
+              <p className="text-xs font-bold text-zinc-700 mt-1 leading-relaxed">
+                Vừa rửa bát, chạy bộ vừa nạp tri thức êm ru. Cực kỳ tiện lợi. Rủi ro duy nhất là giọng đọc truyền cảm quá mức dễ khiến bạn ngủ quên giữa ban ngày!
+              </p>
+            </div>
+            <div className="mt-2 text-center text-[11px] font-comic-fredoka font-bold bg-white/80 p-1 rounded-lg border border-[#1f2937] text-emerald-800">
+              Sát thương sinh học: Ru ngủ 😴
+            </div>
           </div>
-        </motion.div>
+
+        </div>
 
       </div>
 
       {/* Footer */}
-      <div className="text-xs text-center text-[#991b1b] font-davinci-mono border-t border-[#991b1b]/20 pt-2">
-        ✦ Lời khuyên của danh họa: Hãy giữ nguyên dáng vóc Vitruvius, đừng để sách bẻ cong bạn!
+      <div className="flex justify-between items-center text-xs font-bold text-zinc-600 z-10 border-t-2 border-dashed border-[#1f2937] pt-1.5">
+        <span className="font-comic-fredoka">MỖI NGƯỜI MỘT LỰA CHỌN</span>
+        <span>NHẤN 👉 ĐỂ KHÁM PHÁ CÁC BIẾN CHỨNG</span>
       </div>
 
     </div>

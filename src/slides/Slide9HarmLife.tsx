@@ -1,94 +1,99 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 export const Slide9HarmLife: React.FC = () => {
-  const harms = [
-    {
-      num: "05",
-      title: "Hiệu Ứng Domino Tàn Phá Tài Chính",
-      subtitle: "Từ cuốn sách đến giẻ lau bụi cuối tuần",
-      desc: "Nghiện mua sách -> Sách chất đầy sàn nhà -> Tốn cả đống tiền thuê thợ đóng kệ sách to đùng -> Cuối tuần thay vì đi chơi thì phải cầm giẻ lau bụi từng ngăn! Rước việc nhà vào thân!"
-    },
-    {
-      num: "06",
-      title: "Tước Đoạt Cơ Hội Thành Kẻ Trộm",
-      subtitle: "Đạo đức tăng lên mức đáng báo động",
-      desc: "Hiệu sách đêm không người trông coi, không camera, sáng ra không mất một cuốn. Chân lý: 'Người đọc sách không bao giờ ăn trộm, và kẻ trộm không bao giờ đọc sách!' Bị gạch tên khỏi giới đạo chích!"
-    },
-    {
-      num: "07",
-      title: "Cố Thủ Trong... Nhà Vệ Sinh!",
-      subtitle: "Thư viện thu nhỏ mang tên toilet",
-      desc: "Khảo sát thực tế: 46% nam giới và 26% phụ nữ thường xuyên mang sách báo vào toilet! Đọc cuốn đến quên thời gian, biến toilet thành phòng VIP, khiến cả nhà xếp hàng dài gõ cửa kêu cứu!"
-    }
-  ];
-
   return (
-    <div className="slide bg-codex-sanguine text-[#7c2d12] p-6 md:p-10 flex flex-col justify-between font-davinci-note slide-sanguine-frame select-none" data-slide="9">
+    <div className="slide bg-comic-strip text-[#1f2937] p-6 md:p-10 font-comic-neue" data-slide="9">
       
-      {/* Top Banner */}
-      <div className="flex justify-between items-center text-xs font-davinci-mono text-[#991b1b] border-b border-[#991b1b]/20 pb-2">
-        <span>✦ BIẾN CHỨNG ĐỜI THỰC, TÀI CHÍNH & SINH HOẠT ✦</span>
-        <span>NOXAE COTIDIANAE V–VII</span>
+      {/* Top Bar */}
+      <div className="flex justify-between items-center z-10 border-b-3 border-[#1f2937] pb-2">
+        <span className="bg-[#fee2e2] text-[#b91c1c] px-3 py-0.5 rounded-full text-xs font-comic-fredoka font-bold border-2 border-[#1f2937] shadow-[2px_2px_0px_#1f2937]">
+          BIẾN CHỨNG ĐỜI SỐNG & VÍ TIỀN (5 - 7)
+        </span>
+        <span className="text-xs font-comic-fredoka font-bold text-zinc-500">TRANG 09 / 12</span>
       </div>
 
-      {/* Header */}
-      <motion.div 
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center pt-1"
-      >
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#521b0a] font-davinci-title uppercase tracking-wide mb-1">
-          BA NẠN KIẾP ĐỜI THỰC CỦA KẺ NGHIỆN CHỮ (5–7)
-        </h2>
-        <div className="divider-sanguine my-1">
-          <div className="divider-sanguine-line"></div>
-          <span className="text-xs tracking-widest text-[#991b1b]">💸 ⚖️ 🚽</span>
-          <div className="divider-sanguine-line right"></div>
+      {/* Main Content: 3 Cards */}
+      <div className="my-auto max-w-5xl mx-auto w-full z-10 flex flex-col gap-4">
+        
+        <div className="text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#111827] font-comic-fredoka">
+            3 Biến Chứng Thực Tế Khiến Bạn Vừa Cười Vừa Mếu
+          </h2>
         </div>
-      </motion.div>
 
-      {/* 3 Large Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 my-auto w-full px-2">
-        {harms.map((h, idx) => (
-          <motion.div 
-            key={idx}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 + idx * 0.12 }}
-            className="bg-white/65 p-5 md:p-6 border-2 border-dashed border-[#991b1b]/40 rounded-2xl flex flex-col justify-between shadow-md"
-          >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+          {/* Harm 5 */}
+          <div className="comic-panel-coral p-4 flex flex-col justify-between">
             <div>
-              <div className="flex justify-between items-center mb-2 pb-1 border-b border-[#991b1b]/20">
-                <span className="w-8 h-8 rounded-full bg-[#991b1b] text-white flex items-center justify-center font-davinci-title font-bold text-xs shadow-sm">
-                  #{h.num}
-                </span>
-                <span className="text-[10px] font-bold uppercase text-[#7c2d12] font-davinci-mono">
-                  {h.subtitle}
+              <div className="flex items-center justify-between">
+                <span className="text-3xl">💸</span>
+                <span className="font-comic-fredoka font-bold text-[10px] bg-white px-2 py-0.5 rounded-md border border-[#1f2937]">
+                  BIẾN CHỨNG 05
                 </span>
               </div>
-
-              <h3 className="font-bold text-sm md:text-base text-[#521b0a] mb-2 font-davinci-title uppercase">
-                {h.title}
+              <h3 className="font-comic-fredoka font-black text-base text-[#111827] mt-2">
+                HỘI CHỨNG "TSUNDOKU" & VIÊM VÍ
               </h3>
-
-              <p className="text-xs text-[#7c2d12] leading-relaxed">
-                {h.desc}
+              <p className="text-xs font-bold text-zinc-700 mt-2 leading-relaxed">
+                Tốc độ mua sách nhanh gấp 10 lần tốc độ đọc. Đi hội sách chỉ định ngó nghiêng nhưng ôm về 8 cuốn dày cộp, xếp chồng từ sàn lên tận nóc tủ làm phong thủy!
               </p>
             </div>
-
-            <div className="mt-4 pt-2 border-t border-[#991b1b]/20 text-[11px] text-[#991b1b] font-semibold italic">
-              ⚠️ Mức độ ảnh hưởng: Toàn diện sinh hoạt gia đình
+            <div className="mt-3 bg-white/90 p-2 rounded-lg border border-[#1f2937] text-center text-xs font-comic-hand font-bold text-red-800">
+              "Mua sách là mua hy vọng tri thức!" 📚
             </div>
-          </motion.div>
-        ))}
+          </div>
+
+          {/* Harm 6 */}
+          <div className="comic-panel-yellow p-4 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="text-3xl">🚽</span>
+                <span className="font-comic-fredoka font-bold text-[10px] bg-white px-2 py-0.5 rounded-md border border-[#1f2937]">
+                  BIẾN CHỨNG 06
+                </span>
+              </div>
+              <h3 className="font-comic-fredoka font-black text-base text-[#111827] mt-2">
+                CHIẾM DỤNG TOILET LÀM THƯ VIỆN
+              </h3>
+              <p className="text-xs font-bold text-zinc-700 mt-2 leading-relaxed">
+                Cầm cuốn sách vào nhà vệ sinh "giải quyết nhanh 3 phút", nhưng lật trang hồi hộp quá ngồi lì 45 phút. Hậu quả là bước ra với đôi chân tê rần mất cảm giác!
+              </p>
+            </div>
+            <div className="mt-3 bg-white/90 p-2 rounded-lg border border-[#1f2937] text-center text-xs font-comic-hand font-bold text-amber-800">
+              Phòng đọc sách VIP yên tĩnh nhất trần gian! ✨
+            </div>
+          </div>
+
+          {/* Harm 7 */}
+          <div className="comic-panel-sky p-4 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="text-3xl">🧘</span>
+                <span className="font-comic-fredoka font-bold text-[10px] bg-white px-2 py-0.5 rounded-md border border-[#1f2937]">
+                  BIẾN CHỨNG 07
+                </span>
+              </div>
+              <h3 className="font-comic-fredoka font-black text-base text-[#111827] mt-2">
+                BÌNH THẢN ĐẾN MỨC "ĐÁNG GHÉT"
+              </h3>
+              <p className="text-xs font-bold text-zinc-700 mt-2 leading-relaxed">
+                Khi drama mạng xã hội bùng nổ, mọi người sốt sắng cãi cọ, riêng bạn lại bình tĩnh ngồi đọc sách và bảo: "Mọi việc đều có tính hai mặt". Thái độ này dễ làm người khác bực mình!
+              </p>
+            </div>
+            <div className="mt-3 bg-white/90 p-2 rounded-lg border border-[#1f2937] text-center text-xs font-comic-hand font-bold text-blue-800">
+              Trạng thái Zen vô cực: Miễn nhiễm drama! 🌊
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
       {/* Footer */}
-      <div className="flex justify-between items-center text-xs text-[#991b1b] border-t border-[#991b1b]/20 pt-2 font-davinci-mono">
-        <span>DAMNA COTIDIANA • FOLIO IX</span>
-        <span className="italic">"Đọc sách đánh thẳng vào ví tiền và biến toilet thành phòng đọc."</span>
-        <span>VITRUVIUS 1490</span>
+      <div className="flex justify-between items-center text-xs font-bold text-zinc-600 z-10 border-t-2 border-dashed border-[#1f2937] pt-1.5">
+        <span className="font-comic-fredoka">7 BIẾN CHỨNG ĐÃ ĐIỂM DANH</span>
+        <span>NHẤN 👉 ĐỂ SANG PHẦN 4: VÌ SAO 90% THOÁT NẠN?</span>
       </div>
 
     </div>
