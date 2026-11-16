@@ -204,9 +204,10 @@
 /* SLIDES WRAPPER & INDIVIDUAL SLIDES */
 .slides-wrapper {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 48px; /* Room for bottom control bar */
   overflow: hidden;
 }
 
@@ -220,7 +221,7 @@
   justify-content: space-between !important;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.25s ease;
   z-index: 1;
 }
 
@@ -243,7 +244,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 16px;
   z-index: 45;
 }
 
@@ -281,26 +282,107 @@
   stroke-width: 2.5;
 }
 
-.slide-counter {
+/* SLIDE COUNTER & POPOVER PICKER */
+.slide-counter-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.clickable-counter {
   font-family: 'Fredoka', cursive, sans-serif;
   font-size: 13px;
   font-weight: 700;
   color: var(--comic-ink);
-  background: #f3f4f6;
-  border: 1.5px solid var(--comic-ink);
-  border-radius: 6px;
-  padding: 3px 10px;
+  background: #fef08a;
+  border: 2px solid var(--comic-ink);
+  border-radius: 8px;
+  padding: 4px 12px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px var(--comic-ink);
+  user-select: none;
 }
 
-.slide-title-display {
+.clickable-counter:hover {
+  background: #fde047;
+}
+
+.slide-picker-popover {
+  position: absolute;
+  bottom: 44px;
+  left: 0;
+  background: #ffffff;
+  border: 3px solid var(--comic-ink);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 4px 4px 0px var(--comic-ink);
+  z-index: 60;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  width: 280px;
+}
+
+.slide-picker-popover.active {
+  display: flex;
+}
+
+.slide-picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 6px;
+}
+
+.slide-picker-title {
   font-family: 'Fredoka', cursive, sans-serif;
   font-size: 12px;
   font-weight: 700;
   color: var(--comic-ink);
-  max-width: 480px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+}
+
+.slide-picker-close {
+  background: none;
+  border: none;
+  font-weight: 900;
+  font-size: 14px;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 0 4px;
+}
+
+.slide-picker-close:hover {
+  color: #000;
+}
+
+.slide-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+}
+
+.slide-picker-btn {
+  background: #f3f4f6;
+  border: 2px solid var(--comic-ink);
+  border-radius: 8px;
+  padding: 6px 0;
+  font-family: 'Fredoka', cursive, sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--comic-ink);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.1s ease;
+}
+
+.slide-picker-btn:hover {
+  background: #fef08a;
+}
+
+.slide-picker-btn.active {
+  background: #fde047;
+  box-shadow: 2px 2px 0px var(--comic-ink);
 }
 
 /* OVERVIEW DRAWER (INDEX MODAL) */

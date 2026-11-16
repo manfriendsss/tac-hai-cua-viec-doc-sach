@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const Slide1Title: React.FC = () => {
   return (
-    <div className="slide active bg-comic-strip text-[#1f2937] p-8 md:p-12 font-comic-neue" data-slide="1">
+    <div className="slide bg-comic-strip text-[#1f2937] p-8 md:p-12 font-comic-neue" data-slide="1">
       
       {/* Top Newspaper Masthead */}
       <div className="flex justify-between items-center z-10 border-b-3 border-[#1f2937] pb-3">
