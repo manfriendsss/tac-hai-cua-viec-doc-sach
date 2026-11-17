@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo Hiệu Ứng Đóng Dấu (Stamp Animation)</title>
+  <!-- Tải Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tải Tone.js để tạo âm thanh đóng dấu chân thực không cần file ngoài -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+  <!-- Google Fonts: Inter cho UI và Courier Prime / Oswald cho chữ con dấu -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&family=Inter:wght@400;500;600;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Thiết lập font cơ bản */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #1e293b;
+      /* Họa tiết mặt bàn làm việc tối màu sang trọng */
+      background-image: radial-gradient(#334155 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* Font chữ chuyên dụng cho con dấu */
+    .font-stamp {
+      font-family: 'Oswald', 'Courier Prime', monospace;
+    }
+
+    /* Bề mặt giấy hồ sơ có vân nhẹ */
+    .paper-sheet {
+      background-color: #fdfbf7;
+      background-image: 
+        linear-gradient(90deg, rgba(200, 190, 175, 0.12) 1px, transparent 1px),
+        linear-gradient(rgba(200, 190, 175, 0.12) 1px, transparent 1px);
+      background-size: 20px 20px;
+      box-shadow: 
+        0 20px 25px -5px rgba(0, 0, 0, 0.35),
+        0 8px 10px -6px rgba(0, 0, 0, 0.25),
+        inset 0 0 40px rgba(214, 203, 185, 0.35);
+      transition: transform 0.1s ease;
+    }
+
+    /* Hiệu ứng rung giấy khi đóng dấu */
+    @keyframes paperShake {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      20% { transform: translate(-4px, 4px) rotate(-0.6deg); }
+      40% { transform: translate(4px, -3px) rotate(0.6deg); }
+      60% { transform: translate(-3px, 2px) rotate(-0.3deg); }
+      80% { transform: translate(2px, -2px) rotate(0.3deg); }
+    }
+
+    .animate-shake {
+      animation: paperShake 0.32s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    }
+
+    /* Hiệu ứng con dấu dập từ trên xuống */
+    @keyframes stampSlam {
+      0% {
+        opacity: 0;
+        transform: scale(3.6) rotate(var(--start-rot, -18deg));
+        filter: blur(2px);
+      }
+      65% {
+        opacity: 0.98;
+        transform: scale(0.92) rotate(var(--mid-rot, -6deg));
+        filter: blur(0px);
+      }
+      85% {
+        opacity: 0.92;
+        transform: scale(1.03) rotate(var(--end-rot, -8deg));
+      }
+      100% {
+        opacity: 0.9;
+        transform: scale(1) rotate(var(--end-rot, -8deg));
+      }
+    }
+
+    .animate-stamp {
+      animation: stampSlam 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    /* Tạo độ nhám mực in (Grunge/Ink texture) bằng SVG Filter */
+    .ink-texture {
+      filter: url(#ink-grunge);
+      mix-blend-mode: multiply;
+    }
+
+    /* Kiểu con dấu hình chữ nhật */
+    .stamp-rect {
+      border-width: 5px;
+      border-style: double;
+      border-radius: 10px;
+      padding: 10px 24px;
+      box-shadow: inset 0 0 0 2px currentColor;
+    }
+
+    /* Kiểu con dấu hình tròn (dấu mộc) */
+    .stamp-circle {
+      width: 175px;
+      height: 175px;
+      border-radius: 50%;
+      border-width: 4px;
+      border-style: solid;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 14px;
+      position: relative;
+    }
+
+    .stamp-circle::before {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      border-radius: 50%;
+      border: 2px dashed currentColor;
+      opacity: 0.85;
+    }
+
+    /* Nút bấm hiệu ứng 3D nổi */
+    .btn-stamp-action {
+      box-shadow: 0 4px 0 #991b1b;
+      transition: all 0.1s ease;
+    }
+    .btn-stamp-action:active {
+      transform: translateY(4px);
+      box-shadow: 0 0 0 #991b1b;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-800 flex flex-col lg:flex-row items-center justify-center p-4 md:p-8 gap-6 lg:gap-10 overflow-x-hidden">
+
+  <!-- Bộ lọc SVG ẩn tạo hiệu ứng hạt mực in không đều như dấu thật -->
+  <svg class="hidden" width="0" height="0">
+    <defs>
+      <filter id="ink-grunge" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.18" numOctaves="3" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+        <feColorMatrix in="noise" type="matrix" values="
+          1 0 0 0 0
+          0 1 0 0 0
+          0 0 1 0 0
+          0 0 0 1.8 -0.35" result="alphaNoise" />
+        <feComposite in="displaced" in2="alphaNoise" operator="out" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- KHU VỰC 1: TỜ TÀI LIỆU / HỒ SƠ (BÊN TRÁI) -->
+  <main class="w-full max-w-xl flex flex-col items-center">
+    <div id="paperContainer" class="paper-sheet w-full rounded-xl p-6 sm:p-10 relative overflow-hidden select-none border border-amber-200/60">
+      
+      <!-- Tiêu đề hành chính giả lập trên tờ giấy -->
+      <div class="flex justify-between items-start border-b-2 border-slate-800/80 pb-4 mb-6">
+        <div>
+          <p class="text-[11px] font-bold tracking-widest uppercase text-slate-500">Cộng Hòa Xã Hội Chủ Nghĩa Việt Nam</p>
+          <p class="text-xs font-semibold text-slate-700 mt-0.5">Phòng Hành Chính & Kiểm Soát Chất Lượng</p>
+        </div>
+        <div class="text-right">
+          <span class="inline-block bg-slate-800 text-amber-50 text-[10px] font-mono px-2 py-0.5 rounded">MÃ HS: #2026-884</span>
+          <p id="docDate" class="text-xs text-slate-500 mt-1 font-mono"></p>
+        </div>
+      </div>
+
+      <!-- Tiêu đề tài liệu -->
+      <div class="text-center my-6">
+        <h1 class="text-xl sm:text-2xl font-bold tracking-wide text-slate-900 uppercase">Biên Bản Xác Nhận Hồ Sơ</h1>
+        <p class="text-xs text-slate-500 mt-1 italic">(V/v: Thẩm định và phê duyệt nội dung đề xuất dự án)</p>
+      </div>
+
+      <!-- Nội dung văn bản giả lập (Skeleton lines + Text thật) -->
+      <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
+        <p>
+          Căn cứ theo quy định hiện hành và kết quả rà soát thực tế từ bộ phận chuyên môn, hồ sơ đính kèm đã đáp ứng đầy đủ các tiêu chuẩn kỹ thuật và pháp lý yêu cầu.
+        </p>
+        
+        <!-- Các dòng kẻ thông tin -->
+        <div class="bg-amber-900/5 rounded-lg p-4 space-y-2.5 border border-amber-900/10 font-mono text-xs">
+          <div class="flex justify-between border-b border-dashed border-slate-300 pb-1.5">
+            <span class="text-slate-500">Đơn vị trình duyệt:</span>
+            <span class="font-semibold text-slate-800">Phòng Phát Triển Sản Phẩm</span>
+          </div>
+          <div class="flex justify-between border-b border-dashed border-slate-300 pb-1.5">
+            <span class="text-slate-500">Trạng thái rà soát:</span>
+            <span class="font-semibold text-slate-800">Hoàn tất 100% hạng mục</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">Ghi chú lưu trữ:</span>
+            <span class="font-semibold text-slate-800">Bản gốc có giá trị pháp lý</span>
+          </div>
+        </div>
+
+        <p class="text-xs text-slate-500 pt-2">
+          Văn bản này có hiệu lực ngay sau khi được đóng dấu xác nhận chính thức từ người có thẩm quyền ở phía dưới.
+        </p>
+      </div>
+
+      <!-- Khu vực chữ ký & Vị trí đóng dấu -->
+      <div class="mt-10 pt-4 flex justify-between items-end min-h-[160px] relative">
+        <div class="text-center w-1/3">
+          <p class="text-xs font-bold uppercase text-slate-700">Người Lập Biểu</p>
+          <p class="text-[11px] text-slate-400 italic mt-1">(Đã ký)</p>
+          <p class="font-serif italic text-slate-600 text-base mt-4">Minh Anh</p>
+        </div>
+
+        <div class="text-center w-1/2 relative flex flex-col items-center justify-center">
+          <p class="text-xs font-bold uppercase text-slate-700 mb-14">Xác Nhận Của Lãnh Đạo</p>
+          
+          <!-- CON DẤU ĐỘNG HIỂN THỊ TẠI ĐÂY -->
+          <div id="stampWrapper" class="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+            <div id="stampElement" class="ink-texture font-stamp stamp-rect text-[#d32f2f] border-[#d32f2f] animate-stamp select-none">
+              <!-- Nội dung con dấu sẽ được render bằng JS -->
+              <span id="stampMainText" class="text-2xl sm:text-3xl font-bold tracking-widest uppercase leading-tight block">ĐÃ KIỂM DUYỆT</span>
+              <span id="stampSubText" class="hidden text-[10px] tracking-[0.2em] uppercase mt-1 font-mono opacity-90"></span>
+            </div>
+          </div>
+
+          <p class="text-xs font-semibold text-slate-800 mt-4">Trưởng Phòng Phê Duyệt</p>
+        </div>
+      </div>
+
+      <!-- Gợi ý tương tác trực tiếp lên mặt giấy -->
+      <div class="mt-6 pt-3 border-t border-slate-200/80 flex items-center justify-between text-[11px] text-slate-400">
+        <span>💡 Mẹo: Bạn có thể bấm trực tiếp lên tờ giấy để đóng dấu!</span>
+        <span class="font-mono">SCALE: 100%</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- KHU VỰC 2: BẢNG ĐIỀU KHIỂN TÙY CHỈNH (BÊN PHẢI) -->
+  <aside class="w-full max-w-md bg-slate-900/90 backdrop-blur-md border border-slate-700/80 rounded-2xl p-6 text-slate-100 shadow-2xl">
+    <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-5">
+      <div>
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          Tùy Chỉnh Con Dấu
+        </h2>
+        <p class="text-xs text-slate-400 mt-0.5">Thử nghiệm thông số & xem hiệu ứng tức thì</p>
+      </div>
+      <span class="text-[11px] font-mono bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md border border-slate-700">CSS + JS</span>
+    </div>
+
+    <div class="space-y-5">
+      <!-- 1. Nhập nội dung chữ trên con dấu -->
+      <div>
+        <label for="stampInput" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+          1. Nội dung trên con dấu
+        </label>
+        <input 
+          type="text" 
+          id="stampInput" 
+          value="ĐÃ KIỂM DUYỆT" 
+          maxlength="22"
+          placeholder="Nhập chữ (VD: TỪ CHỐI, MẬT...)"
+          class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm font-semibold text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition"
+        >
+        <!-- Gợi ý nhanh các mẫu chữ phổ biến -->
+        <div class="flex flex-wrap gap-1.5 mt-2">
+          <button type="button" data-preset="ĐÃ KIỂM DUYỆT" class="preset-btn text-[11px] bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-700/70 transition">ĐÃ KIỂM DUYỆT</button>
+          <button type="button" data-preset="TỪ CHỐI" class="preset-btn text-[11px] bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-700/70 transition">TỪ CHỐI</button>
+          <button type="button" data-preset="HỒ SƠ MẬT" class="preset-btn text-[11px] bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-700/70 transition">HỒ SƠ MẬT</button>
+          <button type="button" data-preset="HOÀN THÀNH" class="preset-btn text-[11px] bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-700/70 transition">HOÀN THÀNH</button>
+        </div>
+      </div>
+
+      <!-- 2. Chọn màu mực -->
+      <div>
+        <span class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+          2. Màu mực con dấu
+        </span>
+        <div class="grid grid-cols-3 gap-2.5">
+          <button type="button" data-color="#d32f2f" class="color-btn active flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl border-2 border-rose-500 bg-rose-500/15 text-xs font-semibold text-white transition">
+            <span class="w-3.5 h-3.5 rounded-full bg-[#d32f2f] shadow-sm"></span>
+            Đỏ Son
+          </button>
+          <button type="button" data-color="#1976d2" class="color-btn flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl border-2 border-slate-700 bg-slate-800/60 hover:bg-slate-800 text-xs font-semibold text-slate-300 transition">
+            <span class="w-3.5 h-3.5 rounded-full bg-[#1976d2] shadow-sm"></span>
+            Xanh Dương
+          </button>
+          <button type="button" data-color="#2e7d32" class="color-btn flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl border-2 border-slate-700 bg-slate-800/60 hover:bg-slate-800 text-xs font-semibold text-slate-300 transition">
+            <span class="w-3.5 h-3.5 rounded-full bg-[#2e7d32] shadow-sm"></span>
+            Xanh Lá
+          </button>
+        </div>
+      </div>
+
+      <!-- 3. Chọn kiểu dáng con dấu -->
+      <div>
+        <span class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+          3. Kiểu dáng khung dấu
+        </span>
+        <div class="grid grid-cols-2 gap-2.5">
+          <button type="button" data-shape="rect" class="shape-btn active flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl border-2 border-rose-500 bg-rose-500/15 text-xs font-semibold text-white transition">
+            <span class="w-4 h-3 border-2 border-current rounded-sm"></span>
+            Chữ Nhật
+          </button>
+          <button type="button" data-shape="circle" class="shape-btn flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl border-2 border-slate-700 bg-slate-800/60 hover:bg-slate-800 text-xs font-semibold text-slate-300 transition">
+            <span class="w-3.5 h-3.5 border-2 border-current rounded-full"></span>
+            Tròn (Dấu Mộc)
+          </button>
+        </div>
+      </div>
+
+      <!-- 4. Các tùy chọn hiệu ứng bổ sung (Toggle switches) -->
+      <div class="space-y-3 pt-1 border-t border-slate-800">
+        <!-- Bật/tắt rung giấy -->
+        <label class="flex items-center justify-between cursor-pointer pt-2">
+          <div>
+            <span class="text-sm font-medium text-slate-200 block">Hiệu ứng rung giấy (Screen Shake)</span>
+            <span class="text-[11px] text-slate-400">Tạo cảm giác lực dập mạnh xuống mặt bàn</span>
+          </div>
+          <div class="relative inline-flex items-center">
+            <input type="checkbox" id="shakeToggle" checked class="sr-only peer">
+            <div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-rose-600"></div>
+          </div>
+        </label>
+
+        <!-- Bật/tắt âm thanh đóng dấu -->
+        <label class="flex items-center justify-between cursor-pointer">
+          <div>
+            <span class="text-sm font-medium text-slate-200 block">Âm thanh dập dấu chân thực</span>
+            <span class="text-[11px] text-slate-400">Tiếng "cộp" trầm ấm khi con dấu chạm giấy</span>
+          </div>
+          <div class="relative inline-flex items-center">
+            <input type="checkbox" id="soundToggle" checked class="sr-only peer">
+            <div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-rose-600"></div>
+          </div>
+        </label>
+      </div>
+
+      <!-- 5. Nút kích hoạt chính -->
+      <div class="pt-2">
+        <button 
+          type="button" 
+          id="triggerStampBtn"
+          class="btn-stamp-action w-full bg-rose-600 hover:bg-rose-500 text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2.5 text-sm uppercase tracking-wider cursor-pointer"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path>
+          </svg>
+          Đóng Dấu Ngay
+          <span class="text-[10px] font-mono bg-rose-800/80 px-2 py-0.5 rounded text-rose-100 ml-1">SPACE</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <script>
+    /**
+     * Logic điều khiển hiệu ứng Đóng Dấu Tương Tác
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+      // Các phần tử DOM chính
+      const paperContainer = document.getElementById('paperContainer');
+      const stampElement = document.getElementById('stampElement');
+      const stampMainText = document.getElementById('stampMainText');
+      const stampSubText = document.getElementById('stampSubText');
+      const stampInput = document.getElementById('stampInput');
+      const triggerStampBtn = document.getElementById('triggerStampBtn');
+      const shakeToggle = document.getElementById('shakeToggle');
+      const soundToggle = document.getElementById('soundToggle');
+      const docDate = document.getElementById('docDate');
+
+      const presetBtns = document.querySelectorAll('.preset-btn');
+      const colorBtns = document.querySelectorAll('.color-btn');
+      const shapeBtns = document.querySelectorAll('.shape-btn');
+
+      // Trạng thái hiện tại
+      let currentShape = 'rect'; // 'rect' | 'circle'
+      let currentColor = '#d32f2f';
+      let audioInitialized = false;
+      let membraneSynth = null;
+      let noiseSynth = null;
+
+      // Hiển thị ngày hiện tại lên tờ hồ sơ
+      const today = new Date();
+      const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
+      docDate.textContent = `Ngày ${formattedDate}`;
+      stampSubText.textContent = formattedDate;
+
+      /**
+       * Khởi tạo bộ tổng hợp âm thanh bằng Tone.js (tạo tiếng dập dấu trầm ấm)
+       */
+      async function initAudio() {
+        if (audioInitialized || typeof Tone === 'undefined') return;
+        try {
+          await Tone.start();
+          // Tiếng trầm của đế cao su đập xuống bàn
+          membraneSynth = new Tone.MembraneSynth({
+            pitchDecay: 0.04,
+            octaves: 3,
+            oscillator: { type: 'sine' },
+            envelope: {
+              attack: 0.002,
+              decay: 0.14,
+              sustain: 0,
+              release: 0.05
+            }
+          }).toDestination();
+          membraneSynth.volume.value = -4;
+
+          // Tiếng ma sát giấy nhẹ
+          noiseSynth = new Tone.NoiseSynth({
+            noise: { type: 'brown' },
+            envelope: {
+              attack: 0.001,
+              decay: 0.06,
+              sustain: 0
+            }
+          }).toDestination();
+          noiseSynth.volume.value = -14;
+
+          audioInitialized = true;
+        } catch (err) {
+          console.warn('Không thể khởi tạo âm thanh:', err);
+        }
+      }
+
+      /**
+       * Phát âm thanh dập dấu đồng bộ với thời điểm con dấu chạm giấy (~240ms sau khi bắt đầu)
+       */
+      function playStampSound() {
+        if (!soundToggle.checked) return;
+        initAudio().then(() => {
+          if (membraneSynth && noiseSynth) {
+            const now = Tone.now();
+            // Đợi 0.22s để khớp với khung hình 65% của animation (lúc dập xuống mặt giấy)
+            membraneSynth.triggerAttackRelease('G1', '16n', now + 0.22);
+            noiseSynth.triggerAttackRelease('32n', now + 0.22);
+          }
+        });
+      }
+
+      /**
+       * Cập nhật nội dung và kiểu dáng con dấu
+       */
+      function updateStampAppearance() {
+        const rawText = stampInput.value.trim() || 'ĐÃ KIỂM DUYỆT';
+        stampMainText.textContent = rawText;
+
+        // Cập nhật màu sắc
+        stampElement.style.color = currentColor;
+        stampElement.style.borderColor = currentColor;
+
+        // Cập nhật kiểu dáng (Chữ nhật vs Hình tròn)
+        if (currentShape === 'circle') {
+          stampElement.classList.remove('stamp-rect');
+          stampElement.classList.add('stamp-circle');
+          stampMainText.className = 'text-lg sm:text-xl font-bold tracking-wider uppercase leading-tight block px-1';
+          stampSubText.classList.remove('hidden');
+        } else {
+          stampElement.classList.remove('stamp-circle');
+          stampElement.classList.add('stamp-rect');
+          stampMainText.className = 'text-2xl sm:text-3xl font-bold tracking-widest uppercase leading-tight block';
+          stampSubText.classList.add('hidden');
+        }
+      }
+
+      /**
+       * Kích hoạt lại hiệu ứng đóng dấu (Reflow CSS Animation + Rung giấy + Âm thanh)
+       */
+      function triggerStampAnimation() {
+        // Tạo góc nghiêng ngẫu nhiên nhẹ mỗi lần đóng dấu để giống người thật đóng tay
+        const randomEndAngle = (Math.random() * 10 - 12).toFixed(1); // Từ -12deg đến -2deg
+        const randomStartAngle = (parseFloat(randomEndAngle) - 10).toFixed(1);
+        const randomMidAngle = (parseFloat(randomEndAngle) + 2).toFixed(1);
+
+        stampElement.style.setProperty('--start-rot', `${randomStartAngle}deg`);
+        stampElement.style.setProperty('--mid-rot', `${randomMidAngle}deg`);
+        stampElement.style.setProperty('--end-rot', `${randomEndAngle}deg`);
+
+        // Reset animation của con dấu
+        stampElement.classList.remove('animate-stamp');
+        void stampElement.offsetWidth; // Kích hoạt reflow bắt buộc
+        stampElement.classList.add('animate-stamp');
+
+        // Rung phản hồi nhẹ trên thiết bị di động (nếu hỗ trợ)
+        if (navigator.vibrate) {
+          setTimeout(() => navigator.vibrate(35), 220);
+        }
+
+        // Kích hoạt hiệu ứng rung giấy đúng nhịp con dấu chạm xuống
+        paperContainer.classList.remove('animate-shake');
+        if (shakeToggle.checked) {
+          setTimeout(() => {
+            void paperContainer.offsetWidth;
+            paperContainer.classList.add('animate-shake');
+          }, 210);
+        }
+
+        // Phát âm thanh
+        playStampSound();
+      }
+
+      // Lắng nghe sự kiện nhập chữ
+      stampInput.addEventListener('input', () => {
+        updateStampAppearance();
+      });
+
+      // Lắng nghe các nút gợi ý chữ nhanh
+      presetBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          stampInput.value = btn.dataset.preset;
+          updateStampAppearance();
+          triggerStampAnimation();
+        });
+      });
+
+      // Lắng nghe chọn màu mực
+      colorBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          colorBtns.forEach(b => {
+            b.classList.remove('active', 'border-rose-500', 'bg-rose-500/15', 'text-white');
+            b.classList.add('border-slate-700', 'bg-slate-800/60', 'text-slate-300');
+          });
+          btn.classList.add('active', 'border-rose-500', 'bg-rose-500/15', 'text-white');
+          btn.classList.remove('border-slate-700', 'bg-slate-800/60', 'text-slate-300');
+
+          currentColor = btn.dataset.color;
+          updateStampAppearance();
+          triggerStampAnimation();
+        });
+      });
+
+      // Lắng nghe chọn kiểu dáng khung dấu
+      shapeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          shapeBtns.forEach(b => {
+            b.classList.remove('active', 'border-rose-500', 'bg-rose-500/15', 'text-white');
+            b.classList.add('border-slate-700', 'bg-slate-800/60', 'text-slate-300');
+          });
+          btn.classList.add('active', 'border-rose-500', 'bg-rose-500/15', 'text-white');
+          btn.classList.remove('border-slate-700', 'bg-slate-800/60', 'text-slate-300');
+
+          currentShape = btn.dataset.shape;
+          updateStampAppearance();
+          triggerStampAnimation();
+        });
+      });
+
+      // Nút "Đóng Dấu Ngay"
+      triggerStampBtn.addEventListener('click', () => {
+        triggerStampAnimation();
+      });
+
+      // Bấm trực tiếp vào tờ hồ sơ cũng kích hoạt đóng dấu
+      paperContainer.addEventListener('click', () => {
+        triggerStampAnimation();
+      });
+
+      // Phím tắt Space để đóng dấu nhanh (khi không gõ trong ô input)
+      document.addEventListener('keydown', (e) => {
+        if (e.code === 'Space' && document.activeElement !== stampInput) {
+          e.preventDefault();
+          triggerStampAnimation();
+        }
+      });
+
+      // Khởi tạo giao diện ban đầu
+      updateStampAppearance();
+    });
+  </script>
+</body>
+</html>
