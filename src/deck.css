@@ -1,109 +1,303 @@
 :root {
-  --comic-bg: #e8e4dc;
-  --comic-ink: #1f2937;
-  --comic-white: #ffffff;
-  --comic-yellow: #fde047;
-  --comic-yellow-soft: #fef9c3;
-  --comic-blue-soft: #e0f2fe;
-  --comic-mint-soft: #dcfce7;
-  --comic-coral-soft: #fee2e2;
-  --comic-amber: #d97706;
+  /* THEME: HỒ SƠ MẬT VỤ / TOP SECRET NOIR DOSSIER */
+  --dossier-paper: #e6dcc8;
+  --dossier-paper-card: #f3ebd9;
+  --dossier-paper-light: #fdfaf3;
+  --dossier-desk-noir: #141413;
+  --dossier-ink-dark: #1c1917;
+  --dossier-stamp-red: #b91c1c;
+  --dossier-stamp-crimson: #dc2626;
+  --dossier-caution-amber: #d97706;
+  --dossier-tape-yellow: #f59e0b;
+  --dossier-sepia-brown: #5c4d3c;
+  --dossier-steel-gray: #44403c;
+  --dossier-border: 2px solid #1c1917;
+
+  /* Legacy fallback support */
+  --comic-bg: #e6dcc8;
+  --comic-ink: #1c1917;
+  --comic-white: #fdfaf3;
+  --comic-yellow: #f59e0b;
+  --comic-yellow-soft: #fbf3db;
+  --comic-blue-soft: #e2ecf5;
+  --comic-mint-soft: #e1efe6;
+  --comic-coral-soft: #fae4e4;
+  --comic-amber: #b91c1c;
 }
 
-/* CUSTOM BLACK FEATHER QUILL CURSOR (Bút lông chim màu đen) */
+/* GLOBAL SCROLLBAR SUPPRESSION: Tuyệt đối không để lộ bất kỳ scrollbar nào trên toàn bộ deck */
+*, *::before, *::after {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* CUSTOM BLUE FEATHER QUILL CURSOR (Bút lông vũ màu xanh) */
 * {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34"><path d="M0 0 L5 10 L10 5 Z" fill="%230f172a" stroke="%23000000" stroke-width="1"/><path d="M4 8 L8 4 L10 6 L6 10 Z" fill="%2394a3b8"/><path d="M6 6 Q16 16 32 32" stroke="%230f172a" stroke-width="2.2" stroke-linecap="round"/><path d="M6 6 Q12 3 20 7 Q28 11 32 29 Q27 25 21 21 Q13 15 6 6 Z" fill="%230f172a"/><path d="M6 6 Q7 12 13 18 Q17 24 29 32 Q23 25 17 19 Q11 13 6 6 Z" fill="%231e293b"/><path d="M12 9 L9 13 M18 13 L15 18 M24 18 L21 23" stroke="%23475569" stroke-width="0.8" stroke-linecap="round"/></svg>') 0 0, auto !important;
+  cursor: url('/assets/blue-quill-cursor.png') 0 0, auto !important;
 }
 
-button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step-card {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34"><path d="M0 0 L5 10 L10 5 Z" fill="%23000000" stroke="%23b45309" stroke-width="1.2"/><path d="M4 8 L8 4 L10 6 L6 10 Z" fill="%23f59e0b"/><path d="M6 6 Q16 16 32 32" stroke="%23000000" stroke-width="2.2" stroke-linecap="round"/><path d="M6 6 Q12 3 20 7 Q28 11 32 29 Q27 25 21 21 Q13 15 6 6 Z" fill="%23000000"/><path d="M6 6 Q7 12 13 18 Q17 24 29 32 Q23 25 17 19 Q11 13 6 6 Z" fill="%231e293b"/><path d="M12 9 L9 13 M18 13 L15 18 M24 18 L21 23" stroke="%23f59e0b" stroke-width="0.8" stroke-linecap="round"/></svg>') 0 0, pointer !important;
+button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step-card, .book-corner-peel, [role="button"] {
+  cursor: url('/assets/blue-quill-cursor-hover.png') 0 0, pointer !important;
 }
 
-/* TYPOGRAPHY */
+/* TYPEWRITER & DOSSIER TYPOGRAPHY */
+.font-typewriter {
+  font-family: 'Courier Prime', 'Special Elite', 'Space Mono', 'Courier New', monospace;
+}
+.font-dossier-title {
+  font-family: 'Special Elite', 'Courier Prime', 'Space Mono', monospace;
+  letter-spacing: 0.5px;
+}
+.font-dossier-code {
+  font-family: 'Space Mono', 'Courier Prime', monospace;
+  letter-spacing: 1px;
+}
 .font-comic-fredoka {
-  font-family: 'Fredoka', cursive, sans-serif;
+  font-family: 'Special Elite', 'Courier Prime', 'Fredoka', cursive, monospace;
 }
 .font-comic-neue {
-  font-family: 'Comic Neue', cursive, sans-serif;
+  font-family: 'Courier Prime', 'Space Mono', monospace;
 }
 .font-comic-hand {
   font-family: 'Caveat', cursive, sans-serif;
 }
 .font-comic-bold {
-  font-family: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: 'Space Mono', 'Courier Prime', monospace;
 }
 .font-comic-bangers {
-  font-family: 'Bangers', Impact, cursive, sans-serif;
-  letter-spacing: 1.5px;
+  font-family: 'Special Elite', 'Bangers', Impact, monospace;
+  letter-spacing: 2px;
 }
 
-/* 80% BRIGHTNESS SUNDAY NEWSPAPER BACKGROUND */
+/* 1. AGED MANILA DOSSIER PAPER BACKGROUND */
+.dossier-paper,
 .bg-comic-strip {
-  background-color: var(--comic-bg);
+  background-color: var(--dossier-paper) !important;
   background-image: 
-    radial-gradient(#d3cbbe 1.2px, transparent 1.2px);
-  background-size: 14px 14px;
+    radial-gradient(rgba(120, 100, 75, 0.16) 1px, transparent 0),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(180, 160, 130, 0.2) 100%) !important;
+  background-size: 16px 16px, 100% 100% !important;
+  box-shadow: inset 0 0 60px rgba(92, 77, 60, 0.18);
 }
 
-/* COMIC PANELS & CARDS */
+/* 2. CLASSIFIED DOSSIER CARDS & PANELS */
+.dossier-card,
 .comic-panel {
-  background: #ffffff;
-  border: 3px solid var(--comic-ink);
-  border-radius: 20px;
-  box-shadow: 4px 4px 0px var(--comic-ink);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.comic-panel,
-.comic-panel-yellow,
-.comic-panel-sky,
-.comic-panel-mint,
-.comic-panel-coral {
+  background: var(--dossier-paper-card) !important;
+  border: 2px solid var(--dossier-ink-dark) !important;
+  border-radius: 8px !important;
+  box-shadow: 3px 3px 0px rgba(28, 25, 23, 0.85) !important;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
 }
 
+.dossier-card:hover,
 .comic-panel:hover,
 .comic-panel-yellow:hover,
 .comic-panel-sky:hover,
 .comic-panel-mint:hover,
 .comic-panel-coral:hover {
   transform: translateY(-2px);
-  box-shadow: 6px 6px 0px var(--comic-ink);
-}
-
-.spotlight-active {
-  transform: scale(1.03) !important;
-  box-shadow: 7px 7px 0px var(--comic-ink) !important;
-  border-color: #d97706 !important;
-  z-index: 25 !important;
+  box-shadow: 5px 5px 0px rgba(28, 25, 23, 0.95) !important;
 }
 
 .comic-panel-yellow {
-  background: var(--comic-yellow-soft);
-  border: 3px solid var(--comic-ink);
-  border-radius: 20px;
-  box-shadow: 4px 4px 0px var(--comic-ink);
+  background: #fdf6e2 !important;
+  border: 2px solid var(--dossier-ink-dark) !important;
+  border-radius: 8px !important;
+  box-shadow: 3px 3px 0px rgba(28, 25, 23, 0.85) !important;
 }
 
 .comic-panel-sky {
-  background: var(--comic-blue-soft);
-  border: 3px solid var(--comic-ink);
-  border-radius: 20px;
-  box-shadow: 4px 4px 0px var(--comic-ink);
+  background: #e9f1f7 !important;
+  border: 2px solid var(--dossier-ink-dark) !important;
+  border-radius: 8px !important;
+  box-shadow: 3px 3px 0px rgba(28, 25, 23, 0.85) !important;
 }
 
 .comic-panel-mint {
-  background: var(--comic-mint-soft);
-  border: 3px solid var(--comic-ink);
-  border-radius: 20px;
-  box-shadow: 4px 4px 0px var(--comic-ink);
+  background: #e8f3ea !important;
+  border: 2px solid var(--dossier-ink-dark) !important;
+  border-radius: 8px !important;
+  box-shadow: 3px 3px 0px rgba(28, 25, 23, 0.85) !important;
 }
 
 .comic-panel-coral {
-  background: var(--comic-coral-soft);
-  border: 3px solid var(--comic-ink);
-  border-radius: 20px;
-  box-shadow: 4px 4px 0px var(--comic-ink);
+  background: #fbeaea !important;
+  border: 2px solid var(--dossier-ink-dark) !important;
+  border-radius: 8px !important;
+  box-shadow: 3px 3px 0px rgba(28, 25, 23, 0.85) !important;
+}
+
+/* SPOTLIGHT FOR DOSSIER STEP-CARDS */
+.step-spotlight,
+.spotlight-active {
+  transform: scale(1.02) translateY(-2px) !important;
+  border-color: var(--dossier-stamp-red) !important;
+  box-shadow: 5px 5px 0px var(--dossier-stamp-red) !important;
+  background: #fffdf9 !important;
+  z-index: 25 !important;
+}
+
+/* 3. RUBBER STAMPS: TOP SECRET, CLASSIFIED, EVIDENCE */
+.stamp-top-secret {
+  border: 3px solid var(--dossier-stamp-red);
+  color: var(--dossier-stamp-red);
+  font-family: 'Special Elite', 'Courier Prime', monospace;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 3px 12px;
+  display: inline-block;
+  transform: rotate(-3deg);
+  border-radius: 4px;
+  box-shadow: inset 0 0 4px rgba(185, 28, 28, 0.25);
+  user-select: none;
+}
+
+.stamp-classified {
+  border: 2px solid var(--dossier-stamp-crimson);
+  color: var(--dossier-stamp-crimson);
+  font-family: 'Space Mono', 'Courier Prime', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 2px 10px;
+  display: inline-block;
+  transform: rotate(2deg);
+  background: rgba(220, 38, 38, 0.06);
+  border-radius: 3px;
+}
+
+.stamp-verified {
+  border: 2px solid var(--dossier-sepia-brown);
+  color: var(--dossier-sepia-brown);
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  display: inline-block;
+  border-radius: 3px;
+  background: rgba(92, 77, 60, 0.08);
+}
+
+/* Rubber Stamp Slam Animation */
+@keyframes stampSlam {
+  0% {
+    opacity: 0;
+    transform: scale(2.8) rotate(-18deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.92) rotate(-3deg);
+  }
+  80% {
+    transform: scale(1.05) rotate(-5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(-4deg);
+  }
+}
+
+.stamp-slam-anim {
+  animation: stampSlam 0.45s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Red Seal Mark without Text */
+.stamp-seal-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2.5px solid var(--dossier-stamp-red);
+  background: rgba(185, 28, 28, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 5px rgba(185, 28, 28, 0.25);
+  animation: stampSlam 0.45s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.stamp-seal-dot::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--dossier-stamp-red);
+}
+
+/* Evidence photo interactive hover */
+.evidence-photo-frame {
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+.evidence-photo-frame:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 0 14px 30px rgba(20, 20, 19, 0.3);
+}
+
+/* 4. PAPERCLIPS & EVIDENCE TAGS */
+.dossier-paperclip {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  width: 12px;
+  height: 28px;
+  border: 2.5px solid #78716c;
+  border-radius: 10px;
+  border-bottom: none;
+  z-index: 20;
+  pointer-events: none;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.dossier-tag {
+  background: var(--dossier-ink-dark);
+  color: #e6dcc8;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* 5. CRIME SCENE CAUTION TAPE */
+.hazard-tape-stripe {
+  background: repeating-linear-gradient(
+    -45deg,
+    #f59e0b,
+    #f59e0b 12px,
+    #1c1917 12px,
+    #1c1917 24px
+  );
+}
+
+/* REDACTED TEXT BAR */
+.redacted-bar {
+  background: #1c1917;
+  color: #1c1917;
+  padding: 0 5px;
+  border-radius: 2px;
+  user-select: none;
+  transition: all 0.25s ease;
+  font-family: 'Courier Prime', monospace;
+}
+.redacted-bar:hover {
+  background: rgba(185, 28, 28, 0.15);
+  color: #b91c1c;
 }
 
 /* SPEECH & CLOUD BUBBLES */
@@ -206,15 +400,15 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   display: none !important;
 }
 
-/* SLIDES WRAPPER & INDIVIDUAL SLIDES - 3D BOOK PAGE FLIP */
+/* SLIDES WRAPPER & INDIVIDUAL SLIDES - 3D BOOK PAGE FLIP (Inspired by pub.dev/packages/book_page_flip) */
 .slides-wrapper {
   position: absolute;
   inset: 0;
   bottom: 0;
   height: 100%;
   overflow: hidden;
-  perspective: 2200px;
-  perspective-origin: center center;
+  perspective: 2500px;
+  perspective-origin: 50% 50%;
   transform-style: preserve-3d;
 }
 
@@ -230,10 +424,10 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform-origin: left center;
-  backface-visibility: hidden;
-  will-change: transform, opacity, box-shadow;
-  transition: opacity 0.25s ease;
+  transform-origin: 0% 85%; /* Anchored at spine with bottom-right grab bias (v = 0.85) */
+  transform-style: preserve-3d !important;
+  will-change: transform, opacity, filter, box-shadow;
+  transition: opacity 0.2s ease;
   z-index: 1;
 }
 
@@ -241,121 +435,450 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
-  transform: rotateY(0deg);
+  transform: rotateY(0deg) translate3d(0, 0, 0);
   z-index: 10 !important;
 }
 
-/* 3D BOOK PAGE CURL ANIMATIONS (Cảm giác cuộn mở 1 trang giấy) */
+/* Front Face Children of .slide (hide when flipped past 90 degrees) */
+.slide > *:not(.slide-leaf-back):not(.active-quill-writer):not(.book-corner-peel):not(.slide-curl-sheen):not(.slide-cast-shadow) {
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+}
+
+/* ==========================================================================
+   3D BOOK PAGE FLIP SYSTEM (Faithful to pub.dev/packages/book_page_flip)
+   3D cylinder mesh curl, dual-sided leaf (recto/verso), traveling cast shadow,
+   specular ridge highlight, authentic book spine crease & interactive corner dog-ears
+   ========================================================================== */
+
+/* Authentic Book Spine Crease along left edge on every page */
+.slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 44px;
+  background: linear-gradient(
+    to right,
+    rgba(17, 24, 39, 0.32) 0%,
+    rgba(17, 24, 39, 0.18) 20%,
+    rgba(17, 24, 39, 0.05) 55%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 40;
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Dynamic Page Curl & Specular Ridge Lighting Overlay */
+.slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 35;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Back Face of the Turning Leaf (Verso: Classified Dossier Backing) */
+.slide-leaf-back {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  transform: rotateY(180deg) translateZ(1px) !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+  background: #ded3bf !important;
+  color: #1c1917 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  box-shadow: inset 24px 0 45px rgba(20, 20, 19, 0.2), inset -6px 0 16px rgba(20, 20, 19, 0.1) !important;
+}
+
+.leaf-back-inner {
+  position: relative;
+  width: 86%;
+  height: 84%;
+  border: 2px dashed rgba(28, 25, 23, 0.55);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: rgba(243, 235, 217, 0.92);
+  padding: 36px 48px;
+  box-shadow: 4px 4px 0px rgba(20, 20, 19, 0.2);
+}
+
+.leaf-back-grain {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(rgba(120, 100, 75, 0.18) 1px, transparent 0),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(180, 160, 130, 0.2) 100%);
+  background-size: 14px 14px, 100% 100%;
+  pointer-events: none;
+  border-radius: 6px;
+}
+
+.leaf-back-ornament {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  font-weight: 800;
+  color: #b91c1c;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+  border: 2px solid #b91c1c;
+  padding: 3px 14px;
+  transform: rotate(-2deg);
+  background: rgba(185, 28, 28, 0.05);
+}
+
+.leaf-back-header {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #57534e;
+  margin-bottom: 8px;
+}
+
+.leaf-back-title {
+  font-family: 'Special Elite', 'Courier Prime', monospace;
+  font-size: 26px;
+  font-weight: 900;
+  color: #141413;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.leaf-back-quote {
+  font-family: 'Courier Prime', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  font-style: italic;
+  color: #292524;
+  max-width: 600px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  padding: 14px 22px;
+  background: rgba(254, 240, 138, 0.4);
+  border-left: 4px solid #b91c1c;
+  border-radius: 4px;
+}
+
+.leaf-back-page-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  font-weight: 800;
+  color: #78716c;
+  letter-spacing: 2px;
+}
+
+/* ==========================================================================
+   FLIP ANIMATIONS - DEVELOPABLE CYLINDER BEND (book_page_flip geometry)
+   ========================================================================== */
+
+/* 1. FLIP FORWARD: Current slide curls from bottom-right to left */
 .slide.page-flip-exit-forward {
   display: flex !important;
   visibility: visible !important;
-  z-index: 25 !important;
+  z-index: 30 !important;
   pointer-events: none !important;
-  transform-origin: left center !important;
-  animation: bookPageCurlForwardExit 0.75s cubic-bezier(0.3, 0.05, 0.15, 1) forwards;
+  transform-origin: 0% 85% !important;
+  animation: bookPageCurlExitForward 0.82s cubic-bezier(0.2, 0.0, 0.25, 1) forwards;
 }
 
+.slide.page-flip-exit-forward::after {
+  opacity: 1;
+  animation: bookPageCurlSheenForward 0.82s cubic-bezier(0.2, 0.0, 0.25, 1) forwards;
+}
+
+/* Upcoming slide underneath is revealed with travelling cast shadow */
 .slide.page-flip-enter-forward {
   display: flex !important;
   visibility: visible !important;
   z-index: 20 !important;
   pointer-events: auto !important;
-  transform-origin: left center !important;
-  animation: bookPageCurlForwardEnter 0.75s cubic-bezier(0.3, 0.05, 0.15, 1) forwards;
+  transform-origin: 0% 85% !important;
+  transform: rotateY(0deg) scale(1) !important;
+  animation: bookUnderneathRevealForward 0.82s cubic-bezier(0.2, 0.0, 0.25, 1) forwards;
 }
 
+.slide.page-flip-enter-forward::after {
+  opacity: 1;
+  animation: bookPageCastShadowForward 0.82s cubic-bezier(0.2, 0.0, 0.25, 1) forwards;
+}
+
+/* 2. FLIP BACKWARD: Previous slide turns back from the left spine onto right */
+.slide.page-flip-enter-backward {
+  display: flex !important;
+  visibility: visible !important;
+  z-index: 30 !important;
+  pointer-events: auto !important;
+  transform-origin: 0% 85% !important;
+  animation: bookPageCurlEnterBackward 0.82s cubic-bezier(0.2, 0.0, 0.25, 1) forwards;
+}
+
+.slide.page-flip-enter-backward::after {
+  opacity: 1;
+  animation: bookPageCurlSheenBackward 0.82s cubic-bezier(0.2, 0.0, 0.25, 1) forwards;
+}
+
+/* Current slide underneath being covered */
 .slide.page-flip-exit-backward {
   display: flex !important;
   visibility: visible !important;
   z-index: 20 !important;
   pointer-events: none !important;
-  transform-origin: right center !important;
-  animation: bookPageCurlBackwardExit 0.75s cubic-bezier(0.3, 0.05, 0.15, 1) forwards;
+  transform-origin: 0% 85% !important;
+  transform: rotateY(0deg) scale(1) !important;
+  animation: bookUnderneathCoveredBackward 0.82s cubic-bezier(0.2, 0.0, 0.25, 1) forwards;
 }
 
-.slide.page-flip-enter-backward {
-  display: flex !important;
-  visibility: visible !important;
-  z-index: 25 !important;
-  pointer-events: auto !important;
-  transform-origin: right center !important;
-  animation: bookPageCurlBackwardEnter 0.75s cubic-bezier(0.3, 0.05, 0.15, 1) forwards;
+.slide.page-flip-exit-backward::after {
+  opacity: 1;
+  animation: bookPageCastShadowBackward 0.82s cubic-bezier(0.2, 0.0, 0.25, 1) forwards;
 }
 
-@keyframes bookPageCurlForwardExit {
+/* ==========================================================================
+   KEYFRAME ANIMATIONS - PHYSICAL 3D PAGE CURL & SHADOWS
+   ========================================================================== */
+
+/* Forward Page Curl Exit: Developable cylinder curl from bottom-right corner */
+@keyframes bookPageCurlExitForward {
   0% {
-    transform: rotateY(0deg) skewY(0deg) scale(1);
-    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+    transform: perspective(2500px) rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0) skewY(0deg) scale(1);
+    filter: drop-shadow(0 0 0 transparent);
   }
-  30% {
-    transform: rotateY(-35deg) skewY(-5deg) scale(0.97);
-    filter: drop-shadow(-15px 8px 25px rgba(17, 24, 39, 0.45));
+  14% {
+    /* Corner peels up into 3D space (+Z) */
+    transform: perspective(2500px) translate3d(-14px, -8px, 48px) rotate3d(0.22, -0.96, 0.10, 24deg) skewY(-3.8deg) scale(0.988);
+    filter: drop-shadow(-18px 16px 26px rgba(17, 24, 39, 0.36));
   }
-  70% {
-    transform: rotateY(-95deg) skewY(-10deg) scale(0.93);
-    filter: drop-shadow(-35px 15px 45px rgba(17, 24, 39, 0.6));
-    opacity: 0.95;
+  34% {
+    /* Deep cylindrical curl arching high above desk */
+    transform: perspective(2500px) translate3d(-36px, -18px, 88px) rotate3d(0.28, -0.94, 0.14, 58deg) skewY(-7.2deg) scale(0.965);
+    filter: drop-shadow(-36px 25px 40px rgba(17, 24, 39, 0.48));
+  }
+  52% {
+    /* Apex crossing: arched 102px above base, turning past 90 degrees */
+    transform: perspective(2500px) translate3d(-48px, -20px, 102px) rotate3d(0.24, -0.96, 0.12, 94deg) skewY(-8.0deg) scale(0.945);
+    filter: drop-shadow(-44px 28px 46px rgba(17, 24, 39, 0.52));
+  }
+  72% {
+    /* Rolling down onto left half, displaying verso back-face */
+    transform: perspective(2500px) translate3d(-32px, -12px, 60px) rotate3d(0.14, -0.98, 0.08, 140deg) skewY(-4.5deg) scale(0.97);
+    filter: drop-shadow(-32px 18px 34px rgba(17, 24, 39, 0.38));
+  }
+  88% {
+    /* Approaching flat rest on left */
+    transform: perspective(2500px) translate3d(-10px, -4px, 18px) rotate3d(0.06, -0.99, 0.03, 168deg) skewY(-1.5deg) scale(0.992);
+    filter: drop-shadow(-14px 8px 18px rgba(17, 24, 39, 0.2));
   }
   100% {
-    transform: rotateY(-180deg) skewY(-14deg) scale(0.88);
-    filter: drop-shadow(-50px 20px 60px rgba(17, 24, 39, 0.7));
-    opacity: 0;
+    /* Clean landing at -180 degrees */
+    transform: perspective(2500px) translate3d(0px, 0px, 0px) rotateY(-180deg) skewY(0deg) scale(1);
+    filter: drop-shadow(0 0 0 transparent);
+    opacity: 0.98;
   }
 }
 
-@keyframes bookPageCurlForwardEnter {
+/* Dynamic Specular Ridge Light sweeping across the curling cylinder */
+@keyframes bookPageCurlSheenForward {
   0% {
-    transform: rotateY(80deg) skewY(6deg) scale(0.94);
+    background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,0) 50%, transparent 60%);
     opacity: 0;
-    filter: drop-shadow(30px 10px 40px rgba(17, 24, 39, 0.4));
+  }
+  18% {
+    background: linear-gradient(118deg, transparent 52%, rgba(255,255,255,0.48) 70%, rgba(255,255,255,0.72) 74%, rgba(0,0,0,0.14) 80%, transparent 90%);
+    opacity: 0.88;
   }
   50% {
-    transform: rotateY(25deg) skewY(2deg) scale(0.98);
-    opacity: 0.85;
+    background: linear-gradient(108deg, transparent 28%, rgba(0,0,0,0.2) 40%, rgba(255,255,255,0.65) 48%, rgba(255,255,255,0.88) 51%, rgba(0,0,0,0.22) 58%, transparent 75%);
+    opacity: 0.96;
+  }
+  82% {
+    background: linear-gradient(98deg, transparent 15%, rgba(255,255,255,0.3) 28%, rgba(255,255,255,0.58) 32%, rgba(0,0,0,0.12) 38%, transparent 55%);
+    opacity: 0.72;
   }
   100% {
-    transform: rotateY(0deg) skewY(0deg) scale(1);
+    background: transparent;
+    opacity: 0;
+  }
+}
+
+/* Cast shadow on the new page underneath as the old page peels away */
+@keyframes bookPageCastShadowForward {
+  0% {
+    background: linear-gradient(115deg, rgba(17, 24, 39, 0.45) 0%, rgba(17, 24, 39, 0.25) 30%, transparent 70%);
+    opacity: 0.2;
+  }
+  35% {
+    background: linear-gradient(110deg, rgba(17, 24, 39, 0.58) 12%, rgba(17, 24, 39, 0.36) 42%, rgba(17, 24, 39, 0.12) 68%, transparent 88%);
+    opacity: 0.88;
+  }
+  65% {
+    background: linear-gradient(102deg, rgba(17, 24, 39, 0.38) 0%, rgba(17, 24, 39, 0.16) 28%, transparent 55%);
+    opacity: 0.52;
+  }
+  100% {
+    background: transparent;
+    opacity: 0;
+  }
+}
+
+/* Backward Page Curl Enter: The previous page rolls back from left to right */
+@keyframes bookPageCurlEnterBackward {
+  0% {
+    transform: perspective(2500px) translate3d(0px, 0px, 0px) rotateY(-180deg) skewY(0deg) scale(1);
+    filter: drop-shadow(0 0 0 transparent);
+    opacity: 0.98;
+  }
+  14% {
+    transform: perspective(2500px) translate3d(-10px, -4px, 18px) rotate3d(0.06, -0.99, 0.03, 168deg) skewY(-1.5deg) scale(0.992);
+    filter: drop-shadow(-14px 8px 18px rgba(17, 24, 39, 0.2));
+  }
+  34% {
+    transform: perspective(2500px) translate3d(-32px, -12px, 60px) rotate3d(0.14, -0.98, 0.08, 140deg) skewY(-4.5deg) scale(0.97);
+    filter: drop-shadow(-32px 18px 34px rgba(17, 24, 39, 0.38));
+  }
+  52% {
+    transform: perspective(2500px) translate3d(-48px, -20px, 102px) rotate3d(0.24, -0.96, 0.12, 94deg) skewY(-8.0deg) scale(0.945);
+    filter: drop-shadow(-44px 28px 46px rgba(17, 24, 39, 0.52));
+  }
+  72% {
+    transform: perspective(2500px) translate3d(-36px, -18px, 88px) rotate3d(0.28, -0.94, 0.14, 58deg) skewY(-7.2deg) scale(0.965);
+    filter: drop-shadow(-36px 25px 40px rgba(17, 24, 39, 0.48));
+  }
+  88% {
+    transform: perspective(2500px) translate3d(-14px, -8px, 48px) rotate3d(0.22, -0.96, 0.10, 24deg) skewY(-3.8deg) scale(0.988);
+    filter: drop-shadow(-18px 16px 26px rgba(17, 24, 39, 0.36));
+  }
+  100% {
+    transform: perspective(2500px) rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0) skewY(0deg) scale(1);
+    filter: drop-shadow(0 0 0 transparent);
     opacity: 1;
-    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
   }
 }
 
-@keyframes bookPageCurlBackwardExit {
+@keyframes bookPageCurlSheenBackward {
   0% {
-    transform: rotateY(0deg) skewY(0deg) scale(1);
-    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+    background: linear-gradient(98deg, transparent 15%, rgba(255,255,255,0.3) 28%, rgba(255,255,255,0.58) 32%, rgba(0,0,0,0.12) 38%, transparent 55%);
+    opacity: 0.72;
   }
-  30% {
-    transform: rotateY(35deg) skewY(5deg) scale(0.97);
-    filter: drop-shadow(15px 8px 25px rgba(17, 24, 39, 0.45));
+  48% {
+    background: linear-gradient(108deg, transparent 28%, rgba(0,0,0,0.2) 40%, rgba(255,255,255,0.65) 48%, rgba(255,255,255,0.88) 51%, rgba(0,0,0,0.22) 58%, transparent 75%);
+    opacity: 0.96;
   }
-  70% {
-    transform: rotateY(95deg) skewY(10deg) scale(0.93);
-    filter: drop-shadow(35px 15px 45px rgba(17, 24, 39, 0.6));
-    opacity: 0.95;
+  82% {
+    background: linear-gradient(118deg, transparent 52%, rgba(255,255,255,0.48) 70%, rgba(255,255,255,0.72) 74%, rgba(0,0,0,0.14) 80%, transparent 90%);
+    opacity: 0.88;
   }
   100% {
-    transform: rotateY(180deg) skewY(14deg) scale(0.88);
-    filter: drop-shadow(50px 20px 60px rgba(17, 24, 39, 0.7));
+    background: transparent;
     opacity: 0;
   }
 }
 
-@keyframes bookPageCurlBackwardEnter {
+@keyframes bookPageCastShadowBackward {
   0% {
-    transform: rotateY(-80deg) skewY(-6deg) scale(0.94);
-    opacity: 0;
-    filter: drop-shadow(-30px 10px 40px rgba(17, 24, 39, 0.4));
+    background: linear-gradient(102deg, rgba(17, 24, 39, 0.38) 0%, rgba(17, 24, 39, 0.16) 28%, transparent 55%);
+    opacity: 0.52;
   }
   50% {
-    transform: rotateY(-25deg) skewY(-2deg) scale(0.98);
-    opacity: 0.85;
+    background: linear-gradient(110deg, rgba(17, 24, 39, 0.58) 12%, rgba(17, 24, 39, 0.36) 42%, rgba(17, 24, 39, 0.12) 68%, transparent 88%);
+    opacity: 0.88;
   }
   100% {
-    transform: rotateY(0deg) skewY(0deg) scale(1);
-    opacity: 1;
-    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+    background: transparent;
+    opacity: 0;
   }
+}
+
+@keyframes bookUnderneathCoveredBackward {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(0.9);
+  }
+  100% {
+    filter: brightness(0.82);
+  }
+}
+
+@keyframes bookUnderneathRevealForward {
+  0% {
+    filter: brightness(0.82);
+  }
+  50% {
+    filter: brightness(0.9);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+
+/* INTERACTIVE PAGE-CURL DOG-EARS */
+.book-corner-peel {
+  display: none !important;
+  position: absolute;
+  bottom: 0;
+  width: 64px;
+  height: 64px;
+  z-index: 60;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), filter 0.28s ease;
+}
+
+.book-corner-next {
+  right: 0;
+  background: linear-gradient(135deg, transparent 50%, #fef08a 50%, #fde047 70%, #ffffff 100%);
+  border-top-left-radius: 12px;
+  filter: drop-shadow(-3px -3px 5px rgba(0, 0, 0, 0.25));
+}
+.book-corner-next:hover {
+  transform: scale(1.22) translate(-4px, -4px);
+  filter: drop-shadow(-6px -6px 10px rgba(0, 0, 0, 0.38));
+}
+
+.book-corner-prev {
+  left: 0;
+  background: linear-gradient(225deg, transparent 50%, #fef08a 50%, #fde047 70%, #ffffff 100%);
+  border-top-right-radius: 12px;
+  filter: drop-shadow(3px -3px 5px rgba(0, 0, 0, 0.25));
+}
+.book-corner-prev:hover {
+  transform: scale(1.22) translate(4px, -4px);
+  filter: drop-shadow(6px -6px 10px rgba(0, 0, 0, 0.38));
+}
+
+.book-corner-peel .corner-fold-icon {
+  position: absolute;
+  bottom: 7px;
+  font-size: 13px;
+  font-weight: 900;
+  color: #1f2937;
+  user-select: none;
+}
+.book-corner-next .corner-fold-icon {
+  right: 9px;
+}
+.book-corner-prev .corner-fold-icon {
+  left: 9px;
 }
 
 /* FLOATING TRANSPARENT CONTROLS (Inspired by Thuyết trình cà phê) */
@@ -379,7 +902,6 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
 
 .control-bar button,
 .control-bar .icon-btn,
-.control-bar #fullscreen-btn,
 .control-bar #prev-slide-btn,
 .control-bar #next-slide-btn,
 .control-bar .clickable-counter,
@@ -387,32 +909,68 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   pointer-events: auto !important;
 }
 
-.icon-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  background: rgba(255, 253, 249, 0.94);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 2.5px solid var(--comic-ink);
-  box-shadow: 3px 3px 0px var(--comic-ink);
+/* Standalone Fullscreen Button in Bottom-Right Corner */
+.standalone-fullscreen-btn {
+  position: absolute;
+  bottom: 14px;
+  right: 18px;
+  z-index: 9999 !important;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(20, 20, 19, 0.88);
+  border: 1.5px solid rgba(230, 220, 200, 0.4);
+  color: #e6dcc8;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--comic-ink);
+  cursor: pointer;
+  pointer-events: auto !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.standalone-fullscreen-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+.standalone-fullscreen-btn:hover {
+  background: #141413;
+  border-color: #f59e0b;
+  color: #f59e0b;
+  transform: scale(1.08);
+}
+
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: #1c1917;
+  border: 2px solid #57534e;
+  box-shadow: 3px 3px 0px #0c0a09;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e6dcc8;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .icon-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 5px 5px 0px var(--comic-ink);
-  background: #fde047;
+  box-shadow: 5px 5px 0px #0c0a09;
+  background: #292524;
+  color: #f59e0b;
+  border-color: #f59e0b;
 }
 
 .icon-btn:active {
   transform: translateY(1px);
-  box-shadow: 1px 1px 0px var(--comic-ink);
+  box-shadow: 1px 1px 0px #0c0a09;
 }
 
 .icon-btn svg {
@@ -423,7 +981,7 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   stroke-width: 2.6;
 }
 
-/* SLIDE COUNTER & POPOVER PICKER */
+/* SLIDE COUNTER & POPOVER PICKER (Field Agent Gadget Aesthetic) */
 .slide-counter-wrapper {
   position: relative;
   display: inline-flex;
@@ -431,42 +989,42 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
 }
 
 .clickable-counter {
-  font-family: 'Fredoka', cursive, sans-serif;
-  font-size: 15px;
+  font-family: 'Space Mono', 'Courier Prime', monospace;
+  font-size: 14px;
   font-weight: 800;
-  color: var(--comic-ink);
-  background: rgba(255, 253, 249, 0.94);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 2.5px solid var(--comic-ink);
-  border-radius: 999px;
-  padding: 8px 20px;
+  color: #f59e0b;
+  background: #1c1917;
+  border: 2px solid #b91c1c;
+  border-radius: 8px;
+  padding: 8px 18px;
   cursor: pointer;
-  box-shadow: 3px 3px 0px var(--comic-ink);
+  box-shadow: 3px 3px 0px #0c0a09;
   user-select: none;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 1px;
 }
 
 .clickable-counter:hover {
-  background: #fde047;
+  background: #292524;
+  border-color: #f59e0b;
   transform: translateY(-2px);
-  box-shadow: 5px 5px 0px var(--comic-ink);
+  box-shadow: 5px 5px 0px #0c0a09;
 }
 
 .slide-picker-popover {
   position: absolute;
   bottom: 56px;
   left: 0;
-  background: #ffffff;
-  border: 3px solid var(--comic-ink);
-  border-radius: 16px;
+  background: #f3ebd9;
+  border: 2px solid #1c1917;
+  border-radius: 8px;
   padding: 14px;
-  box-shadow: 6px 6px 0px var(--comic-ink);
+  box-shadow: 6px 6px 0px #1c1917;
   z-index: 10000;
   display: none;
   flex-direction: column;
   gap: 10px;
-  width: 290px;
+  width: 300px;
 }
 
 .slide-picker-popover.active {
@@ -513,70 +1071,67 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   z-index: 5 !important;
 }
 
-/* BLACK FEATHER QUILL SLIDING & TEXT REVEAL ANIMATION (Bút lông chim trượt theo chữ) */
+/* ==========================================================================
+   HANDWRITING PARALLEL ENGINE: Bút lông vũ và chữ chạy song song thật chậm
+   ========================================================================== */
 .step-card.step-spotlight {
   position: relative;
 }
 
-.step-card.step-spotlight::after {
-  content: '';
+/* Base style for handwriting text */
+.pen-write-anim {
+  position: relative;
+  display: inline-block;
+  will-change: clip-path;
+}
+
+/* Initial hidden state for unreached steps */
+.step-card.step-hidden .pen-write-anim {
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%) !important;
+  opacity: 0.2;
+}
+
+/* Fully revealed docked state for completed steps */
+.step-card.step-docked .pen-write-anim {
+  clip-path: none !important;
+  opacity: 1 !important;
+}
+
+/* Active writing quill element that tracks directly along the handwriting edge */
+.active-quill-writer {
   position: absolute;
-  top: -16px;
-  left: 10px;
-  width: 36px;
-  height: 36px;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36"><path d="M0 0 L5 10 L10 5 Z" fill="%230f172a" stroke="%23000000" stroke-width="1"/><path d="M4 8 L8 4 L10 6 L6 10 Z" fill="%2394a3b8"/><path d="M6 6 Q16 16 32 32" stroke="%230f172a" stroke-width="2.2" stroke-linecap="round"/><path d="M6 6 Q12 3 20 7 Q28 11 32 29 Q27 25 21 21 Q13 15 6 6 Z" fill="%230f172a"/><path d="M6 6 Q7 12 13 18 Q17 24 29 32 Q23 25 17 19 Q11 13 6 6 Z" fill="%231e293b"/><path d="M12 9 L9 13 M18 13 L15 18 M24 18 L21 23" stroke="%23475569" stroke-width="0.8" stroke-linecap="round"/></svg>');
+  width: 48px;
+  height: 52px;
+  pointer-events: none;
+  z-index: 100;
+  will-change: left, top, transform, opacity;
+  transform-origin: 5px 48px; /* Metallic nib tip pivot point */
+}
+
+.quill-pen-img {
+  width: 100%;
+  height: 100%;
+  background-image: url('/assets/blue-quill-pen.png');
   background-size: contain;
   background-repeat: no-repeat;
-  pointer-events: none;
-  z-index: 50;
-  animation: blackQuillSlideAlongText 0.85s cubic-bezier(0.2, 0.8, 0.25, 1) forwards;
+  filter: drop-shadow(2px 6px 8px rgba(15, 23, 42, 0.42));
 }
 
-@keyframes blackQuillSlideAlongText {
-  0% {
-    left: 8px;
-    opacity: 0;
-    transform: translateY(6px) rotate(-22deg) scale(0.9);
-  }
-  15% {
-    opacity: 1;
-    transform: translateY(0px) rotate(-12deg) scale(1.05);
-  }
-  70% {
-    left: 75%;
-    opacity: 1;
-    transform: translateY(-2px) rotate(4deg) scale(1);
-  }
-  100% {
-    left: calc(100% - 40px);
-    opacity: 1;
-    transform: translateY(0px) rotate(0deg) scale(1);
-  }
+.quill-nib-glow {
+  position: absolute;
+  left: 2px;
+  top: 45px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #38bdf8 30%, #0284c7 70%, transparent 100%);
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.95));
+  animation: inkGlowPulse 0.35s ease-in-out infinite alternate;
 }
 
-.step-card.step-spotlight .pen-write-anim {
-  display: inline-block;
-  animation: quillTextReveal 0.8s cubic-bezier(0.2, 0.8, 0.25, 1) forwards;
-}
-
-@keyframes quillTextReveal {
-  0% {
-    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-    opacity: 0.15;
-  }
-  15% {
-    clip-path: polygon(0 0, 15% 0, 15% 100%, 0 100%);
-    opacity: 0.8;
-  }
-  70% {
-    clip-path: polygon(0 0, 75% 0, 75% 100%, 0 100%);
-    opacity: 1;
-  }
-  100% {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    opacity: 1;
-  }
+@keyframes inkGlowPulse {
+  0% { transform: scale(0.8); opacity: 0.7; }
+  100% { transform: scale(1.3); opacity: 1; }
 }
 
 /* RIGHT COLUMN ILLUSTRATION CANVAS FRAME (NO TEXT CAPTIONS) */

@@ -9,18 +9,209 @@ export function initDeckEngine(): () => void {
 
   const slideTitles = [
     'Bìa: Tác Hại Của Việc Đọc Sách',
-    'Tổng Quan: 5 Nội Dung Chính',
-    'Phần 01: 3 Con Số Đáng Sợ',
-    'Phần 02: 3 Cách Đọc Sách Nguy Hiểm',
-    'Phần 03: 7 Rắc Rối Khi Lỡ Nghiện Sách',
-    'Phần 04: Vì Sao 90% Thoát Nạn Thành Công?',
-    'Phần 05: 4 Mẹo Dễ Ợt Để Nghiện Đọc Sách',
-    'Epilogue: Lời Chúc Cho Người Nghiện Sách & Q&A'
+    'Lộ Trình: 5 Giai Đoạn Điều Tra',
+    'Phần 01: Những Thống Kê Khó Đỡ',
+    'Phần 02: Đặt Lên Bàn Cân 3 Công Cụ Gây Nghiện',
+    'Phần 03: 7 "Tác Hại" Kinh Hoàng',
+    'Phần 04: Vì Sao 90% Bỏ Cuộc Giữa Chừng?',
+    'Phần 05: 4 Bước "Nhiễm Độc" Sách Đúng Cách',
+    'Kết Luận: Lời Chúc Phúc Độc Địa & Q&A'
   ];
 
   const progressBar = document.getElementById('progress-bar');
   const counter = document.getElementById('counter');
   const titleDisplay = document.getElementById('current-slide-title');
+
+  // ==========================================================================
+  // HANDWRITING SYNCHRONIZATION ENGINE: Bút lông vũ và chữ chạy song song thật chậm
+  // ==========================================================================
+  let activeHandwriteRaf: number | null = null;
+  let activeQuillEl: HTMLElement | null = null;
+  let activeTextEl: HTMLElement | null = null;
+
+  function stopCurrentHandwriting() {
+    if (activeHandwriteRaf !== null) {
+      cancelAnimationFrame(activeHandwriteRaf);
+      activeHandwriteRaf = null;
+    }
+    if (activeQuillEl) {
+      activeQuillEl.remove();
+      activeQuillEl = null;
+    }
+    if (activeTextEl) {
+      activeTextEl.style.clipPath = 'none';
+      activeTextEl.style.opacity = '1';
+      activeTextEl = null;
+    }
+  }
+
+  function animateQuillHandwriting(container: HTMLElement) {
+    stopCurrentHandwriting();
+
+    const textEl = container.classList.contains('pen-write-anim')
+      ? container
+      : container.querySelector<HTMLElement>('.pen-write-anim');
+
+    if (!textEl) return;
+
+    activeTextEl = textEl;
+    textEl.style.position = 'relative';
+    textEl.style.opacity = '1';
+    container.style.position = 'relative';
+
+    // Support multi-line handwriting: detect <br> tags or existing .write-line elements
+    let lineEls = Array.from(textEl.querySelectorAll<HTMLElement>('.write-line'));
+    if (lineEls.length === 0) {
+      if (textEl.innerHTML.includes('<br>') || textEl.innerHTML.includes('<br/>')) {
+        const parts = textEl.innerHTML.split(/<br\s*\/?>/i);
+        textEl.innerHTML = parts
+          .map(p => `<span class="write-line" style="display:block; position:relative;">${p.trim()}</span>`)
+          .join('');
+        lineEls = Array.from(textEl.querySelectorAll<HTMLElement>('.write-line'));
+      }
+    }
+
+    if (lineEls.length > 0) {
+      lineEls.forEach(l => {
+        l.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
+        l.style.opacity = '1';
+      });
+      textEl.style.clipPath = 'none';
+    } else {
+      textEl.style.display = 'inline-block';
+      textEl.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
+    }
+
+    const quill = document.createElement('div');
+    quill.className = 'active-quill-writer';
+    quill.innerHTML = `
+      <div class="quill-pen-img"></div>
+      <div class="quill-nib-glow"></div>
+    `;
+    container.appendChild(quill);
+    activeQuillEl = quill;
+
+    // Wait 1 frame so layout measurements are accurate
+    requestAnimationFrame(() => {
+      if (activeTextEl !== textEl) return;
+
+      const containerRect = container.getBoundingClientRect();
+      const nibOffsetX = 5;
+      const nibOffsetY = 48;
+
+      interface LineInfo {
+        el: HTMLElement;
+        startX: number;
+        width: number;
+        baselineY: number;
+        textLen: number;
+      }
+
+      const lines: LineInfo[] = [];
+
+      if (lineEls.length > 0) {
+        lineEls.forEach(l => {
+          const r = l.getBoundingClientRect();
+          lines.push({
+            el: l,
+            startX: r.left - containerRect.left,
+            width: r.width,
+            baselineY: (r.top - containerRect.top) + (r.height * 0.72),
+            textLen: Math.max(1, (l.textContent || '').trim().length)
+          });
+        });
+      } else {
+        const textRect = textEl.getBoundingClientRect();
+        if (textRect.width <= 0) {
+          textEl.style.clipPath = 'none';
+          quill.remove();
+          return;
+        }
+        lines.push({
+          el: textEl,
+          startX: textRect.left - containerRect.left,
+          width: textRect.width,
+          baselineY: (textRect.top - containerRect.top) + (textRect.height * 0.72),
+          textLen: Math.max(1, (textEl.textContent || '').trim().length)
+        });
+      }
+
+      const totalChars = lines.reduce((acc, l) => acc + l.textLen, 0);
+
+      // Tốc độ viết nhanh hơn 1.5 lần theo yêu cầu
+      const duration = Math.max(1300, Math.min(2300, totalChars * 55));
+      const startTime = performance.now();
+
+      // Cumulative line progress thresholds
+      let accum = 0;
+      const thresholds = lines.map(l => {
+        accum += l.textLen;
+        return accum / totalChars;
+      });
+
+      function frame(now: number) {
+        if (activeTextEl !== textEl) return;
+
+        const elapsed = now - startTime;
+        const overallProgress = Math.min(1, elapsed / duration);
+
+        // Find which line is active
+        let activeIdx = 0;
+        while (activeIdx < lines.length - 1 && overallProgress >= thresholds[activeIdx]) {
+          activeIdx++;
+        }
+
+        const prevThreshold = activeIdx === 0 ? 0 : thresholds[activeIdx - 1];
+        const nextThreshold = thresholds[activeIdx];
+        const lineFraction = Math.max(0, Math.min(1, (overallProgress - prevThreshold) / (nextThreshold - prevThreshold)));
+
+        // Update clip-path of all lines
+        lines.forEach((l, idx) => {
+          if (idx < activeIdx) {
+            l.el.style.clipPath = 'none';
+          } else if (idx > activeIdx) {
+            l.el.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
+          } else {
+            l.el.style.clipPath = `polygon(0 0, ${lineFraction * 100}% 0, ${lineFraction * 100}% 100%, 0 100%)`;
+          }
+        });
+
+        // BÚT THEO DÒNG: khi chữ xuống dòng thì bút cũng chuyển xuống dòng đó
+        const currLine = lines[activeIdx];
+        const currentX = currLine.startX + lineFraction * currLine.width;
+        const bobY = Math.sin(lineFraction * Math.PI * 18) * 2.2;
+        const tilt = -14 + Math.cos(lineFraction * Math.PI * 16) * 3.5;
+
+        quill.style.left = `${currentX - nibOffsetX}px`;
+        quill.style.top = `${currLine.baselineY - nibOffsetY + bobY}px`;
+        quill.style.transform = `rotate(${tilt}deg)`;
+        quill.style.opacity = '1';
+
+        if (overallProgress < 1) {
+          activeHandwriteRaf = requestAnimationFrame(frame);
+        } else {
+          lines.forEach(l => {
+            l.el.style.clipPath = 'none';
+          });
+          textEl.style.clipPath = 'none';
+
+          quill.style.transition = 'all 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
+          quill.style.transform = 'translateY(-14px) rotate(-22deg) scale(0.92)';
+          quill.style.opacity = '0';
+
+          setTimeout(() => {
+            if (quill.parentNode) quill.remove();
+            if (activeQuillEl === quill) activeQuillEl = null;
+          }, 500);
+
+          activeHandwriteRaf = null;
+          activeTextEl = null;
+        }
+      }
+
+      activeHandwriteRaf = requestAnimationFrame(frame);
+    });
+  }
 
   function getSlideMaxSteps(slideEl: HTMLElement | null): number {
     if (!slideEl) return 0;
@@ -36,6 +227,8 @@ export function initDeckEngine(): () => void {
     if (!slideEl) return;
     slideEl.setAttribute('data-current-step', String(currentStep));
 
+    let spotlightCardToAnimate: HTMLElement | null = null;
+
     // Handle universal step-cards
     const stepCards = Array.from(slideEl.querySelectorAll<HTMLElement>('[data-step-card]'));
     if (stepCards.length > 0) {
@@ -44,17 +237,38 @@ export function initDeckEngine(): () => void {
         const cardStep = parseInt(card.getAttribute('data-step-card') || '0', 10);
         card.classList.remove('step-hidden', 'step-spotlight', 'step-docked', 'step-dimmed');
 
+        const penText = card.querySelector<HTMLElement>('.pen-write-anim');
+
         if (currentStep === 0) {
           card.classList.add('step-hidden');
-        } else if (currentStep === maxSteps && currentSlide === 2) {
-          // Slide 2 Step 6: All sub-cards displayed together with main card!
-          card.classList.add('step-docked');
+          if (penText) {
+            penText.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
+            penText.style.opacity = '0.2';
+            penText.querySelectorAll<HTMLElement>('.write-line').forEach(l => {
+              l.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
+            });
+          }
         } else if (cardStep === currentStep) {
           card.classList.add('step-spotlight');
+          spotlightCardToAnimate = card;
         } else if (cardStep < currentStep) {
           card.classList.add('step-docked');
+          if (penText) {
+            penText.style.clipPath = 'none';
+            penText.style.opacity = '1';
+            penText.querySelectorAll<HTMLElement>('.write-line').forEach(l => {
+              l.style.clipPath = 'none';
+            });
+          }
         } else {
           card.classList.add('step-hidden');
+          if (penText) {
+            penText.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
+            penText.style.opacity = '0.2';
+            penText.querySelectorAll<HTMLElement>('.write-line').forEach(l => {
+              l.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
+            });
+          }
         }
       });
     }
@@ -64,16 +278,32 @@ export function initDeckEngine(): () => void {
     if (stepReveals.length > 0) {
       stepReveals.forEach((el) => {
         const revealStep = parseInt(el.getAttribute('data-step-reveal') || '0', 10);
+        const penText = el.querySelector<HTMLElement>('.pen-write-anim') || (el.classList.contains('pen-write-anim') ? el : null);
         if (currentStep >= revealStep) {
           el.style.opacity = '1';
           el.style.visibility = 'visible';
           el.style.pointerEvents = 'auto';
+          if (currentStep === revealStep && penText) {
+            spotlightCardToAnimate = el;
+          } else if (penText) {
+            penText.style.clipPath = 'none';
+            penText.style.opacity = '1';
+          }
         } else {
           el.style.opacity = '0';
           el.style.visibility = 'hidden';
           el.style.pointerEvents = 'none';
+          if (penText) {
+            penText.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
+          }
         }
       });
+    }
+
+    if (spotlightCardToAnimate) {
+      animateQuillHandwriting(spotlightCardToAnimate);
+    } else {
+      stopCurrentHandwriting();
     }
   }
 
@@ -111,6 +341,16 @@ export function initDeckEngine(): () => void {
 
     // 6. Update browser URL hash
     window.location.hash = `slide-${currentSlide}`;
+
+    // 7. Update book corner peel buttons (Inspired by book_page_flip)
+    const cornerPrev = document.getElementById('book-corner-prev-btn');
+    const cornerNext = document.getElementById('book-corner-next-btn');
+    if (cornerPrev) {
+      cornerPrev.style.display = currentSlide > 1 ? 'block' : 'none';
+    }
+    if (cornerNext) {
+      cornerNext.style.display = currentSlide < totalSlides ? 'block' : 'none';
+    }
   }
 
   function goToSlide(n: number, direction?: 'forward' | 'backward') {
@@ -118,6 +358,8 @@ export function initDeckEngine(): () => void {
     if (n > totalSlides) n = totalSlides;
     if (n === currentSlide) return;
     if (isPageFlipping) return;
+
+    stopCurrentHandwriting();
 
     const oldSlideNum = currentSlide;
     const targetSlideNum = n;
@@ -165,7 +407,7 @@ export function initDeckEngine(): () => void {
           }
         });
         isPageFlipping = false;
-      }, 740);
+      }, 840);
     } else {
       const slides = document.querySelectorAll('.slide');
       slides.forEach((slide) => {
@@ -341,6 +583,75 @@ export function initDeckEngine(): () => void {
   window.addEventListener('keydown', handleKeyDown);
   document.addEventListener('click', handleDocClick);
 
+  // Attach antique manuscript leaf-back to each slide (Verso face for 3D page flip)
+  const bookBackQuotes = [
+    '"Sách là chất gây nghiện nguy hiểm nhất lịch sử nhân loại."',
+    '"Lộ trình 30 phút vạch trần cơn ác mộng đọc sách."',
+    '"Mua sách và đọc sách là hai bộ môn thể thao độc lập."',
+    '"Vác 2 cuốn sách giấy chẳng khác nào tập tạ miễn phí."',
+    '"Người đọc sách không bao giờ ăn trộm, và kẻ trộm không bao giờ đọc sách."',
+    '"Đọc sách đến trang thứ 3, não tự động ngắt cầu dao quá tải."',
+    '"Quy tắc 5 trang: Thực hiện cú lừa thế kỷ với chính não bộ."',
+    '"Chúc bạn sớm mắc bệnh đọc sách và không bao giờ chữa khỏi!"'
+  ];
+
+  document.querySelectorAll<HTMLElement>('.slide').forEach((slide) => {
+    if (!slide.querySelector('.slide-leaf-back')) {
+      const slideNum = parseInt(slide.getAttribute('data-slide') || '1', 10);
+      const quote = bookBackQuotes[slideNum - 1] || bookBackQuotes[0];
+      const leafBack = document.createElement('div');
+      leafBack.className = 'slide-leaf-back';
+      leafBack.innerHTML = `
+        <div class="leaf-back-inner">
+          <div class="leaf-back-grain"></div>
+          <div class="leaf-back-ornament">❧ ❖ ☙</div>
+          <div class="leaf-back-header">KỶ YẾU ĐIỀU TRA ĐẶC BIỆT</div>
+          <div class="leaf-back-title">TÁC HẠI CỦA VIỆC ĐỌC SÁCH</div>
+          <div class="leaf-back-quote">${quote}</div>
+          <div class="leaf-back-page-num">— MẶT SAU TRANG ${slideNum} / ${totalSlides} —</div>
+        </div>
+      `;
+      slide.appendChild(leafBack);
+    }
+  });
+
+  // Drag / Swipe Gestures on Slides (Natural Page Turn Drag)
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartTime = 0;
+
+  const handlePointerDown = (e: PointerEvent) => {
+    if ((e.target as HTMLElement).closest('button, .clickable-counter, .slide-picker-popover, .step-card, .book-corner-peel')) {
+      return;
+    }
+    touchStartX = e.clientX;
+    touchStartY = e.clientY;
+    touchStartTime = performance.now();
+  };
+
+  const handlePointerUp = (e: PointerEvent) => {
+    if (touchStartTime === 0) return;
+    const dx = e.clientX - touchStartX;
+    const dy = e.clientY - touchStartY;
+    const dt = performance.now() - touchStartTime;
+    touchStartTime = 0;
+
+    // Horizontal swipe threshold: 60px within 800ms
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5 && dt < 800) {
+      if (dx < 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+  };
+
+  const slidesWrapper = document.querySelector('.slides-wrapper');
+  if (slidesWrapper) {
+    slidesWrapper.addEventListener('pointerdown', handlePointerDown as EventListener);
+    window.addEventListener('pointerup', handlePointerUp as EventListener);
+  }
+
   // Read URL hash on initial load
   const hash = window.location.hash;
   const match = hash.match(/slide-(\d+)/);
@@ -365,7 +676,12 @@ export function initDeckEngine(): () => void {
   updateUI();
 
   return () => {
+    stopCurrentHandwriting();
     window.removeEventListener('keydown', handleKeyDown);
     document.removeEventListener('click', handleDocClick);
+    if (slidesWrapper) {
+      slidesWrapper.removeEventListener('pointerdown', handlePointerDown as EventListener);
+    }
+    window.removeEventListener('pointerup', handlePointerUp as EventListener);
   };
 }

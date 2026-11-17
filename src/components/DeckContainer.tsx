@@ -11,13 +11,13 @@ import { Slide8Conclusion } from '../slides/Slide8Conclusion';
 export const DeckContainer: React.FC = () => {
   const slideTitles = [
     { n: 1, title: 'Bìa: Tác Hại Của Việc Đọc Sách' },
-    { n: 2, title: 'Tổng Quan: 5 Nội Dung Chính' },
-    { n: 3, title: 'Phần 01: 3 Con Số Đáng Sợ' },
-    { n: 4, title: 'Phần 02: 3 Cách Đọc Sách Nguy Hiểm' },
-    { n: 5, title: 'Phần 03: 7 Rắc Rối Khi Lỡ Nghiện Sách' },
-    { n: 6, title: 'Phần 04: Vì Sao 90% Thoát Nạn Thành Công?' },
-    { n: 7, title: 'Phần 05: 4 Mẹo Dễ Ợt Để Nghiện Đọc Sách' },
-    { n: 8, title: 'Epilogue: Lời Chúc Cho Người Nghiện Sách & Q&A' }
+    { n: 2, title: 'Lộ Trình: 5 Giai Đoạn Điều Tra' },
+    { n: 3, title: 'Phần 01: Những Thống Kê Khó Đỡ' },
+    { n: 4, title: 'Phần 02: Đặt Lên Bàn Cân 3 Công Cụ Gây Nghiện' },
+    { n: 5, title: 'Phần 03: 7 "Tác Hại" Kinh Hoàng' },
+    { n: 6, title: 'Phần 04: Vì Sao 90% Bỏ Cuộc Giữa Chừng?' },
+    { n: 7, title: 'Phần 05: 4 Bước "Nhiễm Độc" Sách Đúng Cách' },
+    { n: 8, title: 'Kết Luận: Lời Chúc Phúc Độc Địa & Q&A' }
   ];
 
   return (
@@ -142,31 +142,28 @@ export const DeckContainer: React.FC = () => {
             </div>
 
           </div>
-
-          {/* Fullscreen Button */}
-          <div>
-            <button
-              id="fullscreen-btn"
-              className="icon-btn"
-              onClick={(e) => {
-                e.stopPropagation();
-                if (typeof (window as any).toggleFullscreen === 'function') {
-                  (window as any).toggleFullscreen();
-                }
-              }}
-              title="Toàn màn hình (Phím F)"
-            >
-              <svg viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
-                />
-              </svg>
-            </button>
-          </div>
-
         </div>
+
+        {/* Standalone Fullscreen Button in Bottom-Right Corner */}
+        <button
+          id="fullscreen-btn"
+          className="standalone-fullscreen-btn"
+          onClick={(e) => {
+            e.stopPropagation();
+            if (typeof (window as any).toggleFullscreen === 'function') {
+              (window as any).toggleFullscreen();
+            }
+          }}
+          title="Toàn màn hình (Phím F)"
+        >
+          <svg viewBox="0 0 24 24">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+            />
+          </svg>
+        </button>
 
       </div>
 

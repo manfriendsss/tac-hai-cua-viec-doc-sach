@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chọn Chủ Đề Minh Họa — Tác Hại Của Việc Đọc Sách</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Courier+Prime:wght@400;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+
+    /* Custom Typography Helpers for Mockups */
+    .font-anton { font-family: 'Anton', sans-serif; letter-spacing: 0.03em; }
+    .font-mono-code { font-family: 'Courier Prime', monospace; }
+    .font-editorial { font-family: 'Playfair Display', serif; }
+
+    /* Theme 1: Hazard Stripes */
+    .hazard-border {
+      background: repeating-linear-gradient(
+        -45deg,
+        #facc15,
+        #facc15 10px,
+        #18181b 10px,
+        #18181b 20px
+      );
+    }
+
+    /* Theme 2: Clinical Grid */
+    .clinical-grid {
+      background-image: linear-gradient(to right, rgba(13, 148, 136, 0.08) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(13, 148, 136, 0.08) 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+
+    /* Theme 3: Halftone Pop-Art Dots */
+    .popart-dots {
+      background-color: #fef08a;
+      background-image: radial-gradient(#ef4444 1.5px, transparent 1.5px);
+      background-size: 12px 12px;
+    }
+
+    /* Theme 4: Corkboard / Noir Texture */
+    .detective-board {
+      background-color: #1c1917;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 0);
+      background-size: 18px 18px;
+    }
+
+    /* Smooth Card Selection Ring */
+    .theme-card {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .theme-card:hover {
+      transform: translateY(-4px);
+    }
+    .theme-card.selected {
+      ring: 4px;
+      border-color: #ea580c;
+      box-shadow: 0 20px 25px -5px rgba(234, 88, 12, 0.18), 0 8px 10px -6px rgba(234, 88, 12, 0.1);
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-28">
+
+  <!-- Header Section -->
+  <header class="bg-slate-900 text-white py-10 px-4 sm:px-8 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/20 border border-orange-500/40 text-orange-300 text-xs font-bold uppercase tracking-wider mb-4">
+        <i class="fa-solid fa-palette"></i> Visual Direction & Moodboard
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white mb-3">
+        5 Chủ Đề Hình Ảnh Minh Họa: <span class="text-orange-400">"Tác Hại Của Việc Đọc Sách"</span>
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-3xl leading-relaxed">
+        Để bài thuyết trình 30 phút đạt hiệu ứng châm biếm ngược hài hước nhất, hình ảnh trên slide cần <strong>"diễn sâu"</strong> đúng theo giọng điệu khoa trương của bạn. Hãy xem thử 5 phong cách slide mẫu bên dưới và bấm chọn phong cách bạn ưng ý nhất!
+      </p>
+
+      <!-- Filter / Quick Jump Pills -->
+      <div class="flex flex-wrap gap-2 mt-6">
+        <button onclick="filterThemes('all')" class="filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-orange-600 text-white transition cursor-pointer">
+          Tất cả (5 phong cách)
+        </button>
+        <button onclick="filterThemes('dramatic')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition cursor-pointer">
+          Kịch tính / Giật gân
+        </button>
+        <button onclick="filterThemes('funny')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition cursor-pointer">
+          Hài hước / Châm biếm
+        </button>
+        <button onclick="filterThemes('modern')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition cursor-pointer">
+          Tinh tế / Dễ làm slide
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Grid of 5 Visual Themes -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-8 mt-10">
+    <div id="themes-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+      <!-- =========================================================
+           THEME 1: BREAKING NEWS / EMERGENCY ALERT
+      ========================================================== -->
+      <article id="card-1" data-category="dramatic" class="theme-card bg-white rounded-2xl border-2 border-slate-200 overflow-hidden shadow-sm flex flex-col">
+        <!-- Live Mini-Slide Mockup -->
+        <div class="relative aspect-video bg-zinc-950 p-5 sm:p-6 flex flex-col justify-between overflow-hidden select-none">
+          <!-- Top Hazard Bar -->
+          <div class="hazard-border h-2.5 w-full absolute top-0 left-0"></div>
+
+          <!-- Top Live Badge & Channel -->
+          <div class="flex items-center justify-between mt-1">
+            <div class="flex items-center gap-2">
+              <span class="bg-red-600 text-white text-[11px] font-extrabold px-2.5 py-0.5 rounded uppercase tracking-wider animate-pulse flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-white inline-block"></span> TRỰC TIẾP • KHẨN CẤP
+              </span>
+              <span class="text-zinc-400 text-xs font-mono-code">BẢN TIN 24/7</span>
+            </div>
+            <i class="fa-solid fa-triangle-exclamation text-yellow-400 text-xl"></i>
+          </div>
+
+          <!-- Center Mockup Content -->
+          <div class="my-auto grid grid-cols-12 gap-3 items-center py-2">
+            <div class="col-span-8">
+              <p class="text-yellow-400 text-xs font-bold uppercase tracking-widest mb-1">CẢNH BÁO MỨC ĐỘ ĐỎ</p>
+              <h3 class="font-anton text-white text-2xl sm:text-3xl leading-tight uppercase">
+                TÁC HẠI CỦA VIỆC ĐỌC SÁCH: NÃO PHÁT TRIỂN QUÁ MỨC!
+              </h3>
+              <p class="text-zinc-300 text-xs mt-2 line-clamp-2">
+                Hàng triệu nạn nhân mất khả năng nổi giận và tự động ngủ ngon sau 6 phút tiếp xúc trang giấy.
+              </p>
+            </div>
+            <!-- SVG Illustration: Warning Book + Brain -->
+            <div class="col-span-4 flex justify-center">
+              <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-red-600/20 border-2 border-red-500 flex flex-col items-center justify-center p-2 relative">
+                <svg viewBox="0 0 64 64" class="w-14 h-14 text-yellow-400" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M8 14h18a6 6 0 0 1 6 6v32a4 4 0 0 0-4-4H8V14z" fill="#ef4444" fill-opacity="0.25"/>
+                  <path d="M56 14H38a6 6 0 0 0-6 6v32a4 4 0 0 1 4-4h20V14z" fill="#facc15" fill-opacity="0.25"/>
+                  <path d="M32 8l6 10H26l6-10z" fill="#facc15"/>
+                </svg>
+                <span class="text-[10px] font-extrabold text-red-400 uppercase mt-1">ĐỘC HẠI CAO</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Breaking News Ticker -->
+          <div class="bg-red-600 text-white px-3 py-1.5 rounded flex items-center gap-2 text-xs font-bold">
+            <span class="bg-yellow-400 text-zinc-950 px-1.5 py-0.5 rounded text-[10px] font-black uppercase shrink-0">TIN NÓNG</span>
+            <span class="truncate">Chuyên gia khuyến cáo: Tránh xa hiệu sách vào dịp giảm giá cuối tuần...</span>
+          </div>
+        </div>
+
+        <!-- Theme Details -->
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <h2 class="text-xl font-extrabold text-slate-900">1. Bản Tin Cảnh Báo Thảm Họa (Breaking News)</h2>
+              <span class="px-2.5 py-1 rounded-lg bg-red-100 text-red-700 text-xs font-bold shrink-0">Kịch tính nhất</span>
+            </div>
+            <p class="text-sm text-slate-600 mb-4">
+              Biến toàn bộ bài thuyết trình thành một chương trình thời sự khẩn cấp báo động đỏ. Rất khớp với câu mở đầu <em>"Tôi đứng đây để gióng lên hồi chuông cảnh báo..."</em> của bạn.
+            </p>
+
+            <!-- Color Palette -->
+            <div class="mb-4">
+              <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Bảng màu chủ đạo</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                  <span class="w-3.5 h-3.5 rounded-full bg-zinc-950"></span> #09090B
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                  <span class="w-3.5 h-3.5 rounded-full bg-red-600"></span> #DC2626
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                  <span class="w-3.5 h-3.5 rounded-full bg-yellow-400"></span> #FACC15
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                  <span class="w-3.5 h-3.5 rounded-full bg-white border"></span> #FFFFFF
+                </span>
+              </div>
+            </div>
+
+            <!-- Illustration Ideas -->
+            <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-100 text-xs text-slate-700 space-y-1.5 mb-5">
+              <p><strong class="text-slate-900"><i class="fa-solid fa-wand-magic-sparkles text-orange-500 mr-1"></i> Yếu tố đồ họa:</strong> Dải băng cảnh báo vàng-đen (hazard stripes), thanh chạy chữ <em>BREAKING NEWS</em> dưới đáy slide, biểu tượng phóng xạ/độc hại gắn lên quyển sách.</p>
+              <p><strong class="text-slate-900"><i class="fa-solid fa-image text-orange-500 mr-1"></i> Gợi ý hình minh họa:</strong> Ảnh chế phát thanh viên mặt nghiêm trọng, người ôm đầu hoảng hốt trước chồng sách cao ngất.</p>
+            </div>
+          </div>
+
+          <button onclick="selectTheme(1)" class="select-btn w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-orange-600 text-white font-bold text-sm transition flex items-center justify-center gap-2 cursor-pointer">
+            <i class="fa-regular fa-circle-check"></i> Chọn phong cách Bản Tin Cảnh Báo
+          </button>
+        </div>
+      </article>
+
+      <!-- =========================================================
+           THEME 2: MEDICAL & PSYCHOLOGICAL CASE FILE
+      ========================================================== -->
+      <article id="card-2" data-category="funny" class="theme-card bg-white rounded-2xl border-2 border-slate-200 overflow-hidden shadow-sm flex flex-col">
+        <!-- Live Mini-Slide Mockup -->
+        <div class="relative aspect-video bg-teal-50/60 clinical-grid p-5 sm:p-6 flex flex-col justify-between overflow-hidden select-none border-b border-slate-200">
+          <!-- Top Patient Header -->
+          <div class="flex items-center justify-between border-b-2 border-teal-700/20 pb-2">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-teal-700 text-white flex items-center justify-center text-xs font-bold">
+                <i class="fa-solid fa-notes-medical"></i>
+              </span>
+              <div>
+                <p class="text-[11px] font-bold text-teal-900 uppercase">HỒ SƠ BỆNH ÁN #TSUNDOKU-09</p>
+                <p class="text-[10px] text-teal-700 font-mono-code">Chẩn đoán: Nghiện chữ mãn tính</p>
+              </div>
+            </div>
+            <!-- Red Medical Stamp -->
+            <div class="border-2 border-red-600 text-red-600 px-2.5 py-0.5 rounded font-black text-xs uppercase tracking-widest -rotate-6 bg-white/80">
+              DƯƠNG TÍNH
+            </div>
+          </div>
+
+          <!-- Center X-Ray Mockup -->
+          <div class="my-auto grid grid-cols-12 gap-4 items-center py-2">
+            <!-- Left X-Ray Screen -->
+            <div class="col-span-5 bg-slate-900 rounded-xl p-3 border-2 border-teal-600 flex flex-col items-center justify-center relative">
+              <span class="text-[9px] text-teal-400 font-mono-code self-start">X-RAY SCAN: BRAIN</span>
+              <svg viewBox="0 0 64 64" class="w-16 h-16 text-teal-300 my-1" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M22 46c-6 0-10-4-10-10 0-3 1.5-5.5 4-7-1-6 4-12 10-12 2-4 8-4 12 0 6 0 11 6 10 12 2.5 1.5 4 4 4 7 0 6-4 10-10 10H22z" fill="#14b8a6" fill-opacity="0.2"/>
+                <rect x="23" y="25" width="18" height="14" rx="2" stroke="#5eead4" stroke-width="2"/>
+                <line x1="32" y1="25" x2="32" y2="39" stroke="#5eead4" stroke-width="2"/>
+              </svg>
+              <span class="text-[10px] text-teal-200 font-bold">Phì đại thùy tưởng tượng</span>
+            </div>
+
+            <!-- Right Diagnosis Text -->
+            <div class="col-span-7">
+              <span class="inline-block bg-teal-700 text-white text-[10px] font-bold px-2 py-0.5 rounded mb-1">TRIỆU CHỨNG LÂM SÀNG</span>
+              <h3 class="text-slate-900 font-extrabold text-lg sm:text-xl leading-snug">
+                Biến chứng #7: Cố thủ trong nhà vệ sinh
+              </h3>
+              <p class="text-slate-600 text-xs mt-1.5 leading-relaxed">
+                46% nam giới & 26% nữ giới mang sách vào toilet, biến phòng vệ sinh thành thư viện thu nhỏ.
+              </p>
+            </div>
+          </div>
+
+          <!-- Footer Prescription Line -->
+          <div class="flex items-center justify-between text-[11px] font-mono-code text-teal-800 border-t border-teal-700/20 pt-1.5">
+            <span>Đơn thuốc: Đọc 5 trang/ngày</span>
+            <span>Tình trạng: Không thể chữa khỏi</span>
+          </div>
+        </div>
+
+        <!-- Theme Details -->
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <h2 class="text-xl font-extrabold text-slate-900">2. Hồ Sơ Y Khoa & Bệnh Án Tâm Thần</h2>
+              <span class="px-2.5 py-1 rounded-lg bg-teal-100 text-teal-800 text-xs font-bold shrink-0">Hài hước tinh tế</span>
+            </div>
+            <p class="text-sm text-slate-600 mb-4">
+              Coi việc đọc sách như một "căn bệnh truyền nhiễm" có phim chụp X-quang não bộ, đơn thuốc và dấu mộc đỏ chẩn đoán. Rất hợp với các từ khóa <em>"hội chứng Tsundoku", "nhiễm độc sách"</em>.
+            </p>
+
+            <!-- Color Palette -->
+            <div class="mb-4">
+              <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Bảng màu chủ đạo</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                  <span class="w-3.5 h-3.5 rounded-full bg-teal-50 border"></span> #F0FDFA
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                  <span class="w-3.5 h-3.5 rounded-full bg-teal-700"></span> #0F766E
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                  <span class="w-3.5 h-3.5 rounded-full bg-red-600"></span> #DC2626
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                  <span class="w-3.5 h-3.5 rounded-full bg-slate-900"></span> #0F172A
+                </span>
+              </div>
+            </div>
+
+            <!-- Illustration Ideas -->
+            <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-100 text-xs text-slate-700 space-y-1.5 mb-5">
+              <p><strong class="text-slate-900"><i class="fa-solid fa-wand-magic-sparkles text-teal-600 mr-1"></i> Yếu tố đồ họa:</strong> Khung phim X-quang nền tối, con dấu đỏ <em>"NGUY HIỂM / DƯƠNG TÍNH"</em>, biểu đồ nhịp tim, nhãn lọ thuốc kê đơn.</p>
+              <p><strong class="text-slate-900"><i class="fa-solid fa-image text-teal-600 mr-1"></i> Gợi ý hình minh họa:</strong> Hình chụp X-quang hộp sọ bên trong chứa đầy sách, bác sĩ khám bệnh cho một cuốn tiểu thuyết.</p>
+            </div>
+          </div>
+
+          <button onclick="selectTheme(2)" class="select-btn w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-orange-600 text-white font-bold text-sm transition flex items-center justify-center gap-2 cursor-pointer">
+            <i class="fa-regular fa-circle-check"></i> Chọn phong cách Hồ Sơ Y Khoa
+          </button>
+        </div>
+      </article>
+
+      <!-- =========================================================
+           THEME 3: VINTAGE COMIC / POP-ART SATIRE
+      ========================================================== -->
+      <article id="card-3" data-category="funny" class="theme-card bg-white rounded-2xl border-2 border-slate-200 overflow-hidden shadow-sm flex flex-col">
+        <!-- Live Mini-Slide Mockup -->
+        <div class="relative aspect-video popart-dots p-5 sm:p-6 flex flex-col justify-between overflow-hidden select-none border-b border-slate-200">
+          <!-- Comic Panel Frame -->
+          <div class="bg-white border-4 border-black shadow-[6px_6px_0px_#000000] p-4 h-full flex flex-col justify-between relative">
+            <!-- Top Comic Action Burst -->
+            <div class="flex items-center justify-between">
+              <span class="bg-cyan-400 border-2 border-black px-2.5 py-0.5 text-xs font-black uppercase shadow-[2px_2px_0px_#000]">
+                TẬP #03: BIẾN CHỨNG TÀI CHÍNH
+              </span>
+              <span class="bg-red-500 text-yellow-300 border-2 border-black px-2 py-0.5 text-xs font-anton uppercase rotate-3">
+                BÙM!! HẾT TIỀN!
+              </span>
+            </div>
+
+            <!-- Middle Comic Panels -->
+            <div class="grid grid-cols-12 gap-3 items-center my-auto">
+              <div class="col-span-7">
+                <h3 class="font-anton text-black text-2xl sm:text-3xl leading-none uppercase">
+                  MUA SÁCH → ĐÓNG KỆ → LAU BỤI!
+                </h3>
+                <!-- Speech Bubble -->
+                <div class="mt-2.5 bg-yellow-300 border-2 border-black rounded-xl p-2 text-xs font-bold text-black relative">
+                  "Chỉ định mua 1 cuốn thôi, sao giờ phải thuê thợ đóng cả tủ gỗ thế này?!"
+                </div>
+              </div>
+              <div class="col-span-5 flex justify-center">
+                <div class="w-24 h-24 bg-pink-500 border-4 border-black rounded-full flex flex-col items-center justify-center text-white shadow-[4px_4px_0px_#000]">
+                  <i class="fa-solid fa-wallet text-3xl text-yellow-300"></i>
+                  <span class="font-anton text-xs tracking-wider mt-1">VÍ RỖNG!</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Strip -->
+            <div class="text-[11px] font-black uppercase tracking-wider text-right text-black">
+              CÒN TIẾP Ở TRANG SAU... →
+            </div>
+          </div>
+        </div>
+
+        <!-- Theme Details -->
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <h2 class="text-xl font-extrabold text-slate-900">3. Truyện Tranh Châm Biếm Pop-Art</h2>
+              <span class="px-2.5 py-1 rounded-lg bg-yellow-100 text-yellow-800 text-xs font-bold shrink-0">Năng động & Lầy lội</span>
+            </div>
+            <p class="text-sm text-slate-600 mb-4">
+              Sử dụng khung truyện tranh cổ điển thập niên 60 với các bong bóng lời thoại biểu cảm lố, màu sắc rực rỡ bắt mắt. Cực kỳ phù hợp với không khí trẻ trung, sôi nổi và giàu năng lượng.
+            </p>
+
+            <!-- Color Palette -->
+            <div class="mb-4">
+              <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Bảng màu chủ đạo</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                  <span class="w-3.5 h-3.5 rounded-full bg-yellow-300 border"></span> #FDE047
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                  <span class="w-3.5 h-3.5 rounded-full bg-cyan-400"></span> #22D3EE
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                  <span class="w-3.5 h-3.5 rounded-full bg-pink-500"></span> #EC4899
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                  <span class="w-3.5 h-3.5 rounded-full bg-black"></span> #000000
+                </span>
+              </div>
+            </div>
+
+            <!-- Illustration Ideas -->
+            <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-100 text-xs text-slate-700 space-y-1.5 mb-5">
+              <p><strong class="text-slate-900"><i class="fa-solid fa-wand-magic-sparkles text-pink-600 mr-1"></i> Yếu tố đồ họa:</strong> Viền đen đậm đổ bóng cứng (hard shadow), nền chấm bi halftone, bong bóng thoại, hiệu ứng chữ tượng thanh (<em>BÙM, Á, TRỜI ƠI</em>).</p>
+              <p><strong class="text-slate-900"><i class="fa-solid fa-image text-pink-600 mr-1"></i> Gợi ý hình minh họa:</strong> Nhân vật Pop-art mắt trợn tròn kinh ngạc khi thấy hóa đơn mua sách.</p>
+            </div>
+          </div>
+
+          <button onclick="selectTheme(3)" class="select-btn w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-orange-600 text-white font-bold text-sm transition flex items-center justify-center gap-2 cursor-pointer">
+            <i class="fa-regular fa-circle-check"></i> Chọn phong cách Truyện Tranh Pop-Art
+          </button>
+        </div>
+      </article>
+
+      <!-- =========================================================
+           THEME 4: TRUE CRIME / DETECTIVE INVESTIGATION BOARD
+      ========================================================== -->
+      <article id="card-4" data-category="dramatic" class="theme-card bg-white rounded-2xl border-2 border-slate-200 overflow-hidden shadow-sm flex flex-col">
+        <!-- Live Mini-Slide Mockup -->
+        <div class="relative aspect-video detective-board p-5 sm:p-6 flex flex-col justify-between overflow-hidden select-none">
+          <!-- Red Connecting String SVG Overlay -->
+          <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-60" viewBox="0 0 400 225">
+            <line x1="90" y1="60" x2="290" y2="110" stroke="#ef4444" stroke-width="2" stroke-dasharray="4 2" />
+            <line x1="290" y1="110" x2="140" y2="180" stroke="#ef4444" stroke-width="2" />
+          </svg>
+
+          <!-- Top Classified Header -->
+          <div class="flex items-center justify-between z-10">
+            <span class="bg-amber-200 text-stone-900 px-2.5 py-0.5 text-[11px] font-mono-code font-bold uppercase tracking-wider shadow">
+              HỒ SƠ MẬT #007 • VỤ ÁN HIỆU SÁCH
+            </span>
+            <span class="text-red-500 border border-red-500 px-2 py-0.5 text-[10px] font-mono-code uppercase">
+              TOP SECRET
+            </span>
+          </div>
+
+          <!-- Center Evidence Cards -->
+          <div class="my-auto grid grid-cols-12 gap-4 items-center z-10 py-2">
+            <!-- Polaroid Mugshot of Book -->
+            <div class="col-span-5 bg-stone-100 p-2 pb-4 rounded shadow-lg -rotate-3 text-center">
+              <div class="bg-stone-800 h-20 rounded-sm flex flex-col items-center justify-center text-amber-400 relative">
+                <i class="fa-solid fa-book-skull text-3xl"></i>
+                <span class="text-[9px] font-mono-code text-stone-300 mt-1">NGHI PHẠM SỐ 1</span>
+              </div>
+              <p class="font-mono-code text-[10px] font-bold text-stone-800 mt-1.5">Tang vật: Tiểu thuyết 500 trang</p>
+            </div>
+
+            <!-- Yellow Sticky Note -->
+            <div class="col-span-7 bg-amber-100 p-3.5 rounded shadow-md rotate-1 border-l-4 border-red-600">
+              <p class="text-[10px] font-mono-code font-bold text-red-700 uppercase mb-1">BẰNG CHỨNG NGOẠI PHẠM:</p>
+              <h3 class="text-stone-900 font-extrabold text-base sm:text-lg leading-snug">
+                "Người đọc sách không ăn trộm, và kẻ trộm không đọc sách"
+              </h3>
+              <p class="text-stone-700 text-xs mt-1.5">
+                Hiệu sách mở cửa xuyên đêm không mất 1 cuốn — tước mất cơ hội gia nhập giới đạo chích!
+              </p>
+            </div>
+          </div>
+
+          <!-- Bottom Tape -->
+          <div class="z-10 flex items-center justify-between text-[11px] font-mono-code text-stone-400">
+            <span><i class="fa-solid fa-thumbtack text-red-500 mr-1"></i> Bảng phá án chuyên đề</span>
+            <span>Độ nguy hiểm: ★★★★★</span>
+          </div>
+        </div>
+
+        <!-- Theme Details -->
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <h2 class="text-xl font-extrabold text-slate-900">4. Phim Tài Liệu Hình Sự & Bảng Phá Án</h2>
+              <span class="px-2.5 py-1 rounded-lg bg-stone-200 text-stone-800 text-xs font-bold shrink-0">Bí ẩn & Cuốn hút</span>
+            </div>
+            <p class="text-sm text-slate-600 mb-4">
+              Dàn dựng slide như bảng điều tra của thám tử với ảnh Polaroid chụp "nghi phạm sách", ghim bấm, sợi chỉ đỏ nối manh mối và giấy ghi chú vàng. Cực hợp với câu chuyện hiệu sách không mất trộm!
+            </p>
+
+            <!-- Color Palette -->
+            <div class="mb-4">
+              <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Bảng màu chủ đạo</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                  <span class="w-3.5 h-3.5 rounded-full bg-stone-900"></span> #1C1917
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                  <span class="w-3.5 h-3.5 rounded-full bg-amber-100 border"></span> #FEF3C7
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                  <span class="w-3.5 h-3.5 rounded-full bg-red-600"></span> #DC2626
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                  <span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span> #F59E0B
+                </span>
+              </div>
+            </div>
+
+            <!-- Illustration Ideas -->
+            <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-100 text-xs text-slate-700 space-y-1.5 mb-5">
+              <p><strong class="text-slate-900"><i class="fa-solid fa-wand-magic-sparkles text-amber-600 mr-1"></i> Yếu tố đồ họa:</strong> Khung ảnh Polaroid dán băng keo, ghim đỏ, đường chỉ đỏ nối các luận điểm, font chữ máy đánh chữ (Typewriter).</p>
+              <p><strong class="text-slate-900"><i class="fa-solid fa-image text-amber-600 mr-1"></i> Gợi ý hình minh họa:</strong> Ảnh chụp sách cầm bảng số tù nhân (mugshot), kính lúp soi trang chữ.</p>
+            </div>
+          </div>
+
+          <button onclick="selectTheme(4)" class="select-btn w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-orange-600 text-white font-bold text-sm transition flex items-center justify-center gap-2 cursor-pointer">
+            <i class="fa-regular fa-circle-check"></i> Chọn phong cách Bảng Phá Án Hình Sự
+          </button>
+        </div>
+      </article>
+
+      <!-- =========================================================
+           THEME 5: MODERN FLAT EDITORIAL ILLUSTRATION
+      ========================================================== -->
+      <article id="card-5" data-category="modern" class="theme-card bg-white rounded-2xl border-2 border-slate-200 overflow-hidden shadow-sm flex flex-col lg:col-span-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12">
+          <!-- Live Mini-Slide Mockup -->
+          <div class="lg:col-span-6 relative aspect-video lg:aspect-auto bg-[#FAF6F0] p-6 sm:p-8 flex flex-col justify-between overflow-hidden select-none border-b lg:border-b-0 lg:border-r border-slate-200">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-widest text-orange-700">
+                CHƯƠNG 03 • BIẾN CHỨNG TƯ DUY
+              </span>
+              <span class="px-2.5 py-0.5 rounded-full bg-orange-100 text-orange-800 text-xs font-bold">
+                Editorial Flat
+              </span>
+            </div>
+
+            <div class="my-auto grid grid-cols-12 gap-4 items-center py-4">
+              <div class="col-span-7">
+                <h3 class="font-editorial text-slate-900 text-2xl sm:text-3xl font-bold leading-tight">
+                  Tác hại #3: Vốn từ vựng phình to mất kiểm soát
+                </h3>
+                <p class="text-slate-600 text-xs sm:text-sm mt-2.5 leading-relaxed">
+                  Biến bạn thành "ác mộng" trong mọi cuộc tranh luận và làm gia vị đắt giá cho những buổi <em>deeptalk</em> thâu đêm.
+                </p>
+              </div>
+              <!-- Editorial Flat Vector Character SVG -->
+              <div class="col-span-5 flex justify-center">
+                <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-orange-100/80 flex items-center justify-center p-3">
+                  <svg viewBox="0 0 80 80" class="w-full h-full" fill="none">
+                    <!-- Giant Stylized Brain / Book Cloud -->
+                    <circle cx="40" cy="28" r="18" fill="#EA580C" fill-opacity="0.2"/>
+                    <path d="M24 34c0-9 7-16 16-16s16 7 16 16" stroke="#EA580C" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Person Head & Body -->
+                    <circle cx="40" cy="40" r="8" fill="#1E293B"/>
+                    <path d="M26 66c0-8 6-14 14-14s14 6 14 14" fill="#0F766E"/>
+                    <!-- Open Book in Hand -->
+                    <path d="M28 54l12 4 12-4v10l-12 4-12-4V54z" fill="#FFFFFF" stroke="#1E293B" stroke-width="2"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-slate-500 border-t border-slate-200/80 pt-2.5">
+              <span>Tác hại của việc đọc sách</span>
+              <span class="font-bold text-slate-800">Slide 08 / 12</span>
+            </div>
+          </div>
+
+          <!-- Theme Details -->
+          <div class="lg:col-span-6 p-6 sm:p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <h2 class="text-xl font-extrabold text-slate-900">5. Minh Họa Phẳng Hiện Đại (Modern Editorial Flat)</h2>
+                <span class="px-2.5 py-1 rounded-lg bg-orange-100 text-orange-800 text-xs font-bold shrink-0">Khuyên dùng • Dễ làm nhất</span>
+              </div>
+              <p class="text-sm text-slate-600 mb-4">
+                Phong cách minh họa báo chí hiện đại (giống The New Yorker, Notion, Headspace): nền kem ấm sang trọng kết hợp với nhân vật vector vẽ phóng đại hài hước (ví dụ: người có bộ não khổng lồ phải dùng xe cút kít đẩy đi). Rất dễ tìm tài nguyên miễn phí trên unDraw, Storyset hoặc Canva.
+              </p>
+
+              <!-- Color Palette -->
+              <div class="mb-4">
+                <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Bảng màu chủ đạo</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                    <span class="w-3.5 h-3.5 rounded-full bg-[#FAF6F0] border"></span> #FAF6F0
+                  </span>
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                    <span class="w-3.5 h-3.5 rounded-full bg-orange-600"></span> #EA580C
+                  </span>
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                    <span class="w-3.5 h-3.5 rounded-full bg-teal-700"></span> #0F766E
+                  </span>
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-mono-code">
+                    <span class="w-3.5 h-3.5 rounded-full bg-slate-900"></span> #0F172A
+                  </span>
+                </div>
+              </div>
+
+              <!-- Illustration Ideas -->
+              <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-100 text-xs text-slate-700 space-y-1.5 mb-5">
+                <p><strong class="text-slate-900"><i class="fa-solid fa-wand-magic-sparkles text-orange-600 mr-1"></i> Yếu tố đồ họa:</strong> Nền giấy kem dịu mắt, nhiều khoảng trắng, tiêu đề Serif thanh lịch kết hợp nhân vật minh họa tỷ lệ phóng đại hài hước.</p>
+                <p><strong class="text-slate-900"><i class="fa-solid fa-image text-orange-600 mr-1"></i> Gợi ý hình minh họa:</strong> Nhân vật ngồi đọc sách trên bồn cầu, người bị đè bẹp dưới núi sách Tsundoku, ví tiền mọc cánh bay đi.</p>
+              </div>
+            </div>
+
+            <button onclick="selectTheme(5)" class="select-btn w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-orange-600 text-white font-bold text-sm transition flex items-center justify-center gap-2 cursor-pointer">
+              <i class="fa-regular fa-circle-check"></i> Chọn phong cách Minh Họa Phẳng Hiện Đại
+            </button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Sticky Bottom Selection Confirmation & Prompt Copy Bar -->
+  <div id="selection-bar" class="fixed bottom-0 inset-x-0 bg-slate-900 text-white border-t border-slate-700 shadow-2xl transform translate-y-full transition-transform duration-300 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="flex items-start sm:items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-orange-600 flex items-center justify-center text-white shrink-0 mt-0.5 sm:mt-0">
+          <i class="fa-solid fa-check text-lg"></i>
+        </div>
+        <div>
+          <p class="text-xs text-orange-400 font-bold uppercase tracking-wider">Bạn đã chọn phong cách:</p>
+          <h4 id="selected-title" class="text-base sm:text-lg font-extrabold text-white"></h4>
+          <p id="selected-keywords" class="text-xs text-slate-300 mt-0.5"></p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2.5 w-full sm:w-auto">
+        <button onclick="copyThemeSpecs()" id="copy-btn" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-xs sm:text-sm font-bold transition flex items-center justify-center gap-2 cursor-pointer">
+          <i class="fa-regular fa-copy"></i> Sao chép thông số thiết kế & từ khóa ảnh
+        </button>
+        <button onclick="closeBar()" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition cursor-pointer" title="Đóng">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden Textarea for Reliable Clipboard Copy -->
+  <textarea id="clipboard-helper" class="sr-only" aria-hidden="true"></textarea>
+
+  <script>
+    const themesData = {
+      1: {
+        name: "1. Bản Tin Cảnh Báo Thảm Họa (Breaking News)",
+        colors: "#09090B (Đen), #DC2626 (Đỏ báo động), #FACC15 (Vàng cảnh báo), #FFFFFF (Trắng)",
+        fonts: "Anton / Impact (Tiêu đề in hoa) + Be Vietnam Pro (Nội dung)",
+        keywords: "breaking news overlay, hazard stripes yellow black, biohazard book icon, shocked news anchor meme, emergency alert banner"
+      },
+      2: {
+        name: "2. Hồ Sơ Y Khoa & Bệnh Án Tâm Thần (Medical Case File)",
+        colors: "#F0FDFA (Xanh y tế nhạt), #0F766E (Xanh cổ vịt), #DC2626 (Dấu mộc đỏ), #0F172A (Đen chữ)",
+        fonts: "Courier Prime (Mã bệnh án) + Be Vietnam Pro (Nội dung)",
+        keywords: "brain xray book illustration, red rubber stamp approved danger, medical chart template, prescription bottle vector, clipboard diagnosis"
+      },
+      3: {
+        name: "3. Truyện Tranh Châm Biếm Pop-Art (Vintage Comic)",
+        colors: "#FDE047 (Vàng rực), #22D3EE (Xanh lơ), #EC4899 (Hồng cánh sen), #000000 (Viền đen)",
+        fonts: "Anton / Bangers (Chữ truyện tranh) + Be Vietnam Pro",
+        keywords: "pop art comic shocked woman, halftone dots background, comic speech bubble vector, vintage comic book explosion, empty wallet cartoon"
+      },
+      4: {
+        name: "4. Phim Tài Liệu Hình Sự & Bảng Phá Án (True Crime Board)",
+        colors: "#1C1917 (Nền tối), #FEF3C7 (Giấy note vàng), #DC2626 (Chỉ đỏ), #F59E0B (Vàng hổ phách)",
+        fonts: "Courier Prime (Font máy đánh chữ) + Be Vietnam Pro",
+        keywords: "detective investigation board red string, polaroid photo frame mockup, top secret stamp, book mugshot funny, magnifying glass clues"
+      },
+      5: {
+        name: "5. Minh Họa Phẳng Hiện Đại (Modern Editorial Flat)",
+        colors: "#FAF6F0 (Kem ấm), #EA580C (Cam đất), #0F766E (Xanh rêu), #0F172A (Xanh than đậm)",
+        fonts: "Playfair Display (Tiêu đề thanh lịch) + Be Vietnam Pro (Nội dung)",
+        keywords: "editorial illustration giant brain reading book, flat vector character overwhelmed by books, person reading on toilet vector, minimalist flat illustration"
+      }
+    };
+
+    let currentSelectedId = null;
+
+    function selectTheme(id) {
+      currentSelectedId = id;
+      const data = themesData[id];
+
+      // Reset all cards
+      document.querySelectorAll('.theme-card').forEach(card => {
+        card.classList.remove('selected', 'border-orange-600');
+        card.classList.add('border-slate-200');
+      });
+      document.querySelectorAll('.select-btn').forEach(btn => {
+        btn.classList.remove('bg-orange-600');
+        btn.classList.add('bg-slate-900');
+      });
+
+      // Highlight selected card
+      const activeCard = document.getElementById(`card-${id}`);
+      activeCard.classList.remove('border-slate-200');
+      activeCard.classList.add('selected', 'border-orange-600');
+
+      const activeBtn = activeCard.querySelector('.select-btn');
+      activeBtn.classList.remove('bg-slate-900');
+      activeBtn.classList.add('bg-orange-600');
+
+      // Update & Show Bottom Bar
+      document.getElementById('selected-title').textContent = data.name;
+      document.getElementById('selected-keywords').textContent = `Từ khóa tìm ảnh/icon: ${data.keywords}`;
+      document.getElementById('selection-bar').classList.remove('translate-y-full');
+
+      // Reset Copy Button State
+      const copyBtn = document.getElementById('copy-btn');
+      copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Sao chép thông số thiết kế & từ khóa ảnh';
+    }
+
+    function closeBar() {
+      document.getElementById('selection-bar').classList.add('translate-y-full');
+    }
+
+    function copyThemeSpecs() {
+      if (!currentSelectedId) return;
+      const data = themesData[currentSelectedId];
+      const textToCopy = `CHỦ ĐỀ SLIDE ĐÃ CHỌN: ${data.name}\n- Bảng màu: ${data.colors}\n- Font chữ gợi ý: ${data.fonts}\n- Từ khóa tìm ảnh minh họa (Canva / Freepik / Storyset): ${data.keywords}`;
+
+      const helper = document.getElementById('clipboard-helper');
+      helper.value = textToCopy;
+      helper.select();
+      document.execCommand('copy');
+
+      const copyBtn = document.getElementById('copy-btn');
+      copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> Đã sao chép thành công!';
+      setTimeout(() => {
+        copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Sao chép thông số thiết kế & từ khóa ảnh';
+      }, 2500);
+    }
+
+    function filterThemes(category) {
+      // Update active filter pill
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('bg-orange-600', 'text-white');
+        btn.classList.add('bg-slate-800', 'text-slate-300');
+      });
+      event.target.classList.remove('bg-slate-800', 'text-slate-300');
+      event.target.classList.add('bg-orange-600', 'text-white');
+
+      // Filter cards
+      document.querySelectorAll('.theme-card').forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
