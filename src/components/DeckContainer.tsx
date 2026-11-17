@@ -11,13 +11,13 @@ import { Slide8Conclusion } from '../slides/Slide8Conclusion';
 export const DeckContainer: React.FC = () => {
   const slideTitles = [
     { n: 1, title: 'Bìa: Tác Hại Của Việc Đọc Sách' },
-    { n: 2, title: 'Tổng Quan: 5 Tác Hại Hài Hước' },
-    { n: 3, title: 'Phần 01: Khoa Học Vạch Mặt (-68% Stress & +23 Tháng & Tsundoku)' },
-    { n: 4, title: 'Phần 02: Tam Thể Khí Cụ (Sách Giấy, E-Reader & Sách Nói)' },
-    { n: 5, title: 'Phần 03: 7 Biến Chứng Khi Lỡ "Nhiễm Độc" Sách Quá Sâu' },
+    { n: 2, title: 'Tổng Quan: 5 Nội Dung Chính' },
+    { n: 3, title: 'Phần 01: 3 Con Số Đáng Sợ' },
+    { n: 4, title: 'Phần 02: 3 Cách Đọc Sách Nguy Hiểm' },
+    { n: 5, title: 'Phần 03: 7 Rắc Rối Khi Lỡ Nghiện Sách' },
     { n: 6, title: 'Phần 04: Vì Sao 90% Thoát Nạn Thành Công?' },
-    { n: 7, title: 'Phần 05: 4 Bước "Nhiễm Độc" Sách Nhẹ Nhàng & Bền Vững' },
-    { n: 8, title: 'Epilogue: Lời Chúc Phúc Cho Người Đọc Sách & Q&A' }
+    { n: 7, title: 'Phần 05: 4 Mẹo Dễ Ợt Để Nghiện Đọc Sách' },
+    { n: 8, title: 'Epilogue: Lời Chúc Cho Người Nghiện Sách & Q&A' }
   ];
 
   return (
