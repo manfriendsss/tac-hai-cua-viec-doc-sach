@@ -531,10 +531,10 @@ export function initDeckEngine(): () => void {
     const slide8 = document.getElementById('slide-8');
     if (!stampEl) return;
 
-    // Diagonal 45-degree angle placed at top-left corner, strictly avoiding character face
-    const endAngle = -45;
-    const startAngle = -55;
-    const midAngle = -42;
+    // Natural, authoritative stamp angle placed at top-right, strictly clear of character holding board
+    const endAngle = -10;
+    const startAngle = -20;
+    const midAngle = -8;
 
     stampEl.style.setProperty('--start-rot', `${startAngle}deg`);
     stampEl.style.setProperty('--mid-rot', `${midAngle}deg`);
