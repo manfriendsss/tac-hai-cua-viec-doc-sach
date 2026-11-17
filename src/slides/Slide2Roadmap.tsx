@@ -38,38 +38,41 @@ export const Slide2Roadmap: React.FC = () => {
     <div 
       className="slide bg-comic-strip text-[#1f2937] px-8 py-5 md:px-12 md:py-6 font-comic-neue h-full justify-between" 
       data-slide="2"
-      data-steps="5"
+      data-steps="6"
       id="slide-2"
     >
       {/* Top Header */}
       <div className="flex justify-between items-center z-10 border-b-3 border-[#1f2937] pb-2">
         <div className="flex items-center gap-2.5">
-          <span className="bg-[#fef08a] text-[#1f2937] px-3.5 py-1 rounded-full text-xs sm:text-sm font-comic-fredoka font-black border-2 border-[#1f2937] shadow-[2px_2px_0px_#1f2937]">
+          <span className="bg-[#fef08a] text-[#1f2937] px-4 py-1 rounded-full text-sm sm:text-base font-comic-fredoka font-black border-2 border-[#1f2937] shadow-[2px_2px_0px_#1f2937]">
             TỔNG QUAN: 5 ĐIỀU NGUY HẠI HÀI HƯỚC
-          </span>
-          <span className="font-comic-fredoka text-xs sm:text-sm font-bold text-zinc-600 hidden sm:inline">
-            CHUẨN HÌNH MẪU TƯ DUY NGƯỢC
           </span>
         </div>
       </div>
 
-      {/* Main Grid: 2 Columns */}
-      <div className="my-auto grid grid-cols-12 gap-6 items-center max-w-6xl mx-auto w-full z-10">
+      {/* Main Grid: Asymmetric Balance (8 Cols Left for Main & Sub Cards, 4 Cols Right for Image) */}
+      <div className="my-auto grid grid-cols-12 gap-7 items-center max-w-6xl mx-auto w-full z-10">
         
-        {/* Left 7.5 Columns: Title & 5 Sequential Step Cards */}
-        <div className="col-span-12 md:col-span-8 flex flex-col gap-2.5">
+        {/* Left 8 Columns: Main Card & 5 Sub Cards with BIG readable text */}
+        <div className="col-span-12 md:col-span-8 flex flex-col gap-3">
           
-          <div>
+          {/* Card Chính (To, nổi bật với font lớn) */}
+          <div className="comic-panel-yellow p-4 sm:p-5 rounded-2xl border-3 border-[#1f2937] shadow-[5px_5px_0px_#1f2937] relative">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="font-comic-fredoka font-black text-xs sm:text-sm uppercase bg-[#1f2937] text-white px-3 py-0.5 rounded-full">
+                CARD CHÍNH • CHỦ ĐỀ TRỌNG TÂM
+              </span>
+              <span className="text-xs sm:text-sm font-comic-fredoka font-black text-amber-900">
+                5 NHÁNH BIẾN CHỨNG
+              </span>
+            </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#111827] leading-tight font-comic-fredoka">
-              Tác hại của việc đọc sách
+              Tác Hại Của Việc Đọc Sách
             </h2>
-            <p className="text-xs sm:text-sm md:text-base font-bold text-[#4b5563] italic font-comic-neue mt-0.5">
-              (Thực ra là ích lợi, nhưng nhìn theo lối tư duy ngược hài hước)
-            </p>
           </div>
 
-          {/* 5 Humorous Step Cards */}
-          <div className="flex flex-col gap-2 mt-1">
+          {/* 5 Card Phụ (To, rõ ràng, chữ viết lần lượt chạy theo từng dòng) */}
+          <div className="flex flex-col gap-2 pl-3 border-l-3 border-dashed border-[#1f2937]/40 ml-2">
             {harms.map((h) => (
               <div 
                 key={h.step}
@@ -77,16 +80,15 @@ export const Slide2Roadmap: React.FC = () => {
                 className="step-card comic-panel py-2 px-3.5 flex items-start gap-3 cursor-pointer rounded-xl border-2 sm:border-3 border-[#1f2937]"
               >
                 <div className="flex items-center gap-1.5 flex-shrink-0 mt-0.5">
-                  <span className="text-base sm:text-lg text-amber-500">✦</span>
-                  <span className="font-comic-fredoka font-black text-xs sm:text-sm bg-[#fef08a] px-2 py-0.5 rounded border border-[#1f2937] text-[#111827]">
+                  <span className="font-comic-fredoka font-black text-xs sm:text-sm md:text-base bg-[#fef08a] px-2.5 py-0.5 rounded border border-[#1f2937] text-[#111827]">
                     {h.num}
                   </span>
                 </div>
-                <div className="text-left text-xs sm:text-sm md:text-base font-bold text-[#1f2937] leading-snug">
+                <div className="text-left text-sm sm:text-base md:text-lg font-bold text-[#1f2937] leading-snug ink-write-text">
                   <span className="font-comic-fredoka font-black text-[#b45309]">
                     {h.title}:
                   </span>{' '}
-                  <span className="text-zinc-700">
+                  <span className="text-zinc-800">
                     {h.humor}
                   </span>
                 </div>
@@ -96,19 +98,19 @@ export const Slide2Roadmap: React.FC = () => {
 
         </div>
 
-        {/* Right 4.5 Columns: Antique Books & Quill in Sunday Comic Strip Panel */}
-        <div className="col-span-12 md:col-span-4 flex flex-col items-center">
-          <div className="w-full comic-panel-yellow p-3 relative rotate-1 shadow-[5px_5px_0px_#1f2937]">
-            <div className="w-full h-48 sm:h-56 bg-white rounded-xl border-2 border-[#1f2937] overflow-hidden flex items-center justify-center p-2">
+        {/* Right 4 Columns: Claymation Hero Illustration */}
+        <div className="col-span-12 md:col-span-4 flex flex-col items-center justify-center">
+          <div className="w-full comic-panel-yellow p-3.5 rounded-3xl border-3 border-[#1f2937] relative rotate-1 shadow-[5px_5px_0px_#1f2937]">
+            <div className="w-full h-56 sm:h-64 md:h-72 rounded-2xl overflow-hidden border-2 border-[#1f2937] bg-[#fdfcf7] flex items-center justify-center">
               <img
-                src="/assets/books_quill_crop.webp"
-                alt="Chồng sách và lông ngỗng cổ điển"
-                className="w-full h-full object-contain filter contrast-110"
+                src="/assets/slide2-claymation.webp"
+                alt="5 Tác hại tổng quan - Nghiện kiến thức và chiếc ví mỏng"
+                className="w-full h-full object-cover"
               />
             </div>
             <div className="mt-2.5 text-center">
-              <p className="font-comic-hand text-base sm:text-lg font-black text-[#111827]">
-                "Càng đọc nhiều, thế giới càng mở rộng... và chiếc ví càng mỏng đi!" ☕📚
+              <p className="font-comic-hand text-lg sm:text-xl font-black text-[#111827] leading-snug">
+                "Càng đọc nhiều, thế giới càng mở rộng... và chiếc ví càng mỏng đi!"
               </p>
             </div>
           </div>

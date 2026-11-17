@@ -11,117 +11,130 @@ export const Slide4ToolsMerged: React.FC = () => {
       {/* Top Header */}
       <div className="flex justify-between items-center z-10 border-b-3 border-[#1f2937] pb-2">
         <div className="flex items-center gap-2.5">
-          <span className="bg-[#fef08a] text-[#1f2937] px-3.5 py-1 rounded-full text-xs sm:text-sm font-comic-fredoka font-black border-2 border-[#1f2937] shadow-[2px_2px_0px_#1f2937]">
+          <span className="bg-[#fef08a] text-[#1f2937] px-4 py-1 rounded-full text-sm sm:text-base font-comic-fredoka font-black border-2 border-[#1f2937] shadow-[2px_2px_0px_#1f2937]">
             PHẦN 02: TAM THỂ KHÍ CỤ
           </span>
-          <span className="font-comic-fredoka text-xs sm:text-sm font-bold text-zinc-600 hidden sm:inline">
+          <span className="font-comic-fredoka text-xs sm:text-sm md:text-base font-bold text-zinc-600 hidden sm:inline">
             SÁCH GIẤY • E-INK • AUDIOBOOK
           </span>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="my-auto max-w-6xl mx-auto w-full z-10 flex flex-col gap-3">
+      {/* Main Content: Asymmetric Balance (7.5 Cols Left for Cards, 4.5 Cols Right for Image) */}
+      <div className="my-auto grid grid-cols-12 gap-7 items-center max-w-6xl mx-auto w-full z-10">
         
-        {/* Header */}
-        <div className="text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#111827] font-comic-fredoka leading-tight">
-            Ba Dạng Khí Cụ Dẫn Dắt "Mê Hoặc"
-          </h2>
-          <p className="text-xs sm:text-sm md:text-base font-bold text-[#4b5563] mt-0.5">
-            (Mỗi công cụ đều có một "chiêu trò" độc hại riêng khiến bạn đắm chìm quên cả lối về!)
-          </p>
-        </div>
-
-        {/* Comic Strip Image Banner */}
-        <div className="w-full comic-panel p-2.5 bg-white shadow-[4px_4px_0px_#1f2937]">
-          <div className="w-full h-36 sm:h-44 rounded-xl overflow-hidden border-2 border-[#1f2937] bg-[#fdfcf7] flex items-center justify-center">
-            <img
-              src="/assets/sunday-3-mediums.webp"
-              alt="Tranh truyện 3 khung: Sách giấy, Máy đọc sách, và Sách nói"
-              className="w-full h-full object-contain"
-            />
-          </div>
-        </div>
-
-        {/* 3 Humorous Breakdown Step Cards with Spotlight Animation */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* Left 7.5 Columns: Title & 3 Sequential Tool Cards */}
+        <div className="col-span-12 md:col-span-7 flex flex-col gap-3">
           
-          {/* Medium 1 */}
-          <div 
-            id="s4-card-1"
-            data-step-card="1"
-            className="step-card comic-panel-yellow p-4 flex flex-col justify-between cursor-pointer rounded-2xl border-3 border-[#1f2937]"
-          >
-            <div>
-              <div className="flex items-center justify-between">
-                <span className="text-2xl">📖</span>
-                <span className="text-xs font-comic-fredoka font-black bg-white px-2.5 py-0.5 rounded-full border border-[#1f2937] shadow-[1px_1px_0px_#1f2937]">
-                  CỔ ĐIỂN
-                </span>
-              </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-comic-fredoka font-black text-[#111827] mt-1.5">
-                SÁCH GIẤY TRUYỀN THỐNG
-              </h3>
-              <p className="text-xs sm:text-sm md:text-base font-bold text-zinc-700 mt-2 leading-relaxed">
-                Mùi giấy thơm gây mê hoặc. Tiếng lật sột soạt đê mê. Balo nhét 2 cuốn dày cộp nặng như tập tạ, gù cả cột sống!
-              </p>
-            </div>
-            <div className="mt-3 text-center text-xs sm:text-sm font-comic-fredoka font-black bg-white p-1.5 rounded-lg border border-[#1f2937] text-amber-800 shadow-[1px_1px_0px_#1f2937]">
-              Sát thương vật lý: Nặng balo & gù lưng 🎒
-            </div>
+          <div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#111827] font-comic-fredoka leading-tight">
+              Ba Dạng Khí Cụ Dẫn Dắt "Mê Hoặc"
+            </h2>
           </div>
 
-          {/* Medium 2 */}
-          <div 
-            id="s4-card-2"
-            data-step-card="2"
-            className="step-card comic-panel-sky p-4 flex flex-col justify-between cursor-pointer rounded-2xl border-3 border-[#1f2937]"
-          >
-            <div>
-              <div className="flex items-center justify-between">
-                <span className="text-2xl">📱</span>
-                <span className="text-xs font-comic-fredoka font-black bg-white px-2.5 py-0.5 rounded-full border border-[#1f2937] shadow-[1px_1px_0px_#1f2937]">
-                  CÔNG NGHỆ
-                </span>
+          <div className="flex flex-col gap-3">
+            
+            {/* Medium 1: Sách Giấy */}
+            <div 
+              id="s4-card-1"
+              data-step-card="1"
+              className="step-card comic-panel-yellow p-3.5 sm:p-4 flex flex-col justify-between cursor-pointer rounded-2xl border-3 border-[#1f2937]"
+            >
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs sm:text-sm font-comic-fredoka font-black bg-white px-3 py-0.5 rounded-full border border-[#1f2937] shadow-[1px_1px_0px_#1f2937]">
+                    KHÍ CỤ #01 • CỔ ĐIỂN
+                  </span>
+                  <span className="text-xs sm:text-sm font-comic-fredoka font-black text-amber-900">
+                    SÁCH GIẤY
+                  </span>
+                </div>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-comic-fredoka font-black text-[#111827] mt-1.5">
+                  Sách Giấy Truyền Thống
+                </h3>
+                <p className="text-sm sm:text-base md:text-lg font-bold text-zinc-800 mt-1.5 leading-relaxed ink-write-text">
+                  Mùi giấy thơm gây mê hoặc, tiếng lật trang sột soạt đê mê. Balo nhét 2 cuốn dày cộp nặng như tập tạ, gù cả cột sống!
+                </p>
               </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-comic-fredoka font-black text-[#111827] mt-1.5">
-                MÁY ĐỌC SÁCH E-INK
-              </h3>
-              <p className="text-xs sm:text-sm md:text-base font-bold text-zinc-700 mt-2 leading-relaxed">
-                Nhét cả thư viện 10.000 cuốn vào túi quần. Màn hình mực điện tử êm như giấy thật. Nhưng tử huyệt là đang đọc đến trang hung thủ lộ mặt thì... HẾT PIN!
-              </p>
+              <div className="mt-2 text-xs sm:text-sm md:text-base font-comic-fredoka font-black bg-white/90 p-1.5 rounded-lg border border-[#1f2937] text-amber-800">
+                Sát thương vật lý: Nặng balo và gù lưng
+              </div>
             </div>
-            <div className="mt-3 text-center text-xs sm:text-sm font-comic-fredoka font-black bg-white p-1.5 rounded-lg border border-[#1f2937] text-blue-800 shadow-[1px_1px_0px_#1f2937]">
-              Sát thương tâm lý: Sập nguồn bất ngờ 🪫
+
+            {/* Medium 2: E-Ink */}
+            <div 
+              id="s4-card-2"
+              data-step-card="2"
+              className="step-card comic-panel-sky p-3.5 sm:p-4 flex flex-col justify-between cursor-pointer rounded-2xl border-3 border-[#1f2937]"
+            >
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs sm:text-sm font-comic-fredoka font-black bg-white px-3 py-0.5 rounded-full border border-[#1f2937] shadow-[1px_1px_0px_#1f2937]">
+                    KHÍ CỤ #02 • CÔNG NGHỆ
+                  </span>
+                  <span className="text-xs sm:text-sm font-comic-fredoka font-black text-blue-900">
+                    E-READER
+                  </span>
+                </div>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-comic-fredoka font-black text-[#111827] mt-1.5">
+                  Máy Đọc Sách E-Ink
+                </h3>
+                <p className="text-sm sm:text-base md:text-lg font-bold text-zinc-800 mt-1.5 leading-relaxed ink-write-text">
+                  Nhét cả thư viện 10.000 cuốn vào túi áo. Màn hình mực điện tử êm như giấy thật. Nhưng tử huyệt là đang đọc đến đoạn hung thủ lộ mặt thì hết pin!
+                </p>
+              </div>
+              <div className="mt-2 text-xs sm:text-sm md:text-base font-comic-fredoka font-black bg-white/90 p-1.5 rounded-lg border border-[#1f2937] text-blue-800">
+                Sát thương tâm lý: Sập nguồn bất ngờ
+              </div>
             </div>
+
+            {/* Medium 3: Audiobook */}
+            <div 
+              id="s4-card-3"
+              data-step-card="3"
+              className="step-card comic-panel-mint p-3.5 sm:p-4 flex flex-col justify-between cursor-pointer rounded-2xl border-3 border-[#1f2937]"
+            >
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs sm:text-sm font-comic-fredoka font-black bg-white px-3 py-0.5 rounded-full border border-[#1f2937] shadow-[1px_1px_0px_#1f2937]">
+                    KHÍ CỤ #03 • RẢNH TAY
+                  </span>
+                  <span className="text-xs sm:text-sm font-comic-fredoka font-black text-emerald-900">
+                    AUDIOBOOK
+                  </span>
+                </div>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-comic-fredoka font-black text-[#111827] mt-1.5">
+                  Sách Nói Audiobook
+                </h3>
+                <p className="text-sm sm:text-base md:text-lg font-bold text-zinc-800 mt-1.5 leading-relaxed ink-write-text">
+                  Vừa rửa bát, chạy bộ vừa nạp tri thức êm ru. Rủi ro duy nhất là giọng đọc truyền cảm quá mức dễ khiến bạn ngủ quên giữa ban ngày!
+                </p>
+              </div>
+              <div className="mt-2 text-xs sm:text-sm md:text-base font-comic-fredoka font-black bg-white/90 p-1.5 rounded-lg border border-[#1f2937] text-emerald-800">
+                Sát thương sinh học: Ru ngủ cực mạnh
+              </div>
+            </div>
+
           </div>
 
-          {/* Medium 3 */}
-          <div 
-            id="s4-card-3"
-            data-step-card="3"
-            className="step-card comic-panel-mint p-4 flex flex-col justify-between cursor-pointer rounded-2xl border-3 border-[#1f2937]"
-          >
-            <div>
-              <div className="flex items-center justify-between">
-                <span className="text-2xl">🎧</span>
-                <span className="text-xs font-comic-fredoka font-black bg-white px-2.5 py-0.5 rounded-full border border-[#1f2937] shadow-[1px_1px_0px_#1f2937]">
-                  RẢNH TAY
-                </span>
-              </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-comic-fredoka font-black text-[#111827] mt-1.5">
-                SÁCH NÓI AUDIOBOOK
-              </h3>
-              <p className="text-xs sm:text-sm md:text-base font-bold text-zinc-700 mt-2 leading-relaxed">
-                Vừa rửa bát, chạy bộ vừa nạp tri thức êm ru. Rủi ro duy nhất là giọng đọc truyền cảm quá mức dễ khiến bạn ngủ quên giữa ban ngày!
+        </div>
+
+        {/* Right 4.5 Columns: Claymation Hero Illustration */}
+        <div className="col-span-12 md:col-span-5 flex flex-col items-center justify-center">
+          <div className="w-full comic-panel-mint p-3.5 rounded-3xl border-3 border-[#1f2937] shadow-[5px_5px_0px_#1f2937]">
+            <div className="w-full h-56 sm:h-72 rounded-2xl overflow-hidden border-2 border-[#1f2937] bg-[#fdfcf7] flex items-center justify-center">
+              <img
+                src="/assets/slide4-claymation.webp"
+                alt="Tam thể khí cụ - Sách giấy, Máy đọc sách và Sách nói"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="mt-2.5 text-center">
+              <p className="font-comic-hand text-base sm:text-lg font-black text-[#1f2937] leading-snug">
+                "Mỗi công cụ đều có một sức lôi cuốn riêng khó lòng dứt ra!"
               </p>
             </div>
-            <div className="mt-3 text-center text-xs sm:text-sm font-comic-fredoka font-black bg-white p-1.5 rounded-lg border border-[#1f2937] text-emerald-800 shadow-[1px_1px_0px_#1f2937]">
-              Sát thương sinh học: Ru ngủ cực mạnh 😴
-            </div>
           </div>
-
         </div>
 
       </div>

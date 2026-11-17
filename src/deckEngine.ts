@@ -8,14 +8,14 @@ export function initDeckEngine(): () => void {
   const totalSlides = 8;
 
   const slideTitles = [
-    'Bìa: Tác Hại Của Việc Đọc Sách (Tranh Vui Cuối Tuần)',
-    'Tổng Quan: 5 Tác Hại Hài Hước (Chuẩn Slide Mẫu)',
-    'Phần 01: Khoa Học Vạch Trần (-68% Stress & +23 Tháng)',
+    'Bìa: Tác Hại Của Việc Đọc Sách',
+    'Tổng Quan: 5 Tác Hại Hài Hước',
+    'Phần 01: Khoa Học Vạch Mặt (-68% Stress & +23 Tháng & Tsundoku)',
     'Phần 02: Tam Thể Khí Cụ (Sách Giấy, E-Reader & Sách Nói)',
-    'Phần 03: 7 Biến Chứng Khi Lỡ "Nghiện" Sách Quá Sâu',
-    'Phần 04: Vì Sao 90% Thoát Nạn Nhờ Bỏ Cuộc?',
+    'Phần 03: 7 Biến Chứng Khi Lỡ "Nhiễm Độc" Sách Quá Sâu',
+    'Phần 04: Vì Sao 90% Thoát Nạn Thành Công?',
     'Phần 05: 4 Bước "Nhiễm Độc" Sách Nhẹ Nhàng & Bền Vững',
-    'Epilogue: Lời Chúc Phúc Cho Người Nghiện Sách & Q&A'
+    'Epilogue: Lời Chúc Phúc Cho Người Đọc Sách & Q&A'
   ];
 
   const progressBar = document.getElementById('progress-bar');
@@ -32,39 +32,171 @@ export function initDeckEngine(): () => void {
     return document.querySelector(`.slide[data-slide="${currentSlide}"]`);
   }
 
+  let activeTypewriterTimer: any = null;
+  let activeTypewriterCleanups: (() => void)[] = [];
+
+  function cancelActiveTypewriter() {
+    if (activeTypewriterTimer) {
+      clearInterval(activeTypewriterTimer);
+      activeTypewriterTimer = null;
+    }
+    if (activeTypewriterCleanups.length > 0) {
+      activeTypewriterCleanups.forEach((fn) => fn());
+      activeTypewriterCleanups = [];
+    }
+  }
+
+  function startTypewriterForCard(card: HTMLElement) {
+    cancelActiveTypewriter();
+
+    const writeEls = Array.from(card.querySelectorAll<HTMLElement>('.ink-write-text'));
+    if (writeEls.length === 0) return;
+
+    const items = writeEls.map((el) => {
+      let fullHtml = el.getAttribute('data-full-html');
+      if (!fullHtml) {
+        fullHtml = el.innerHTML;
+        el.setAttribute('data-full-html', fullHtml);
+      }
+
+      let segments: { tag: string; className: string; text: string }[] = [];
+      const children = Array.from(el.children) as HTMLElement[];
+      if (children.length > 0) {
+        segments = children.map((c) => ({
+          tag: c.tagName.toLowerCase(),
+          className: c.className,
+          text: c.textContent || ''
+        }));
+      } else {
+        segments = [{
+          tag: 'span',
+          className: '',
+          text: el.textContent || ''
+        }];
+      }
+
+      const totalLen = segments.reduce((acc, s) => acc + s.text.length, 0);
+
+      activeTypewriterCleanups.push(() => {
+        el.innerHTML = fullHtml!;
+      });
+
+      el.innerHTML = '';
+
+      return {
+        el,
+        fullHtml,
+        segments,
+        totalLen
+      };
+    });
+
+    let currentItemIdx = 0;
+    let currentCharCount = 0;
+
+    activeTypewriterTimer = setInterval(() => {
+      if (currentItemIdx >= items.length) {
+        cancelActiveTypewriter();
+        return;
+      }
+
+      const item = items[currentItemIdx];
+      currentCharCount += 1;
+
+      if (currentCharCount <= item.totalLen) {
+        let remaining = currentCharCount;
+        let html = '';
+        for (const seg of item.segments) {
+          if (remaining <= 0) break;
+          const len = seg.text.length;
+          if (remaining >= len) {
+            html += `<${seg.tag} class="${seg.className}">${seg.text}</${seg.tag}>`;
+            remaining -= len;
+          } else {
+            const part = seg.text.slice(0, remaining);
+            html += `<${seg.tag} class="${seg.className}">${part}</${seg.tag}>`;
+            remaining = 0;
+            break;
+          }
+        }
+        item.el.innerHTML = html + `<span class="writing-quill-cursor"></span>`;
+      } else {
+        const quill = item.el.querySelector('.writing-quill-cursor');
+        if (quill) {
+          quill.classList.add('quill-lifting');
+        }
+        setTimeout(() => {
+          item.el.innerHTML = item.fullHtml;
+        }, 280);
+
+        currentItemIdx++;
+        currentCharCount = 0;
+      }
+    }, 32);
+  }
+
   function updateStepVisuals(slideEl: HTMLElement | null) {
     if (!slideEl) return;
     slideEl.setAttribute('data-current-step', String(currentStep));
 
-    // Universal step-card reveal handler (Inspired by Thuyết trình cà phê)
+    const slideNum = parseInt(slideEl.getAttribute('data-slide') || '0', 10);
+
+    // Universal step-card reveal handler
     const stepCards = Array.from(slideEl.querySelectorAll<HTMLElement>('[data-step-card]'));
+    let spotlightCard: HTMLElement | null = null;
+
     if (stepCards.length > 0) {
       stepCards.forEach((card) => {
         const cardStep = parseInt(card.getAttribute('data-step-card') || '0', 10);
-        card.classList.remove('step-hidden', 'step-spotlight', 'step-docked', 'step-dimmed');
+        card.classList.remove('step-hidden', 'step-spotlight', 'step-docked', 'step-dimmed', 'step-all-revealed');
 
         if (currentStep === 0) {
           // Step 0: All step-cards hidden initially
           card.classList.add('step-hidden');
+          card.querySelectorAll<HTMLElement>('.ink-write-text').forEach((el) => {
+            const fullHtml = el.getAttribute('data-full-html');
+            if (fullHtml) el.innerHTML = fullHtml;
+          });
+        } else if (slideNum === 2 && currentStep === 6) {
+          // Slide 2 Step 6: All main and sub cards reveal together!
+          card.classList.add('step-all-revealed');
+          card.querySelectorAll<HTMLElement>('.ink-write-text').forEach((el) => {
+            const fullHtml = el.getAttribute('data-full-html');
+            if (fullHtml) el.innerHTML = fullHtml;
+          });
         } else if (cardStep === currentStep) {
-          // Current step: In spotlight!
+          // Current step: In spotlight with quill writing effect!
           card.classList.add('step-spotlight');
+          spotlightCard = card;
         } else if (cardStep < currentStep) {
-          // Previous steps: Docked, fully visible and readable
+          // Previous steps: Docked, staying solid as background
           card.classList.add('step-docked');
+          card.querySelectorAll<HTMLElement>('.ink-write-text').forEach((el) => {
+            const fullHtml = el.getAttribute('data-full-html');
+            if (fullHtml) el.innerHTML = fullHtml;
+          });
         } else {
           // Future steps: Hidden
           card.classList.add('step-hidden');
         }
       });
     }
+
+    if (spotlightCard) {
+      startTypewriterForCard(spotlightCard);
+    } else {
+      cancelActiveTypewriter();
+    }
   }
+
+  let isFlipping = false;
 
   function updateUI() {
     // 1. Update slides visibility
     const slides = document.querySelectorAll('.slide');
     slides.forEach((slide) => {
       const slideNum = parseInt(slide.getAttribute('data-slide') || '0', 10);
+      slide.classList.remove('page-flip-forward-out', 'page-flip-forward-in', 'page-flip-backward-out', 'page-flip-backward-in');
       if (slideNum === currentSlide) {
         slide.classList.add('active');
       } else {
@@ -110,28 +242,87 @@ export function initDeckEngine(): () => void {
   function goToSlide(n: number) {
     if (n < 1) n = 1;
     if (n > totalSlides) n = totalSlides;
+    if (n === currentSlide || isFlipping) return;
+
+    cancelActiveTypewriter();
+
+    const oldSlide = currentSlide;
+    const direction = n > oldSlide ? 'forward' : 'backward';
+    const oldSlideEl = getCurrentSlideEl();
+
     currentSlide = n;
     currentStep = 0;
-    updateUI();
+    const newSlideEl = getCurrentSlideEl();
+
+    if (oldSlideEl && newSlideEl) {
+      isFlipping = true;
+
+      // Clean up previous transition classes
+      document.querySelectorAll('.slide').forEach((s) => {
+        s.classList.remove('page-flip-forward-out', 'page-flip-forward-in', 'page-flip-backward-out', 'page-flip-backward-in');
+      });
+
+      if (direction === 'forward') {
+        oldSlideEl.classList.add('page-flip-forward-out');
+        newSlideEl.classList.add('active', 'page-flip-forward-in');
+      } else {
+        oldSlideEl.classList.add('page-flip-backward-out');
+        newSlideEl.classList.add('active', 'page-flip-backward-in');
+      }
+
+      // Update progress & labels immediately
+      if (progressBar) {
+        const pct = totalSlides > 1 ? ((currentSlide - 1) / (totalSlides - 1)) * 100 : 100;
+        progressBar.style.width = `${pct}%`;
+      }
+      if (counter) {
+        counter.textContent = `${currentSlide} / ${totalSlides}`;
+      }
+      if (titleDisplay && slideTitles[currentSlide - 1]) {
+        titleDisplay.textContent = slideTitles[currentSlide - 1];
+      }
+      const pickerBtns = document.querySelectorAll('.slide-picker-btn');
+      pickerBtns.forEach((btn) => {
+        const target = parseInt(btn.getAttribute('data-slide-target') || '0', 10);
+        if (target === currentSlide) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      updateStepVisuals(newSlideEl);
+      window.location.hash = `slide-${currentSlide}`;
+
+      // Complete page-flip animation after 1250ms
+      setTimeout(() => {
+        if (oldSlideEl) {
+          oldSlideEl.classList.remove('active', 'page-flip-forward-out', 'page-flip-backward-out');
+        }
+        if (newSlideEl) {
+          newSlideEl.classList.remove('page-flip-forward-in', 'page-flip-backward-in');
+        }
+        isFlipping = false;
+      }, 1250);
+    } else {
+      updateUI();
+    }
   }
 
   function nextSlide() {
-    if (currentSlide < totalSlides) {
-      currentSlide++;
-      currentStep = 0;
-      updateUI();
+    if (currentSlide < totalSlides && !isFlipping) {
+      goToSlide(currentSlide + 1);
     }
   }
 
   function prevSlide() {
-    if (currentSlide > 1) {
-      currentSlide--;
-      currentStep = 0;
-      updateUI();
+    if (currentSlide > 1 && !isFlipping) {
+      goToSlide(currentSlide - 1);
     }
   }
 
   function nextStepOrSlide() {
+    if (isFlipping) return;
     const slideEl = getCurrentSlideEl();
     const maxSteps = getSlideMaxSteps(slideEl);
 
@@ -144,6 +335,7 @@ export function initDeckEngine(): () => void {
   }
 
   function prevStepOrSlide() {
+    if (isFlipping) return;
     const slideEl = getCurrentSlideEl();
 
     if (currentStep > 0) {

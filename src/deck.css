@@ -10,6 +10,15 @@
   --comic-amber: #d97706;
 }
 
+/* GLOBAL BLACK QUILL CURSOR */
+html, body, #deck-container, .deck-viewport, .slide {
+  cursor: url('/assets/black-quill-cursor.svg') 2 33, auto !important;
+}
+
+button, a, .clickable-counter, .step-card, .icon-btn, .slide-picker-btn, input {
+  cursor: url('/assets/black-quill-cursor.svg') 2 33, pointer !important;
+}
+
 /* TYPOGRAPHY */
 .font-comic-fredoka {
   font-family: 'Fredoka', cursive, sans-serif;
@@ -171,6 +180,8 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  perspective: 2600px;
+  perspective-origin: 50% 50%;
 }
 
 /* TOP PROGRESS BAR */
@@ -204,6 +215,22 @@
   bottom: 0;
   height: 100%;
   overflow: hidden;
+  perspective: 2600px;
+  transform-style: preserve-3d;
+}
+
+/* REAL BOOK SPINE SHADOW (Inspired by book_page_flip spine binding) */
+.slides-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 44px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.18) 32%, transparent 100%);
+  z-index: 40;
+  pointer-events: none;
+  box-shadow: inset 6px 0 12px rgba(0, 0, 0, 0.35);
 }
 
 .slide {
@@ -217,8 +244,9 @@
   justify-content: space-between !important;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.25s ease;
   z-index: 1;
+  transform-origin: bottom right;
+  backface-visibility: hidden;
 }
 
 .slide.active {
@@ -228,7 +256,140 @@
   z-index: 10 !important;
 }
 
-/* FLOATING TRANSPARENT CONTROLS (Inspired by Thuyết trình cà phê) */
+/* ========================================================
+   BOOK PAGE-FLIP TRANSITIONS (Inspired by book_page_flip)
+   Developable cylinder bend curling from bottom-right corner
+   Duration: 1.25s (slow, tactile, realistic book page turn)
+   ======================================================== */
+
+/* Turning Forward Outgoing Page (Peels from Bottom-Right to Top-Left) */
+.slide.page-flip-forward-out {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 30 !important;
+  transform-origin: 100% 100% !important;
+  animation: pageTurnForwardOut 1.25s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
+  box-shadow: -30px 30px 70px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes pageTurnForwardOut {
+  0% {
+    transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  20% {
+    /* Corner lift: bottom-right corner curls upward into viewer's face (kTiltMax) */
+    transform: rotate3d(0.42, -0.9, 0.28, 25deg) translate3d(-3%, -1.5%, 30px);
+    box-shadow: -35px 30px 65px rgba(0, 0, 0, 0.4);
+  }
+  50% {
+    /* Peak cylinder bend (developable cone curl - kAmax) at mid-flip */
+    transform: rotate3d(0.25, -1, 0.18, 72deg) translate3d(-8%, -3.5%, 65px);
+    box-shadow: -65px 48px 100px rgba(0, 0, 0, 0.58);
+  }
+  78% {
+    /* Curled leaf turning over past 90 degrees toward left spine */
+    transform: rotate3d(0.1, -1, 0.08, 114deg) translate3d(-13%, -2%, 40px);
+    box-shadow: -40px 28px 70px rgba(0, 0, 0, 0.45);
+  }
+  92% {
+    transform: rotate3d(0.04, -1, 0.03, 138deg) translate3d(-15%, 0, 15px);
+    opacity: 0.85;
+  }
+  100% {
+    transform: rotate3d(0, -1, 0, 155deg) translate3d(-17%, 0, 0);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Revealing Forward Incoming Page (Receives retreating drop shadow of curling page) */
+.slide.page-flip-forward-in {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 20 !important;
+  animation: pageRevealForwardIn 1.25s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
+}
+
+@keyframes pageRevealForwardIn {
+  0% {
+    filter: brightness(0.66) contrast(1.1);
+    box-shadow: inset -70px -50px 120px rgba(0, 0, 0, 0.55);
+  }
+  35% {
+    filter: brightness(0.8) contrast(1.05);
+    box-shadow: inset -45px -30px 80px rgba(0, 0, 0, 0.38);
+  }
+  70% {
+    filter: brightness(0.93);
+    box-shadow: inset -20px -12px 35px rgba(0, 0, 0, 0.18);
+  }
+  100% {
+    filter: brightness(1) contrast(1);
+    box-shadow: none;
+  }
+}
+
+/* Turning Backward Incoming Page (Flips in from Left and settles down into Bottom-Right) */
+.slide.page-flip-backward-in {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 30 !important;
+  transform-origin: 100% 100% !important;
+  animation: pageTurnBackwardIn 1.25s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
+}
+
+@keyframes pageTurnBackwardIn {
+  0% {
+    transform: rotate3d(0, -1, 0, 155deg) translate3d(-17%, 0, 0);
+    opacity: 0;
+    box-shadow: -60px 40px 95px rgba(0, 0, 0, 0.55);
+  }
+  22% {
+    opacity: 1;
+    transform: rotate3d(0.1, -1, 0.08, 114deg) translate3d(-13%, -2%, 40px);
+  }
+  50% {
+    transform: rotate3d(0.25, -1, 0.18, 72deg) translate3d(-8%, -3.5%, 65px);
+    box-shadow: -65px 48px 100px rgba(0, 0, 0, 0.58);
+  }
+  78% {
+    transform: rotate3d(0.42, -0.9, 0.28, 25deg) translate3d(-3%, -1.5%, 30px);
+    box-shadow: -35px 30px 65px rgba(0, 0, 0, 0.4);
+  }
+  100% {
+    transform: rotate3d(0, 0, 0, 0deg) translate3d(0, 0, 0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+/* Outgoing Page when Going Backward (Dimmed under the falling page) */
+.slide.page-flip-backward-out {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 15 !important;
+  animation: pageDimBackwardOut 1.25s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
+}
+
+@keyframes pageDimBackwardOut {
+  0% {
+    filter: brightness(1);
+  }
+  45% {
+    filter: brightness(0.82);
+  }
+  100% {
+    filter: brightness(0.66);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* FLOATING CONTROLS */
 .control-bar {
   position: absolute;
   bottom: 20px;
@@ -343,8 +504,11 @@
   display: flex;
 }
 
-/* STEP-REVEAL CARD ARCHITECTURE (Inspired by Thuyết trình cà phê) */
+/* ========================================================
+   STEP-REVEAL CARD ARCHITECTURE & QUILL HANDWRITING EFFECT
+   ======================================================== */
 .step-card {
+  position: relative;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -354,21 +518,57 @@
 .step-card.step-hidden {
   opacity: 0 !important;
   pointer-events: none !important;
-  transform: translateY(22px) scale(0.96) !important;
+  transform: translateY(20px) scale(0.96) !important;
   visibility: hidden;
 }
 
+/* SPOTLIGHT STEP: ACTIVE WRITING WITH QUILL PEN */
 .step-card.step-spotlight {
   opacity: 1 !important;
   pointer-events: auto !important;
   visibility: visible !important;
-  transform: translateY(0) scale(1.03) !important;
+  transform: translateY(0) scale(1.025) !important;
   box-shadow: 7px 7px 0px var(--comic-ink) !important;
+  border-color: #b45309 !important;
   z-index: 25 !important;
 }
 
+/* REAL INLINE WRITING QUILL PEN (Follows the text line by line & line wrapping) */
+.writing-quill-cursor {
+  display: inline-block !important;
+  width: 32px !important;
+  height: 32px !important;
+  background-image: url('/assets/black-quill-cursor.svg') !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  vertical-align: -6px !important;
+  margin-left: 2px !important;
+  margin-right: 4px !important;
+  pointer-events: none !important;
+  transform-origin: 2px 30px !important;
+  animation: quillPenStroke 0.15s infinite alternate ease-in-out !important;
+  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.45)) !important;
+}
+
+@keyframes quillPenStroke {
+  0% {
+    transform: rotate(-10deg) translateY(0);
+  }
+  100% {
+    transform: rotate(-22deg) translateY(-2px);
+  }
+}
+
+.writing-quill-cursor.quill-lifting {
+  animation: none !important;
+  transform: rotate(-35deg) translateY(-14px) scale(0.9) !important;
+  opacity: 0 !important;
+  transition: transform 0.4s ease, opacity 0.4s ease !important;
+}
+
+/* DOCKED STEP: Previously revealed card staying solid as background */
 .step-card.step-docked {
-  opacity: 1 !important;
+  opacity: 0.94 !important;
   pointer-events: auto !important;
   visibility: visible !important;
   transform: translateY(0) scale(1) !important;
@@ -376,11 +576,29 @@
   z-index: 10 !important;
 }
 
+/* ALL REVEALED STATE (e.g. Slide 2 Step 6) */
+.step-card.step-all-revealed {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  transform: translateY(0) scale(1.01) !important;
+  box-shadow: 5px 5px 0px var(--comic-ink) !important;
+  border-color: #d97706 !important;
+  z-index: 15 !important;
+}
+
 .step-card.step-dimmed {
   opacity: 0.55 !important;
   transform: translateY(0) scale(0.985) !important;
   box-shadow: 2px 2px 0px var(--comic-ink) !important;
   z-index: 5 !important;
+}
+
+/* Slide 6 Step 1 Title */
+.slide-6-title-step.step-spotlight {
+  position: relative;
+  display: block !important;
+  opacity: 1 !important;
 }
 
 .slide-picker-header {
