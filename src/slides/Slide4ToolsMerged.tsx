@@ -12,72 +12,81 @@ export const Slide4ToolsMerged: React.FC = () => {
       <div className="flex justify-between items-center z-10 border-b-2 border-[#1c1917] pb-2.5">
         <div className="flex items-center gap-2">
           <span className="font-dossier-code text-sm sm:text-base font-bold tracking-wider text-[#1c1917]">
-            HỒ SƠ GIÁM ĐỊNH #02: ĐẶT LÊN BÀN CÂN 3 VŨ KHÍ PHÁT TÁN
+            HỒ SƠ BẰNG CHỨNG #02: CÔNG CỤ PHÁT TÁN ĐỘC HẠI
           </span>
         </div>
         <div className="stamp-classified text-xs sm:text-sm">
-          CLASSIFIED // 3 ĐỊNH DẠNG NGUY HIỂM
+          CONFIDENTIAL // GIÁM ĐỊNH VŨ KHÍ
         </div>
       </div>
 
       {/* Main Grid: 2 Columns */}
       <div className="my-auto grid grid-cols-12 gap-6 items-center max-w-6xl mx-auto w-full z-10">
         
-        {/* Left 7 Columns: Title & 3 Dossier Cards */}
+        {/* Left 7 Columns: Title & 3 Weapons */}
         <div className="col-span-12 md:col-span-7 flex flex-col gap-3.5">
           
           <div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#141413] font-dossier-title leading-tight uppercase">
-              Đặt Lên Bàn Cân 3 Vũ Khí Gây Nghiện
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#141413] font-dossier-title leading-tight uppercase pen-write-anim">
+              3 Vũ Khí Gây Án
             </h2>
           </div>
 
-          {/* 3 Step Cards with Synchronized 2-Line Titles & Large Font */}
-          <div className="flex flex-col gap-3">
+          {/* 3 Step Cards with Prominent Large Category Titles Inline with Badges */}
+          <div className="flex flex-col gap-3.5 mt-1 flex-1">
             
             {/* Medium 1: Sách giấy */}
             <div 
               data-step-card="1"
-              className="step-card dossier-card p-4 sm:p-4.5 flex flex-col justify-center cursor-pointer border-2 border-[#1c1917]"
+              className="step-card dossier-card p-5 sm:p-5.5 flex flex-col justify-center cursor-pointer border-2 border-[#1c1917] flex-1 min-h-[105px]"
             >
-              <div>
-                <span className="dossier-tag text-xs font-bold bg-[#b45309] text-white">
-                  VŨ KHÍ #01 • SÁCH GIẤY
+              <div className="flex items-center gap-3.5">
+                <span className="dossier-tag text-xs sm:text-sm font-bold bg-[#b45309] text-white flex-shrink-0">
+                  VŨ KHÍ #01
+                </span>
+                <span className="text-2xl sm:text-3xl md:text-4xl font-black font-dossier-title text-[#b45309] uppercase tracking-wide">
+                  SÁCH GIẤY
                 </span>
               </div>
-              <h3 className="font-dossier-title font-bold text-lg sm:text-xl md:text-2xl text-[#141413] mt-2 leading-snug pen-write-anim">
-                Mùi giấy gây ảo giác, <br /> vác tạ nặng trong balo
-              </h3>
+              <div className="text-lg sm:text-xl md:text-2xl font-bold text-[#292524] font-typewriter mt-2 pen-write-anim text-left">
+                Mùi giấy gây ảo giác, vác tạ nặng trong balo
+              </div>
             </div>
 
             {/* Medium 2: E-Reader */}
             <div 
               data-step-card="2"
-              className="step-card dossier-card p-4 sm:p-4.5 flex flex-col justify-center cursor-pointer border-2 border-[#1c1917]"
+              className="step-card dossier-card p-5 sm:p-5.5 flex flex-col justify-center cursor-pointer border-2 border-[#1c1917] flex-1 min-h-[105px]"
             >
-              <div>
-                <span className="dossier-tag text-xs font-bold bg-[#0369a1] text-white">
-                  VŨ KHÍ #02 • EBOOK
+              <div className="flex items-center gap-3.5">
+                <span className="dossier-tag text-xs sm:text-sm font-bold bg-[#0369a1] text-white flex-shrink-0">
+                  VŨ KHÍ #02
+                </span>
+                <span className="text-2xl sm:text-3xl md:text-4xl font-black font-dossier-title text-[#0369a1] uppercase tracking-wide">
+                  EBOOK
                 </span>
               </div>
-              <h3 className="font-dossier-title font-bold text-lg sm:text-xl md:text-2xl text-[#141413] mt-2 leading-snug pen-write-anim">
-                Cả thư viện 200 gram, <br /> hết pin đúng đoạn cao trào
-              </h3>
+              <div className="text-lg sm:text-xl md:text-2xl font-bold text-[#292524] font-typewriter mt-2 pen-write-anim text-left">
+                Che giấu thư viện, hết pin đúng đoạn cao trào
+              </div>
             </div>
 
             {/* Medium 3: Audiobook */}
             <div 
               data-step-card="3"
-              className="step-card dossier-card p-4 sm:p-4.5 flex flex-col justify-center cursor-pointer border-2 border-[#1c1917]"
+              className="step-card dossier-card p-5 sm:p-5.5 flex flex-col justify-center cursor-pointer border-2 border-[#1c1917] flex-1 min-h-[105px]"
             >
-              <div>
-                <span className="dossier-tag text-xs font-bold bg-[#15803d] text-white">
-                  VŨ KHÍ #03 • SÁCH NÓI
+              <div className="flex items-center gap-3.5">
+                <span className="dossier-tag text-xs sm:text-sm font-bold bg-[#15803d] text-white flex-shrink-0">
+                  VŨ KHÍ #03
+                </span>
+                <span className="text-2xl sm:text-3xl md:text-4xl font-black font-dossier-title text-[#15803d] uppercase tracking-wide">
+                  SÁCH NÓI
                 </span>
               </div>
-              <h3 className="font-dossier-title font-bold text-lg sm:text-xl md:text-2xl text-[#141413] mt-2 leading-snug pen-write-anim">
-                Liều thuốc mê cực mạnh <br /> khi rửa bát và lái xe
-              </h3>
+              <div className="text-lg sm:text-xl md:text-2xl font-bold text-[#292524] font-typewriter mt-2 pen-write-anim text-left">
+                Liều thuốc mê cực mạnh khi rửa bát và lái xe
+              </div>
             </div>
 
           </div>
@@ -100,17 +109,12 @@ export const Slide4ToolsMerged: React.FC = () => {
             </div>
 
             {/* True 3:4 Uncropped Image Frame */}
-            <div className="w-full aspect-[3/4] max-h-[400px] rounded border border-[#1c1917] overflow-hidden relative bg-[#1c1917]">
+            <div className="w-full aspect-[3/4] max-h-[420px] rounded border border-[#1c1917] overflow-hidden relative bg-[#1c1917]">
               <img
                 src="/assets/slide4-claymation.webp"
-                alt="3 Mediums Tangible Evidence"
+                alt="3 Delivery Weapons Illustration"
                 className="w-full h-full object-contain filter contrast-105"
               />
-              <div className="absolute bottom-2.5 right-2.5 pointer-events-none">
-                <div className="stamp-top-secret text-xs font-bold stamp-slam-anim bg-[#fef2f2]/95 px-3 py-1 shadow-md border-2 border-[#b91c1c] text-[#b91c1c]">
-                  3 VŨ KHÍ PHÁT TÁN
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -118,7 +122,6 @@ export const Slide4ToolsMerged: React.FC = () => {
       </div>
 
       <div className="h-2"></div>
-
     </div>
   );
 };

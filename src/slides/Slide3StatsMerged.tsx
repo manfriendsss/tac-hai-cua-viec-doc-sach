@@ -27,25 +27,28 @@ export const Slide3StatsMerged: React.FC = () => {
         <div className="col-span-12 md:col-span-7 flex flex-col gap-3.5">
           
           <div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#141413] font-dossier-title leading-tight uppercase">
-              3 Con Số Thống Kê Khó Đỡ
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#141413] font-dossier-title leading-tight uppercase pen-write-anim">
+              3 Thống Kê Rùng Rợn
             </h2>
           </div>
 
-          {/* 3 Clean Dossier Cards with Synchronized 2-Line Titles & Large Font */}
-          <div className="flex flex-col gap-3">
+          {/* 3 Clean Dossier Cards without Arbitrary Line Breaks */}
+          <div className="flex flex-col gap-3.5 mt-1 flex-1">
             
-            {/* Card 1: Bị tước quyền được căng thẳng */}
+            {/* Card 1: Bị tước quyền được căng thẳng & Animated Counter to -68% */}
             <div 
               data-step-card="1"
-              className="step-card dossier-card p-4 sm:p-5 flex items-center gap-5 cursor-pointer border-2 border-[#1c1917]"
+              className="step-card dossier-card p-5 sm:p-6 flex items-center gap-6 cursor-pointer border-2 border-[#1c1917] flex-1"
             >
-              <div className="font-dossier-title font-bold text-4xl sm:text-5xl md:text-6xl text-[#b91c1c] flex-shrink-0 leading-none">
+              <div 
+                className="font-dossier-title font-bold text-4xl sm:text-5xl md:text-6xl text-[#b91c1c] flex-shrink-0 leading-none stat-counter-num"
+                data-counter-target="-68%"
+              >
                 -68%
               </div>
-              <div className="text-left">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#141413] font-dossier-title leading-snug pen-write-anim">
-                  Bị tước quyền <br /> được căng thẳng
+              <div className="text-left flex-1">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#141413] font-dossier-title leading-snug pen-write-anim">
+                  Bị tước quyền được căng thẳng
                 </h3>
               </div>
             </div>
@@ -53,29 +56,29 @@ export const Slide3StatsMerged: React.FC = () => {
             {/* Card 2: Tsundoku */}
             <div 
               data-step-card="2"
-              className="step-card dossier-card p-4 sm:p-5 flex items-center gap-5 cursor-pointer border-2 border-[#1c1917]"
+              className="step-card dossier-card p-5 sm:p-6 flex items-center gap-6 cursor-pointer border-2 border-[#1c1917] flex-1"
             >
-              <div className="font-dossier-title font-bold text-2xl sm:text-3xl md:text-4xl text-[#b45309] flex-shrink-0 leading-tight text-center bg-[#fef3c7] px-3 py-1.5 rounded border border-[#1c1917]">
-                TSUN<br/>DOKU
+              <div className="font-dossier-title font-bold text-2xl sm:text-3xl md:text-4xl text-[#b45309] flex-shrink-0 leading-tight text-center bg-[#fef3c7] px-3.5 py-2 rounded border border-[#1c1917]">
+                TSUNDOKU
               </div>
-              <div className="text-left">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#141413] font-dossier-title leading-snug pen-write-anim">
-                  Hội chứng nghiện mua <br /> những cuốn sách không đọc
+              <div className="text-left flex-1">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#141413] font-dossier-title leading-snug pen-write-anim">
+                  Hội chứng nghiện mua sách nhưng không đọc
                 </h3>
               </div>
             </div>
 
-            {/* Card 3: Bắt buộc sống thêm 2 năm */}
+            {/* Card 3: Bắt buộc phải thọ thêm 2 năm */}
             <div 
               data-step-card="3"
-              className="step-card dossier-card p-4 sm:p-5 flex items-center gap-5 cursor-pointer border-2 border-[#1c1917]"
+              className="step-card dossier-card p-5 sm:p-6 flex items-center gap-6 cursor-pointer border-2 border-[#1c1917] flex-1"
             >
               <div className="font-dossier-title font-bold text-4xl sm:text-5xl md:text-6xl text-[#0369a1] flex-shrink-0 leading-none">
                 +2 NĂM
               </div>
-              <div className="text-left">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#141413] font-dossier-title leading-snug pen-write-anim">
-                  Bắt buộc phải sống <br /> thêm 2 năm tuổi thọ
+              <div className="text-left flex-1">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#141413] font-dossier-title leading-snug pen-write-anim">
+                  Bắt buộc phải thọ thêm 2 năm
                 </h3>
               </div>
             </div>
@@ -100,17 +103,12 @@ export const Slide3StatsMerged: React.FC = () => {
             </div>
 
             {/* True 3:4 Uncropped Image Frame */}
-            <div className="w-full aspect-[3/4] max-h-[400px] rounded border border-[#1c1917] overflow-hidden relative bg-[#1c1917]">
+            <div className="w-full aspect-[3/4] max-h-[420px] rounded border border-[#1c1917] overflow-hidden relative bg-[#1c1917]">
               <img
                 src="/assets/slide3-claymation.webp"
-                alt="Medical Brain Evidence"
+                alt="Tsundoku Stress Evidence"
                 className="w-full h-full object-contain filter contrast-105"
               />
-              <div className="absolute bottom-2.5 right-2.5 pointer-events-none">
-                <div className="stamp-top-secret text-xs font-bold stamp-slam-anim bg-[#fef2f2]/95 px-3 py-1 shadow-md border-2 border-[#b91c1c] text-[#b91c1c]">
-                  -68% STRESS
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -118,7 +116,6 @@ export const Slide3StatsMerged: React.FC = () => {
       </div>
 
       <div className="h-2"></div>
-
     </div>
   );
 };

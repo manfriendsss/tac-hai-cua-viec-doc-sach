@@ -4,23 +4,27 @@ export const Slide7HowToInfect: React.FC = () => {
   const steps = [
     {
       num: '01',
-      color: '#b45309',
-      title: 'Đánh lừa bộ não <br /> bằng quy tắc 5 trang'
+      topic: 'QUY TẮC 5 TRANG',
+      desc: 'Đánh lừa bộ não bằng quy tắc 5 trang mỗi ngày',
+      color: '#b91c1c'
     },
     {
       num: '02',
-      color: '#0369a1',
-      title: 'Thưởng thức tráng miệng <br /> trước khi ăn món chính'
+      topic: 'MÓN TRÁNG MIỆNG',
+      desc: 'Thưởng thức món tráng miệng trước món chính',
+      color: '#b45309'
     },
     {
       num: '03',
-      color: '#b91c1c',
-      title: 'Đặc quyền từ bỏ <br /> sau khi đọc 50 trang'
+      topic: 'QUY TẮC 50 TRANG',
+      desc: 'Đặc quyền từ bỏ sau khi đọc 50 trang',
+      color: '#0369a1'
     },
     {
       num: '04',
-      color: '#15803d',
-      title: 'Biến tri thức thành vũ khí <br /> cho cuộc trò chuyện'
+      topic: 'VŨ KHÍ GIAO TIẾP',
+      desc: 'Biến tri thức thành vũ khí cho cuộc trò chuyện',
+      color: '#15803d'
     }
   ];
 
@@ -31,11 +35,11 @@ export const Slide7HowToInfect: React.FC = () => {
       data-steps="4"
       id="slide-7"
     >
-      {/* Top Secret Header */}
+      {/* Top Secret Header Strip */}
       <div className="flex justify-between items-center z-10 border-b-2 border-[#1c1917] pb-2.5">
         <div className="flex items-center gap-2">
           <span className="font-dossier-code text-sm sm:text-base font-bold tracking-wider text-[#1c1917]">
-            CẨM NANG ĐIỆP VIÊN #05: 4 BƯỚC NHIỄM ĐỘC SÁCH ĐÚNG CÁCH
+            CẨM NANG ĐIỀU TRA: QUY TRÌNH THÂM NHẬP HỆ THẦN KINH
           </span>
         </div>
         <div className="stamp-classified text-xs sm:text-sm">
@@ -47,38 +51,38 @@ export const Slide7HowToInfect: React.FC = () => {
       <div className="my-auto grid grid-cols-12 gap-6 items-center max-w-6xl mx-auto w-full z-10">
         
         {/* Left 7 Columns: Title & 4 Steps Grid (No Scrollbar!) */}
-        <div className="col-span-12 md:col-span-7 flex flex-col gap-3">
+        <div className="col-span-12 md:col-span-7 flex flex-col gap-3.5">
           
           <div>
-            <div className="inline-block">
-              <span className="dossier-tag bg-[#b91c1c] text-white text-xs sm:text-sm font-bold">
-                QUY TRÌNH THÂM NHẬP HỆ THẦN KINH • 4 GIAI ĐOẠN
-              </span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#141413] font-dossier-title leading-tight mt-1 uppercase">
-              4 Bước Nhiễm Độc Sách Đúng Cách
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#141413] font-dossier-title leading-tight uppercase pen-write-anim">
+              4 Bước Nhiễm Độc Sách
             </h2>
           </div>
 
-          {/* 4 Clean Step Cards with Synchronized 2-Line Titles & Large Font */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1">
+          {/* 4 Clean Step Cards with Prominent Topics Inline with Badges */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-1 flex-1">
             {steps.map((s, idx) => (
               <div 
                 key={s.num}
                 data-step-card={idx + 1}
-                className="step-card dossier-card p-4 flex flex-col justify-center cursor-pointer border-2 border-[#1c1917]"
+                className="step-card dossier-card p-4 sm:p-5 flex flex-col justify-center cursor-pointer border-2 border-[#1c1917] min-h-[125px]"
               >
-                <div>
+                <div className="flex items-center gap-2.5 flex-wrap">
                   <span 
-                    className="dossier-tag text-xs text-white font-bold"
+                    className="dossier-tag text-xs sm:text-sm text-white font-bold flex-shrink-0"
                     style={{ backgroundColor: s.color }}
                   >
                     BƯỚC {s.num}
                   </span>
-                  <h3 
-                    className="font-dossier-title font-bold text-base sm:text-lg md:text-xl text-[#141413] leading-snug mt-2.5 pen-write-anim"
-                    dangerouslySetInnerHTML={{ __html: s.title }}
-                  />
+                  <span 
+                    className="font-dossier-title font-black text-xl sm:text-2xl uppercase tracking-wide"
+                    style={{ color: s.color }}
+                  >
+                    {s.topic}
+                  </span>
+                </div>
+                <div className="text-base sm:text-lg font-bold text-[#292524] font-typewriter mt-2 pen-write-anim text-left leading-snug">
+                  {s.desc}
                 </div>
               </div>
             ))}
@@ -102,17 +106,12 @@ export const Slide7HowToInfect: React.FC = () => {
             </div>
 
             {/* True 3:4 Uncropped Image Frame */}
-            <div className="w-full aspect-[3/4] max-h-[400px] rounded border border-[#1c1917] overflow-hidden relative bg-[#1c1917]">
+            <div className="w-full aspect-[3/4] max-h-[420px] rounded border border-[#1c1917] overflow-hidden relative bg-[#1c1917]">
               <img
                 src="/assets/slide7-claymation.webp"
                 alt="Tactical Operation Illustration"
                 className="w-full h-full object-contain filter contrast-105"
               />
-              <div className="absolute bottom-2.5 right-2.5 pointer-events-none">
-                <div className="stamp-top-secret text-xs font-bold stamp-slam-anim bg-[#fef2f2]/95 px-3 py-1 shadow-md border-2 border-[#b91c1c] text-[#b91c1c]">
-                  QUY TRÌNH 4 BƯỚC
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -120,7 +119,6 @@ export const Slide7HowToInfect: React.FC = () => {
       </div>
 
       <div className="h-2"></div>
-
     </div>
   );
 };

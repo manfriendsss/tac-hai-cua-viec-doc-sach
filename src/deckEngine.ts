@@ -48,6 +48,30 @@ export function initDeckEngine(): () => void {
   function animateQuillHandwriting(container: HTMLElement) {
     stopCurrentHandwriting();
 
+    // 1. Animated number counter (e.g. Slide 3 Card 1: -68%)
+    const counterEl = container.querySelector<HTMLElement>('[data-counter-target]');
+    if (counterEl) {
+      const targetStr = counterEl.getAttribute('data-counter-target') || '-68%';
+      const isNegative = targetStr.startsWith('-');
+      const targetNum = parseInt(targetStr.replace(/[^0-9]/g, ''), 10) || 68;
+      const countDuration = 950;
+      const countStart = performance.now();
+      function countFrame(now: number) {
+        const elapsed = now - countStart;
+        const p = Math.min(1, elapsed / countDuration);
+        const ease = 1 - Math.pow(1 - p, 3);
+        const currentVal = Math.round(targetNum * ease);
+        counterEl.textContent = `${isNegative ? '-' : ''}${currentVal}%`;
+        if (p < 1) {
+          requestAnimationFrame(countFrame);
+        } else {
+          counterEl.textContent = targetStr;
+        }
+      }
+      requestAnimationFrame(countFrame);
+    }
+
+    // 2. Quill Handwriting Animation
     const textEl = container.classList.contains('pen-write-anim')
       ? container
       : container.querySelector<HTMLElement>('.pen-write-anim');
@@ -57,9 +81,13 @@ export function initDeckEngine(): () => void {
     activeTextEl = textEl;
     textEl.style.position = 'relative';
     textEl.style.opacity = '1';
-    container.style.position = 'relative';
 
-    // Support multi-line handwriting: detect <br> tags or existing .write-line elements
+    // Measure font size for proportional quill scaling (larger text = larger quill, smaller text = smaller quill)
+    const compStyle = window.getComputedStyle(textEl);
+    const fontSize = parseFloat(compStyle.fontSize) || 24;
+    const scaleRatio = Math.max(0.68, Math.min(1.65, fontSize / 26));
+
+    // Ensure all lines are isolated as .write-line spans so each line reveals strictly left-to-right
     let lineEls = Array.from(textEl.querySelectorAll<HTMLElement>('.write-line'));
     if (lineEls.length === 0) {
       if (textEl.innerHTML.includes('<br>') || textEl.innerHTML.includes('<br/>')) {
@@ -68,19 +96,52 @@ export function initDeckEngine(): () => void {
           .map(p => `<span class="write-line" style="display:block; position:relative;">${p.trim()}</span>`)
           .join('');
         lineEls = Array.from(textEl.querySelectorAll<HTMLElement>('.write-line'));
+      } else {
+        // Check if text wraps onto multiple lines using Range client rects
+        const range = document.createRange();
+        range.selectNodeContents(textEl);
+        const rects = Array.from(range.getClientRects()).filter(r => r.width > 2 && r.height > 2);
+
+        if (rects.length > 1) {
+          const words = (textEl.textContent || '').trim().split(/\s+/);
+          if (words.length > 1) {
+            textEl.innerHTML = words.map((w, i) => `<span data-w="${i}" style="display:inline-block;">${w}</span> `).join('');
+            const wordSpans = Array.from(textEl.querySelectorAll<HTMLElement>('span[data-w]'));
+            const groups: string[][] = [];
+            let currGrp: string[] = [];
+            let currTop = -9999;
+            wordSpans.forEach(sp => {
+              const top = Math.round(sp.getBoundingClientRect().top);
+              if (Math.abs(top - currTop) > 6) {
+                if (currGrp.length > 0) groups.push(currGrp);
+                currGrp = [sp.textContent || ''];
+                currTop = top;
+              } else {
+                currGrp.push(sp.textContent || '');
+              }
+            });
+            if (currGrp.length > 0) groups.push(currGrp);
+
+            textEl.innerHTML = groups.map(grp => 
+              `<span class="write-line" style="display:block; position:relative;">${grp.join(' ')}</span>`
+            ).join('');
+            lineEls = Array.from(textEl.querySelectorAll<HTMLElement>('.write-line'));
+          } else {
+            textEl.innerHTML = `<span class="write-line" style="display:block; position:relative;">${textEl.innerHTML}</span>`;
+            lineEls = Array.from(textEl.querySelectorAll<HTMLElement>('.write-line'));
+          }
+        } else {
+          textEl.innerHTML = `<span class="write-line" style="display:block; position:relative;">${textEl.innerHTML}</span>`;
+          lineEls = Array.from(textEl.querySelectorAll<HTMLElement>('.write-line'));
+        }
       }
     }
 
-    if (lineEls.length > 0) {
-      lineEls.forEach(l => {
-        l.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
-        l.style.opacity = '1';
-      });
-      textEl.style.clipPath = 'none';
-    } else {
-      textEl.style.display = 'inline-block';
-      textEl.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
-    }
+    lineEls.forEach(l => {
+      l.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
+      l.style.opacity = '1';
+    });
+    textEl.style.clipPath = 'none';
 
     const quill = document.createElement('div');
     quill.className = 'active-quill-writer';
@@ -88,14 +149,14 @@ export function initDeckEngine(): () => void {
       <div class="quill-pen-img"></div>
       <div class="quill-nib-glow"></div>
     `;
-    container.appendChild(quill);
+    textEl.appendChild(quill);
     activeQuillEl = quill;
 
     // Wait 1 frame so layout measurements are accurate
     requestAnimationFrame(() => {
       if (activeTextEl !== textEl) return;
 
-      const containerRect = container.getBoundingClientRect();
+      const textRect = textEl.getBoundingClientRect();
       const nibOffsetX = 5;
       const nibOffsetY = 48;
 
@@ -108,46 +169,36 @@ export function initDeckEngine(): () => void {
       }
 
       const lines: LineInfo[] = [];
-
-      if (lineEls.length > 0) {
-        lineEls.forEach(l => {
-          const r = l.getBoundingClientRect();
-          lines.push({
-            el: l,
-            startX: r.left - containerRect.left,
-            width: r.width,
-            baselineY: (r.top - containerRect.top) + (r.height * 0.72),
-            textLen: Math.max(1, (l.textContent || '').trim().length)
-          });
-        });
-      } else {
-        const textRect = textEl.getBoundingClientRect();
-        if (textRect.width <= 0) {
-          textEl.style.clipPath = 'none';
-          quill.remove();
-          return;
-        }
+      lineEls.forEach(l => {
+        const r = l.getBoundingClientRect();
         lines.push({
-          el: textEl,
-          startX: textRect.left - containerRect.left,
-          width: textRect.width,
-          baselineY: (textRect.top - containerRect.top) + (textRect.height * 0.72),
-          textLen: Math.max(1, (textEl.textContent || '').trim().length)
+          el: l,
+          startX: r.left - textRect.left,
+          width: r.width,
+          baselineY: (r.top - textRect.top) + (r.height * 0.72),
+          textLen: Math.max(1, (l.textContent || '').trim().length)
         });
+      });
+
+      if (lines.length === 0) {
+        textEl.style.clipPath = 'none';
+        quill.remove();
+        return;
       }
+
+      // Check for Slide 1 dramatic pause (fast line 1, hesitate pause, punchy line 2)
+      const hasDramaticPause = 
+        textEl.getAttribute('data-pause-between-lines') === 'true' || 
+        textEl.closest('[data-pause-between-lines="true"]') !== null;
 
       const totalChars = lines.reduce((acc, l) => acc + l.textLen, 0);
 
-      // Tốc độ viết nhanh hơn 1.5 lần theo yêu cầu
-      const duration = Math.max(1300, Math.min(2300, totalChars * 55));
+      // Fast, responsive handwriting duration (1.5x faster)
+      let duration = Math.max(850, Math.min(1800, totalChars * 36));
+      if (hasDramaticPause && lines.length >= 2) {
+        duration = 1850; // ample time for fast line 1, hesitation, punchy line 2
+      }
       const startTime = performance.now();
-
-      // Cumulative line progress thresholds
-      let accum = 0;
-      const thresholds = lines.map(l => {
-        accum += l.textLen;
-        return accum / totalChars;
-      });
 
       function frame(now: number) {
         if (activeTextEl !== textEl) return;
@@ -155,36 +206,77 @@ export function initDeckEngine(): () => void {
         const elapsed = now - startTime;
         const overallProgress = Math.min(1, elapsed / duration);
 
-        // Find which line is active
         let activeIdx = 0;
-        while (activeIdx < lines.length - 1 && overallProgress >= thresholds[activeIdx]) {
-          activeIdx++;
+        let lineFraction = 0;
+
+        if (hasDramaticPause && lines.length >= 2) {
+          // Slide 1 Dramatic Pause Timeline:
+          // 0 to 0.35: Line 0 writes fast!
+          // 0.35 to 0.55: Pause & hover hesitation at end of Line 0!
+          // 0.55 to 1.0: Line 1 writes out with punch!
+          if (overallProgress < 0.35) {
+            activeIdx = 0;
+            lineFraction = overallProgress / 0.35;
+            lines[0].el.style.clipPath = `polygon(0 0, ${lineFraction * 100}% 0, ${lineFraction * 100}% 100%, 0 100%)`;
+            for (let i = 1; i < lines.length; i++) {
+              lines[i].el.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
+            }
+          } else if (overallProgress < 0.55) {
+            activeIdx = 0;
+            lineFraction = 1;
+            lines[0].el.style.clipPath = 'none';
+            for (let i = 1; i < lines.length; i++) {
+              lines[i].el.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
+            }
+          } else {
+            activeIdx = 1;
+            lineFraction = Math.min(1, (overallProgress - 0.55) / 0.45);
+            lines[0].el.style.clipPath = 'none';
+            lines[1].el.style.clipPath = `polygon(0 0, ${lineFraction * 100}% 0, ${lineFraction * 100}% 100%, 0 100%)`;
+          }
+        } else {
+          // Standard line-by-line reveal: each line reveals strictly left-to-right
+          let accum = 0;
+          const thresholds = lines.map(l => {
+            accum += l.textLen;
+            return accum / totalChars;
+          });
+
+          while (activeIdx < lines.length - 1 && overallProgress >= thresholds[activeIdx]) {
+            activeIdx++;
+          }
+
+          const prevThreshold = activeIdx === 0 ? 0 : thresholds[activeIdx - 1];
+          const nextThreshold = thresholds[activeIdx];
+          lineFraction = Math.max(0, Math.min(1, (overallProgress - prevThreshold) / (nextThreshold - prevThreshold)));
+
+          lines.forEach((l, idx) => {
+            if (idx < activeIdx) {
+              l.el.style.clipPath = 'none';
+            } else if (idx > activeIdx) {
+              l.el.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
+            } else {
+              l.el.style.clipPath = `polygon(0 0, ${lineFraction * 100}% 0, ${lineFraction * 100}% 100%, 0 100%)`;
+            }
+          });
         }
 
-        const prevThreshold = activeIdx === 0 ? 0 : thresholds[activeIdx - 1];
-        const nextThreshold = thresholds[activeIdx];
-        const lineFraction = Math.max(0, Math.min(1, (overallProgress - prevThreshold) / (nextThreshold - prevThreshold)));
-
-        // Update clip-path of all lines
-        lines.forEach((l, idx) => {
-          if (idx < activeIdx) {
-            l.el.style.clipPath = 'none';
-          } else if (idx > activeIdx) {
-            l.el.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
-          } else {
-            l.el.style.clipPath = `polygon(0 0, ${lineFraction * 100}% 0, ${lineFraction * 100}% 100%, 0 100%)`;
-          }
-        });
-
-        // BÚT THEO DÒNG: khi chữ xuống dòng thì bút cũng chuyển xuống dòng đó
+        // BÚT THEO DÒNG: ngòi bút lướt chính xác theo từng chữ
         const currLine = lines[activeIdx];
         const currentX = currLine.startX + lineFraction * currLine.width;
-        const bobY = Math.sin(lineFraction * Math.PI * 18) * 2.2;
-        const tilt = -14 + Math.cos(lineFraction * Math.PI * 16) * 3.5;
+        let bobY = Math.sin(lineFraction * Math.PI * 16) * 1.8;
+        let tilt = -14 + Math.cos(lineFraction * Math.PI * 14) * 3;
+
+        // Subtle hovering tremor if pausing
+        if (hasDramaticPause && overallProgress >= 0.35 && overallProgress < 0.55) {
+          const pausePhase = (overallProgress - 0.35) / 0.20;
+          bobY = Math.sin(pausePhase * Math.PI * 8) * 3 - 3;
+          tilt = -18 + Math.sin(pausePhase * Math.PI * 6) * 4;
+        }
 
         quill.style.left = `${currentX - nibOffsetX}px`;
         quill.style.top = `${currLine.baselineY - nibOffsetY + bobY}px`;
-        quill.style.transform = `rotate(${tilt}deg)`;
+        quill.style.transform = `scale(${scaleRatio}) rotate(${tilt}deg)`;
         quill.style.opacity = '1';
 
         if (overallProgress < 1) {
@@ -195,17 +287,22 @@ export function initDeckEngine(): () => void {
           });
           textEl.style.clipPath = 'none';
 
-          quill.style.transition = 'all 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
-          quill.style.transform = 'translateY(-14px) rotate(-22deg) scale(0.92)';
+          quill.style.transition = 'all 0.4s ease';
+          quill.style.transform = `translateY(-12px) scale(${scaleRatio * 0.9}) rotate(-22deg)`;
           quill.style.opacity = '0';
 
           setTimeout(() => {
             if (quill.parentNode) quill.remove();
             if (activeQuillEl === quill) activeQuillEl = null;
-          }, 500);
+          }, 450);
 
           activeHandwriteRaf = null;
           activeTextEl = null;
+
+          // If on Slide 1 and finished writing, trigger sequential stamps!
+          if (hasDramaticPause || (currentSlide === 1 && currentStep === 1)) {
+            triggerSlide1StampsAnimation();
+          }
         }
       }
 
@@ -273,7 +370,7 @@ export function initDeckEngine(): () => void {
       });
     }
 
-    // Handle custom elements with data-step-reveal (e.g. Slide 6 Title at step 1)
+    // Handle custom elements with data-step-reveal (e.g. Slide 1 and Slide 8 Spotlight Titles at step 1)
     const stepReveals = Array.from(slideEl.querySelectorAll<HTMLElement>('[data-step-reveal]'));
     if (stepReveals.length > 0) {
       stepReveals.forEach((el) => {
@@ -300,10 +397,162 @@ export function initDeckEngine(): () => void {
       });
     }
 
+    // Step 0: For Slides 2..7, animate the main slide title on initial slide arrival
+    if (currentStep === 0) {
+      if (currentSlide >= 2 && currentSlide <= 7) {
+        const slideH2 = slideEl.querySelector<HTMLElement>('h2.pen-write-anim');
+        if (slideH2 && !spotlightCardToAnimate) {
+          spotlightCardToAnimate = slideH2;
+        }
+      }
+    } else {
+      // Ensure slide titles outside cards remain completely visible
+      const slideH2 = slideEl.querySelector<HTMLElement>('h2.pen-write-anim');
+      if (slideH2) {
+        slideH2.style.clipPath = 'none';
+        slideH2.style.opacity = '1';
+        slideH2.querySelectorAll<HTMLElement>('.write-line').forEach(l => {
+          l.style.clipPath = 'none';
+        });
+      }
+    }
+
     if (spotlightCardToAnimate) {
       animateQuillHandwriting(spotlightCardToAnimate);
     } else {
       stopCurrentHandwriting();
+    }
+  }
+
+  function playStampAudioThud() {
+    try {
+      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const now = ctx.currentTime;
+
+      // 1. Bass impact (rubber membrane thud)
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(140, now);
+      osc.frequency.exponentialRampToValueAtTime(32, now + 0.16);
+
+      gain.gain.setValueAtTime(0.65, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.2);
+
+      // 2. Paper noise friction
+      const bufferSize = Math.floor(ctx.sampleRate * 0.08);
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.3));
+      }
+      const noise = ctx.createBufferSource();
+      noise.buffer = buffer;
+      const noiseGain = ctx.createGain();
+      noiseGain.gain.setValueAtTime(0.2, now);
+      noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+
+      noise.connect(noiseGain);
+      noiseGain.connect(ctx.destination);
+      noise.start(now);
+    } catch (e) {
+      // Audio autoplay gracefully handled
+    }
+  }
+
+  function triggerSlide1StampsAnimation() {
+    const stamp1 = document.getElementById('slide1Stamp1');
+    const stamp2 = document.getElementById('slide1Stamp2');
+    const slide1 = document.getElementById('slide-1');
+    if (!stamp1 || !stamp2) return;
+
+    // Reset stamps
+    stamp1.classList.remove('animate-stamp-realistic');
+    stamp2.classList.remove('animate-stamp-realistic');
+    stamp1.style.opacity = '0';
+    stamp2.style.opacity = '0';
+
+    // Stamp 1: HỒ SƠ TỐI MẬT (slams first)
+    setTimeout(() => {
+      const endAngle1 = (Math.random() * 4 - 8).toFixed(1); // -8deg to -4deg
+      const startAngle1 = (parseFloat(endAngle1) - 10).toFixed(1);
+      const midAngle1 = (parseFloat(endAngle1) + 2).toFixed(1);
+
+      stamp1.style.setProperty('--start-rot', `${startAngle1}deg`);
+      stamp1.style.setProperty('--mid-rot', `${midAngle1}deg`);
+      stamp1.style.setProperty('--end-rot', `${endAngle1}deg`);
+      void stamp1.offsetWidth;
+      stamp1.classList.add('animate-stamp-realistic');
+      stamp1.style.opacity = '1';
+
+      if (slide1) {
+        slide1.classList.remove('animate-shake');
+        setTimeout(() => {
+          void slide1.offsetWidth;
+          slide1.classList.add('animate-shake');
+          playStampAudioThud();
+        }, 200);
+      }
+    }, 120);
+
+    // Stamp 2: LƯU HÀNH NỘI BỘ (slams 450ms after stamp 1)
+    setTimeout(() => {
+      const endAngle2 = (Math.random() * 4 + 4).toFixed(1); // +4deg to +8deg
+      const startAngle2 = (parseFloat(endAngle2) - 10).toFixed(1);
+      const midAngle2 = (parseFloat(endAngle2) + 2).toFixed(1);
+
+      stamp2.style.setProperty('--start-rot', `${startAngle2}deg`);
+      stamp2.style.setProperty('--mid-rot', `${midAngle2}deg`);
+      stamp2.style.setProperty('--end-rot', `${endAngle2}deg`);
+      void stamp2.offsetWidth;
+      stamp2.classList.add('animate-stamp-realistic');
+      stamp2.style.opacity = '1';
+
+      if (slide1) {
+        slide1.classList.remove('animate-shake');
+        setTimeout(() => {
+          void slide1.offsetWidth;
+          slide1.classList.add('animate-shake');
+          playStampAudioThud();
+        }, 200);
+      }
+    }, 580);
+  }
+
+  function triggerSlide8StampAnimation() {
+    const stampEl = document.getElementById('caseClosedStampElement');
+    const photoFrame = document.getElementById('slide8PhotoFrame');
+    if (!stampEl) return;
+
+    // Angles matching demo_hi_u_ng_ng_d_u_stamp_animation.html
+    const randomEndAngle = (Math.random() * 8 - 12).toFixed(1); // -12deg to -4deg
+    const randomStartAngle = (parseFloat(randomEndAngle) - 10).toFixed(1);
+    const randomMidAngle = (parseFloat(randomEndAngle) + 2).toFixed(1);
+
+    stampEl.style.setProperty('--start-rot', `${randomStartAngle}deg`);
+    stampEl.style.setProperty('--mid-rot', `${randomMidAngle}deg`);
+    stampEl.style.setProperty('--end-rot', `${randomEndAngle}deg`);
+
+    // Reset and trigger stamp slam animation
+    stampEl.classList.remove('animate-stamp-realistic');
+    void stampEl.offsetWidth;
+    stampEl.classList.add('animate-stamp-realistic');
+
+    // Trigger paper shake at impact time (~210ms)
+    if (photoFrame) {
+      photoFrame.classList.remove('animate-shake');
+      setTimeout(() => {
+        void photoFrame.offsetWidth;
+        photoFrame.classList.add('animate-shake');
+        playStampAudioThud();
+      }, 210);
     }
   }
 
@@ -338,6 +587,10 @@ export function initDeckEngine(): () => void {
     // 5. Update step visuals
     const currentSlideEl = getCurrentSlideEl();
     updateStepVisuals(currentSlideEl);
+
+    if (currentSlide === 8 && currentStep === 0) {
+      setTimeout(triggerSlide8StampAnimation, 120);
+    }
 
     // 6. Update browser URL hash
     window.location.hash = `slide-${currentSlide}`;
@@ -407,7 +660,10 @@ export function initDeckEngine(): () => void {
           }
         });
         isPageFlipping = false;
-      }, 840);
+        if (currentSlide === 8 && currentStep === 0) {
+          triggerSlide8StampAnimation();
+        }
+      }, 860);
     } else {
       const slides = document.querySelectorAll('.slide');
       slides.forEach((slide) => {
