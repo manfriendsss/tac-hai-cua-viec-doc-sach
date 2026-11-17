@@ -11,8 +11,8 @@ export const Slide1Title: React.FC = () => {
       {/* Top Secret Header Strip */}
       <div className="flex justify-between items-center z-10 border-b-2 border-[#1c1917] pb-2.5">
         <div className="flex items-center gap-2">
-          <span className="font-dossier-code text-sm sm:text-base font-bold tracking-wider text-[#1c1917]">
-            FILE NO: #BOOK-994-X // CỤC ĐIỀU TRA MẬT VỤ TRI THỨC
+          <span className="font-dossier-code text-xl sm:text-2xl md:text-3xl font-black tracking-wider text-[#1c1917]">
+            FILE NO: #Kos-11-26-PL // CỤC ĐIỀU TRA MẬT VỤ TRI THỨC
           </span>
         </div>
         <div className="stamp-top-secret text-xs sm:text-sm">

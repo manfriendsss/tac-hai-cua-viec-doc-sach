@@ -55,19 +55,19 @@ export const Slide8Conclusion: React.FC = () => {
                 className="w-full h-full object-contain filter contrast-105"
               />
 
-              {/* Realistic Stamp Slam Element */}
+              {/* Realistic Stamp Slam Element: Top-Left at 45deg, completely clear of character's face */}
               <div 
                 id="caseClosedStampWrapper"
-                className="absolute inset-0 flex items-center justify-center pointer-events-none z-30"
+                className="absolute top-2.5 left-2.5 pointer-events-none z-30 origin-center"
               >
                 <div 
                   id="caseClosedStampElement"
-                  className="stamp-rect-realistic animate-stamp-realistic text-center"
+                  className="stamp-rect-realistic animate-stamp-realistic text-center shadow-lg"
                 >
-                  <span className="text-xl sm:text-2xl md:text-3xl font-black tracking-widest uppercase block leading-tight">
+                  <span className="text-base sm:text-lg md:text-xl font-black tracking-widest uppercase block leading-tight">
                     VỤ ÁN HOÀN TẤT
                   </span>
-                  <span className="text-xs sm:text-sm font-bold tracking-[0.25em] block text-[#7f1d1d] mt-0.5 border-t border-[#b91c1c]/40 pt-0.5">
+                  <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] block text-[#7f1d1d] mt-0.5 border-t border-[#b91c1c]/40 pt-0.5">
                     CASE CLOSED
                   </span>
                 </div>

@@ -513,30 +513,34 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   -webkit-backface-visibility: hidden !important;
   pointer-events: none !important;
   z-index: 2 !important;
-  background: #ded3bf !important;
+  background-color: var(--dossier-paper) !important;
+  background-image: 
+    radial-gradient(rgba(120, 100, 75, 0.16) 1px, transparent 0),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(180, 160, 130, 0.2) 100%) !important;
+  background-size: 16px 16px, 100% 100% !important;
   color: #1c1917 !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
   align-items: center !important;
   overflow: hidden !important;
-  box-shadow: inset 24px 0 45px rgba(20, 20, 19, 0.2), inset -6px 0 16px rgba(20, 20, 19, 0.1) !important;
+  box-shadow: inset 30px 0 50px rgba(35, 25, 15, 0.28), inset -8px 0 20px rgba(35, 25, 15, 0.12) !important;
 }
 
 .leaf-back-inner {
   position: relative;
   width: 86%;
   height: 84%;
-  border: 2px dashed rgba(28, 25, 23, 0.55);
+  border: 2px dashed rgba(28, 25, 23, 0.65);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: rgba(243, 235, 217, 0.92);
+  background: var(--dossier-paper-card) !important;
   padding: 36px 48px;
-  box-shadow: 4px 4px 0px rgba(20, 20, 19, 0.2);
+  box-shadow: 4px 4px 0px rgba(20, 20, 19, 0.25);
 }
 
 .leaf-back-grain {
@@ -619,12 +623,14 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   z-index: 30 !important;
   pointer-events: none !important;
   transform-origin: 0% 50% !important; /* STRICTLY ANCHORED AT SPINE */
+  background-color: var(--dossier-paper) !important;
+  opacity: 1 !important;
   animation: bookPageTurnExitForward 0.85s cubic-bezier(0.42, 0.0, 0.75, 1.0) forwards;
 }
 
 .slide.page-flip-exit-forward::after {
   opacity: 1;
-  animation: bookPageCurlSheenForward 0.85s cubic-bezier(0.42, 0.0, 0.75, 1.0) forwards;
+  animation: bookPageCurlShadingForward 0.85s cubic-bezier(0.42, 0.0, 0.75, 1.0) forwards;
 }
 
 /* Upcoming slide underneath is revealed with travelling cast shadow */
@@ -635,6 +641,8 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   pointer-events: auto !important;
   transform-origin: 0% 50% !important;
   transform: rotateY(0deg) !important;
+  background-color: var(--dossier-paper) !important;
+  opacity: 1 !important;
   animation: bookUnderneathRevealForward 0.85s cubic-bezier(0.42, 0.0, 0.75, 1.0) forwards;
 }
 
@@ -650,12 +658,14 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   z-index: 30 !important;
   pointer-events: auto !important;
   transform-origin: 0% 50% !important;
+  background-color: var(--dossier-paper) !important;
+  opacity: 1 !important;
   animation: bookPageTurnEnterBackward 0.85s cubic-bezier(0.42, 0.0, 0.75, 1.0) forwards;
 }
 
 .slide.page-flip-enter-backward::after {
   opacity: 1;
-  animation: bookPageCurlSheenBackward 0.85s cubic-bezier(0.42, 0.0, 0.75, 1.0) forwards;
+  animation: bookPageCurlShadingBackward 0.85s cubic-bezier(0.42, 0.0, 0.75, 1.0) forwards;
 }
 
 /* Current slide underneath being covered */
@@ -666,6 +676,8 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   pointer-events: none !important;
   transform-origin: 0% 50% !important;
   transform: rotateY(0deg) !important;
+  background-color: var(--dossier-paper) !important;
+  opacity: 1 !important;
   animation: bookUnderneathCoveredBackward 0.85s cubic-bezier(0.42, 0.0, 0.75, 1.0) forwards;
 }
 
@@ -688,35 +700,34 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   /* CUỘN CHẬM BAN ĐẦU: Nhấc mép góc dưới phải, uốn cong tờ giấy từ tốn */
   18% {
     transform: perspective(2400px) rotateY(-8deg) skewY(-2.5deg);
-    filter: drop-shadow(-6px 8px 12px rgba(17, 24, 39, 0.22));
+    filter: drop-shadow(-6px 8px 12px rgba(45, 32, 20, 0.3));
   }
   38% {
     transform: perspective(2400px) rotateY(-24deg) skewY(-4.5deg);
-    filter: drop-shadow(-14px 14px 20px rgba(17, 24, 39, 0.35));
+    filter: drop-shadow(-14px 12px 18px rgba(45, 32, 20, 0.42));
   }
   /* TĂNG TỐC VÚT QUA GÁY SÁCH */
   60% {
     transform: perspective(2400px) rotateY(-74deg) skewY(-4.0deg);
-    filter: drop-shadow(-26px 22px 34px rgba(17, 24, 39, 0.48));
+    filter: drop-shadow(-20px 16px 24px rgba(45, 32, 20, 0.5));
   }
   78% {
     transform: perspective(2400px) rotateY(-136deg) skewY(-2.2deg);
-    filter: drop-shadow(-24px 18px 28px rgba(17, 24, 39, 0.4));
+    filter: drop-shadow(-16px 14px 20px rgba(45, 32, 20, 0.42));
   }
   /* ĐI NHANH VỀ CUỐI: áp dứt khoát vào trang bên trái */
   92% {
     transform: perspective(2400px) rotateY(-172deg) skewY(-0.6deg);
-    filter: drop-shadow(-10px 8px 14px rgba(17, 24, 39, 0.2));
+    filter: drop-shadow(-8px 6px 10px rgba(45, 32, 20, 0.25));
   }
   100% {
     transform: perspective(2400px) rotateY(-180deg) skewY(0deg);
     filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
-    opacity: 0.98;
   }
 }
 
-/* Dynamic Specular Ridge Light sweeping across the curving cylinder */
-@keyframes bookPageCurlSheenForward {
+/* Warm Authentic Book Paper Curvature Shading (NO plastic/cellophane gloss) */
+@keyframes bookPageCurlShadingForward {
   0% {
     background: transparent;
     opacity: 0;
@@ -724,36 +735,34 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   20% {
     background: linear-gradient(
       112deg,
-      transparent 58%,
-      rgba(255, 255, 255, 0.35) 74%,
-      rgba(255, 255, 255, 0.65) 78%,
-      rgba(0, 0, 0, 0.12) 84%,
+      transparent 60%,
+      rgba(70, 52, 35, 0.14) 75%,
+      rgba(45, 32, 20, 0.24) 82%,
       transparent 94%
     );
-    opacity: 0.85;
+    opacity: 0.8;
   }
   42% {
     background: linear-gradient(
       108deg,
       transparent 38%,
-      rgba(0, 0, 0, 0.16) 48%,
-      rgba(255, 255, 255, 0.6) 54%,
-      rgba(255, 255, 255, 0.88) 58%,
-      rgba(0, 0, 0, 0.2) 64%,
-      transparent 78%
+      rgba(60, 45, 30, 0.22) 48%,
+      rgba(245, 235, 215, 0.2) 53%,
+      rgba(50, 35, 20, 0.3) 60%,
+      transparent 76%
     );
-    opacity: 0.95;
+    opacity: 0.9;
   }
   75% {
     background: linear-gradient(
       96deg,
-      transparent 16%,
-      rgba(255, 255, 255, 0.26) 28%,
-      rgba(255, 255, 255, 0.52) 32%,
-      rgba(0, 0, 0, 0.12) 38%,
-      transparent 55%
+      transparent 18%,
+      rgba(60, 45, 30, 0.2) 30%,
+      rgba(245, 235, 215, 0.15) 35%,
+      rgba(50, 35, 20, 0.25) 42%,
+      transparent 58%
     );
-    opacity: 0.72;
+    opacity: 0.7;
   }
   100% {
     background: transparent;
@@ -802,36 +811,34 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   0% {
     transform: perspective(2400px) rotateY(-180deg) skewY(0deg);
     filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
-    opacity: 0.98;
   }
   18% {
     transform: perspective(2400px) rotateY(-172deg) skewY(2.0deg);
-    filter: drop-shadow(-6px 8px 12px rgba(17, 24, 39, 0.22));
+    filter: drop-shadow(-6px 8px 12px rgba(45, 32, 20, 0.3));
   }
   38% {
     transform: perspective(2400px) rotateY(-156deg) skewY(4.0deg);
-    filter: drop-shadow(-14px 14px 20px rgba(17, 24, 39, 0.35));
+    filter: drop-shadow(-14px 12px 18px rgba(45, 32, 20, 0.42));
   }
   60% {
     transform: perspective(2400px) rotateY(-106deg) skewY(3.8deg);
-    filter: drop-shadow(-26px 22px 34px rgba(17, 24, 39, 0.48));
+    filter: drop-shadow(-20px 16px 24px rgba(45, 32, 20, 0.5));
   }
   78% {
     transform: perspective(2400px) rotateY(-44deg) skewY(2.2deg);
-    filter: drop-shadow(-24px 18px 28px rgba(17, 24, 39, 0.4));
+    filter: drop-shadow(-16px 14px 20px rgba(45, 32, 20, 0.42));
   }
   92% {
     transform: perspective(2400px) rotateY(-8deg) skewY(0.6deg);
-    filter: drop-shadow(-10px 8px 14px rgba(17, 24, 39, 0.2));
+    filter: drop-shadow(-8px 6px 10px rgba(45, 32, 20, 0.25));
   }
   100% {
     transform: perspective(2400px) rotateY(0deg) skewY(0deg);
     filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
-    opacity: 1;
   }
 }
 
-@keyframes bookPageCurlSheenBackward {
+@keyframes bookPageCurlShadingBackward {
   0% {
     background: transparent;
     opacity: 0;
@@ -839,36 +846,24 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   22% {
     background: linear-gradient(
       96deg,
-      transparent 16%,
-      rgba(255, 255, 255, 0.26) 28%,
-      rgba(255, 255, 255, 0.52) 32%,
-      rgba(0, 0, 0, 0.12) 38%,
-      transparent 55%
+      transparent 18%,
+      rgba(60, 45, 30, 0.2) 30%,
+      rgba(245, 235, 215, 0.15) 35%,
+      rgba(50, 35, 20, 0.25) 42%,
+      transparent 58%
     );
-    opacity: 0.72;
+    opacity: 0.7;
   }
   55% {
     background: linear-gradient(
       105deg,
-      transparent 28%,
-      rgba(0, 0, 0, 0.18) 40%,
-      rgba(255, 255, 255, 0.62) 48%,
-      rgba(255, 255, 255, 0.88) 51%,
-      rgba(0, 0, 0, 0.22) 58%,
-      transparent 75%
+      transparent 30%,
+      rgba(60, 45, 30, 0.22) 42%,
+      rgba(245, 235, 215, 0.2) 48%,
+      rgba(50, 35, 20, 0.3) 56%,
+      transparent 74%
     );
-    opacity: 0.96;
-  }
-  82% {
-    background: linear-gradient(
-      112deg,
-      transparent 52%,
-      rgba(255, 255, 255, 0.38) 70%,
-      rgba(255, 255, 255, 0.68) 75%,
-      rgba(0, 0, 0, 0.12) 82%,
-      transparent 92%
-    );
-    opacity: 0.88;
+    opacity: 0.9;
   }
   100% {
     background: transparent;

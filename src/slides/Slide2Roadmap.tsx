@@ -56,7 +56,6 @@ export const Slide2Roadmap: React.FC = () => {
                     {s.title}
                   </div>
                 </div>
-                <div className="stamp-seal-dot hidden sm:flex"></div>
               </div>
             ))}
           </div>

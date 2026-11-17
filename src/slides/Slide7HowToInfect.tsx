@@ -4,26 +4,22 @@ export const Slide7HowToInfect: React.FC = () => {
   const steps = [
     {
       num: '01',
-      topic: 'QUY TẮC 5 TRANG',
-      desc: 'Đánh lừa bộ não bằng quy tắc 5 trang mỗi ngày',
+      topic: 'CHIẾN THUẬT 5 TRANG',
       color: '#b91c1c'
     },
     {
       num: '02',
-      topic: 'MÓN TRÁNG MIỆNG',
-      desc: 'Thưởng thức món tráng miệng trước món chính',
+      topic: 'MÓN TRÁNG MIỆNG TRƯỚC MÓN CHÍNH',
       color: '#b45309'
     },
     {
       num: '03',
       topic: 'QUY TẮC 50 TRANG',
-      desc: 'Đặc quyền từ bỏ sau khi đọc 50 trang',
       color: '#0369a1'
     },
     {
       num: '04',
       topic: 'VŨ KHÍ GIAO TIẾP',
-      desc: 'Biến tri thức thành vũ khí cho cuộc trò chuyện',
       color: '#15803d'
     }
   ];
@@ -59,30 +55,25 @@ export const Slide7HowToInfect: React.FC = () => {
             </h2>
           </div>
 
-          {/* 4 Clean Step Cards with Prominent Topics Inline with Badges */}
+          {/* 4 Clean Step Cards with Only Main Content - Prominent & Punchy */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-1 flex-1">
             {steps.map((s, idx) => (
               <div 
                 key={s.num}
                 data-step-card={idx + 1}
-                className="step-card dossier-card p-4 sm:p-5 flex flex-col justify-center cursor-pointer border-2 border-[#1c1917] min-h-[125px]"
+                className="step-card dossier-card p-5 flex items-center gap-3.5 cursor-pointer border-2 border-[#1c1917] min-h-[110px]"
               >
-                <div className="flex items-center gap-2.5 flex-wrap">
-                  <span 
-                    className="dossier-tag text-xs sm:text-sm text-white font-bold flex-shrink-0"
-                    style={{ backgroundColor: s.color }}
-                  >
-                    BƯỚC {s.num}
-                  </span>
-                  <span 
-                    className="font-dossier-title font-black text-xl sm:text-2xl uppercase tracking-wide"
-                    style={{ color: s.color }}
-                  >
-                    {s.topic}
-                  </span>
-                </div>
-                <div className="text-base sm:text-lg font-bold text-[#292524] font-typewriter mt-2 pen-write-anim text-left leading-snug">
-                  {s.desc}
+                <span 
+                  className="dossier-tag text-xs sm:text-sm text-white font-bold flex-shrink-0"
+                  style={{ backgroundColor: s.color }}
+                >
+                  BƯỚC {s.num}
+                </span>
+                <div 
+                  className="font-dossier-title font-black text-lg sm:text-xl md:text-2xl uppercase tracking-wide pen-write-anim text-left leading-snug flex-1"
+                  style={{ color: s.color }}
+                >
+                  {s.topic}
                 </div>
               </div>
             ))}

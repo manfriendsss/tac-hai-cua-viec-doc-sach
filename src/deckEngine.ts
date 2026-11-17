@@ -528,29 +528,29 @@ export function initDeckEngine(): () => void {
 
   function triggerSlide8StampAnimation() {
     const stampEl = document.getElementById('caseClosedStampElement');
-    const photoFrame = document.getElementById('slide8PhotoFrame');
+    const slide8 = document.getElementById('slide-8');
     if (!stampEl) return;
 
-    // Angles matching demo_hi_u_ng_ng_d_u_stamp_animation.html
-    const randomEndAngle = (Math.random() * 8 - 12).toFixed(1); // -12deg to -4deg
-    const randomStartAngle = (parseFloat(randomEndAngle) - 10).toFixed(1);
-    const randomMidAngle = (parseFloat(randomEndAngle) + 2).toFixed(1);
+    // Diagonal 45-degree angle placed at top-left corner, strictly avoiding character face
+    const endAngle = -45;
+    const startAngle = -55;
+    const midAngle = -42;
 
-    stampEl.style.setProperty('--start-rot', `${randomStartAngle}deg`);
-    stampEl.style.setProperty('--mid-rot', `${randomMidAngle}deg`);
-    stampEl.style.setProperty('--end-rot', `${randomEndAngle}deg`);
+    stampEl.style.setProperty('--start-rot', `${startAngle}deg`);
+    stampEl.style.setProperty('--mid-rot', `${midAngle}deg`);
+    stampEl.style.setProperty('--end-rot', `${endAngle}deg`);
 
     // Reset and trigger stamp slam animation
     stampEl.classList.remove('animate-stamp-realistic');
     void stampEl.offsetWidth;
     stampEl.classList.add('animate-stamp-realistic');
 
-    // Trigger paper shake at impact time (~210ms)
-    if (photoFrame) {
-      photoFrame.classList.remove('animate-shake');
+    // Trigger full screen/slide shake at impact time (~210ms) - identical to Slide 1
+    if (slide8) {
+      slide8.classList.remove('animate-shake');
       setTimeout(() => {
-        void photoFrame.offsetWidth;
-        photoFrame.classList.add('animate-shake');
+        void slide8.offsetWidth;
+        slide8.classList.add('animate-shake');
         playStampAudioThud();
       }, 210);
     }
