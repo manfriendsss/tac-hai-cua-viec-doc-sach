@@ -26,10 +26,8 @@ export const DeckContainer: React.FC = () => {
       {/* 16:9 Aspect Constraint Viewport */}
       <div className="deck-viewport">
         
-        {/* Top Progress Bar */}
-        <div className="progress-bar-container">
-          <div className="progress-bar-fill" id="progress-bar"></div>
-        </div>
+        {/* Stack of remaining pages along the right edge (thins out toward the end) */}
+        <div className="page-stack" id="page-stack" aria-hidden="true"></div>
 
         {/* 8 Merged Slides */}
         <div className="slides-wrapper">

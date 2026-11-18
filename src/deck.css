@@ -455,23 +455,41 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   overflow: hidden;
 }
 
-/* TOP PROGRESS BAR */
-.progress-bar-container {
+/* REMAINING PAGE STACK (chồng giấy mép phải mỏng dần) */
+.page-stack {
   position: absolute;
   top: 0;
-  left: 0;
+  bottom: 0;
   right: 0;
-  height: 5px;
-  background: rgba(31, 41, 55, 0.2);
-  z-index: 50;
+  display: flex;
+  flex-direction: row-reverse;
+  z-index: 45;
+  pointer-events: none;
 }
 
-.progress-bar-fill {
+/* Soft shadow the stack casts back onto the current page */
+.page-stack::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  width: 14px;
+  background: linear-gradient(to left, rgba(40, 25, 10, 0.18), transparent);
+}
+
+.page-stack-edge {
+  position: relative;
+  width: 3px;
   height: 100%;
-  width: 0%;
-  background: #f59e0b;
-  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 0 8px rgba(245, 158, 11, 0.8);
+  background: linear-gradient(to right, #d6c9ae 0%, #efe6d3 60%, #e2d6bd 100%);
+  border-left: 1px solid rgba(90, 65, 35, 0.32);
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.35);
+}
+
+/* Deeper pages sit slightly lower and darker, like a real book block */
+.page-stack-edge:nth-child(even) {
+  background: linear-gradient(to right, #cfc1a4 0%, #e9dfc9 60%, #dacdb2 100%);
 }
 
 /* FLOATING HEADER BADGE */
@@ -581,470 +599,73 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   transition: opacity 0.2s ease;
 }
 
-/* Back Face of the Turning Leaf (Verso: Classified Dossier Backing) */
-.slide-leaf-back {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  transform: rotateY(180deg) translateZ(1px) !important;
-  backface-visibility: hidden !important;
-  -webkit-backface-visibility: hidden !important;
+/* ==========================================================================
+   REALISTIC PAGE CURL (lật trang như sách thật)
+   - Hai góc trái (trên & dưới) cố định ở gáy sách
+   - Góc dưới bên phải được nhấc lên, nếp gấp chạy chéo qua trang
+   - Mặt sau tờ giấy (flap) phản chiếu qua nếp gấp, có bóng đổ & ánh sáng
+   Hình học được tính bằng JS trong deckEngine.ts (runPageCurl)
+   ========================================================================== */
+
+.slide.flip-under {
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 20 !important;
   pointer-events: none !important;
-  z-index: 2 !important;
+  transition: none !important;
   background-color: var(--dossier-paper) !important;
-  background-image: 
-    radial-gradient(rgba(120, 100, 75, 0.16) 1px, transparent 0),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(180, 160, 130, 0.2) 100%) !important;
-  background-size: 16px 16px, 100% 100% !important;
-  color: #1c1917 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: center !important;
-  overflow: hidden !important;
-  box-shadow: inset 30px 0 50px rgba(35, 25, 15, 0.28), inset -8px 0 20px rgba(35, 25, 15, 0.12) !important;
 }
 
-.leaf-back-inner {
-  position: relative;
-  width: 86%;
-  height: 84%;
-  border: 2px dashed rgba(28, 25, 23, 0.65);
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: var(--dossier-paper-card) !important;
-  padding: 36px 48px;
-  box-shadow: 4px 4px 0px rgba(20, 20, 19, 0.25);
+.slide.flip-turning {
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 30 !important;
+  pointer-events: none !important;
+  transition: none !important;
+  background-color: var(--dossier-paper) !important;
+  will-change: clip-path;
 }
 
-.leaf-back-grain {
+/* Bóng đổ của tờ giấy đang lật in lên trang bên dưới, chạy dọc theo nếp gấp */
+.flip-cast-shadow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 25;
+  pointer-events: none;
+  will-change: transform, background;
+}
+
+/* Lớp bọc mặt sau tờ giấy: drop-shadow để tạo bóng của mép giấy lên mặt trước */
+.flip-flap-wrap {
   position: absolute;
   inset: 0;
-  background-image: 
-    radial-gradient(rgba(120, 100, 75, 0.18) 1px, transparent 0),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(180, 160, 130, 0.2) 100%);
-  background-size: 14px 14px, 100% 100%;
+  z-index: 40;
   pointer-events: none;
-  border-radius: 6px;
+  will-change: filter;
 }
 
-.leaf-back-ornament {
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
-  font-weight: 800;
-  color: #b91c1c;
-  letter-spacing: 3px;
-  margin-bottom: 12px;
-  border: 2px solid #b91c1c;
-  padding: 3px 14px;
-  transform: rotate(-2deg);
-  background: rgba(185, 28, 28, 0.05);
+/* Mặt sau tờ giấy */
+.flip-flap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  overflow: hidden;
+  background-color: #ece3d0;
+  background-image:
+    radial-gradient(rgba(120, 100, 75, 0.12) 1px, transparent 0),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(170, 150, 120, 0.2) 100%);
+  background-size: 16px 16px, 100% 100%;
+  will-change: transform, clip-path;
 }
 
-.leaf-back-header {
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #57534e;
-  margin-bottom: 8px;
-}
-
-.leaf-back-title {
-  font-family: 'Special Elite', 'Courier Prime', monospace;
-  font-size: 26px;
-  font-weight: 900;
-  color: #141413;
-  letter-spacing: 1px;
-  margin-bottom: 16px;
-  text-transform: uppercase;
-}
-
-.leaf-back-quote {
-  font-family: 'Courier Prime', monospace;
-  font-size: 16px;
-  font-weight: 700;
-  font-style: italic;
-  color: #292524;
-  max-width: 600px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  padding: 14px 22px;
-  background: rgba(254, 240, 138, 0.4);
-  border-left: 4px solid #b91c1c;
-  border-radius: 4px;
-}
-
-.leaf-back-page-num {
-  font-family: 'Space Mono', monospace;
-  font-size: 13px;
-  font-weight: 800;
-  color: #78716c;
-  letter-spacing: 2px;
-}
-
-/* ==========================================================================
-   FLIP ANIMATIONS - NATURAL HAND-TURNED BOOK PAGE (Anchored Left Spine)
-   Top-Left (0, 0) and Bottom-Left (0, 100%) corners strictly anchored at x=0
-   Cuộn chậm ban đầu (0% - 40%), tăng tốc và đi nhanh dứt khoát về cuối (40% - 100%)
-   ========================================================================== */
-
-/* 1. FLIP FORWARD: Hand curls soft paper from bottom-right corner */
-.slide.page-flip-exit-forward {
-  display: flex !important;
-  visibility: visible !important;
-  z-index: 30 !important;
-  pointer-events: none !important;
-  transform-origin: 0% 100% !important; /* ANCHORED AT LEFT SPINE BOTTOM */
-  background-color: var(--dossier-paper) !important;
-  opacity: 1 !important;
-  overflow: hidden !important;
-  animation: softPaperCurlExitForward 0.85s cubic-bezier(0.38, 0.05, 0.65, 1.0) forwards;
-}
-
-.slide.page-flip-exit-forward::after {
-  opacity: 1;
-  animation: bookPageCurlShadingForward 0.85s cubic-bezier(0.38, 0.05, 0.65, 1.0) forwards;
-}
-
-/* Upcoming slide underneath is revealed with travelling curved cast shadow */
-.slide.page-flip-enter-forward {
-  display: flex !important;
-  visibility: visible !important;
-  z-index: 20 !important;
-  pointer-events: auto !important;
-  transform-origin: 0% 50% !important;
-  transform: rotateY(0deg) !important;
-  background-color: var(--dossier-paper) !important;
-  opacity: 1 !important;
-  animation: bookUnderneathRevealForward 0.85s cubic-bezier(0.38, 0.05, 0.65, 1.0) forwards;
-}
-
-.slide.page-flip-enter-forward::after {
-  opacity: 1;
-  animation: bookPageCastShadowForward 0.85s cubic-bezier(0.38, 0.05, 0.65, 1.0) forwards;
-}
-
-/* 2. FLIP BACKWARD: Hand curls previous soft page from left stack over to right */
-.slide.page-flip-enter-backward {
-  display: flex !important;
-  visibility: visible !important;
-  z-index: 30 !important;
-  pointer-events: auto !important;
-  transform-origin: 0% 100% !important;
-  background-color: var(--dossier-paper) !important;
-  opacity: 1 !important;
-  overflow: hidden !important;
-  animation: softPaperCurlEnterBackward 0.85s cubic-bezier(0.38, 0.05, 0.65, 1.0) forwards;
-}
-
-.slide.page-flip-enter-backward::after {
-  opacity: 1;
-  animation: bookPageCurlShadingBackward 0.85s cubic-bezier(0.38, 0.05, 0.65, 1.0) forwards;
-}
-
-/* Current slide underneath being covered */
-.slide.page-flip-exit-backward {
-  display: flex !important;
-  visibility: visible !important;
-  z-index: 20 !important;
-  pointer-events: none !important;
-  transform-origin: 0% 50% !important;
-  transform: rotateY(0deg) !important;
-  background-color: var(--dossier-paper) !important;
-  opacity: 1 !important;
-  animation: bookUnderneathCoveredBackward 0.85s cubic-bezier(0.38, 0.05, 0.65, 1.0) forwards;
-}
-
-.slide.page-flip-exit-backward::after {
-  opacity: 1;
-  animation: bookPageCastShadowBackward 0.85s cubic-bezier(0.38, 0.05, 0.65, 1.0) forwards;
-}
-
-/* ==========================================================================
-   SOFT PAPER CURL KEYFRAMES (BO TRÒN, CUỘN MỀM TỪ GÓC PHẢI DƯỚI)
-   Dynamic rounded border-radius + 3D diagonal cylindrical roll
-   ========================================================================== */
-
-/* Forward Page Turn Exit: Soft cylindrical roll peeling from bottom-right corner */
-@keyframes softPaperCurlExitForward {
-  0% {
-    transform: perspective(2200px) rotate3d(0, 1, 0, 0deg) skewY(0deg);
-    border-bottom-right-radius: 0px;
-    border-top-right-radius: 0px;
-    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
-  }
-  /* CUỘN TỪ GÓC PHẢI DƯỚI: Mép góc dưới phải nhấc lên, uốn cong mềm mại */
-  16% {
-    transform: perspective(2200px) rotate3d(-0.16, 1, 0.09, -14deg) skewY(-3.5deg) scale(0.995);
-    border-bottom-right-radius: 120px 220px;
-    border-top-right-radius: 40px 90px;
-    filter: drop-shadow(-10px 12px 18px rgba(45, 32, 20, 0.32));
-  }
-  /* CUỘN TRÒN HÌNH TRỤ: Giấy mềm cuộn sâu thành hình ống bo tròn */
-  36% {
-    transform: perspective(2200px) rotate3d(-0.2, 1, 0.12, -42deg) skewY(-6.2deg) scale(0.985);
-    border-bottom-right-radius: 200px 340px;
-    border-top-right-radius: 80px 180px;
-    filter: drop-shadow(-22px 20px 32px rgba(45, 32, 20, 0.45));
-  }
-  /* ĐỈNH CUỘN QUA GÁY SÁCH: Độ cong trụ mềm lớn nhất */
-  58% {
-    transform: perspective(2200px) rotate3d(-0.15, 1, 0.1, -96deg) skewY(-5deg) scale(0.98);
-    border-bottom-right-radius: 240px 360px;
-    border-top-right-radius: 110px 220px;
-    filter: drop-shadow(-28px 24px 38px rgba(45, 32, 20, 0.5));
-  }
-  /* DUỖI DẦN KHI ÁP VÀO TẬP BÊN TRÁI */
-  78% {
-    transform: perspective(2200px) rotate3d(-0.08, 1, 0.05, -148deg) skewY(-2.6deg) scale(0.99);
-    border-bottom-right-radius: 120px 200px;
-    border-top-right-radius: 50px 100px;
-    filter: drop-shadow(-18px 16px 24px rgba(45, 32, 20, 0.38));
-  }
-  /* ÁP DỨT KHOÁT VÀO TRANG BÊN TRÁI */
-  92% {
-    transform: perspective(2200px) rotate3d(0, 1, 0, -172deg) skewY(-0.8deg) scale(0.997);
-    border-bottom-right-radius: 30px 50px;
-    border-top-right-radius: 15px 30px;
-    filter: drop-shadow(-8px 8px 12px rgba(45, 32, 20, 0.2));
-  }
-  100% {
-    transform: perspective(2200px) rotate3d(0, 1, 0, -180deg) skewY(0deg);
-    border-bottom-right-radius: 0px;
-    border-top-right-radius: 0px;
-    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
-  }
-}
-
-/* Cylindrical paper curvature shading with moving apex specular highlight */
-@keyframes bookPageCurlShadingForward {
-  0% {
-    background: transparent;
-    opacity: 0;
-  }
-  16% {
-    background: linear-gradient(
-      126deg,
-      transparent 62%,
-      rgba(55, 38, 22, 0.12) 72%,
-      rgba(255, 252, 240, 0.32) 78%,
-      rgba(40, 26, 14, 0.34) 84%,
-      transparent 95%
-    );
-    opacity: 0.85;
-  }
-  36% {
-    background: linear-gradient(
-      124deg,
-      transparent 38%,
-      rgba(55, 38, 22, 0.24) 49%,
-      rgba(255, 254, 245, 0.42) 55%,
-      rgba(35, 22, 12, 0.44) 63%,
-      transparent 78%
-    );
-    opacity: 0.95;
-  }
-  58% {
-    background: linear-gradient(
-      118deg,
-      transparent 18%,
-      rgba(55, 38, 22, 0.28) 30%,
-      rgba(255, 254, 245, 0.38) 36%,
-      rgba(35, 22, 12, 0.38) 44%,
-      transparent 62%
-    );
-    opacity: 0.88;
-  }
-  80% {
-    background: linear-gradient(
-      112deg,
-      transparent 6%,
-      rgba(55, 38, 22, 0.2) 16%,
-      rgba(255, 252, 242, 0.24) 22%,
-      rgba(35, 22, 12, 0.26) 30%,
-      transparent 45%
-    );
-    opacity: 0.6;
-  }
-  100% {
-    background: transparent;
-    opacity: 0;
-  }
-}
-
-/* Cast shadow on the underneath page as the soft cylindrical roll sweeps over */
-@keyframes bookPageCastShadowForward {
-  0% {
-    background: radial-gradient(
-      ellipse at 95% 95%,
-      rgba(20, 15, 10, 0.5) 0%,
-      rgba(20, 15, 10, 0.25) 30%,
-      transparent 65%
-    );
-    opacity: 0.35;
-  }
-  36% {
-    background: linear-gradient(
-      125deg,
-      transparent 22%,
-      rgba(20, 15, 10, 0.48) 46%,
-      rgba(20, 15, 10, 0.22) 66%,
-      transparent 86%
-    );
-    opacity: 0.78;
-  }
-  65% {
-    background: linear-gradient(
-      to right,
-      rgba(20, 15, 10, 0.42) 0%,
-      rgba(20, 15, 10, 0.22) 28%,
-      transparent 58%
-    );
-    opacity: 0.52;
-  }
-  100% {
-    background: transparent;
-    opacity: 0;
-  }
-}
-
-/* Backward Soft Paper Turn: Curls softly from left stack back over to right */
-@keyframes softPaperCurlEnterBackward {
-  0% {
-    transform: perspective(2200px) rotate3d(0, 1, 0, -180deg) skewY(0deg);
-    border-bottom-left-radius: 0px;
-    border-top-left-radius: 0px;
-    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
-  }
-  16% {
-    transform: perspective(2200px) rotate3d(0.16, 1, -0.09, -166deg) skewY(3.5deg) scale(0.995);
-    border-bottom-left-radius: 120px 220px;
-    border-top-left-radius: 40px 90px;
-    filter: drop-shadow(10px 12px 18px rgba(45, 32, 20, 0.32));
-  }
-  36% {
-    transform: perspective(2200px) rotate3d(0.2, 1, -0.12, -138deg) skewY(6.2deg) scale(0.985);
-    border-bottom-left-radius: 200px 340px;
-    border-top-left-radius: 80px 180px;
-    filter: drop-shadow(22px 20px 32px rgba(45, 32, 20, 0.45));
-  }
-  58% {
-    transform: perspective(2200px) rotate3d(0.15, 1, -0.1, -84deg) skewY(5deg) scale(0.98);
-    border-bottom-left-radius: 240px 360px;
-    border-top-left-radius: 110px 220px;
-    filter: drop-shadow(28px 24px 38px rgba(45, 32, 20, 0.5));
-  }
-  78% {
-    transform: perspective(2200px) rotate3d(0.08, 1, -0.05, -32deg) skewY(2.6deg) scale(0.99);
-    border-bottom-left-radius: 120px 200px;
-    border-top-left-radius: 50px 100px;
-    filter: drop-shadow(18px 16px 24px rgba(45, 32, 20, 0.38));
-  }
-  92% {
-    transform: perspective(2200px) rotate3d(0, 1, 0, -8deg) skewY(0.8deg) scale(0.997);
-    border-bottom-left-radius: 30px 50px;
-    border-top-left-radius: 15px 30px;
-    filter: drop-shadow(8px 8px 12px rgba(45, 32, 20, 0.2));
-  }
-  100% {
-    transform: perspective(2200px) rotate3d(0, 1, 0, 0deg) skewY(0deg);
-    border-bottom-left-radius: 0px;
-    border-top-left-radius: 0px;
-    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
-  }
-}
-
-@keyframes bookPageCurlShadingBackward {
-  0% {
-    background: transparent;
-    opacity: 0;
-  }
-  22% {
-    background: linear-gradient(
-      96deg,
-      transparent 18%,
-      rgba(60, 45, 30, 0.2) 30%,
-      rgba(245, 235, 215, 0.15) 35%,
-      rgba(50, 35, 20, 0.25) 42%,
-      transparent 58%
-    );
-    opacity: 0.7;
-  }
-  55% {
-    background: linear-gradient(
-      105deg,
-      transparent 30%,
-      rgba(60, 45, 30, 0.22) 42%,
-      rgba(245, 235, 215, 0.2) 48%,
-      rgba(50, 35, 20, 0.3) 56%,
-      transparent 74%
-    );
-    opacity: 0.9;
-  }
-  100% {
-    background: transparent;
-    opacity: 0;
-  }
-}
-
-@keyframes bookPageCastShadowBackward {
-  0% {
-    background: transparent;
-    opacity: 0;
-  }
-  40% {
-    background: linear-gradient(
-      to right,
-      rgba(17, 24, 39, 0.38) 0%,
-      rgba(17, 24, 39, 0.2) 25%,
-      transparent 50%
-    );
-    opacity: 0.6;
-  }
-  80% {
-    background: linear-gradient(
-      to right,
-      rgba(17, 24, 39, 0.5) 0%,
-      rgba(17, 24, 39, 0.3) 35%,
-      transparent 70%
-    );
-    opacity: 0.82;
-  }
-  100% {
-    background: transparent;
-    opacity: 0;
-  }
-}
-
-@keyframes bookUnderneathCoveredBackward {
-  0% {
-    filter: brightness(1);
-  }
-  50% {
-    filter: brightness(0.92);
-  }
-  100% {
-    filter: brightness(0.85);
-  }
-}
-
-@keyframes bookUnderneathRevealForward {
-  0% {
-    filter: brightness(0.85);
-  }
-  50% {
-    filter: brightness(0.92);
-  }
-  100% {
-    filter: brightness(1);
-  }
+/* Độ cong của giấy gần nếp gấp: vệt tối ở nếp, dải sáng phản chiếu, tối dần về mép */
+.flip-flap-shade {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
 }
 
 /* INTERACTIVE PAGE-CURL DOG-EARS */
