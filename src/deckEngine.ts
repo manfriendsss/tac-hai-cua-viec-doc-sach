@@ -7,6 +7,9 @@ export function initDeckEngine(): () => void {
   let isPageFlipping = false;
   const totalSlides = 8;
 
+  // Clean up any legacy leaf-back elements left in the DOM
+  document.querySelectorAll('.slide-leaf-back').forEach((el) => el.remove());
+
   const slideTitles = [
     'Bìa: Tác Hại Của Việc Đọc Sách',
     'Lộ Trình: 5 Giai Đoạn Điều Tra',

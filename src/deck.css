@@ -556,10 +556,29 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   z-index: 10 !important;
 }
 
-/* Front Face Children of .slide (hide when flipped past 90 degrees) */
+/* Front Face Children of .slide */
 .slide > *:not(.slide-leaf-back):not(.active-quill-writer):not(.book-corner-peel):not(.slide-curl-sheen):not(.slide-cast-shadow) {
   backface-visibility: hidden !important;
   -webkit-backface-visibility: hidden !important;
+}
+
+/* Legacy leaf-back elements: completely hide and remove */
+.slide-leaf-back,
+.leaf-back-inner,
+.leaf-back-grain,
+.leaf-back-ornament,
+.leaf-back-header,
+.leaf-back-title,
+.leaf-back-quote,
+.leaf-back-page-num {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
 }
 
 /* ==========================================================================
