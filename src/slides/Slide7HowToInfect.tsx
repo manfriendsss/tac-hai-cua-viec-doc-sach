@@ -54,7 +54,7 @@ export const Slide7HowToInfect: React.FC = () => {
         <div className="col-span-12 md:col-span-7 flex flex-col gap-3.5">
           
           <div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#141413] font-dossier-title leading-tight uppercase pen-write-anim">
+            <h2 className="slide-main-title font-bold text-[#141413] font-dossier-title leading-[1.08] uppercase pen-write-anim">
               4 Bước Nhiễm Độc Sách
             </h2>
           </div>

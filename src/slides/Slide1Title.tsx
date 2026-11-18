@@ -26,12 +26,12 @@ export const Slide1Title: React.FC = () => {
         {/* Left Column: Spotlight Title (Revealed on Step 1) */}
         <div 
           data-step-reveal="1"
-          className="slide-1-title-col col-span-12 md:col-span-7 flex flex-col justify-center gap-4 text-left transition-all duration-700"
+          className="slide-1-title-col col-span-12 md:col-span-8 flex flex-col justify-center gap-4 text-left transition-all duration-700"
         >
           <div>
-            {/* Giant Punchy Spotlight Title */}
+            {/* Giant Punchy Spotlight Title (Enlarged 150%) */}
             <h1 
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-[#141413] leading-[1.04] font-dossier-title tracking-tight uppercase pen-write-anim"
+              className="slide-1-hero-title font-black text-[#141413] leading-[1.02] font-dossier-title tracking-tight uppercase pen-write-anim"
               data-pause-between-lines="true"
             >
               <div className="write-line-row">
@@ -63,7 +63,7 @@ export const Slide1Title: React.FC = () => {
         </div>
 
         {/* Right Column / Center at Step 0: Evidence Board Image Frame */}
-        <div className="slide-1-image-col col-span-12 md:col-span-5 flex flex-col items-center justify-center transition-all duration-700">
+        <div className="slide-1-image-col col-span-12 md:col-span-4 flex flex-col items-center justify-center transition-all duration-700">
           <div className="dossier-card evidence-photo-frame p-2.5 sm:p-3 rotate-1 max-w-[320px] w-full bg-[#fbf5e8] border-2 border-[#1c1917] shadow-xl relative transition-all duration-700">
             <div className="dossier-paperclip"></div>
             

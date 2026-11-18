@@ -35,18 +35,18 @@ export const Slide2Roadmap: React.FC = () => {
         <div className="col-span-12 md:col-span-7 flex flex-col gap-3">
           
           <div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#141413] leading-tight font-dossier-title uppercase pen-write-anim">
+            <h2 className="slide-main-title font-bold text-[#141413] leading-[1.08] font-dossier-title uppercase pen-write-anim">
               5 Giai Đoạn Vạch Trần Cơn Ác Mộng
             </h2>
           </div>
 
           {/* 5 Bold Dossier Step Cards without Sub-hints */}
-          <div className="flex flex-col gap-3 mt-1">
+          <div className="flex flex-col gap-2.5 sm:gap-3 mt-1">
             {stages.map((s) => (
               <div 
                 key={s.step}
                 data-step-card={s.step}
-                className="step-card dossier-card py-3.5 px-4 sm:px-5 flex items-center justify-between cursor-pointer border-2 border-[#1c1917]"
+                className="step-card dossier-card py-2.5 sm:py-3 px-4 sm:px-5 flex items-center justify-between cursor-pointer border-2 border-[#1c1917]"
               >
                 <div className="flex items-center gap-4">
                   <span className="dossier-tag text-xs sm:text-sm bg-[#1c1917] text-[#e6dcc8] flex-shrink-0 font-bold font-dossier-code px-2.5 py-1">

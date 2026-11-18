@@ -75,6 +75,85 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   letter-spacing: 2px;
 }
 
+/* ==========================================================================
+   SLIDE MAIN TITLES (ENLARGED 150%)
+   ========================================================================== */
+
+/* Universal slide title for Slides 2 through 7 (Previous: 48px -> Now 150%: 72px) */
+.slide-main-title {
+  font-size: 45px !important; /* 150% of 30px */
+  line-height: 1.08 !important;
+  letter-spacing: -0.5px !important;
+}
+
+@media (min-width: 640px) {
+  .slide-main-title {
+    font-size: 54px !important; /* 150% of 36px */
+  }
+}
+
+@media (min-width: 768px) {
+  .slide-main-title {
+    font-size: 64px !important; /* 150% of ~42px */
+  }
+}
+
+@media (min-width: 1024px) {
+  .slide-main-title {
+    font-size: 72px !important; /* 150% of 48px */
+  }
+}
+
+/* Slide 1 Cover Hero Title (Previous: 96px -> Now 150%: 136px - 144px) */
+.slide-1-hero-title {
+  font-size: 72px !important; /* 150% of 48px */
+  line-height: 1.02 !important;
+  letter-spacing: -1px !important;
+}
+
+@media (min-width: 640px) {
+  .slide-1-hero-title {
+    font-size: 90px !important; /* 150% of 60px */
+  }
+}
+
+@media (min-width: 768px) {
+  .slide-1-hero-title {
+    font-size: 108px !important; /* 150% of 72px */
+  }
+}
+
+@media (min-width: 1024px) {
+  .slide-1-hero-title {
+    font-size: 136px !important; /* 150% scaling */
+  }
+}
+
+/* Slide 8 Conclusion Hero Title */
+.slide-8-hero-title {
+  font-size: 48px !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.5px !important;
+}
+
+@media (min-width: 640px) {
+  .slide-8-hero-title {
+    font-size: 60px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .slide-8-hero-title {
+    font-size: 72px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .slide-8-hero-title {
+    font-size: 82px !important;
+  }
+}
+
 /* 1. AGED MANILA DOSSIER PAPER BACKGROUND */
 .dossier-paper,
 .bg-comic-strip {
@@ -1436,6 +1515,7 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
 
 /* Step 1: Smooth transition when ArrowRight is pressed */
 #slide-1[data-current-step="1"] .slide-1-title-col {
+  grid-column: span 8 / span 12 !important;
   opacity: 1 !important;
   visibility: visible !important;
   display: flex !important;
@@ -1444,12 +1524,12 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
 }
 
 #slide-1[data-current-step="1"] .slide-1-image-col {
-  grid-column: span 5 / span 12 !important;
+  grid-column: span 4 / span 12 !important;
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #slide-1[data-current-step="1"] .evidence-photo-frame {
-  max-width: 320px !important;
+  max-width: 290px !important;
   transform: scale(1) rotate(1deg) !important;
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -1484,6 +1564,7 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
 
 /* Step 1: Smooth transition when ArrowRight is pressed */
 #slide-8[data-current-step="1"] .slide-8-title-col {
+  grid-column: span 8 / span 12 !important;
   opacity: 1 !important;
   visibility: visible !important;
   display: flex !important;
@@ -1492,12 +1573,12 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
 }
 
 #slide-8[data-current-step="1"] .slide-8-image-col {
-  grid-column: span 5 / span 12 !important;
+  grid-column: span 4 / span 12 !important;
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #slide-8[data-current-step="1"] .evidence-photo-frame {
-  max-width: 320px !important;
+  max-width: 290px !important;
   transform: scale(1) rotate(1deg) !important;
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }

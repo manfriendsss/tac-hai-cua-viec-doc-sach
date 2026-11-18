@@ -26,12 +26,12 @@ export const Slide8Conclusion: React.FC = () => {
         {/* Left Column: Spotlight Final Blessing (Revealed on Step 1) */}
         <div 
           data-step-reveal="1"
-          className="slide-8-title-col col-span-12 md:col-span-7 flex flex-col justify-center gap-4 text-left transition-all duration-700"
+          className="slide-8-title-col col-span-12 md:col-span-8 flex flex-col justify-center gap-4 text-left transition-all duration-700"
         >
           <div>
-            {/* Giant Punchy Spotlight Blessing */}
+            {/* Giant Punchy Spotlight Blessing (Enlarged 150%) */}
             <h2 
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-[#141413] leading-[1.08] font-dossier-title tracking-tight uppercase pen-write-anim"
+              className="slide-8-hero-title font-black text-[#141413] leading-[1.05] font-dossier-title tracking-tight uppercase pen-write-anim"
               data-pause-between-lines="true"
             >
               <div className="write-line-row">
@@ -47,7 +47,7 @@ export const Slide8Conclusion: React.FC = () => {
         </div>
 
         {/* Right Column / Center at Step 0: Evidence Board Image Frame with Stamp Slam */}
-        <div className="slide-8-image-col col-span-12 md:col-span-5 flex flex-col items-center justify-center transition-all duration-700">
+        <div className="slide-8-image-col col-span-12 md:col-span-4 flex flex-col items-center justify-center transition-all duration-700">
           <div 
             id="slide8PhotoFrame"
             className="dossier-card evidence-photo-frame p-2.5 sm:p-3 rotate-1 max-w-[320px] w-full bg-[#fbf5e8] border-2 border-[#1c1917] shadow-xl relative transition-all duration-700"

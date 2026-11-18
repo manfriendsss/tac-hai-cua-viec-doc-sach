@@ -156,7 +156,7 @@ export function initDeckEngine(): () => void {
     // Measure font size for proportional quill scaling
     const compStyle = window.getComputedStyle(textEl);
     const fontSize = parseFloat(compStyle.fontSize) || 24;
-    const scaleRatio = Math.max(0.65, Math.min(1.5, fontSize / 28));
+    const scaleRatio = Math.max(0.65, Math.min(2.5, fontSize / 28));
 
     // Ensure all lines are isolated as .write-line spans so each line reveals strictly left-to-right
     const lineEls = prepareTextLines(textEl);
