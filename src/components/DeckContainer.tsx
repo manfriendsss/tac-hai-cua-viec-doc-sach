@@ -10,14 +10,14 @@ import { Slide8Conclusion } from '../slides/Slide8Conclusion';
 
 export const DeckContainer: React.FC = () => {
   const slideTitles = [
-    { n: 1, title: 'Bìa: Tác Hại Của Việc Đọc Sách' },
-    { n: 2, title: 'Lộ Trình: 5 Giai Đoạn Điều Tra' },
-    { n: 3, title: 'Phần 01: Những Thống Kê Khó Đỡ' },
-    { n: 4, title: 'Phần 02: Đặt Lên Bàn Cân 3 Công Cụ Gây Nghiện' },
-    { n: 5, title: 'Phần 03: 7 "Tác Hại" Kinh Hoàng' },
-    { n: 6, title: 'Phần 04: Vì Sao 90% Bỏ Cuộc Giữa Chừng?' },
-    { n: 7, title: 'Phần 05: 4 Bước "Nhiễm Độc" Sách Đúng Cách' },
-    { n: 8, title: 'Kết Luận: Lời Chúc Phúc Độc Địa & Q&A' }
+    { n: 1, title: 'Cover: The Dangers of Reading Books' },
+    { n: 2, title: 'Roadmap: 30-Minute Warning Plan' },
+    { n: 3, title: 'Part 01: Crazy Numbers & Strange Facts' },
+    { n: 4, title: 'Part 02: Three Dangerous Tools' },
+    { n: 5, title: 'Part 03: 7 Terrible "Dangers" of Reading' },
+    { n: 6, title: 'Part 04: Why Do 90% of Readers Quit Halfway?' },
+    { n: 7, title: 'Part 05: 4 Steps to Get "Infected" Properly' },
+    { n: 8, title: 'Conclusion: An Evil Blessing & Q&A' }
   ];
 
   return (
@@ -57,7 +57,7 @@ export const DeckContainer: React.FC = () => {
                   (window as any).prevSlide();
                 }
               }}
-              title="Lùi (Mũi tên trái / ArrowLeft)"
+              title="Back (Left arrow)"
             >
               <svg viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -76,7 +76,7 @@ export const DeckContainer: React.FC = () => {
                   (window as any).nextSlide();
                 }
               }}
-              title="Tiếp theo (Mũi tên phải / Phím cách)"
+              title="Next (Right arrow / Space)"
             >
               <svg viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -93,7 +93,7 @@ export const DeckContainer: React.FC = () => {
                     (window as any).toggleSlidePicker(e);
                   }
                 }}
-                title="Bấm để chuyển nhanh tới slide bất kỳ"
+                title="Click to jump to any slide"
               >
                 1 / 8
               </span>
@@ -105,7 +105,7 @@ export const DeckContainer: React.FC = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="slide-picker-header">
-                  <span className="slide-picker-title">Chuyển Đến Slide (1 - 8)</span>
+                  <span className="slide-picker-title">Go to Slide (1 - 8)</span>
                   <button
                     className="slide-picker-close"
                     onClick={(e) => {
@@ -113,7 +113,7 @@ export const DeckContainer: React.FC = () => {
                         (window as any).closeSlidePicker(e);
                       }
                     }}
-                    title="Đóng"
+                    title="Close"
                   >
                     ✕
                   </button>
@@ -152,7 +152,7 @@ export const DeckContainer: React.FC = () => {
               (window as any).toggleFullscreen();
             }
           }}
-          title="Toàn màn hình (Phím F)"
+          title="Fullscreen (F key)"
         >
           <svg viewBox="0 0 24 24">
             <path

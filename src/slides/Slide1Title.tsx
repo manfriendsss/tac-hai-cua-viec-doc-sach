@@ -12,11 +12,11 @@ export const Slide1Title: React.FC = () => {
       <div className="flex justify-between items-center z-10 border-b-2 border-[#1c1917] pb-2.5">
         <div className="flex items-center gap-2">
           <span className="font-dossier-code text-xl sm:text-2xl md:text-3xl font-black tracking-wider text-[#1c1917]">
-            FILE NO: #Kos-11-26-PL // CỤC ĐIỀU TRA MẬT VỤ TRI THỨC
+            FILE NO: #Kos-11-26-PL // SECRET BUREAU OF KNOWLEDGE
           </span>
         </div>
         <div className="stamp-top-secret text-xs sm:text-sm">
-          TOP SECRET // CẢNH BÁO NGUY HIỂM
+          TOP SECRET // EMERGENCY WARNING
         </div>
       </div>
 
@@ -35,11 +35,11 @@ export const Slide1Title: React.FC = () => {
               data-pause-between-lines="true"
             >
               <div className="write-line-row">
-                <span className="write-line">TÁC HẠI CỦA</span>
+                <span className="write-line">THE DANGERS OF</span>
               </div>
               <div className="write-line-row">
                 <span className="write-line text-[#b91c1c] underline decoration-[#b91c1c] decoration-8 whitespace-nowrap mt-1">
-                  VIỆC ĐỌC SÁCH!
+                  READING BOOKS!
                 </span>
               </div>
             </h1>
@@ -50,13 +50,13 @@ export const Slide1Title: React.FC = () => {
                 id="slide1Stamp1" 
                 className="stamp-rect-realistic text-sm sm:text-base md:text-lg font-bold opacity-0 shadow-lg"
               >
-                HỒ SƠ TỐI MẬT
+                TOP SECRET FILE
               </div>
               <div 
                 id="slide1Stamp2" 
                 className="stamp-rect-realistic text-sm sm:text-base md:text-lg font-bold opacity-0 shadow-lg"
               >
-                LƯU HÀNH NỘI BỘ
+                INTERNAL USE ONLY
               </div>
             </div>
           </div>
@@ -70,7 +70,7 @@ export const Slide1Title: React.FC = () => {
             {/* Header: Minimal Text, Clean Font */}
             <div className="flex justify-between items-center border-b border-[#1c1917]/30 pb-1.5 mb-2 px-1">
               <span className="font-dossier-code text-sm font-bold text-[#1c1917] tracking-wider">
-                TANG VẬT #01
+                EVIDENCE #01
               </span>
               <span className="stamp-top-secret text-xs">
                 TOP SECRET
@@ -86,7 +86,7 @@ export const Slide1Title: React.FC = () => {
               />
               <div className="absolute bottom-2.5 right-2.5 pointer-events-none">
                 <div className="stamp-top-secret text-xs font-bold stamp-slam-anim bg-[#fef2f2]/95 px-3 py-1 shadow-md border-2 border-[#b91c1c] text-[#b91c1c]">
-                  ĐẶC VỤ FORREST GUMP
+                  AGENT FORREST GUMP
                 </div>
               </div>
             </div>

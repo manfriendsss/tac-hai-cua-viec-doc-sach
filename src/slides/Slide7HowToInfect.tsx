@@ -4,22 +4,22 @@ export const Slide7HowToInfect: React.FC = () => {
   const steps = [
     {
       num: '01',
-      topic: 'CHIẾN THUẬT 5 TRANG',
+      topic: 'THE 5-PAGE RULE',
       color: '#b91c1c'
     },
     {
       num: '02',
-      topic: 'MÓN TRÁNG MIỆNG TRƯỚC MÓN CHÍNH',
+      topic: 'DESSERT FIRST, VEGETABLES LATER',
       color: '#b45309'
     },
     {
       num: '03',
-      topic: 'QUY TẮC 50 TRANG',
+      topic: 'THE 50-PAGE RULE',
       color: '#0369a1'
     },
     {
       num: '04',
-      topic: 'VŨ KHÍ GIAO TIẾP',
+      topic: 'SECRET WEAPONS FOR DEEPTALKS',
       color: '#15803d'
     }
   ];
@@ -35,11 +35,11 @@ export const Slide7HowToInfect: React.FC = () => {
       <div className="flex justify-between items-center z-10 border-b-2 border-[#1c1917] pb-2.5">
         <div className="flex items-center gap-2">
           <span className="font-dossier-code text-sm sm:text-base font-bold tracking-wider text-[#1c1917]">
-            CẨM NANG ĐIỀU TRA: QUY TRÌNH THÂM NHẬP HỆ THẦN KINH
+            FIELD MANUAL: HOW BOOKS ENTER YOUR BRAIN
           </span>
         </div>
         <div className="stamp-classified text-xs sm:text-sm">
-          CLASSIFIED // BÍ KÍP CHO NHỮNG KẺ LIỀU LĨNH
+          CLASSIFIED // FOR BRAVE RISK-TAKERS ONLY
         </div>
       </div>
 
@@ -51,7 +51,7 @@ export const Slide7HowToInfect: React.FC = () => {
           
           <div>
             <h2 className="slide-main-title font-bold text-[#141413] font-dossier-title leading-[1.08] uppercase pen-write-anim">
-              4 Bước Nhiễm Độc Sách
+              4 Steps to Get "Infected"
             </h2>
           </div>
 
@@ -67,7 +67,7 @@ export const Slide7HowToInfect: React.FC = () => {
                   className="dossier-tag text-xs sm:text-sm font-bold flex-shrink-0 text-white px-3 sm:px-3.5 py-1.5 shadow-sm font-dossier-code tracking-wider"
                   style={{ backgroundColor: s.color }}
                 >
-                  BƯỚC {s.num}
+                  STEP {s.num}
                 </span>
                 <div className="flex text-left items-center flex-1 min-w-0">
                   <div 
@@ -91,7 +91,7 @@ export const Slide7HowToInfect: React.FC = () => {
             {/* Clean Header: Minimal Text, Larger Font */}
             <div className="flex justify-between items-center border-b border-[#1c1917]/30 pb-1.5 mb-2 px-1">
               <span className="font-dossier-code text-sm font-bold text-[#1c1917] tracking-wider">
-                HỒ SƠ TÁC CHIẾN
+                OPERATION FILE
               </span>
               <span className="stamp-top-secret text-xs">
                 TOP SECRET

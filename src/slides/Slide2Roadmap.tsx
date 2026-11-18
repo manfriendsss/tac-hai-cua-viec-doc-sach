@@ -2,11 +2,11 @@ import React from 'react';
 
 export const Slide2Roadmap: React.FC = () => {
   const stages = [
-    { step: 1, num: '#01', title: 'Thống kê rùng rợn' },
-    { step: 2, num: '#02', title: '3 vũ khí gây án' },
-    { step: 3, num: '#03', title: '7 tác hại kinh hoàng' },
-    { step: 4, num: '#04', title: '90% thoát nạn' },
-    { step: 5, num: '#05', title: '4 bước trở thành con nghiện' }
+    { step: 1, num: '#01', title: 'Crazy & scary numbers' },
+    { step: 2, num: '#02', title: '3 dangerous tools' },
+    { step: 3, num: '#03', title: '7 terrible dangers' },
+    { step: 4, num: '#04', title: 'Why 90% escape' },
+    { step: 5, num: '#05', title: '4 steps to get infected' }
   ];
 
   return (
@@ -20,11 +20,11 @@ export const Slide2Roadmap: React.FC = () => {
       <div className="flex justify-between items-center z-10 border-b-2 border-[#1c1917] pb-2.5">
         <div className="flex items-center gap-2">
           <span className="font-dossier-code text-sm sm:text-base font-bold tracking-wider text-[#1c1917]">
-            KẾ HOẠCH ĐIỀU TRA: 30 PHÚT SINH TỬ
+            INVESTIGATION PLAN: 30-MINUTE WARNING
           </span>
         </div>
         <div className="stamp-classified text-xs sm:text-sm">
-          CLASSIFIED // 5 GIAI ĐOẠN ĐIỀU TRA
+          CLASSIFIED // 5 PARTS
         </div>
       </div>
 
@@ -36,7 +36,7 @@ export const Slide2Roadmap: React.FC = () => {
           
           <div>
             <h2 className="slide-main-title font-bold text-[#141413] leading-[1.08] font-dossier-title uppercase pen-write-anim">
-              5 Giai Đoạn Vạch Trần Cơn Ác Mộng
+              5 Parts of the Dark Truth
             </h2>
           </div>
 
@@ -70,7 +70,7 @@ export const Slide2Roadmap: React.FC = () => {
             {/* Header: Minimal Text, Clean Font */}
             <div className="flex justify-between items-center border-b border-[#1c1917]/30 pb-1.5 mb-2 px-1">
               <span className="font-dossier-code text-sm font-bold text-[#1c1917] tracking-wider">
-                SƠ ĐỒ PHÁ ÁN
+                CASE MAP
               </span>
               <span className="stamp-top-secret text-xs">
                 CONFIDENTIAL

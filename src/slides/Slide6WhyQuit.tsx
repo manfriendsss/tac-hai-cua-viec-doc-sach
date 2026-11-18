@@ -12,11 +12,11 @@ export const Slide6WhyQuit: React.FC = () => {
       <div className="flex justify-between items-center z-10 border-b-2 border-[#1c1917] pb-2.5">
         <div className="flex items-center gap-2">
           <span className="font-dossier-code text-sm sm:text-base font-bold tracking-wider text-[#1c1917]">
-            HỒ SƠ BẰNG CHỨNG #04: NGHỊCH LÝ THOÁT NẠN
+            EVIDENCE FILE #04: THE LUCKY ESCAPE
           </span>
         </div>
         <div className="stamp-top-secret text-xs sm:text-sm">
-          TOP SECRET // GIẢI MÃ THẤT BẠI
+          TOP SECRET // WHY PEOPLE QUIT
         </div>
       </div>
 
@@ -28,7 +28,7 @@ export const Slide6WhyQuit: React.FC = () => {
           
           <div>
             <h2 className="slide-main-title font-bold text-[#141413] font-dossier-title leading-[1.08] uppercase pen-write-anim">
-              90% Nhân Loại Thoát Nạn
+              Why 90% Quit Halfway
             </h2>
           </div>
 
@@ -42,14 +42,14 @@ export const Slide6WhyQuit: React.FC = () => {
             >
               <div className="flex items-center gap-3.5">
                 <span className="dossier-tag text-xs sm:text-sm font-bold bg-[#b45309] text-white flex-shrink-0">
-                  NGUYÊN NHÂN 01
+                  REASON 01
                 </span>
                 <span className="text-2xl sm:text-3xl md:text-4xl font-black font-dossier-title text-[#b45309] uppercase tracking-wide">
-                  LÀM MÀU TRÍ THỨC
+                  FAKE SMART PERSON
                 </span>
               </div>
               <div className="text-lg sm:text-xl md:text-2xl font-bold text-[#292524] font-typewriter mt-2 pen-write-anim text-left">
-                Hội chứng mua sách để làm màu nhưng không đọc
+                Buying books to look smart, then never reading them
               </div>
             </div>
 
@@ -60,14 +60,14 @@ export const Slide6WhyQuit: React.FC = () => {
             >
               <div className="flex items-center gap-3.5">
                 <span className="dossier-tag text-xs sm:text-sm font-bold bg-[#b91c1c] text-white flex-shrink-0">
-                  NGUYÊN NHÂN 02
+                  REASON 02
                 </span>
                 <span className="text-2xl sm:text-3xl md:text-4xl font-black font-dossier-title text-[#b91c1c] uppercase tracking-wide">
-                  BẪY DOPAMINE
+                  15-SECOND EMPIRE
                 </span>
               </div>
               <div className="text-lg sm:text-xl md:text-2xl font-bold text-[#292524] font-typewriter mt-2 pen-write-anim text-left">
-                Thất bại thảm hại trước video ngắn 15 giây
+                Losing the war against 15-second videos
               </div>
             </div>
 
@@ -78,14 +78,14 @@ export const Slide6WhyQuit: React.FC = () => {
             >
               <div className="flex items-center gap-3.5">
                 <span className="dossier-tag text-xs sm:text-sm font-bold bg-[#0369a1] text-white flex-shrink-0">
-                  NGUYÊN NHÂN 03
+                  REASON 03
                 </span>
                 <span className="text-2xl sm:text-3xl md:text-4xl font-black font-dossier-title text-[#0369a1] uppercase tracking-wide">
-                  NÔ LỆ TRANG SÁCH
+                  SLAVE TO THE BOOK
                 </span>
               </div>
               <div className="text-lg sm:text-xl md:text-2xl font-bold text-[#292524] font-typewriter mt-2 pen-write-anim text-left">
-                Tự biến bản thân thành nô lệ của trang sách
+                Forcing yourself to read every single boring word
               </div>
             </div>
 
@@ -101,7 +101,7 @@ export const Slide6WhyQuit: React.FC = () => {
             {/* Clean Header: Minimal Text, Larger Font */}
             <div className="flex justify-between items-center border-b border-[#1c1917]/30 pb-1.5 mb-2 px-1">
               <span className="font-dossier-code text-sm font-bold text-[#1c1917] tracking-wider">
-                HIỆN TRƯỜNG BỎ CUỘC
+                QUITTING SCENE
               </span>
               <span className="stamp-top-secret text-xs">
                 CASE FAILED
