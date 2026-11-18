@@ -12,11 +12,11 @@ export const Slide8Conclusion: React.FC = () => {
       <div className="flex justify-between items-center z-10 border-b-2 border-[#1c1917] pb-2.5">
         <div className="flex items-center gap-2">
           <span className="font-dossier-code text-sm sm:text-base font-bold tracking-wider text-[#1c1917]">
-            KẾT LUẬN ĐIỀU TRA // VỤ ÁN KHÉP LẠI
+            FINAL REPORT // CASE CLOSED
           </span>
         </div>
         <div className="stamp-top-secret text-xs sm:text-sm font-bold">
-          ĐƯỢC XÁC NHẬN BỞI ĐẶC VỤ FORREST GUMP
+          CONFIRMED BY AGENT FORREST GUMP
         </div>
       </div>
 
@@ -35,17 +35,17 @@ export const Slide8Conclusion: React.FC = () => {
               data-pause-between-lines="true"
             >
               <div className="write-line-row">
-                <span className="write-line">Chúc Bạn Sớm Mắc</span>
+                <span className="write-line">I Hope You Catch</span>
               </div>
               <div className="write-line-row">
-                <span className="write-line">Bệnh Đọc Sách</span>
+                <span className="write-line">the Reading Disease</span>
               </div>
               <div className="write-line-row mt-2">
-                <span className="write-line text-[#b91c1c]">Và Không Bao Giờ</span>
+                <span className="write-line text-[#b91c1c]">And Never</span>
               </div>
               <div className="write-line-row">
                 <span className="write-line text-[#b91c1c] underline decoration-[#b91c1c] decoration-8">
-                  Chữa Khỏi!
+                  Find a Cure!
                 </span>
               </div>
             </h2>
@@ -78,10 +78,10 @@ export const Slide8Conclusion: React.FC = () => {
                   className="stamp-rect-realistic animate-stamp-realistic text-center shadow-lg"
                 >
                   <span className="text-sm sm:text-base md:text-lg font-black tracking-widest uppercase block leading-tight">
-                    VỤ ÁN HOÀN TẤT
+                    CASE CLOSED
                   </span>
                   <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] block text-[#7f1d1d] mt-0.5 border-t border-[#b91c1c]/40 pt-0.5">
-                    CASE CLOSED
+                    FILE #Kos-11-26-PL
                   </span>
                 </div>
               </div>

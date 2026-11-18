@@ -12,11 +12,11 @@ export const Slide3StatsMerged: React.FC = () => {
       <div className="flex justify-between items-center z-10 border-b-2 border-[#1c1917] pb-2.5">
         <div className="flex items-center gap-2">
           <span className="font-dossier-code text-sm sm:text-base font-bold tracking-wider text-[#1c1917]">
-            HỒ SƠ BẰNG CHỨNG #01: NHỮNG CON SỐ BIẾT NÓI
+            EVIDENCE FILE #01: NUMBERS THAT SPEAK
           </span>
         </div>
         <div className="stamp-top-secret text-xs sm:text-sm">
-          TOP SECRET // GIÁM ĐỊNH KHOA HỌC
+          TOP SECRET // SCIENCE REPORT
         </div>
       </div>
 
@@ -28,14 +28,14 @@ export const Slide3StatsMerged: React.FC = () => {
           
           <div>
             <h2 className="slide-main-title font-bold text-[#141413] font-dossier-title leading-[1.08] uppercase pen-write-anim">
-              3 Thống Kê Rùng Rợn
+              3 Crazy Numbers
             </h2>
           </div>
 
           {/* 3 Clean Dossier Cards without Arbitrary Line Breaks */}
           <div className="flex flex-col gap-3.5 mt-1 flex-1">
             
-            {/* Card 1: Bị tước quyền được căng thẳng & Animated Counter to -68% */}
+            {/* Card 1: Lost the right to be stressed & Animated Counter to -68% */}
             <div 
               data-step-card="1"
               className="step-card dossier-card p-5 sm:p-6 flex items-center gap-6 cursor-pointer border-2 border-[#1c1917] flex-1"
@@ -48,7 +48,7 @@ export const Slide3StatsMerged: React.FC = () => {
               </div>
               <div className="text-left flex-1">
                 <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#141413] font-dossier-title leading-snug pen-write-anim">
-                  Bị tước quyền được căng thẳng
+                  You lose the right to get mad
                 </h3>
               </div>
             </div>
@@ -63,22 +63,22 @@ export const Slide3StatsMerged: React.FC = () => {
               </div>
               <div className="text-left flex-1">
                 <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#141413] font-dossier-title leading-snug pen-write-anim">
-                  Hội chứng nghiện mua sách nhưng không đọc
+                  Buying mountains of books, never reading them
                 </h3>
               </div>
             </div>
 
-            {/* Card 3: Bắt buộc phải thọ thêm 2 năm */}
+            {/* Card 3: Forced to live 2 more years */}
             <div 
               data-step-card="3"
               className="step-card dossier-card p-5 sm:p-6 flex items-center gap-6 cursor-pointer border-2 border-[#1c1917] flex-1"
             >
               <div className="font-dossier-title font-bold text-4xl sm:text-5xl md:text-6xl text-[#0369a1] flex-shrink-0 leading-none">
-                +2 NĂM
+                +2 YEARS
               </div>
               <div className="text-left flex-1">
                 <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#141413] font-dossier-title leading-snug pen-write-anim">
-                  Bắt buộc phải thọ thêm 2 năm
+                  You are forced to live 2 years longer
                 </h3>
               </div>
             </div>
@@ -95,7 +95,7 @@ export const Slide3StatsMerged: React.FC = () => {
             {/* Clean Header: Minimal Text, Larger Font */}
             <div className="flex justify-between items-center border-b border-[#1c1917]/30 pb-1.5 mb-2 px-1">
               <span className="font-dossier-code text-sm font-bold text-[#1c1917] tracking-wider">
-                BÁO CÁO Y HỌC
+                MEDICAL REPORT
               </span>
               <span className="stamp-verified text-xs">
                 VERIFIED

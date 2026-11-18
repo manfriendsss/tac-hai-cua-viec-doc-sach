@@ -11,14 +11,14 @@ export function initDeckEngine(): () => void {
   document.querySelectorAll('.slide-leaf-back').forEach((el) => el.remove());
 
   const slideTitles = [
-    'Bìa: Tác Hại Của Việc Đọc Sách',
-    'Lộ Trình: 5 Giai Đoạn Điều Tra',
-    'Phần 01: Những Thống Kê Khó Đỡ',
-    'Phần 02: Đặt Lên Bàn Cân 3 Công Cụ Gây Nghiện',
-    'Phần 03: 7 "Tác Hại" Kinh Hoàng',
-    'Phần 04: Vì Sao 90% Bỏ Cuộc Giữa Chừng?',
-    'Phần 05: 4 Bước "Nhiễm Độc" Sách Đúng Cách',
-    'Kết Luận: Lời Chúc Phúc Độc Địa & Q&A'
+    'Cover: The Dangers of Reading Books',
+    'Roadmap: 30-Minute Warning Plan',
+    'Part 01: Crazy Numbers & Strange Facts',
+    'Part 02: Three Dangerous Tools',
+    'Part 03: 7 Terrible "Dangers" of Reading',
+    'Part 04: Why Do 90% of Readers Quit Halfway?',
+    'Part 05: 4 Steps to Get "Infected" Properly',
+    'Conclusion: An Evil Blessing & Q&A'
   ];
 
   const pageStack = document.getElementById('page-stack');
@@ -67,7 +67,7 @@ export function initDeckEngine(): () => void {
   const titleDisplay = document.getElementById('current-slide-title');
 
   // ==========================================================================
-  // HANDWRITING SYNCHRONIZATION ENGINE: Bút lông vũ và chữ chạy song song thật chậm
+  // HANDWRITING SYNCHRONIZATION ENGINE: quill pen and text move together, slowly
   // ==========================================================================
   let activeHandwriteRaf: number | null = null;
   let activeQuillEl: HTMLElement | null = null;
@@ -271,7 +271,7 @@ export function initDeckEngine(): () => void {
       const totalChars = lines.reduce((acc, l) => acc + l.textLen, 0);
 
       // Card text speed: ~32ms per char
-      // Slide title runs 2x slower: exactly 64ms per char (chạy chậm x2)
+      // Slide title runs 2x slower: exactly 64ms per char
       const cardMsPerChar = 32;
       const titleMsPerChar = cardMsPerChar * 2;
       const msPerChar = isSlideTitle ? titleMsPerChar : cardMsPerChar;
@@ -372,7 +372,7 @@ export function initDeckEngine(): () => void {
             const lineFraction = Math.max(0, Math.min(1, (elapsed - seg.writeStart) / (seg.writeEnd - seg.writeStart)));
             lines[i].el.style.clipPath = `polygon(0 0, ${lineFraction * 100}% 0, ${lineFraction * 100}% 100%, 0 100%)`;
 
-            // Bút theo dòng: ngòi bút lướt chính xác theo từng chữ từ trái qua phải
+            // Quill follows the line: the nib glides over each letter from left to right
             const currLine = lines[i];
             const currentX = currLine.startX + lineFraction * currLine.width;
             const bobY = Math.sin(lineFraction * Math.PI * 16) * 1.8;
@@ -615,7 +615,7 @@ export function initDeckEngine(): () => void {
     stamp1.style.opacity = '0';
     stamp2.style.opacity = '0';
 
-    // Stamp 1: HỒ SƠ TỐI MẬT (slams first)
+    // Stamp 1: TOP SECRET FILE (slams first)
     setTimeout(() => {
       const endAngle1 = (Math.random() * 4 - 8).toFixed(1); // -8deg to -4deg
       const startAngle1 = (parseFloat(endAngle1) - 10).toFixed(1);
@@ -638,7 +638,7 @@ export function initDeckEngine(): () => void {
       }
     }, 120);
 
-    // Stamp 2: LƯU HÀNH NỘI BỘ (slams 450ms after stamp 1)
+    // Stamp 2: INTERNAL USE ONLY (slams 450ms after stamp 1)
     setTimeout(() => {
       const endAngle2 = (Math.random() * 4 + 4).toFixed(1); // +4deg to +8deg
       const startAngle2 = (parseFloat(endAngle2) - 10).toFixed(1);
@@ -739,11 +739,11 @@ export function initDeckEngine(): () => void {
   }
 
   // ==========================================================================
-  // REALISTIC PAGE CURL: lật trang như sách thật
-  // Góc dưới-phải C=(W,H) được kéo theo cung tròn lên trên rồi sang trái tới (-W,H).
-  // Nếp gấp = đường trung trực của C và điểm kéo P. Phần trang vượt qua nếp gấp
-  // bị cắt khỏi mặt trước và hiện lại dưới dạng mặt sau (phản chiếu qua nếp gấp).
-  // Ràng buộc |P-(0,H)| <= W và |P-(0,0)| <= sqrt(W²+H²) đảm bảo 2 góc trái luôn cố định.
+  // REALISTIC PAGE CURL: turns the page like a real book
+  // The bottom-right corner C=(W,H) is pulled along an arc, up and then left to (-W,H).
+  // The fold line is the perpendicular bisector of C and the drag point P. The part of the page
+  // beyond the fold is clipped from the front and shown as the back (mirrored across the fold).
+  // Constraints |P-(0,H)| <= W and |P-(0,0)| <= sqrt(W²+H²) keep both left corners fixed.
   // ==========================================================================
   const PAGE_CURL_DURATION = 1100;
   let activeCurlCleanup: (() => void) | null = null;

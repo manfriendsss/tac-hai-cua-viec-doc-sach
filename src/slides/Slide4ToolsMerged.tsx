@@ -12,11 +12,11 @@ export const Slide4ToolsMerged: React.FC = () => {
       <div className="flex justify-between items-center z-10 border-b-2 border-[#1c1917] pb-2.5">
         <div className="flex items-center gap-2">
           <span className="font-dossier-code text-sm sm:text-base font-bold tracking-wider text-[#1c1917]">
-            HỒ SƠ BẰNG CHỨNG #02: CÔNG CỤ PHÁT TÁN ĐỘC HẠI
+            EVIDENCE FILE #02: THREE DANGEROUS TOOLS
           </span>
         </div>
         <div className="stamp-classified text-xs sm:text-sm">
-          CONFIDENTIAL // GIÁM ĐỊNH VŨ KHÍ
+          CONFIDENTIAL // WEAPONS REPORT
         </div>
       </div>
 
@@ -28,28 +28,28 @@ export const Slide4ToolsMerged: React.FC = () => {
           
           <div>
             <h2 className="slide-main-title font-bold text-[#141413] font-dossier-title leading-[1.08] uppercase pen-write-anim">
-              3 Vũ Khí Gây Án
+              3 Dangerous Tools
             </h2>
           </div>
 
           {/* 3 Step Cards with Prominent Large Category Titles Inline with Badges */}
           <div className="flex flex-col gap-3.5 mt-1 flex-1">
             
-            {/* Medium 1: Sách giấy */}
+            {/* Medium 1: Paper book */}
             <div 
               data-step-card="1"
               className="step-card dossier-card p-5 sm:p-5.5 flex flex-col justify-center cursor-pointer border-2 border-[#1c1917] flex-1 min-h-[105px]"
             >
               <div className="flex items-center gap-3.5">
                 <span className="dossier-tag text-xs sm:text-sm font-bold bg-[#b45309] text-white flex-shrink-0">
-                  VŨ KHÍ #01
+                  WEAPON #01
                 </span>
                 <span className="text-2xl sm:text-3xl md:text-4xl font-black font-dossier-title text-[#b45309] uppercase tracking-wide">
-                  SÁCH GIẤY
+                  PAPER BOOK
                 </span>
               </div>
               <div className="text-lg sm:text-xl md:text-2xl font-bold text-[#292524] font-typewriter mt-2 pen-write-anim text-left">
-                Mùi giấy gây ảo giác, vác tạ nặng trong balo
+                Addictive smell, free gym weights in your backpack
               </div>
             </div>
 
@@ -60,14 +60,14 @@ export const Slide4ToolsMerged: React.FC = () => {
             >
               <div className="flex items-center gap-3.5">
                 <span className="dossier-tag text-xs sm:text-sm font-bold bg-[#0369a1] text-white flex-shrink-0">
-                  VŨ KHÍ #02
+                  WEAPON #02
                 </span>
                 <span className="text-2xl sm:text-3xl md:text-4xl font-black font-dossier-title text-[#0369a1] uppercase tracking-wide">
-                  EBOOK
+                  E-BOOK
                 </span>
               </div>
               <div className="text-lg sm:text-xl md:text-2xl font-bold text-[#292524] font-typewriter mt-2 pen-write-anim text-left">
-                Che giấu thư viện, hết pin đúng đoạn cao trào
+                A library in your pocket, "Low Battery!" on the final page
               </div>
             </div>
 
@@ -78,14 +78,14 @@ export const Slide4ToolsMerged: React.FC = () => {
             >
               <div className="flex items-center gap-3.5">
                 <span className="dossier-tag text-xs sm:text-sm font-bold bg-[#15803d] text-white flex-shrink-0">
-                  VŨ KHÍ #03
+                  WEAPON #03
                 </span>
                 <span className="text-2xl sm:text-3xl md:text-4xl font-black font-dossier-title text-[#15803d] uppercase tracking-wide">
-                  SÁCH NÓI
+                  AUDIOBOOK
                 </span>
               </div>
               <div className="text-lg sm:text-xl md:text-2xl font-bold text-[#292524] font-typewriter mt-2 pen-write-anim text-left">
-                Liều thuốc mê cực mạnh khi rửa bát và lái xe
+                A strong sleeping pill while you wash dishes or drive
               </div>
             </div>
 
@@ -101,7 +101,7 @@ export const Slide4ToolsMerged: React.FC = () => {
             {/* Clean Header: Minimal Text, Larger Font */}
             <div className="flex justify-between items-center border-b border-[#1c1917]/30 pb-1.5 mb-2 px-1">
               <span className="font-dossier-code text-sm font-bold text-[#1c1917] tracking-wider">
-                GIÁM ĐỊNH TANG VẬT #03
+                EVIDENCE REPORT #03
               </span>
               <span className="stamp-top-secret text-xs">
                 TOP SECRET

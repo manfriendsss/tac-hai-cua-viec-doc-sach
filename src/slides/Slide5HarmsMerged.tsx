@@ -2,13 +2,13 @@ import React from 'react';
 
 export const Slide5HarmsMerged: React.FC = () => {
   const harms = [
-    { id: 1, title: 'Ngủ quá sâu, ngủ hoài không tỉnh' },
-    { id: 2, title: 'Tăng hiểu biết vượt mức cho phép' },
-    { id: 3, title: 'Không thể dùng hết vốn từ vựng' },
-    { id: 4, title: 'Duy trì trí tưởng tượng quá phong phú' },
-    { id: 5, title: 'Phá hoại tài chính và thời gian' },
-    { id: 6, title: 'Mất đi cơ hội trở thành kẻ trộm' },
-    { id: 7, title: 'Không ngừng đi vệ sinh' }
+    { id: 1, title: 'Sleeping so well you sleep forever' },
+    { id: 2, title: 'Knowing too much' },
+    { id: 3, title: 'A dangerously big vocabulary' },
+    { id: 4, title: 'A wild, uncontrollable imagination' },
+    { id: 5, title: 'A domino disaster for money & free time' },
+    { id: 6, title: 'You can never become a thief' },
+    { id: 7, title: 'Hiding in the bathroom all day' }
   ];
 
   return (
@@ -25,11 +25,11 @@ export const Slide5HarmsMerged: React.FC = () => {
       <div className="flex justify-between items-center z-10 border-b-2 border-[#1c1917] pb-2.5">
         <div className="flex items-center gap-2">
           <span className="font-dossier-code text-sm sm:text-base font-bold tracking-wider text-[#1c1917]">
-            HỒ SƠ BẰNG CHỨNG #03: 7 TÁC HẠI KINH HOÀNG
+            EVIDENCE FILE #03: 7 TERRIBLE DANGERS
           </span>
         </div>
         <div className="stamp-top-secret text-xs sm:text-sm">
-          TOP SECRET // TRỌNG TÂM VỤ ÁN
+          TOP SECRET // MAIN CASE
         </div>
       </div>
 
@@ -41,7 +41,7 @@ export const Slide5HarmsMerged: React.FC = () => {
           
           <div>
             <h2 className="slide-main-title font-bold text-[#141413] font-dossier-title leading-[1.08] uppercase pen-write-anim">
-              7 Tác Hại Khó Lường
+              7 Terrible Dangers
             </h2>
           </div>
 
@@ -81,7 +81,7 @@ export const Slide5HarmsMerged: React.FC = () => {
             {/* Clean Header: Minimal Text, Larger Font */}
             <div className="flex justify-between items-center border-b border-[#1c1917]/30 pb-1.5 mb-2 px-1">
               <span className="font-dossier-code text-sm font-bold text-[#1c1917] tracking-wider">
-                BẢN VẼ GIẢI PHẪU
+                ANATOMY DRAWING
               </span>
               <span className="stamp-top-secret text-xs">
                 CONFIDENTIAL
