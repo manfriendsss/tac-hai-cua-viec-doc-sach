@@ -1315,6 +1315,7 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   max-width: 100% !important;
   position: relative !important;
   vertical-align: top !important;
+  white-space: nowrap !important;
   will-change: clip-path;
 }
 

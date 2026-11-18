@@ -29,17 +29,23 @@ export const Slide8Conclusion: React.FC = () => {
           className="slide-8-title-col col-span-12 md:col-span-8 flex flex-col justify-center gap-4 text-left transition-all duration-700"
         >
           <div>
-            {/* Giant Punchy Spotlight Blessing (Enlarged 150%) */}
+            {/* Giant Punchy Spotlight Blessing (Enlarged 150%, 4 Sequential Non-Wrapping Lines) */}
             <h2 
-              className="slide-8-hero-title font-black text-[#141413] leading-[1.05] font-dossier-title tracking-tight uppercase pen-write-anim"
+              className="slide-8-hero-title font-black text-[#141413] leading-[1.12] font-dossier-title tracking-tight uppercase pen-write-anim"
               data-pause-between-lines="true"
             >
               <div className="write-line-row">
-                <span className="write-line">Chúc Bạn Sớm Mắc Bệnh Đọc Sách</span>
+                <span className="write-line">Chúc Bạn Sớm Mắc</span>
               </div>
               <div className="write-line-row">
-                <span className="write-line text-[#b91c1c] underline decoration-[#b91c1c] decoration-8 mt-2">
-                  Và Không Bao Giờ Chữa Khỏi!
+                <span className="write-line">Bệnh Đọc Sách</span>
+              </div>
+              <div className="write-line-row mt-2">
+                <span className="write-line text-[#b91c1c]">Và Không Bao Giờ</span>
+              </div>
+              <div className="write-line-row">
+                <span className="write-line text-[#b91c1c] underline decoration-[#b91c1c] decoration-8">
+                  Chữa Khỏi!
                 </span>
               </div>
             </h2>

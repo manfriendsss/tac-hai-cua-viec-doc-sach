@@ -239,8 +239,8 @@ export function initDeckEngine(): () => void {
         totalWritingTime = Math.max(700, Math.min(1800, totalWritingTime));
       }
 
-      const returnDuration = isSlideTitle ? 180 : 120;
-      const dramaticPauseDuration = 650;
+      const returnDuration = isSlideTitle ? 200 : 120;
+      const dramaticPauseDuration = 550;
 
       interface LineSchedule {
         lineIdx: number;
@@ -260,7 +260,9 @@ export function initDeckEngine(): () => void {
 
         let returnEnd: number | undefined = undefined;
         if (i < lines.length - 1) {
-          const isDramaticPauseLine = hasDramaticPause && i === 0;
+          const isDramaticPauseLine = hasDramaticPause && (
+            lines.length === 2 ? i === 0 : i === 1
+          );
           const retDuration = isDramaticPauseLine ? dramaticPauseDuration : returnDuration;
           returnEnd = schedTime + retDuration;
           schedTime = returnEnd;
@@ -351,7 +353,7 @@ export function initDeckEngine(): () => void {
             const currLine = lines[i];
             const nextLine = lines[i + 1];
 
-            if (hasDramaticPause && i === 0) {
+            if (hasDramaticPause && (lines.length === 2 ? i === 0 : i === 1)) {
               const hoverBob = Math.sin(p * Math.PI * 8) * 3 - 3;
               const hoverTilt = -18 + Math.sin(p * Math.PI * 6) * 4;
               const endX = currLine.startX + currLine.width;
