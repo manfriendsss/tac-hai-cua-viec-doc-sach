@@ -18,7 +18,48 @@ export function initDeckEngine(): () => void {
     'Kết Luận: Lời Chúc Phúc Độc Địa & Q&A'
   ];
 
-  const progressBar = document.getElementById('progress-bar');
+  const pageStack = document.getElementById('page-stack');
+
+  // Remaining-pages stack on the right edge. With a duration, the layer that leaves
+  // (or comes back) animates over the page-flip so it thins *while* the page turns.
+  function syncPageStack(durationMs: number) {
+    if (!pageStack) return;
+    const remaining = totalSlides - currentSlide;
+    const live = Array.from(pageStack.children).filter(
+      (el) => !el.classList.contains('leaving')
+    ) as HTMLElement[];
+    const ease = 'cubic-bezier(0.65, 0, 0.35, 1)';
+
+    while (live.length < remaining) {
+      const edge = document.createElement('div');
+      edge.className = 'page-stack-edge';
+      if (durationMs > 0) {
+        edge.style.width = '0px';
+        edge.style.opacity = '0';
+        pageStack.appendChild(edge);
+        void edge.offsetWidth;
+        edge.style.transition = `width ${durationMs}ms ${ease}, opacity ${durationMs}ms ${ease}`;
+        edge.style.width = '';
+        edge.style.opacity = '';
+      } else {
+        pageStack.appendChild(edge);
+      }
+      live.push(edge);
+    }
+
+    while (live.length > remaining) {
+      const edge = live.pop() as HTMLElement;
+      if (durationMs > 0) {
+        edge.classList.add('leaving');
+        edge.style.transition = `width ${durationMs}ms ${ease}, opacity ${durationMs}ms ${ease}`;
+        edge.style.width = '0px';
+        edge.style.opacity = '0';
+        setTimeout(() => edge.remove(), durationMs);
+      } else {
+        edge.remove();
+      }
+    }
+  }
   const counter = document.getElementById('counter');
   const titleDisplay = document.getElementById('current-slide-title');
 
@@ -647,11 +688,7 @@ export function initDeckEngine(): () => void {
   }
 
   function updateUI() {
-    // 1. Update progress bar
-    if (progressBar) {
-      const pct = totalSlides > 1 ? ((currentSlide - 1) / (totalSlides - 1)) * 100 : 100;
-      progressBar.style.width = `${pct}%`;
-    }
+    // 1. Page stack is synced by goToSlide (animated with the flip) and on initial load
 
     // 2. Update counter text
     if (counter) {
@@ -696,6 +733,184 @@ export function initDeckEngine(): () => void {
     }
   }
 
+  // ==========================================================================
+  // REALISTIC PAGE CURL: lật trang như sách thật
+  // Góc dưới-phải C=(W,H) được kéo theo cung tròn lên trên rồi sang trái tới (-W,H).
+  // Nếp gấp = đường trung trực của C và điểm kéo P. Phần trang vượt qua nếp gấp
+  // bị cắt khỏi mặt trước và hiện lại dưới dạng mặt sau (phản chiếu qua nếp gấp).
+  // Ràng buộc |P-(0,H)| <= W và |P-(0,0)| <= sqrt(W²+H²) đảm bảo 2 góc trái luôn cố định.
+  // ==========================================================================
+  const PAGE_CURL_DURATION = 1100;
+  let activeCurlCleanup: (() => void) | null = null;
+
+  type Pt = [number, number];
+
+  // Clip the page rectangle by the fold line; keepBeyond = side containing corner C
+  function clipPageByFold(W: number, H: number, mx: number, my: number, nx: number, ny: number, keepBeyond: boolean): Pt[] {
+    const rect: Pt[] = [[0, 0], [W, 0], [W, H], [0, H]];
+    const side = (p: Pt) => {
+      const v = (p[0] - mx) * nx + (p[1] - my) * ny;
+      return keepBeyond ? v : -v;
+    };
+    const out: Pt[] = [];
+    for (let i = 0; i < 4; i++) {
+      const a = rect[i];
+      const b = rect[(i + 1) % 4];
+      const fa = side(a);
+      const fb = side(b);
+      if (fa >= 0) out.push(a);
+      if ((fa >= 0) !== (fb >= 0)) {
+        const k = fa / (fa - fb);
+        out.push([a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k]);
+      }
+    }
+    return out;
+  }
+
+  function toClipPolygon(pts: Pt[]): string {
+    if (pts.length < 3) return 'polygon(0px 0px, 0px 0px, 0px 0px)';
+    return `polygon(${pts.map((p) => `${p[0].toFixed(2)}px ${p[1].toFixed(2)}px`).join(', ')})`;
+  }
+
+  // Position a long gradient strip whose left edge lies on the fold line, pointing along `angle`
+  function placeFoldStrip(el: HTMLElement, mx: number, my: number, angle: number, len: number, halfH: number) {
+    el.style.width = `${len}px`;
+    el.style.height = `${halfH * 2}px`;
+    el.style.transformOrigin = `0px ${halfH}px`;
+    el.style.transform = `translate(${mx}px, ${my - halfH}px) rotate(${angle}rad)`;
+  }
+
+  function easeInOutPage(t: number): number {
+    // Slow lift at the start, confident sweep through the middle, gentle settle
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function runPageCurl(turningEl: HTMLElement, underEl: HTMLElement, forward: boolean, onDone: () => void) {
+    if (activeCurlCleanup) activeCurlCleanup();
+
+    const wrapper = turningEl.parentElement as HTMLElement;
+    const W = wrapper.offsetWidth;
+    const H = wrapper.offsetHeight;
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    underEl.classList.add('active', 'flip-under');
+    turningEl.classList.add('active', 'flip-turning');
+
+    const castShadow = document.createElement('div');
+    castShadow.className = 'flip-cast-shadow';
+    const flapWrap = document.createElement('div');
+    flapWrap.className = 'flip-flap-wrap';
+    const flap = document.createElement('div');
+    flap.className = 'flip-flap';
+    flap.style.width = `${W}px`;
+    flap.style.height = `${H}px`;
+    const flapShade = document.createElement('div');
+    flapShade.className = 'flip-flap-shade';
+    flap.appendChild(flapShade);
+    flapWrap.appendChild(flap);
+    wrapper.appendChild(castShadow);
+    wrapper.appendChild(flapWrap);
+
+    const diag = Math.hypot(W, H);
+    const lift = Math.min(H * 0.42, W * 0.9); // how high the corner travels
+    let raf: number | null = null;
+    let finished = false;
+
+    function render(p: number) {
+      const theta = Math.PI * p;
+      const px = W * Math.cos(theta);
+      const py = H - lift * Math.sin(theta);
+      const dx = W - px;
+      const dy = H - py;
+      const dist = Math.hypot(dx, dy);
+
+      if (dist < 0.5) {
+        turningEl.style.clipPath = 'none';
+        flapWrap.style.opacity = '0';
+        castShadow.style.opacity = '0';
+        return;
+      }
+      flapWrap.style.opacity = '1';
+      castShadow.style.opacity = '1';
+
+      const nx = dx / dist;
+      const ny = dy / dist;
+      const mx = (W + px) / 2;
+      const my = (H + py) / 2;
+      const d = dist / 2; // distance from fold line to the lifted corner
+      const angle = Math.atan2(ny, nx);
+      const strength = Math.pow(Math.sin(Math.PI * Math.min(1, Math.max(0, p))), 0.55);
+
+      // 1. Front of turning page: only the part that has not been folded
+      turningEl.style.clipPath = toClipPolygon(clipPageByFold(W, H, mx, my, nx, ny, false));
+
+      // 2. Back of the page: the folded part, mirrored across the fold line
+      flap.style.clipPath = toClipPolygon(clipPageByFold(W, H, mx, my, nx, ny, true));
+      const k = 2 * (mx * nx + my * ny);
+      const a = 1 - 2 * nx * nx;
+      const b = -2 * nx * ny;
+      const dd = 1 - 2 * ny * ny;
+      flap.style.transform = `matrix(${a}, ${b}, ${b}, ${dd}, ${k * nx}, ${k * ny})`;
+
+      // Curvature lighting on the back of the page (in its own local coordinates)
+      const hl = Math.max(6, Math.min(36, d * 0.08));
+      placeFoldStrip(flapShade, mx, my, angle, diag * 1.5, diag);
+      flapShade.style.background = `linear-gradient(to right,
+        rgba(70, 45, 20, 0.38) 0px,
+        rgba(255, 252, 240, 0.55) ${hl}px,
+        rgba(255, 252, 240, 0.12) ${hl * 3}px,
+        rgba(90, 65, 35, 0) ${Math.max(hl * 4, d * 0.55)}px,
+        rgba(90, 65, 35, 0.16) ${Math.max(hl * 5, d * 1.3)}px)`;
+
+      // Soft shadow the lifted flap casts onto the front page
+      const blur = 6 + 22 * strength;
+      flapWrap.style.filter = `drop-shadow(${(-nx * 4 * strength).toFixed(2)}px ${(-ny * 4 * strength + 3 * strength).toFixed(2)}px ${blur.toFixed(1)}px rgba(30, 18, 8, ${(0.5 * strength).toFixed(3)}))`;
+
+      // 3. Cast shadow on the page underneath, hugging the fold line
+      const shadowW = Math.max(18, Math.min(160, d * 0.45)) * (0.4 + 0.6 * strength);
+      placeFoldStrip(castShadow, mx, my, angle, shadowW, diag);
+      castShadow.style.background = `linear-gradient(to right,
+        rgba(25, 15, 5, ${(0.55 * strength).toFixed(3)}) 0%,
+        rgba(25, 15, 5, ${(0.22 * strength).toFixed(3)}) 35%,
+        rgba(25, 15, 5, 0) 100%)`;
+    }
+
+    function finish() {
+      if (finished) return;
+      finished = true;
+      if (raf !== null) cancelAnimationFrame(raf);
+      castShadow.remove();
+      flapWrap.remove();
+      turningEl.style.clipPath = '';
+      turningEl.classList.remove('flip-turning');
+      underEl.classList.remove('flip-under');
+      activeCurlCleanup = null;
+      onDone();
+    }
+    activeCurlCleanup = finish;
+
+    if (reduceMotion || W === 0 || H === 0) {
+      finish();
+      return;
+    }
+
+    // Paint the first frame synchronously so nothing flashes before the animation starts
+    render(forward ? 0 : 1);
+
+    const start = performance.now();
+    function frame(now: number) {
+      const t = Math.min(1, (now - start) / PAGE_CURL_DURATION);
+      const e = easeInOutPage(t);
+      render(forward ? e : 1 - e);
+      if (t < 1) {
+        raf = requestAnimationFrame(frame);
+      } else {
+        finish();
+      }
+    }
+    raf = requestAnimationFrame(frame);
+  }
+
   function goToSlide(n: number, direction?: 'forward' | 'backward') {
     if (n < 1) n = 1;
     if (n > totalSlides) n = totalSlides;
@@ -716,33 +931,18 @@ export function initDeckEngine(): () => void {
     isPageFlipping = true;
 
     if (oldSlideEl && newSlideEl) {
-      // Clean previous flip classes
-      document.querySelectorAll('.slide').forEach((s) => {
-        s.classList.remove(
-          'page-flip-exit-forward',
-          'page-flip-enter-forward',
-          'page-flip-exit-backward',
-          'page-flip-enter-backward'
-        );
-      });
+      // Forward: the current page curls away revealing the next one underneath.
+      // Backward: the previous page curls back down over the current one.
+      const forward = dir === 'forward';
+      const turningEl = (forward ? oldSlideEl : newSlideEl) as HTMLElement;
+      const underEl = (forward ? newSlideEl : oldSlideEl) as HTMLElement;
 
-      if (dir === 'forward') {
-        oldSlideEl.classList.add('page-flip-exit-forward');
-        newSlideEl.classList.add('page-flip-enter-forward', 'active');
-      } else {
-        oldSlideEl.classList.add('page-flip-exit-backward');
-        newSlideEl.classList.add('page-flip-enter-backward', 'active');
-      }
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      syncPageStack(reduceMotion ? 0 : PAGE_CURL_DURATION);
 
-      setTimeout(() => {
+      runPageCurl(turningEl, underEl, forward, () => {
         document.querySelectorAll('.slide').forEach((s) => {
           const sNum = parseInt(s.getAttribute('data-slide') || '0', 10);
-          s.classList.remove(
-            'page-flip-exit-forward',
-            'page-flip-enter-forward',
-            'page-flip-exit-backward',
-            'page-flip-enter-backward'
-          );
           if (sNum === currentSlide) {
             s.classList.add('active');
           } else {
@@ -754,7 +954,7 @@ export function initDeckEngine(): () => void {
           triggerSlide8StampAnimation();
         }
         updateStepVisuals(getCurrentSlideEl());
-      }, 860);
+      });
     } else {
       const slides = document.querySelectorAll('.slide');
       slides.forEach((slide) => {
@@ -766,6 +966,7 @@ export function initDeckEngine(): () => void {
         }
       });
       isPageFlipping = false;
+      syncPageStack(0);
     }
 
     updateUI();
@@ -930,38 +1131,6 @@ export function initDeckEngine(): () => void {
   window.addEventListener('keydown', handleKeyDown);
   document.addEventListener('click', handleDocClick);
 
-  // Attach antique manuscript leaf-back to each slide (Verso face for 3D page flip)
-  const bookBackQuotes = [
-    '"Sách là chất gây nghiện nguy hiểm nhất lịch sử nhân loại."',
-    '"Lộ trình 30 phút vạch trần cơn ác mộng đọc sách."',
-    '"Mua sách và đọc sách là hai bộ môn thể thao độc lập."',
-    '"Vác 2 cuốn sách giấy chẳng khác nào tập tạ miễn phí."',
-    '"Người đọc sách không bao giờ ăn trộm, và kẻ trộm không bao giờ đọc sách."',
-    '"Đọc sách đến trang thứ 3, não tự động ngắt cầu dao quá tải."',
-    '"Quy tắc 5 trang: Thực hiện cú lừa thế kỷ với chính não bộ."',
-    '"Chúc bạn sớm mắc bệnh đọc sách và không bao giờ chữa khỏi!"'
-  ];
-
-  document.querySelectorAll<HTMLElement>('.slide').forEach((slide) => {
-    if (!slide.querySelector('.slide-leaf-back')) {
-      const slideNum = parseInt(slide.getAttribute('data-slide') || '1', 10);
-      const quote = bookBackQuotes[slideNum - 1] || bookBackQuotes[0];
-      const leafBack = document.createElement('div');
-      leafBack.className = 'slide-leaf-back';
-      leafBack.innerHTML = `
-        <div class="leaf-back-inner">
-          <div class="leaf-back-grain"></div>
-          <div class="leaf-back-ornament">❧ ❖ ☙</div>
-          <div class="leaf-back-header">KỶ YẾU ĐIỀU TRA ĐẶC BIỆT</div>
-          <div class="leaf-back-title">TÁC HẠI CỦA VIỆC ĐỌC SÁCH</div>
-          <div class="leaf-back-quote">${quote}</div>
-          <div class="leaf-back-page-num">— MẶT SAU TRANG ${slideNum} / ${totalSlides} —</div>
-        </div>
-      `;
-      slide.appendChild(leafBack);
-    }
-  });
-
   // Drag / Swipe Gestures on Slides (Natural Page Turn Drag)
   let touchStartX = 0;
   let touchStartY = 0;
@@ -1020,10 +1189,12 @@ export function initDeckEngine(): () => void {
     }
   });
 
+  syncPageStack(0);
   updateUI();
 
   return () => {
     stopCurrentHandwriting();
+    if (activeCurlCleanup) activeCurlCleanup();
     window.removeEventListener('keydown', handleKeyDown);
     document.removeEventListener('click', handleDocClick);
     if (slidesWrapper) {
