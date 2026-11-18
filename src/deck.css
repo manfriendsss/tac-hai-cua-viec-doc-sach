@@ -172,7 +172,7 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   border: 2px solid var(--dossier-ink-dark) !important;
   border-radius: 8px !important;
   box-shadow: 3px 3px 0px rgba(28, 25, 23, 0.85) !important;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
 }
 
@@ -371,7 +371,7 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   padding: 0 5px;
   border-radius: 2px;
   user-select: none;
-  transition: all 0.25s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
   font-family: 'Courier Prime', monospace;
 }
 .redacted-bar:hover {
@@ -542,8 +542,6 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   visibility: hidden;
   pointer-events: none;
   transform-origin: 0% 50% !important; /* STRICTLY ANCHORED AT LEFT SPINE (Top-Left and Bottom-Left corners remain permanently fixed) */
-  transform-style: preserve-3d !important;
-  will-change: transform, opacity, filter, box-shadow;
   transition: opacity 0.2s ease;
   z-index: 1;
 }
@@ -642,7 +640,6 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   pointer-events: none !important;
   transition: none !important;
   background-color: var(--dossier-paper) !important;
-  will-change: clip-path;
 }
 
 /* Shadow the turning sheet casts on the page underneath, along the fold line */
@@ -652,16 +649,17 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   top: 0;
   z-index: 25;
   pointer-events: none;
-  will-change: transform, background;
+  will-change: transform;
 }
 
-/* Wrapper for the back of the sheet: drop-shadow casts the flap edge onto the front */
+/* Wrapper for the back of the sheet: a fixed drop-shadow casts the flap edge onto the front.
+   Kept constant on purpose: changing a filter every frame re-rasterizes the whole layer. */
 .flip-flap-wrap {
   position: absolute;
   inset: 0;
   z-index: 40;
   pointer-events: none;
-  will-change: filter;
+  filter: drop-shadow(0 4px 14px rgba(30, 18, 8, 0.4));
 }
 
 /* Back of the sheet */
@@ -676,7 +674,7 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
     radial-gradient(rgba(120, 100, 75, 0.12) 1px, transparent 0),
     linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(170, 150, 120, 0.2) 100%);
   background-size: 16px 16px, 100% 100%;
-  will-change: transform, clip-path;
+  will-change: transform;
 }
 
 /* Paper curvature near the fold: dark crease, specular highlight, darker toward the edge */
@@ -783,7 +781,7 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   cursor: pointer;
   pointer-events: auto !important;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .standalone-fullscreen-btn svg {
@@ -813,7 +811,7 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   justify-content: center;
   color: #e6dcc8;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .icon-btn:hover {
@@ -856,7 +854,7 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   cursor: pointer;
   box-shadow: 3px 3px 0px #0c0a09;
   user-select: none;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   letter-spacing: 1px;
 }
 
@@ -892,7 +890,6 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity, box-shadow;
 }
 
 .step-card.step-hidden {
@@ -938,7 +935,6 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
 .pen-write-anim {
   position: relative;
   display: inline-block;
-  will-change: clip-path;
 }
 
 /* Individual line rows and isolated inline-block text spans */
@@ -956,7 +952,6 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   position: relative !important;
   vertical-align: top !important;
   white-space: nowrap !important;
-  will-change: clip-path;
 }
 
 /* Initial hidden state for unreached steps */
@@ -980,7 +975,7 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   height: 52px;
   pointer-events: none;
   z-index: 100;
-  will-change: left, top, transform, opacity;
+  will-change: transform, opacity;
   transform-origin: 5px 48px; /* Metallic nib tip pivot point */
 }
 
@@ -1085,7 +1080,7 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   color: var(--comic-ink);
   cursor: pointer;
   text-align: center;
-  transition: all 0.1s ease;
+  transition: background-color 0.1s ease, box-shadow 0.1s ease;
 }
 
 .slide-picker-btn:hover {
@@ -1161,18 +1156,17 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   visibility: visible !important;
   display: flex !important;
   transform: translateX(0) scale(1);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #slide-1[data-current-step="1"] .slide-1-image-col {
   grid-column: span 4 / span 12 !important;
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #slide-1[data-current-step="1"] .evidence-photo-frame {
   max-width: 290px !important;
   transform: scale(1) rotate(1deg) !important;
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ==========================================================================
@@ -1210,18 +1204,17 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   visibility: visible !important;
   display: flex !important;
   transform: translateX(0) scale(1);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #slide-8[data-current-step="1"] .slide-8-image-col {
   grid-column: span 4 / span 12 !important;
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #slide-8[data-current-step="1"] .evidence-photo-frame {
   max-width: 290px !important;
   transform: scale(1) rotate(1deg) !important;
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ==========================================================================
@@ -1303,13 +1296,14 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   pointer-events: none;
   z-index: 99990 !important;
   transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
 }
 
 #slide-5:not([data-current-step="0"]):not([data-current-step="8"]) .slide5-spotlight-backdrop {
   opacity: 1 !important;
   pointer-events: auto !important;
+  /* Blur only while a card is spotlighted: an always-on full-screen backdrop-filter is expensive */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 /* Stable placement slots for Slide 5 cards */
