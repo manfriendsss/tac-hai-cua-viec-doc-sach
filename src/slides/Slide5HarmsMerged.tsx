@@ -13,11 +13,14 @@ export const Slide5HarmsMerged: React.FC = () => {
 
   return (
     <div 
-      className="slide dossier-paper text-[#1c1917] px-8 py-5 md:px-12 md:py-6 font-typewriter h-full justify-between" 
+      className="slide dossier-paper text-[#1c1917] px-8 py-5 md:px-12 md:py-6 font-typewriter h-full justify-between relative overflow-hidden" 
       data-slide="5" 
-      data-steps="7"
+      data-steps="8"
       id="slide-5"
     >
+      {/* Cinematic Spotlight Vignette Backdrop */}
+      <div className="slide5-spotlight-backdrop"></div>
+
       {/* Top Secret Header */}
       <div className="flex justify-between items-center z-10 border-b-2 border-[#1c1917] pb-2.5">
         <div className="flex items-center gap-2">
@@ -31,7 +34,7 @@ export const Slide5HarmsMerged: React.FC = () => {
       </div>
 
       {/* Main Grid: 2 Columns */}
-      <div className="my-auto grid grid-cols-12 gap-6 items-center max-w-6xl mx-auto w-full z-10">
+      <div className="my-auto grid grid-cols-12 gap-6 items-center max-w-6xl mx-auto w-full">
         
         {/* Left 7 Columns: Title & 7 Harms in a clean 2-column layout */}
         <div className="col-span-12 md:col-span-7 flex flex-col gap-3">
@@ -42,22 +45,26 @@ export const Slide5HarmsMerged: React.FC = () => {
             </h2>
           </div>
 
-          {/* 7 Clean Compact Dossier Cards without Arbitrary Line Breaks */}
+          {/* 7 Clean Compact Dossier Cards with Stable Placement Slots */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1">
             {harms.map((h, idx) => (
               <div
                 key={h.id}
-                data-step-card={h.id}
-                className={`step-card dossier-card py-3.5 px-4 flex items-center gap-3.5 cursor-pointer border-2 border-[#1c1917] ${
+                className={`step-card-slot min-h-[56px] sm:min-h-[60px] flex items-stretch ${
                   idx === 6 ? 'sm:col-span-2' : ''
                 }`}
               >
-                <span className="dossier-tag text-xs sm:text-sm bg-[#1c1917] text-[#e6dcc8] flex-shrink-0 font-bold font-dossier-code px-2.5 py-0.5">
-                  #{h.id.toString().padStart(2, '0')}
-                </span>
-                <div className="text-left min-w-0 flex-1">
-                  <div className="font-dossier-title font-bold text-base sm:text-lg md:text-xl text-[#b91c1c] leading-snug pen-write-anim">
-                    {h.title}
+                <div
+                  data-step-card={h.id}
+                  className="step-card dossier-card py-2.5 sm:py-3 px-3.5 sm:px-4 flex items-center gap-3 cursor-pointer border-2 border-[#1c1917] w-full"
+                >
+                  <span className="dossier-tag text-xs sm:text-sm bg-[#1c1917] text-[#e6dcc8] flex-shrink-0 font-bold font-dossier-code px-2.5 py-0.5">
+                    #{h.id.toString().padStart(2, '0')}
+                  </span>
+                  <div className="text-left min-w-0 flex-1">
+                    <div className="font-dossier-title font-bold text-sm sm:text-base md:text-lg text-[#b91c1c] leading-snug pen-write-anim">
+                      {h.title}
+                    </div>
                   </div>
                 </div>
               </div>

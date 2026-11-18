@@ -5,21 +5,25 @@ export const Slide7HowToInfect: React.FC = () => {
     {
       num: '01',
       topic: 'CHIẾN THUẬT 5 TRANG',
+      desc: 'Cú lừa thế kỷ cho não bộ: Chỉ đọc đúng 5 trang rồi nghỉ!',
       color: '#b91c1c'
     },
     {
       num: '02',
       topic: 'MÓN TRÁNG MIỆNG TRƯỚC MÓN CHÍNH',
+      desc: 'Bắt đầu bằng truyện cuốn, trinh thám gay cấn hay truyện hài.',
       color: '#b45309'
     },
     {
       num: '03',
       topic: 'QUY TẮC 50 TRANG',
+      desc: 'Đặc quyền chia tay không áy náy: Gấp sách nếu không hợp gu!',
       color: '#0369a1'
     },
     {
       num: '04',
       topic: 'VŨ KHÍ GIAO TIẾP',
+      desc: 'Tích lũy vốn từ sắc bén & gia vị thăng hoa cho mọi cuộc deeptalk.',
       color: '#15803d'
     }
   ];
@@ -55,25 +59,30 @@ export const Slide7HowToInfect: React.FC = () => {
             </h2>
           </div>
 
-          {/* 4 Clean Step Cards with Only Main Content - Prominent & Punchy */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-1 flex-1">
+          {/* 4 Prominent Horizontal Dossier Strips (Full Width, Zero Awkward Line Breaks, Filling Slide Height) */}
+          <div className="flex flex-col gap-3 sm:gap-3.5 mt-1.5 flex-1 justify-between w-full">
             {steps.map((s, idx) => (
               <div 
                 key={s.num}
                 data-step-card={idx + 1}
-                className="step-card dossier-card p-5 flex items-center gap-3.5 cursor-pointer border-2 border-[#1c1917] min-h-[110px]"
+                className="step-card dossier-card py-3.5 sm:py-4 px-5 sm:px-6 flex items-center gap-4 sm:gap-5 cursor-pointer border-2 border-[#1c1917] min-h-[82px] sm:min-h-[88px] w-full"
               >
                 <span 
-                  className="dossier-tag text-xs sm:text-sm text-white font-bold flex-shrink-0"
+                  className="dossier-tag text-xs sm:text-sm font-bold flex-shrink-0 text-white px-3 sm:px-3.5 py-1.5 shadow-sm font-dossier-code tracking-wider"
                   style={{ backgroundColor: s.color }}
                 >
                   BƯỚC {s.num}
                 </span>
-                <div 
-                  className="font-dossier-title font-black text-lg sm:text-xl md:text-2xl uppercase tracking-wide pen-write-anim text-left leading-snug flex-1"
-                  style={{ color: s.color }}
-                >
-                  {s.topic}
+                <div className="flex flex-col text-left justify-center flex-1 min-w-0">
+                  <div 
+                    className="font-dossier-title font-black text-lg sm:text-xl md:text-2xl uppercase tracking-wide pen-write-anim leading-tight"
+                    style={{ color: s.color }}
+                  >
+                    {s.topic}
+                  </div>
+                  <div className="font-typewriter text-xs sm:text-[13px] text-[#44403c] mt-1 font-medium leading-snug">
+                    {s.desc}
+                  </div>
                 </div>
               </div>
             ))}

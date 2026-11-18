@@ -30,11 +30,18 @@ export const Slide8Conclusion: React.FC = () => {
         >
           <div>
             {/* Giant Punchy Spotlight Blessing */}
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-[#141413] leading-[1.08] font-dossier-title tracking-tight uppercase pen-write-anim">
-              <span className="write-line block">Chúc Bạn Sớm Mắc Bệnh Đọc Sách</span>
-              <span className="write-line block text-[#b91c1c] underline decoration-[#b91c1c] decoration-8 mt-2">
-                Và Không Bao Giờ Chữa Khỏi!
-              </span>
+            <h2 
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-[#141413] leading-[1.08] font-dossier-title tracking-tight uppercase pen-write-anim"
+              data-pause-between-lines="true"
+            >
+              <div className="write-line-row">
+                <span className="write-line">Chúc Bạn Sớm Mắc Bệnh Đọc Sách</span>
+              </div>
+              <div className="write-line-row">
+                <span className="write-line text-[#b91c1c] underline decoration-[#b91c1c] decoration-8 mt-2">
+                  Và Không Bao Giờ Chữa Khỏi!
+                </span>
+              </div>
             </h2>
           </div>
         </div>

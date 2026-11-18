@@ -616,24 +616,25 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
    Cuộn chậm ban đầu (0% - 40%), tăng tốc và đi nhanh dứt khoát về cuối (40% - 100%)
    ========================================================================== */
 
-/* 1. FLIP FORWARD: Hand grips bottom-right corner, curls slowly, accelerates to finish */
+/* 1. FLIP FORWARD: Hand curls soft paper from bottom-right corner */
 .slide.page-flip-exit-forward {
   display: flex !important;
   visibility: visible !important;
   z-index: 30 !important;
   pointer-events: none !important;
-  transform-origin: 0% 50% !important; /* STRICTLY ANCHORED AT SPINE */
+  transform-origin: 0% 100% !important; /* ANCHORED AT LEFT SPINE BOTTOM */
   background-color: var(--dossier-paper) !important;
   opacity: 1 !important;
-  animation: bookPageTurnExitForward 0.85s cubic-bezier(0.42, 0.0, 0.75, 1.0) forwards;
+  overflow: hidden !important;
+  animation: softPaperCurlExitForward 0.85s cubic-bezier(0.38, 0.05, 0.65, 1.0) forwards;
 }
 
 .slide.page-flip-exit-forward::after {
   opacity: 1;
-  animation: bookPageCurlShadingForward 0.85s cubic-bezier(0.42, 0.0, 0.75, 1.0) forwards;
+  animation: bookPageCurlShadingForward 0.85s cubic-bezier(0.38, 0.05, 0.65, 1.0) forwards;
 }
 
-/* Upcoming slide underneath is revealed with travelling cast shadow */
+/* Upcoming slide underneath is revealed with travelling curved cast shadow */
 .slide.page-flip-enter-forward {
   display: flex !important;
   visibility: visible !important;
@@ -643,29 +644,30 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   transform: rotateY(0deg) !important;
   background-color: var(--dossier-paper) !important;
   opacity: 1 !important;
-  animation: bookUnderneathRevealForward 0.85s cubic-bezier(0.42, 0.0, 0.75, 1.0) forwards;
+  animation: bookUnderneathRevealForward 0.85s cubic-bezier(0.38, 0.05, 0.65, 1.0) forwards;
 }
 
 .slide.page-flip-enter-forward::after {
   opacity: 1;
-  animation: bookPageCastShadowForward 0.85s cubic-bezier(0.42, 0.0, 0.75, 1.0) forwards;
+  animation: bookPageCastShadowForward 0.85s cubic-bezier(0.38, 0.05, 0.65, 1.0) forwards;
 }
 
-/* 2. FLIP BACKWARD: Hand lifts previous page from left stack, curls slowly, accelerates */
+/* 2. FLIP BACKWARD: Hand curls previous soft page from left stack over to right */
 .slide.page-flip-enter-backward {
   display: flex !important;
   visibility: visible !important;
   z-index: 30 !important;
   pointer-events: auto !important;
-  transform-origin: 0% 50% !important;
+  transform-origin: 0% 100% !important;
   background-color: var(--dossier-paper) !important;
   opacity: 1 !important;
-  animation: bookPageTurnEnterBackward 0.85s cubic-bezier(0.42, 0.0, 0.75, 1.0) forwards;
+  overflow: hidden !important;
+  animation: softPaperCurlEnterBackward 0.85s cubic-bezier(0.38, 0.05, 0.65, 1.0) forwards;
 }
 
 .slide.page-flip-enter-backward::after {
   opacity: 1;
-  animation: bookPageCurlShadingBackward 0.85s cubic-bezier(0.42, 0.0, 0.75, 1.0) forwards;
+  animation: bookPageCurlShadingBackward 0.85s cubic-bezier(0.38, 0.05, 0.65, 1.0) forwards;
 }
 
 /* Current slide underneath being covered */
@@ -678,127 +680,119 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   transform: rotateY(0deg) !important;
   background-color: var(--dossier-paper) !important;
   opacity: 1 !important;
-  animation: bookUnderneathCoveredBackward 0.85s cubic-bezier(0.42, 0.0, 0.75, 1.0) forwards;
+  animation: bookUnderneathCoveredBackward 0.85s cubic-bezier(0.38, 0.05, 0.65, 1.0) forwards;
 }
 
 .slide.page-flip-exit-backward::after {
   opacity: 1;
-  animation: bookPageCastShadowBackward 0.85s cubic-bezier(0.42, 0.0, 0.75, 1.0) forwards;
+  animation: bookPageCastShadowBackward 0.85s cubic-bezier(0.38, 0.05, 0.65, 1.0) forwards;
 }
 
 /* ==========================================================================
-   KEYFRAME ANIMATIONS - SLOW INITIAL CURL, ACCELERATING TO FAST FINISH
-   Zero X/Y translation keeps spine anchored. SkewY curls right edge.
+   SOFT PAPER CURL KEYFRAMES (BO TRÒN, CUỘN MỀM TỪ GÓC PHẢI DƯỚI)
+   Dynamic rounded border-radius + 3D diagonal cylindrical roll
    ========================================================================== */
 
-/* Forward Page Turn Exit: Slow curl 0-40%, fast sweep 40-100% */
-@keyframes bookPageTurnExitForward {
+/* Forward Page Turn Exit: Soft cylindrical roll peeling from bottom-right corner */
+@keyframes softPaperCurlExitForward {
   0% {
-    transform: perspective(2400px) rotateY(0deg) skewY(0deg);
+    transform: perspective(2200px) rotate3d(0, 1, 0, 0deg) skewY(0deg);
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
     filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
   }
-  /* CUỘN CHẬM BAN ĐẦU: Nhấc mép góc dưới phải, uốn cong tờ giấy từ tốn */
-  18% {
-    transform: perspective(2400px) rotateY(-8deg) skewY(-2.5deg);
-    filter: drop-shadow(-6px 8px 12px rgba(45, 32, 20, 0.3));
+  /* CUỘN TỪ GÓC PHẢI DƯỚI: Mép góc dưới phải nhấc lên, uốn cong mềm mại */
+  16% {
+    transform: perspective(2200px) rotate3d(-0.16, 1, 0.09, -14deg) skewY(-3.5deg) scale(0.995);
+    border-bottom-right-radius: 120px 220px;
+    border-top-right-radius: 40px 90px;
+    filter: drop-shadow(-10px 12px 18px rgba(45, 32, 20, 0.32));
   }
-  38% {
-    transform: perspective(2400px) rotateY(-24deg) skewY(-4.5deg);
-    filter: drop-shadow(-14px 12px 18px rgba(45, 32, 20, 0.42));
+  /* CUỘN TRÒN HÌNH TRỤ: Giấy mềm cuộn sâu thành hình ống bo tròn */
+  36% {
+    transform: perspective(2200px) rotate3d(-0.2, 1, 0.12, -42deg) skewY(-6.2deg) scale(0.985);
+    border-bottom-right-radius: 200px 340px;
+    border-top-right-radius: 80px 180px;
+    filter: drop-shadow(-22px 20px 32px rgba(45, 32, 20, 0.45));
   }
-  /* TĂNG TỐC VÚT QUA GÁY SÁCH */
-  60% {
-    transform: perspective(2400px) rotateY(-74deg) skewY(-4.0deg);
-    filter: drop-shadow(-20px 16px 24px rgba(45, 32, 20, 0.5));
+  /* ĐỈNH CUỘN QUA GÁY SÁCH: Độ cong trụ mềm lớn nhất */
+  58% {
+    transform: perspective(2200px) rotate3d(-0.15, 1, 0.1, -96deg) skewY(-5deg) scale(0.98);
+    border-bottom-right-radius: 240px 360px;
+    border-top-right-radius: 110px 220px;
+    filter: drop-shadow(-28px 24px 38px rgba(45, 32, 20, 0.5));
   }
+  /* DUỖI DẦN KHI ÁP VÀO TẬP BÊN TRÁI */
   78% {
-    transform: perspective(2400px) rotateY(-136deg) skewY(-2.2deg);
-    filter: drop-shadow(-16px 14px 20px rgba(45, 32, 20, 0.42));
+    transform: perspective(2200px) rotate3d(-0.08, 1, 0.05, -148deg) skewY(-2.6deg) scale(0.99);
+    border-bottom-right-radius: 120px 200px;
+    border-top-right-radius: 50px 100px;
+    filter: drop-shadow(-18px 16px 24px rgba(45, 32, 20, 0.38));
   }
-  /* ĐI NHANH VỀ CUỐI: áp dứt khoát vào trang bên trái */
+  /* ÁP DỨT KHOÁT VÀO TRANG BÊN TRÁI */
   92% {
-    transform: perspective(2400px) rotateY(-172deg) skewY(-0.6deg);
-    filter: drop-shadow(-8px 6px 10px rgba(45, 32, 20, 0.25));
+    transform: perspective(2200px) rotate3d(0, 1, 0, -172deg) skewY(-0.8deg) scale(0.997);
+    border-bottom-right-radius: 30px 50px;
+    border-top-right-radius: 15px 30px;
+    filter: drop-shadow(-8px 8px 12px rgba(45, 32, 20, 0.2));
   }
   100% {
-    transform: perspective(2400px) rotateY(-180deg) skewY(0deg);
+    transform: perspective(2200px) rotate3d(0, 1, 0, -180deg) skewY(0deg);
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
     filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
   }
 }
 
-/* Warm Authentic Book Paper Curvature Shading (NO plastic/cellophane gloss) */
+/* Cylindrical paper curvature shading with moving apex specular highlight */
 @keyframes bookPageCurlShadingForward {
   0% {
     background: transparent;
     opacity: 0;
   }
-  20% {
+  16% {
+    background: linear-gradient(
+      126deg,
+      transparent 62%,
+      rgba(55, 38, 22, 0.12) 72%,
+      rgba(255, 252, 240, 0.32) 78%,
+      rgba(40, 26, 14, 0.34) 84%,
+      transparent 95%
+    );
+    opacity: 0.85;
+  }
+  36% {
+    background: linear-gradient(
+      124deg,
+      transparent 38%,
+      rgba(55, 38, 22, 0.24) 49%,
+      rgba(255, 254, 245, 0.42) 55%,
+      rgba(35, 22, 12, 0.44) 63%,
+      transparent 78%
+    );
+    opacity: 0.95;
+  }
+  58% {
+    background: linear-gradient(
+      118deg,
+      transparent 18%,
+      rgba(55, 38, 22, 0.28) 30%,
+      rgba(255, 254, 245, 0.38) 36%,
+      rgba(35, 22, 12, 0.38) 44%,
+      transparent 62%
+    );
+    opacity: 0.88;
+  }
+  80% {
     background: linear-gradient(
       112deg,
-      transparent 60%,
-      rgba(70, 52, 35, 0.14) 75%,
-      rgba(45, 32, 20, 0.24) 82%,
-      transparent 94%
-    );
-    opacity: 0.8;
-  }
-  42% {
-    background: linear-gradient(
-      108deg,
-      transparent 38%,
-      rgba(60, 45, 30, 0.22) 48%,
-      rgba(245, 235, 215, 0.2) 53%,
-      rgba(50, 35, 20, 0.3) 60%,
-      transparent 76%
-    );
-    opacity: 0.9;
-  }
-  75% {
-    background: linear-gradient(
-      96deg,
-      transparent 18%,
-      rgba(60, 45, 30, 0.2) 30%,
-      rgba(245, 235, 215, 0.15) 35%,
-      rgba(50, 35, 20, 0.25) 42%,
-      transparent 58%
-    );
-    opacity: 0.7;
-  }
-  100% {
-    background: transparent;
-    opacity: 0;
-  }
-}
-
-/* Cast shadow on the new page underneath as the top page peels away */
-@keyframes bookPageCastShadowForward {
-  0% {
-    background: linear-gradient(
-      to right,
-      rgba(17, 24, 39, 0.35) 0%,
-      rgba(17, 24, 39, 0.2) 25%,
-      transparent 60%
-    );
-    opacity: 0.2;
-  }
-  40% {
-    background: linear-gradient(
-      to right,
-      rgba(17, 24, 39, 0.5) 0%,
-      rgba(17, 24, 39, 0.32) 35%,
-      rgba(17, 24, 39, 0.12) 65%,
-      transparent 85%
-    );
-    opacity: 0.75;
-  }
-  75% {
-    background: linear-gradient(
-      to right,
-      rgba(17, 24, 39, 0.32) 0%,
-      rgba(17, 24, 39, 0.14) 20%,
+      transparent 6%,
+      rgba(55, 38, 22, 0.2) 16%,
+      rgba(255, 252, 242, 0.24) 22%,
+      rgba(35, 22, 12, 0.26) 30%,
       transparent 45%
     );
-    opacity: 0.45;
+    opacity: 0.6;
   }
   100% {
     background: transparent;
@@ -806,34 +800,84 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   }
 }
 
-/* Backward Page Turn Enter: Slow curl 0-40%, fast sweep 40-100% */
-@keyframes bookPageTurnEnterBackward {
+/* Cast shadow on the underneath page as the soft cylindrical roll sweeps over */
+@keyframes bookPageCastShadowForward {
   0% {
-    transform: perspective(2400px) rotateY(-180deg) skewY(0deg);
-    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+    background: radial-gradient(
+      ellipse at 95% 95%,
+      rgba(20, 15, 10, 0.5) 0%,
+      rgba(20, 15, 10, 0.25) 30%,
+      transparent 65%
+    );
+    opacity: 0.35;
   }
-  18% {
-    transform: perspective(2400px) rotateY(-172deg) skewY(2.0deg);
-    filter: drop-shadow(-6px 8px 12px rgba(45, 32, 20, 0.3));
+  36% {
+    background: linear-gradient(
+      125deg,
+      transparent 22%,
+      rgba(20, 15, 10, 0.48) 46%,
+      rgba(20, 15, 10, 0.22) 66%,
+      transparent 86%
+    );
+    opacity: 0.78;
   }
-  38% {
-    transform: perspective(2400px) rotateY(-156deg) skewY(4.0deg);
-    filter: drop-shadow(-14px 12px 18px rgba(45, 32, 20, 0.42));
-  }
-  60% {
-    transform: perspective(2400px) rotateY(-106deg) skewY(3.8deg);
-    filter: drop-shadow(-20px 16px 24px rgba(45, 32, 20, 0.5));
-  }
-  78% {
-    transform: perspective(2400px) rotateY(-44deg) skewY(2.2deg);
-    filter: drop-shadow(-16px 14px 20px rgba(45, 32, 20, 0.42));
-  }
-  92% {
-    transform: perspective(2400px) rotateY(-8deg) skewY(0.6deg);
-    filter: drop-shadow(-8px 6px 10px rgba(45, 32, 20, 0.25));
+  65% {
+    background: linear-gradient(
+      to right,
+      rgba(20, 15, 10, 0.42) 0%,
+      rgba(20, 15, 10, 0.22) 28%,
+      transparent 58%
+    );
+    opacity: 0.52;
   }
   100% {
-    transform: perspective(2400px) rotateY(0deg) skewY(0deg);
+    background: transparent;
+    opacity: 0;
+  }
+}
+
+/* Backward Soft Paper Turn: Curls softly from left stack back over to right */
+@keyframes softPaperCurlEnterBackward {
+  0% {
+    transform: perspective(2200px) rotate3d(0, 1, 0, -180deg) skewY(0deg);
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+  }
+  16% {
+    transform: perspective(2200px) rotate3d(0.16, 1, -0.09, -166deg) skewY(3.5deg) scale(0.995);
+    border-bottom-left-radius: 120px 220px;
+    border-top-left-radius: 40px 90px;
+    filter: drop-shadow(10px 12px 18px rgba(45, 32, 20, 0.32));
+  }
+  36% {
+    transform: perspective(2200px) rotate3d(0.2, 1, -0.12, -138deg) skewY(6.2deg) scale(0.985);
+    border-bottom-left-radius: 200px 340px;
+    border-top-left-radius: 80px 180px;
+    filter: drop-shadow(22px 20px 32px rgba(45, 32, 20, 0.45));
+  }
+  58% {
+    transform: perspective(2200px) rotate3d(0.15, 1, -0.1, -84deg) skewY(5deg) scale(0.98);
+    border-bottom-left-radius: 240px 360px;
+    border-top-left-radius: 110px 220px;
+    filter: drop-shadow(28px 24px 38px rgba(45, 32, 20, 0.5));
+  }
+  78% {
+    transform: perspective(2200px) rotate3d(0.08, 1, -0.05, -32deg) skewY(2.6deg) scale(0.99);
+    border-bottom-left-radius: 120px 200px;
+    border-top-left-radius: 50px 100px;
+    filter: drop-shadow(18px 16px 24px rgba(45, 32, 20, 0.38));
+  }
+  92% {
+    transform: perspective(2200px) rotate3d(0, 1, 0, -8deg) skewY(0.8deg) scale(0.997);
+    border-bottom-left-radius: 30px 50px;
+    border-top-left-radius: 15px 30px;
+    filter: drop-shadow(8px 8px 12px rgba(45, 32, 20, 0.2));
+  }
+  100% {
+    transform: perspective(2200px) rotate3d(0, 1, 0, 0deg) skewY(0deg);
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
     filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
   }
 }
@@ -1178,14 +1222,33 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   will-change: clip-path;
 }
 
+/* Individual line rows and isolated inline-block text spans */
+.write-line-row {
+  display: block !important;
+  width: 100% !important;
+  position: relative !important;
+  clear: both !important;
+}
+
+.write-line {
+  display: inline-block !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  position: relative !important;
+  vertical-align: top !important;
+  will-change: clip-path;
+}
+
 /* Initial hidden state for unreached steps */
-.step-card.step-hidden .pen-write-anim {
+.step-card.step-hidden .pen-write-anim,
+.step-card.step-hidden .pen-write-anim .write-line {
   clip-path: polygon(0 0, 0 0, 0 100%, 0 100%) !important;
   opacity: 0.2;
 }
 
 /* Fully revealed docked state for completed steps */
-.step-card.step-docked .pen-write-anim {
+.step-card.step-docked .pen-write-anim,
+.step-card.step-docked .pen-write-anim .write-line {
   clip-path: none !important;
   opacity: 1 !important;
 }
@@ -1498,4 +1561,163 @@ button, a, input, select, textarea, .clickable-counter, .slide-picker-btn, .step
   background: rgba(254, 242, 242, 0.94);
   display: inline-block;
   text-transform: uppercase;
+}
+
+/* ==========================================================================
+   SLIDE 5 THEATRICAL SPOTLIGHT & DOCKING ARCHITECTURE
+   - Arrow press -> sequential card pops into spotlight occupying 70% of screen frame,
+     preserving card aspect ratio (3.4 / 1).
+   - Arrow press again -> old card docks back into its anchored grid position,
+     new card pops into 70% spotlight.
+   - Step 8 -> all 7 cards docked into grid for full slide overview before page flip.
+   ========================================================================== */
+
+/* Cinematic Vignette Backdrop for Slide 5 Spotlight */
+.slide5-spotlight-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  background: radial-gradient(ellipse at center, rgba(15, 12, 10, 0.6) 0%, rgba(15, 12, 10, 0.85) 100%) !important;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 99990 !important;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+#slide-5:not([data-current-step="0"]):not([data-current-step="8"]) .slide5-spotlight-backdrop {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Stable placement slots for Slide 5 cards */
+#slide-5 .step-card-slot {
+  width: 100%;
+  border: 1.5px dashed rgba(28, 25, 23, 0.22);
+  border-radius: 4px;
+  background: rgba(28, 25, 23, 0.02);
+  display: flex;
+  align-items: stretch;
+  transition: border-color 0.3s ease;
+}
+
+/* 70% Screen Spotlight Card for Slide 5 */
+#slide-5 .step-card.step-spotlight {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: min(70vw, 860px) !important;
+  aspect-ratio: 3.4 / 1 !important;
+  z-index: 99999 !important;
+  padding: 1.75rem 2.5rem !important;
+  background-color: #fffdf8 !important;
+  border: 3.5px solid #b91c1c !important;
+  border-radius: 8px !important;
+  box-shadow: 
+    0 30px 70px -15px rgba(0, 0, 0, 0.75), 
+    0 0 0 3px #1c1917, 
+    10px 10px 0px rgba(185, 28, 28, 0.95) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 1.75rem !important;
+  animation: slide5SpotlightIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+#slide-5 .step-card.step-spotlight .dossier-tag {
+  font-size: 1.4rem !important;
+  padding: 0.6rem 1.3rem !important;
+  border-radius: 6px !important;
+  background-color: #1c1917 !important;
+  color: #fef08a !important;
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.4) !important;
+}
+
+#slide-5 .step-card.step-spotlight .font-dossier-title {
+  font-size: clamp(1.6rem, 2.5vw, 2.35rem) !important;
+  line-height: 1.3 !important;
+  font-weight: 800 !important;
+  color: #b91c1c !important;
+}
+
+/* Docked Card returning to its anchored grid position */
+#slide-5 .step-card.step-docked {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  aspect-ratio: auto !important;
+  z-index: 10 !important;
+  border: 2px solid #1c1917 !important;
+  background-color: #fffdf8 !important;
+  box-shadow: 4px 4px 0px rgba(28, 25, 23, 0.85) !important;
+  animation: slide5CardDockIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+#slide-5 .step-card.step-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  position: relative !important;
+  width: 100% !important;
+}
+
+@keyframes slide5SpotlightIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -46%) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes slide5CardDockIn {
+  0% {
+    opacity: 0.5;
+    transform: scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 640px) {
+  #slide-5 .step-card.step-spotlight {
+    width: 90% !important;
+    aspect-ratio: 2.8 / 1 !important;
+    padding: 1rem 1.25rem !important;
+    gap: 1rem !important;
+  }
+  #slide-5 .step-card.step-spotlight .dossier-tag {
+    font-size: 1rem !important;
+    padding: 0.35rem 0.75rem !important;
+  }
+  #slide-5 .step-card.step-spotlight .font-dossier-title {
+    font-size: 1.25rem !important;
+  }
+}
+
+/* ==========================================================================
+   SLIDE 7 HORIZONTAL DOSSIER CARDS ENHANCEMENTS
+   ========================================================================== */
+#slide-7 .step-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#slide-7 .step-card:hover {
+  transform: translateX(4px) translateY(-2px);
+  box-shadow: 6px 6px 0px rgba(28, 25, 23, 0.9);
+}
+
+#slide-7 .step-card.step-spotlight {
+  transform: translateX(6px) scale(1.015) !important;
+  box-shadow: 7px 7px 0px rgba(28, 25, 23, 0.9) !important;
+  border-width: 2.5px !important;
 }

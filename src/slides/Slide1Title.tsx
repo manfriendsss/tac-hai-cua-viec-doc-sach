@@ -34,10 +34,14 @@ export const Slide1Title: React.FC = () => {
               className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-[#141413] leading-[1.04] font-dossier-title tracking-tight uppercase pen-write-anim"
               data-pause-between-lines="true"
             >
-              <span className="write-line block">TÁC HẠI CỦA</span>
-              <span className="write-line block text-[#b91c1c] underline decoration-[#b91c1c] decoration-8 whitespace-nowrap mt-1">
-                VIỆC ĐỌC SÁCH!
-              </span>
+              <div className="write-line-row">
+                <span className="write-line">TÁC HẠI CỦA</span>
+              </div>
+              <div className="write-line-row">
+                <span className="write-line text-[#b91c1c] underline decoration-[#b91c1c] decoration-8 whitespace-nowrap mt-1">
+                  VIỆC ĐỌC SÁCH!
+                </span>
+              </div>
             </h1>
 
             {/* Dual Red Realistic Stamps (Slam sequentially on Step 1) */}
